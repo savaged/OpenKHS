@@ -104,12 +104,24 @@
     <Compile Include="Controls\SpinnerCogs.xaml.cs">
       <DependentUpon>SpinnerCogs.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IBrother.cs" />
     <Compile Include="Interfaces\IManagedView.cs" />
     <Compile Include="Interfaces\IViewManager.cs" />
     <Compile Include="IocBindings.cs" />
+    <Compile Include="Models\CircuitVisitMeetingPart.cs" />
+    <Compile Include="Models\CircuitOverseer.cs" />
     <Compile Include="Models\ClmmSchedule.cs" />
+    <Compile Include="Models\Congregation.cs" />
     <Compile Include="Models\CongregationMember.cs" />
+    <Compile Include="Models\Friend.cs" />
+    <Compile Include="Models\LocalBrother.cs" />
+    <Compile Include="Models\LocalMeetingPart.cs" />
+    <Compile Include="Models\Meeting.cs" />
     <Compile Include="Models\PmSchedule.cs" />
+    <Compile Include="Models\PmSpeaker.cs" />
+    <Compile Include="Models\PublicTalk.cs" />
+    <Compile Include="Models\MeetingPart.cs" />
+    <Compile Include="Models\VisitingSpeaker.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

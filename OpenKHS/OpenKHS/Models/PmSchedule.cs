@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace OpenKHS.Models
 {
     /// <summary>
     /// Public Meeting Schedule
     /// </summary>
-    public class PmSchedule
+    public class PmSchedule : Meeting
     {
+        public PublicTalk PublicTalk { get; set; }
+
+        public CongregationMember WtConductor { get; set; }
+
+        public CircuitVisitMeetingPart ClosingTalk { get; set; }
     }
 }
