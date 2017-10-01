@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenKHS", "OpenKHS\OpenKHS\OpenKHS.csproj", "{8F9B2503-DCA1-4B62-9888-7094063A1172}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenKHS.Test", "OpenKHS\OpenKHS.Test\OpenKHS.Test.csproj", "{59BC7D04-3CE3-431D-85A8-3268385EE438}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmDialogs", "..\mvvm-dialogs\MvvmDialogs.csproj", "{6EE68BDD-0567-408E-B40B-74AFAF273302}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F9B2503-DCA1-4B62-9888-7094063A1172}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F9B2503-DCA1-4B62-9888-7094063A1172}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F9B2503-DCA1-4B62-9888-7094063A1172}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F9B2503-DCA1-4B62-9888-7094063A1172}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59BC7D04-3CE3-431D-85A8-3268385EE438}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59BC7D04-3CE3-431D-85A8-3268385EE438}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59BC7D04-3CE3-431D-85A8-3268385EE438}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59BC7D04-3CE3-431D-85A8-3268385EE438}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EE68BDD-0567-408E-B40B-74AFAF273302}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EE68BDD-0567-408E-B40B-74AFAF273302}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EE68BDD-0567-408E-B40B-74AFAF273302}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EE68BDD-0567-408E-B40B-74AFAF273302}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {463FA83B-2623-4867-9D19-4B3B95F98017}
+	EndGlobalSection
+EndGlobal
