@@ -2,7 +2,10 @@
 
 namespace OpenKHS.Models
 {
-    class ClmmSchedule
+    /// <summary>
+    /// Christian Life and Ministry Meeting Schedule
+    /// </summary>
+    public class ClmmSchedule
     {
     }
 }
