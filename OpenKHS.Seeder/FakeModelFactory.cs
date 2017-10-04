@@ -1,0 +1,138 @@
+﻿using AutoMapper;
+using Bogus;
+using OpenKHS.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace OpenKHS.Seeder
+{
+    public enum Gender
+    {
+        Male,
+        Female,
+        Random
+    }
+
+    public class FakeModelFactory
+    {
+        public FakeModelFactory()
+        {
+            Randomizer.Seed = new Random(8675309);
+        }
+
+        private Faker<Friend> FriendFaker(Gender gender)
+        {
+            var fakeFriend = new Faker<Friend>()
+                .StrictMode(true)
+                .RuleFor(p => p.Firstname, f => f.Name.FirstName())
+                .RuleFor(p => p.Lastname, f => f.Name.LastName())
+                .RuleFor(p => p.Mobile, f => new Person().Phone)
+                .RuleFor(p => p.Landline, f => new Person().Phone)
+                .RuleFor(p => p.Email, (f, p) => f.Internet.Email(p.Firstname, p.Lastname))
+                .RuleFor(p => p.Male, f => 0 != GetGender(gender));
+            return fakeFriend;
+        }
+
+        private int GetGender(Gender gender)
+        {
+            var selectedGender = 0;
+            switch (gender)
+            {
+                case Gender.Male:
+                    selectedGender = 1;
+                    break;
+                case Gender.Female:
+                    selectedGender = 0;
+                    break;
+                case Gender.Random:
+                    selectedGender = new Faker().Random.Int(0, 1);
+                    break;
+                default:
+                    break;
+            }
+            return selectedGender;
+        }
+
+        public List<Friend> MakeFriends(int count = 1)
+        {
+            var friendFaker = FriendFaker(Gender.Random);
+
+            var fakeFriends = new List<Friend>();
+            while (count > 0)
+            {
+                fakeFriends.Add((Friend)friendFaker);
+                count--;
+            }
+            return fakeFriends;
+        }
+
+        public List<VisitingSpeaker> MakeVisitingSpeakers(int count = 1)
+        {
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Friend, VisitingSpeaker>());
+            var mapper = config.CreateMapper();
+
+            var fakeFriends = MakeFriends(count);
+
+            var fakeVisitingSpeakers = new List<VisitingSpeaker>();
+
+            foreach (var fakeFriend in fakeFriends)
+            {
+                var visitingSpeaker = mapper.Map<VisitingSpeaker>(fakeFriend);
+                visitingSpeaker.Congregation = MakeCongregations().First();
+                fakeVisitingSpeakers.Add(visitingSpeaker);
+            }
+            return fakeVisitingSpeakers;
+        }
+
+        public List<Congregation> MakeCongregations(int count = 1)
+        {
+            var congFaker = CongregationFaker();
+
+            var fakeCongregations = new List<Congregation>();
+            while (count > 0)
+            {
+                fakeCongregations.Add((Congregation)congFaker);
+                count--;
+            }
+            return fakeCongregations;
+        }
+
+        private Faker<Congregation> CongregationFaker()
+        {
+            var congFaker = new Faker<Congregation>()
+                .StrictMode(true)
+                .RuleFor(c => c.Name, f => f.Name.FullName())
+                .RuleFor(c => c.PublicTalkCoordinator, f => (Friend)MakeFriends().First());
+            return congFaker;
+        }
+
+        public CircuitOverseer MakeCircuitOverseer()
+        {
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Friend, CircuitOverseer>());
+            var mapper = config.CreateMapper();
+
+            var co = mapper.Map<CircuitOverseer>((Friend)FriendFaker(Gender.Male));
+            co.Wife = (Friend)FriendFaker(Gender.Female);
+            return co;
+        }
+
+        public List<CongregationMember> MakeCongregationMember(int count = 1)
+        {
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Friend, CongregationMember>());
+            var mapper = config.CreateMapper();
+
+            var fakeFriends = MakeFriends(count);
+
+            var fakeCongregationMembers = new List<CongregationMember>();
+
+            foreach (var fakeFriend in fakeFriends)
+            {
+                var congregationMember = mapper.Map<CongregationMember>(fakeFriend);
+                // TODO lots of mapping
+                fakeCongregationMembers.Add(congregationMember);
+            }
+            return fakeCongregationMembers;
+        }
+    }
+}

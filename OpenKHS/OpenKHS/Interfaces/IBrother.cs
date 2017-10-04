@@ -1,5 +1,4 @@
 ﻿
-
 namespace OpenKHS.Interfaces
 {
     public interface IBrother
@@ -13,5 +12,7 @@ namespace OpenKHS.Interfaces
         string Landline { get; set; }
 
         string Email { get; set; }
+
+        bool Male { get; }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace OpenKHS.Models
 {
-    public abstract class Friend
+    public class Friend
     {
         public string Firstname { get; set; }
 
@@ -13,5 +13,7 @@ namespace OpenKHS.Models
         public string Landline { get; set; }
 
         public string Email { get; set; }
+
+        public virtual bool Male { get; set; }
     }
 }
