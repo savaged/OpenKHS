@@ -1,9 +1,11 @@
 ﻿
 
+using System;
+
 namespace OpenKHS.Interfaces
 {
     interface IManagedView
     {
-        void RequestCloseEventHandler();
+        void OnRequestClose(object sender, EventArgs args);
     }
 }

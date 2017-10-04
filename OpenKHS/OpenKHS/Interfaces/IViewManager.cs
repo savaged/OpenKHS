@@ -5,7 +5,7 @@ namespace OpenKHS.Interfaces
 {
     interface IViewManager
     {
-        event Action RequestClose;
+        event EventHandler RequestClose;
         IDialogService DialogService { get; }
     }
 }

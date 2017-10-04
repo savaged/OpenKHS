@@ -17,13 +17,13 @@ namespace OpenKHS.Models
 
         public CongregationMember PresentationsForMonth { get; set; }
 
-        public CongregationMember InitialCall { get; set; }
+        public AymMeetingPart InitialCall { get; set; }
 
-        public CongregationMember ReturnVisit { get; set; }
+        public AymMeetingPart ReturnVisit { get; set; }
 
-        public CongregationMember BibleStudy { get; set; }
+        public AymMeetingPart BibleStudy { get; set; }
 
-        public CongregationMember AyfmTalk { get; set; }
+        public AymMeetingPart AyfmTalk { get; set; }
 
         public LocalMeetingPart LacPart1 { get; set; }
 

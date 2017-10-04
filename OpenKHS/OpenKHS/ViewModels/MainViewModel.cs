@@ -113,13 +113,13 @@ namespace OpenKHS.ViewModels
         private void CloseView()
         {
             Log.Info("Closing App");
-            RequestClose?.Invoke();
+            RequestClose?.Invoke(this, null);
         }
         #endregion
 
         #region Events
 
-        public event Action RequestClose;
+        public event EventHandler RequestClose;
 
         #endregion
     }

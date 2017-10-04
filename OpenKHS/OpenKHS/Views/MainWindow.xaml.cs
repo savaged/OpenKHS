@@ -19,10 +19,10 @@ namespace OpenKHS.Views
         private void Window_SourceInitialized(object sender, EventArgs e)
         {
             var vm = ((IViewManager)DataContext);
-            vm.RequestClose += RequestCloseEventHandler;
+            vm.RequestClose += OnRequestClose;
         }
         
-        public void RequestCloseEventHandler()
+        public void OnRequestClose(object sender, EventArgs args)
         {
             Close();
         }
