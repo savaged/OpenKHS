@@ -7,6 +7,8 @@ namespace OpenKHS.Models
     /// </summary>
     public class ClmmSchedule : Meeting
     {
+        // TODO add validation to each property i.e. brother has privilege
+
         public CongregationMember OpeningPrayer { get; set; }
 
         public CongregationMember Treasures { get; set; }

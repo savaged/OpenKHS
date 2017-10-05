@@ -9,6 +9,18 @@ namespace OpenKHS.Test
     public class FakeModelFactoryTest : TestBase
     {
         [TestMethod]
+        public void TestFakePmScheduleMaker()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestFakeClmmScheduleMaker()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
         public void TestFakeFriendMaker()
         {
             var friends = new FakeModelFactory().MakeFriends(80);
