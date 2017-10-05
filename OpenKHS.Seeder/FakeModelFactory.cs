@@ -30,28 +30,28 @@ namespace OpenKHS.Seeder
                 .RuleFor(p => p.Mobile, f => new Person().Phone)
                 .RuleFor(p => p.Landline, f => new Person().Phone)
                 .RuleFor(p => p.Email, (f, p) => f.Internet.Email(p.Firstname, p.Lastname))
-                .RuleFor(p => p.Male, f => 0 != GetGender(gender));
+                .RuleFor(p => p.Male, f => GetGender(gender));
             return fakeFriend;
         }
 
-        private int GetGender(Gender gender)
+        private bool GetGender(Gender gender)
         {
-            var selectedGender = 0;
+            bool male = true;
             switch (gender)
             {
                 case Gender.Male:
-                    selectedGender = 1;
+                    male = true;
                     break;
                 case Gender.Female:
-                    selectedGender = 0;
+                    male = false;
                     break;
                 case Gender.Random:
-                    selectedGender = new Faker().Random.Int(0, 1);
+                    male = new Faker().Random.Bool();
                     break;
                 default:
                     break;
             }
-            return selectedGender;
+            return male;
         }
 
         public List<Friend> MakeFriends(int count = 1)
@@ -129,10 +129,35 @@ namespace OpenKHS.Seeder
             foreach (var fakeFriend in fakeFriends)
             {
                 var congregationMember = mapper.Map<CongregationMember>(fakeFriend);
-                // TODO lots of mapping
+                congregationMember.Privileges = MakePrivileges(congregationMember.Male);
                 fakeCongregationMembers.Add(congregationMember);
             }
             return fakeCongregationMembers;
+        }
+
+        public Privileges MakePrivileges(bool male)
+        {
+            Faker<Privileges> privilegesFaker;
+            if (male)
+            {
+                privilegesFaker = new Faker<Privileges>()
+                    .Rules((f, p) => {
+                        p.ClmmPrayer = p.ClmmLacParts = p.Platform = p.Attendant = p.Security = p.SoundDesk = f.Random.Bool();
+                        p.ClmmTreasures = p.ClmmChairman = p.ClmmCbsConductor = f.Random.Bool();
+                        p.ClmmBAyfmiBibleStudy = p.ClmmAyfmInitialCall = p.ClmmAyfmReturnVisit = p.ClmmAyfmTalk = f.Random.Bool();
+                        p.ClmmCbsReader = p.ClmmAyfmMonthPresentations = p.ClmmGems = f.Random.Bool();
+                        p.WtReader = p.AwaySpeaker = f.Random.Bool();
+                    });
+            }
+            else
+            {
+                privilegesFaker = new Faker<Privileges>()
+                    .Rules((f, p) => {
+                        p.ClmmBAyfmiBibleStudy = p.ClmmAyfmInitialCall = p.ClmmAyfmReturnVisit = f.Random.Bool();
+                        p.ClmmSecondSchoolOnly = f.Random.Bool();
+                    });
+            }
+            return privilegesFaker.Generate();
         }
     }
 }

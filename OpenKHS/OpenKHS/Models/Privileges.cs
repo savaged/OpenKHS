@@ -22,7 +22,7 @@ namespace OpenKHS.Models
 
         public bool ClmmAyfmReturnVisit { get; set; }
 
-        public bool ClmmBAyfmibleStudy { get; set; }
+        public bool ClmmBAyfmiBibleStudy { get; set; }
 
         public bool ClmmAyfmTalk { get; set; }
 

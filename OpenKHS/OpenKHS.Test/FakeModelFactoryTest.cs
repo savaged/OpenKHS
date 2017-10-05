@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using OpenKHS.Seeder;
+using OpenKHS.Models;
 
 namespace OpenKHS.Test
 {
@@ -50,9 +51,20 @@ namespace OpenKHS.Test
         }
 
         [TestMethod]
+        public void TestFakePrivilegesMaker()
+        {
+            var privileges = new FakeModelFactory().MakePrivileges(false);
+            Assert.IsNotNull(privileges);
+            Assert.IsInstanceOfType(privileges, typeof(Privileges));
+            Assert.IsFalse(privileges.WtReader);
+        }
+
+        [TestMethod]
         public void TestFakeCongregationMemberMaker()
         {
-
+            var congMembers = new FakeModelFactory().MakeCongregationMember(80);
+            Assert.AreEqual(80, congMembers.Count);
+            Assert.IsNotNull(congMembers.First().Privileges);
         }
     }
 }
