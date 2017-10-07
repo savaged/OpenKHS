@@ -16,55 +16,43 @@ namespace OpenKHS.Seeder
 
     public class FakeModelFactory
     {
-        public FakeModelFactory()
+        #region set-up
+
+        public FakeModelFactory() => Randomizer.Seed = new Random(8675309);
+
+        #endregion
+
+        public ClmmSchedule MakeClmmSchedule()
         {
-            Randomizer.Seed = new Random(8675309);
+            return null;
         }
 
-        private Faker<Friend> FriendFaker(Gender gender)
+        public PmSchedule MakePmSchedule()
         {
-            var fakeFriend = new Faker<Friend>()
-                .StrictMode(true)
-                .RuleFor(p => p.Firstname, f => f.Name.FirstName())
-                .RuleFor(p => p.Lastname, f => f.Name.LastName())
-                .RuleFor(p => p.Mobile, f => new Person().Phone)
-                .RuleFor(p => p.Landline, f => new Person().Phone)
-                .RuleFor(p => p.Email, (f, p) => f.Internet.Email(p.Firstname, p.Lastname))
-                .RuleFor(p => p.Male, f => GetGender(gender));
-            return fakeFriend;
-        }
+            var fakeAttendantPrivileges = new Privileges { Attendant = true };
+            var fakeAttendant = MakeCongMemberWithPrivileges(true, fakeAttendantPrivileges);
 
-        private bool GetGender(Gender gender)
-        {
-            bool male = true;
-            switch (gender)
+            var fakePmSchedule = new PmSchedule
             {
-                case Gender.Male:
-                    male = true;
-                    break;
-                case Gender.Female:
-                    male = false;
-                    break;
-                case Gender.Random:
-                    male = new Faker().Random.Bool();
-                    break;
-                default:
-                    break;
-            }
-            return male;
+                Attendant = fakeAttendant
+            };
+            return null;
         }
 
-        public List<Friend> MakeFriends(int count = 1)
+        public PmSchedule MakeCircuitVisitClmmSchedule()
         {
-            var friendFaker = FriendFaker(Gender.Random);
+            return null;
+        }
 
-            var fakeFriends = new List<Friend>();
-            while (count > 0)
-            {
-                fakeFriends.Add((Friend)friendFaker);
-                count--;
-            }
-            return fakeFriends;
+        public PmSchedule MakeCircuitVisitPmSchedule()
+        {
+            return null;
+        }
+
+        public CongregationMember MakeCongMemberWithPrivileges(bool male, Privileges privileges)
+        {
+            var congMemberWithPrivileges = MakeCongMemberWithPrivileges(male, privileges);
+            return congMemberWithPrivileges;
         }
 
         public List<VisitingSpeaker> MakeVisitingSpeakers(int count = 1)
@@ -117,7 +105,7 @@ namespace OpenKHS.Seeder
             return co;
         }
 
-        public List<CongregationMember> MakeCongregationMember(int count = 1)
+        public List<CongregationMember> MakeCongregationMember(int count = 1, Privileges privileges = null)
         {
             var config = new MapperConfiguration(cfg => cfg.CreateMap<Friend, CongregationMember>());
             var mapper = config.CreateMapper();
@@ -129,13 +117,20 @@ namespace OpenKHS.Seeder
             foreach (var fakeFriend in fakeFriends)
             {
                 var congregationMember = mapper.Map<CongregationMember>(fakeFriend);
-                congregationMember.Privileges = MakePrivileges(congregationMember.Male);
+                if (privileges is null)
+                {
+                    congregationMember.Privileges = MakeRandomPrivileges(congregationMember.Male);
+                }
+                else
+                {
+                    congregationMember.Privileges = privileges;
+                }
                 fakeCongregationMembers.Add(congregationMember);
             }
             return fakeCongregationMembers;
         }
 
-        public Privileges MakePrivileges(bool male)
+        public Privileges MakeRandomPrivileges(bool male)
         {
             Faker<Privileges> privilegesFaker;
             if (male)
@@ -158,6 +153,52 @@ namespace OpenKHS.Seeder
                     });
             }
             return privilegesFaker.Generate();
+        }
+
+        public List<Friend> MakeFriends(int count = 1)
+        {
+            var friendFaker = FriendFaker(Gender.Random);
+
+            var fakeFriends = new List<Friend>();
+            while (count > 0)
+            {
+                fakeFriends.Add((Friend)friendFaker);
+                count--;
+            }
+            return fakeFriends;
+        }
+
+        private Faker<Friend> FriendFaker(Gender gender)
+        {
+            var fakeFriend = new Faker<Friend>()
+                .StrictMode(true)
+                .RuleFor(p => p.Firstname, f => f.Name.FirstName())
+                .RuleFor(p => p.Lastname, f => f.Name.LastName())
+                .RuleFor(p => p.Mobile, f => new Person().Phone)
+                .RuleFor(p => p.Landline, f => new Person().Phone)
+                .RuleFor(p => p.Email, (f, p) => f.Internet.Email(p.Firstname, p.Lastname))
+                .RuleFor(p => p.Male, f => GetGender(gender));
+            return fakeFriend;
+        }
+
+        private bool GetGender(Gender gender)
+        {
+            bool male = true;
+            switch (gender)
+            {
+                case Gender.Male:
+                    male = true;
+                    break;
+                case Gender.Female:
+                    male = false;
+                    break;
+                case Gender.Random:
+                    male = new Faker().Random.Bool();
+                    break;
+                default:
+                    break;
+            }
+            return male;
         }
     }
 }

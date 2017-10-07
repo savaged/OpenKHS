@@ -13,7 +13,5 @@ namespace OpenKHS.Models
         public CongregationMember WtConductor { get; set; }
 
         public CongregationMember WtReader { get; set; }
-
-        public CircuitVisitMeetingPart ClosingTalk { get; set; }
     }
 }

@@ -37,8 +37,6 @@ namespace OpenKHS.Models
 
         public CongregationMember CbsReader { get; set; }
 
-        public CircuitVisitMeetingPart CircuitVisitTalk { get; set; }
-
         public CongregationMember ClosingPrayer { get; set; }
     }
 }
