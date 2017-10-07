@@ -16,17 +16,17 @@ namespace OpenKHS.Models
 
         public bool ClmmBibleReading { get; set; }
 
-        public bool ClmmAyfmMonthPresentations { get; set; }
+        public bool ClmmSchoolMonthPresentations { get; set; }
 
-        public bool ClmmAyfmInitialCall { get; set; }
+        public bool ClmmSchoolInitialCall { get; set; }
 
-        public bool ClmmAyfmReturnVisit { get; set; }
+        public bool ClmmSchoolReturnVisit { get; set; }
 
-        public bool ClmmBAyfmiBibleStudy { get; set; }
+        public bool ClmmSchoolBibleStudy { get; set; }
 
-        public bool ClmmAyfmTalk { get; set; }
+        public bool ClmmSchoolTalk { get; set; }
 
-        public bool ClmmAyfmAssistant { get; set; }
+        public bool ClmmSchoolAssistant { get; set; }
 
         public bool ClmmSecondSchoolOnly { get; set; }
 
@@ -53,5 +53,9 @@ namespace OpenKHS.Models
         public bool SoundDesk { get; set; }
 
         public bool Platform { get; set; }
+
+        public bool RovingMic { get; set; }
+
+        public bool WtConductor { get; set; }
     }
 }

@@ -1,8 +1,9 @@
 ﻿
+using OpenKHS.Interfaces;
 
 namespace OpenKHS.Models
 {
-    public class Congregation
+    public class Congregation : ICongregation
     {
         public string Name { get; set; }
 

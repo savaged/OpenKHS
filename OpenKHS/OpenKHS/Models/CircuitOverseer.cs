@@ -1,5 +1,4 @@
 ﻿using OpenKHS.Interfaces;
-using System;
 
 namespace OpenKHS.Models
 {
@@ -7,6 +6,6 @@ namespace OpenKHS.Models
     {
         public Friend Wife { get; set; }
 
-        public new bool Male { get => true; }
+        public new bool Male { get => true; private set { } }
     }
 }

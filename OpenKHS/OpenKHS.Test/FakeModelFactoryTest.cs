@@ -10,9 +10,19 @@ namespace OpenKHS.Test
     public class FakeModelFactoryTest : TestBase
     {
         [TestMethod]
+        public void TestFakeHomeCongregationMaker()
+        {
+            var homeCong = FakeModelFactory.MakeFakeHomeCongregation();
+            Assert.IsNotNull(homeCong.Name);
+            Assert.IsTrue(homeCong.Name.Length > 0);
+            Assert.IsNotNull(homeCong.Members);
+            Assert.IsTrue(homeCong.Members.Count > 0);
+        }
+
+        [TestMethod]
         public void TestFakePmScheduleMaker()
         {
-            var pmSchedule = new FakeModelFactory().MakePmSchedule();
+            var pmSchedule = FakeModelFactory.MakeFakePmSchedule();
             Assert.IsNotNull(pmSchedule);
             Assert.IsNotNull(pmSchedule.Attendant);
             Assert.IsNotNull(pmSchedule.Chairman);
@@ -26,15 +36,17 @@ namespace OpenKHS.Test
             Assert.IsNotNull(pmSchedule.WtReader);
 
             Assert.IsNotNull(pmSchedule.Week);
+            Assert.IsTrue(pmSchedule.Week > 0);
+            Assert.IsTrue(pmSchedule.Week < 53);
         }
 
         [TestMethod]
         public void TestFakeClmmScheduleMaker()
         {
-            var clmmSchedule = new FakeModelFactory().MakeClmmSchedule();
+            var clmmSchedule = FakeModelFactory.MakeFakeClmmSchedule();
             Assert.IsNotNull(clmmSchedule);
             Assert.IsNotNull(clmmSchedule.Attendant);
-            Assert.IsNotNull(clmmSchedule.AyfmTalk);
+            Assert.IsNotNull(clmmSchedule.SchoolTalk);
             Assert.IsNotNull(clmmSchedule.BibleReading);
             Assert.IsNotNull(clmmSchedule.BibleStudy);
             Assert.IsNotNull(clmmSchedule.CbsConductor);
@@ -57,6 +69,8 @@ namespace OpenKHS.Test
             Assert.IsNotNull(clmmSchedule.Treasures);
 
             Assert.IsNotNull(clmmSchedule.Week);
+            Assert.IsTrue(clmmSchedule.Week > 0);
+            Assert.IsTrue(clmmSchedule.Week < 53);
         }
 
         [TestMethod]
@@ -64,6 +78,16 @@ namespace OpenKHS.Test
         {
             var coClmmSchedule = new FakeModelFactory().MakeCircuitVisitClmmSchedule();
             Assert.IsNotNull(coClmmSchedule);
+
+            Assert.IsNotNull(coClmmSchedule.CircuitVisitOpeningTalk);
+            Assert.IsNotNull(coClmmSchedule.CircuitVisitOpeningTalk.CircuitOverseer);
+
+            Assert.IsNotNull(coClmmSchedule.CircuitVisitClosingTalk);
+            Assert.IsNotNull(coClmmSchedule.CircuitVisitClosingTalk.CircuitOverseer);
+
+            Assert.IsNotNull(coClmmSchedule.Week);
+            Assert.IsTrue(coClmmSchedule.Week > 0);
+            Assert.IsTrue(coClmmSchedule.Week < 53);
         }
 
         [TestMethod]
@@ -71,6 +95,55 @@ namespace OpenKHS.Test
         {
             var coPmSchedule = new FakeModelFactory().MakeCircuitVisitPmSchedule();
             Assert.IsNotNull(coPmSchedule);
+            Assert.IsNotNull(coPmSchedule.PublicTalk);
+            Assert.IsNotNull(coPmSchedule.PublicTalk.Brother);
+            Assert.IsNotNull(coPmSchedule.ClosingTalk);
+            Assert.IsNotNull(coPmSchedule.ClosingTalk.CircuitOverseer);
+            Assert.AreEqual(coPmSchedule.PublicTalk.Brother.Lastname, coPmSchedule.ClosingTalk.CircuitOverseer.Lastname);
+        }
+
+        [TestMethod]
+        public void TestFakeMeetingPartMaker()
+        {
+            var meetingPart = new FakeModelFactory().MakeMeetingPart();
+            Assert.IsNotNull(meetingPart);
+            Assert.IsNotNull(meetingPart.Title);
+            Assert.IsNotNull(meetingPart.Friend);
+        }
+
+        [TestMethod]
+        public void TestFakeSchoolMeetingPartMaker()
+        {
+            var schoolMeetingPart = new FakeModelFactory().MakeSchoolPart(true);
+            Assert.IsNotNull(schoolMeetingPart);
+            Assert.IsNotNull(schoolMeetingPart.Title);
+            Assert.IsNotNull(schoolMeetingPart.Student);
+            Assert.IsNotNull(schoolMeetingPart.CounselPoint);
+            Assert.IsTrue(schoolMeetingPart.CounselPoint > 0 && schoolMeetingPart.CounselPoint < 195);
+        }
+
+        [TestMethod]
+        public void TestFakeAssistedSchoolMeetingPartMaker()
+        {
+            var assistedMeetingPart = new FakeModelFactory().MakeAssistedSchoolPart(false);
+            Assert.IsNotNull(assistedMeetingPart);
+            Assert.IsNotNull(assistedMeetingPart.Student);
+            Assert.IsFalse(assistedMeetingPart.Student.Male);
+            Assert.IsNotNull(assistedMeetingPart.Assistant);
+            Assert.IsFalse(assistedMeetingPart.Assistant.Male);
+        }
+
+        [TestMethod]
+        public void TestFakePublicTalkMaker()
+        {
+            var publicTalk = new FakeModelFactory().MakePublicTalk();
+            Assert.IsNotNull(publicTalk.TalkNumber);
+            Assert.IsTrue(publicTalk.TalkNumber > 0);
+            Assert.IsNotNull(publicTalk.Brother);
+            Assert.IsNotNull(publicTalk.Brother.Firstname);
+            Assert.IsNotNull(publicTalk.Brother.Lastname);
+            Assert.IsNotNull(publicTalk.Brother.Mobile);
+            Assert.IsTrue(publicTalk.Brother.Male);
         }
 
         [TestMethod]
@@ -86,9 +159,9 @@ namespace OpenKHS.Test
         [TestMethod]
         public void TestFakeFriendMaker()
         {
-            var friends = new FakeModelFactory().MakeFriends(80);
-            Assert.AreEqual(80, friends.Count);
-            Assert.AreNotEqual(friends.First(), friends.Last());
+            var friends = new FakeModelFactory().MakeFriends(40, false);
+            Assert.AreEqual(40, friends.Count);
+            Assert.AreNotEqual(friends.First().Lastname, friends.Last().Lastname);
             var sisterFound = false;
             foreach(var friend in friends)
             {
@@ -137,7 +210,7 @@ namespace OpenKHS.Test
         [TestMethod]
         public void TestFakeCongregationMemberMaker()
         {
-            var congMembers = new FakeModelFactory().MakeCongregationMember(80);
+            var congMembers = new FakeModelFactory().MakeCongregationMembers(80);
             Assert.AreEqual(80, congMembers.Count);
             Assert.IsNotNull(congMembers.First().Privileges);
         }

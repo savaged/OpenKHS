@@ -7,13 +7,6 @@ using System.Linq;
 
 namespace OpenKHS.Seeder
 {
-    public enum Gender
-    {
-        Male,
-        Female,
-        Random
-    }
-
     public class FakeModelFactory
     {
         #region set-up
@@ -22,36 +15,203 @@ namespace OpenKHS.Seeder
 
         #endregion
 
+        #region Main API / Helper methods
+
+        public static HomeCongregation MakeFakeHomeCongregation()
+        {
+            var self = new FakeModelFactory();
+            return self.MakeHomeCongregation();
+        }
+
+        public static PmSchedule MakeFakePmSchedule()
+        {
+            var self = new FakeModelFactory();
+            return self.MakePmSchedule();
+        }
+
+        public static ClmmSchedule MakeFakeClmmSchedule()
+        {
+            var self = new FakeModelFactory();
+            return self.MakeClmmSchedule();
+        }
+
+        #endregion
+
+        #region Behind the scenes-ish (can be used)
+
+        public HomeCongregation MakeHomeCongregation()
+        {
+            var homeCong = new HomeCongregation
+            {
+                Name = new Faker().Address.City(),
+                Members = MakeCongregationMembers(80)
+            };
+            return homeCong;
+        }
+
         public ClmmSchedule MakeClmmSchedule()
         {
-            return null;
+            var fakeMeeting = MakeMeeting();
+
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Meeting, PmSchedule>());
+            var mapper = config.CreateMapper();
+            var fakeClmmSchedule = mapper.Map<ClmmSchedule>(fakeMeeting);
+
+            var privileges = new Privileges { ClmmChairman = true };
+            var fakeChairman = MakeCongMemberWithPrivileges(true, privileges);
+
+            privileges = new Privileges { ClmmTreasures = true, ClmmPrayer = true };
+            var fakeTreasuresBro = MakeCongMemberWithPrivileges(true, privileges);
+
+            privileges = new Privileges { ClmmGems = true, ClmmLacParts = true, ClmmPrayer = true };
+            var fakeGemsBro = MakeCongMemberWithPrivileges(true, privileges);
+
+            privileges = new Privileges { ClmmBibleReading = true, ClmmCbsConductor = true };
+            var fakeBibleReader = MakeCongMemberWithPrivileges(true, privileges);
+
+            privileges = new Privileges { ClmmCbsReader = true, ClmmCbsConductor = true };
+            var fakeCbsReader = MakeCongMemberWithPrivileges(true, privileges);
+
+            fakeClmmSchedule.OpeningPrayer = fakeGemsBro;
+            fakeClmmSchedule.Chairman = fakeChairman;
+            fakeClmmSchedule.Treasures = fakeTreasuresBro;
+            fakeClmmSchedule.Gems = fakeGemsBro;
+            fakeClmmSchedule.BibleReading = fakeBibleReader;
+            fakeClmmSchedule.InitialCall = MakeAssistedSchoolPart(true);
+            fakeClmmSchedule.ReturnVisit = MakeAssistedSchoolPart(false);
+            fakeClmmSchedule.ReturnVisit = MakeAssistedSchoolPart(false);
+            fakeClmmSchedule.LacPart1 = MakeMeetingPart(true);
+            fakeClmmSchedule.LacPart2 = MakeMeetingPart(true);
+            fakeClmmSchedule.CbsConductor = fakeBibleReader;
+            fakeClmmSchedule.CbsReader = fakeCbsReader;
+            fakeClmmSchedule.ClosingPrayer = fakeTreasuresBro;
+
+            return fakeClmmSchedule;
         }
 
         public PmSchedule MakePmSchedule()
         {
-            var fakeAttendantPrivileges = new Privileges { Attendant = true };
-            var fakeAttendant = MakeCongMemberWithPrivileges(true, fakeAttendantPrivileges);
+            var fakeMeeting = MakeMeeting();
 
-            var fakePmSchedule = new PmSchedule
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Meeting, PmSchedule>());
+            var mapper = config.CreateMapper();
+            var fakePmSchedule = mapper.Map<PmSchedule>(fakeMeeting);
+
+            var privileges = new Privileges { PmChairman = true, WtReader = true };
+            var fakeChairman = MakeCongMemberWithPrivileges(true, privileges);
+
+            privileges = new Privileges { WtConductor = true };
+            var fakeWtConductor = MakeCongMemberWithPrivileges(true, privileges);
+
+            fakePmSchedule.Chairman = fakeChairman;
+            fakePmSchedule.WtReader = fakeChairman;
+            fakePmSchedule.WtConductor = fakeWtConductor;
+            fakePmSchedule.PublicTalk = MakePublicTalk();
+
+            return fakePmSchedule;
+        }
+
+        public CircuitVisitClmmSchedule MakeCircuitVisitClmmSchedule()
+        {
+            return null;
+        }
+
+        public CircuitVisitPmSchedule MakeCircuitVisitPmSchedule()
+        {
+            return null;
+        }
+
+        public AssistedSchoolMeetingPart MakeAssistedSchoolPart(bool male)
+        {
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<SchoolMeetingPart, AssistedSchoolMeetingPart>());
+            var mapper = config.CreateMapper();
+
+            var schoolMeetingPart = MakeSchoolPart(male);
+
+            var fakeAssistedSchoolPart = mapper.Map<AssistedSchoolMeetingPart>(schoolMeetingPart);
+
+            var privileges = new Privileges
             {
-                Attendant = fakeAttendant
+                ClmmSchoolAssistant = true,
+                ClmmSchoolInitialCall = true,
+                ClmmSchoolReturnVisit = true,
+                ClmmSchoolBibleStudy = true
             };
-            return null;
+            fakeAssistedSchoolPart.Assistant = MakeCongMemberWithPrivileges(male, privileges);
+            
+            return fakeAssistedSchoolPart;
         }
 
-        public PmSchedule MakeCircuitVisitClmmSchedule()
+        public SchoolMeetingPart MakeSchoolPart(bool male)
         {
-            return null;
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<MeetingPart, SchoolMeetingPart>());
+            var mapper = config.CreateMapper();
+
+            var fakeSchoolMeetingPart = mapper.Map<SchoolMeetingPart>(MakeMeetingPart(male));
+
+            var privileges = new Privileges();
+            if (male)
+            {
+                privileges.ClmmSchoolTalk = privileges.ClmmBibleReading = true;
+            }
+            fakeSchoolMeetingPart.CounselPoint = new Faker().Random.Number(1, 53);
+
+            return fakeSchoolMeetingPart;
         }
 
-        public PmSchedule MakeCircuitVisitPmSchedule()
+        public MeetingPart MakeMeetingPart(bool male = true)
         {
-            return null;
+            var fakeMeetingPart = new MeetingPart
+            {
+                Title = new Faker().Random.Words(4),
+                Friend = MakeFriends(1, male).First()
+            };
+            return fakeMeetingPart;
+        }
+
+        public Meeting MakeMeeting()
+        {
+            var privileges = new Privileges { Attendant = true, Security = true };
+            var fakeAttendant = MakeCongMemberWithPrivileges(true, privileges);
+            var fakeSecurityBro = MakeCongMemberWithPrivileges(true, privileges);
+
+            privileges = new Privileges { Platform = true };
+            var fakePlatformBro = MakeCongMemberWithPrivileges(true, privileges);
+
+            privileges = new Privileges { RovingMic = true, SoundDesk = true };
+            var fakeRovingMic1Bro = MakeCongMemberWithPrivileges(true, privileges);
+            var fakeRovingMic2Bro = MakeCongMemberWithPrivileges(true, privileges);
+
+            var fakeMeeting = new Meeting
+            {
+                Attendant = fakeAttendant,
+                Security = fakeSecurityBro,
+                Platform = fakePlatformBro,
+                RovingMic1 = fakeRovingMic1Bro,
+                RovingMic2 = fakeRovingMic2Bro,
+                SoundDesk = fakeRovingMic1Bro,
+                
+                Week = new Faker().Random.Number(1, 52)
+            };
+            return fakeMeeting;
+        }
+
+        public PublicTalk MakePublicTalk()
+        {
+            var speaker = MakeVisitingSpeakers(1).First();
+            var publicTalk = new PublicTalk
+            {
+                TalkNumber = new Faker().Random.Number(1, 194),
+                Friend = speaker
+            };
+            return publicTalk;
         }
 
         public CongregationMember MakeCongMemberWithPrivileges(bool male, Privileges privileges)
         {
-            var congMemberWithPrivileges = MakeCongMemberWithPrivileges(male, privileges);
+            var list = MakeCongregationMembers(1, privileges);
+            var congMemberWithPrivileges = list.First();
+            congMemberWithPrivileges.Male = male;
             return congMemberWithPrivileges;
         }
 
@@ -100,12 +260,12 @@ namespace OpenKHS.Seeder
             var config = new MapperConfiguration(cfg => cfg.CreateMap<Friend, CircuitOverseer>());
             var mapper = config.CreateMapper();
 
-            var co = mapper.Map<CircuitOverseer>((Friend)FriendFaker(Gender.Male));
-            co.Wife = (Friend)FriendFaker(Gender.Female);
+            var co = mapper.Map<CircuitOverseer>((Friend)FriendFaker(true));
+            co.Wife = (Friend)FriendFaker(false);
             return co;
         }
 
-        public List<CongregationMember> MakeCongregationMember(int count = 1, Privileges privileges = null)
+        public List<CongregationMember> MakeCongregationMembers(int count = 1, Privileges privileges = null)
         {
             var config = new MapperConfiguration(cfg => cfg.CreateMap<Friend, CongregationMember>());
             var mapper = config.CreateMapper();
@@ -139,8 +299,8 @@ namespace OpenKHS.Seeder
                     .Rules((f, p) => {
                         p.ClmmPrayer = p.ClmmLacParts = p.Platform = p.Attendant = p.Security = p.SoundDesk = f.Random.Bool();
                         p.ClmmTreasures = p.ClmmChairman = p.ClmmCbsConductor = f.Random.Bool();
-                        p.ClmmBAyfmiBibleStudy = p.ClmmAyfmInitialCall = p.ClmmAyfmReturnVisit = p.ClmmAyfmTalk = f.Random.Bool();
-                        p.ClmmCbsReader = p.ClmmAyfmMonthPresentations = p.ClmmGems = f.Random.Bool();
+                        p.ClmmSchoolBibleStudy = p.ClmmSchoolInitialCall = p.ClmmSchoolReturnVisit = p.ClmmSchoolTalk = f.Random.Bool();
+                        p.ClmmCbsReader = p.ClmmSchoolMonthPresentations = p.ClmmGems = f.Random.Bool();
                         p.WtReader = p.AwaySpeaker = f.Random.Bool();
                     });
             }
@@ -148,27 +308,62 @@ namespace OpenKHS.Seeder
             {
                 privilegesFaker = new Faker<Privileges>()
                     .Rules((f, p) => {
-                        p.ClmmBAyfmiBibleStudy = p.ClmmAyfmInitialCall = p.ClmmAyfmReturnVisit = f.Random.Bool();
+                        p.ClmmSchoolBibleStudy = p.ClmmSchoolInitialCall = p.ClmmSchoolReturnVisit = f.Random.Bool();
                         p.ClmmSecondSchoolOnly = f.Random.Bool();
                     });
             }
             return privilegesFaker.Generate();
         }
 
-        public List<Friend> MakeFriends(int count = 1)
+        public List<Friend> MakeFriends(int count = 1, bool male = true)
         {
-            var friendFaker = FriendFaker(Gender.Random);
+            List<Friend> fakeFriends;
+            if (male)
+            {
+                fakeFriends = MakeMaleFriends(count);
+            }
+            else
+            {
+                if (count > 1)
+                {
+                    var randomFactor = (int)(count * 0.8);
+                    var mix = new Faker().Random.Number(randomFactor);
+                    var firstList = MakeMaleFriends(count - mix);
+                    var secondList = MakeFemaleFriends(mix);
+                    firstList.AddRange(secondList);
+                    fakeFriends = firstList;
+                }
+                else
+                {
+                    fakeFriends = MakeFemaleFriends(count);
+                }
+            }
+            return fakeFriends;
+        }
 
+        private List<Friend> MakeMaleFriends(int count = 1)
+        {
             var fakeFriends = new List<Friend>();
             while (count > 0)
             {
-                fakeFriends.Add((Friend)friendFaker);
+                fakeFriends.Add(FriendFaker(true));
                 count--;
             }
             return fakeFriends;
         }
 
-        private Faker<Friend> FriendFaker(Gender gender)
+        private List<Friend> MakeFemaleFriends(int count = 1)
+        {
+            var fakeFriends = new List<Friend>();
+            while (count > 0)
+            {
+                fakeFriends.Add(FriendFaker(false));
+                count--;
+            }
+            return fakeFriends;
+        }
+
+        private Faker<Friend> FriendFaker(bool male)
         {
             var fakeFriend = new Faker<Friend>()
                 .StrictMode(true)
@@ -177,28 +372,10 @@ namespace OpenKHS.Seeder
                 .RuleFor(p => p.Mobile, f => new Person().Phone)
                 .RuleFor(p => p.Landline, f => new Person().Phone)
                 .RuleFor(p => p.Email, (f, p) => f.Internet.Email(p.Firstname, p.Lastname))
-                .RuleFor(p => p.Male, f => GetGender(gender));
+                .RuleFor(p => p.Male, f => male);
             return fakeFriend;
         }
 
-        private bool GetGender(Gender gender)
-        {
-            bool male = true;
-            switch (gender)
-            {
-                case Gender.Male:
-                    male = true;
-                    break;
-                case Gender.Female:
-                    male = false;
-                    break;
-                case Gender.Random:
-                    male = new Faker().Random.Bool();
-                    break;
-                default:
-                    break;
-            }
-            return male;
-        }
+        #endregion
     }
 }

@@ -1,11 +1,12 @@
-﻿
+﻿using System.IO;
+using OpenKHS.Interfaces;
 
 namespace OpenKHS.Models
 {
     /// <summary>
     /// Public Meeting Schedule
     /// </summary>
-    public class PmSchedule : Meeting
+    public class PmSchedule : Meeting, IDumpsJson
     {
         public PublicTalk PublicTalk { get; set; }
 
@@ -13,5 +14,10 @@ namespace OpenKHS.Models
         public CongregationMember WtConductor { get; set; }
 
         public CongregationMember WtReader { get; set; }
+
+        public void Dump(FileStream outputFile)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

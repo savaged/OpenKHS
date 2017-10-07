@@ -6,6 +6,6 @@ namespace OpenKHS.Models
     {
         public int TalkNumber { get; set; }
 
-        public override IBrother Brother { get; set; }
+        public IBrother Brother { get => (IBrother) base.Friend; }
     }
 }

@@ -2,10 +2,10 @@
 
 namespace OpenKHS.Models
 {
-    public abstract class MeetingPart
+    public class MeetingPart
     {
         public string Title { get; set; }
 
-        public virtual IBrother Brother { get; set; }
+        public virtual Friend Friend { get; set; }
     }
 }

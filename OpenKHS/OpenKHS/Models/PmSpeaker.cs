@@ -16,6 +16,6 @@ namespace OpenKHS.Models
 
         public List<PublicTalk> PublicTalks { get; set; }
 
-        public new bool Male { get => true; }
+        public new bool Male { get => true; private set { } }
     }
 }

@@ -70,10 +70,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FakeModelFactoryTest.cs" />
-    <Compile Include="ModelGraphTest.cs" />
     <Compile Include="ResponseConverterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestBase.cs" />
+    <Compile Include="ModelsDumpAsJson.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
