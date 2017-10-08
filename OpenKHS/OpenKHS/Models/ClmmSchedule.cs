@@ -10,15 +10,15 @@ namespace OpenKHS.Models
     {
         // TODO add validation to each property i.e. brother has privilege
 
-        public CongregationMember OpeningPrayer { get; set; }
+        public Friend OpeningPrayer { get; set; }
 
-        public CongregationMember Treasures { get; set; }
+        public Friend Treasures { get; set; }
 
-        public CongregationMember Gems { get; set; }
+        public Friend Gems { get; set; }
 
-        public CongregationMember BibleReading { get; set; }
+        public Friend BibleReading { get; set; }
 
-        public CongregationMember PresentationsForMonth { get; set; }
+        public Friend PresentationsForMonth { get; set; }
 
         public AssistedSchoolMeetingPart InitialCall { get; set; }
 
@@ -34,11 +34,11 @@ namespace OpenKHS.Models
 
         public MeetingPart LacPart3 { get; set; }
 
-        public CongregationMember CbsConductor { get; set; }
+        public Friend CbsConductor { get; set; }
 
-        public CongregationMember CbsReader { get; set; }
+        public Friend CbsReader { get; set; }
 
-        public CongregationMember ClosingPrayer { get; set; }
+        public Friend ClosingPrayer { get; set; }
 
         public void Dump(FileStream outputFile)
         {

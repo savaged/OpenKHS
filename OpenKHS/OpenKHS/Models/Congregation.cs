@@ -1,5 +1,6 @@
 ﻿
 using OpenKHS.Interfaces;
+using System.Collections.Generic;
 
 namespace OpenKHS.Models
 {
@@ -8,5 +9,7 @@ namespace OpenKHS.Models
         public string Name { get; set; }
 
         public Friend PublicTalkCoordinator { get; set; }
+
+        public List<Friend> Members { get; set; }
     }
 }

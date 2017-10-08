@@ -11,9 +11,9 @@ namespace OpenKHS.Models
         public PublicTalk PublicTalk { get; set; }
 
         // TODO add validation to wtconductor and reader property i.e. brother has privilege
-        public CongregationMember WtConductor { get; set; }
+        public Friend WtConductor { get; set; }
 
-        public CongregationMember WtReader { get; set; }
+        public Friend WtReader { get; set; }
 
         public void Dump(FileStream outputFile)
         {

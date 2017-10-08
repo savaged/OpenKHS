@@ -96,10 +96,10 @@ namespace OpenKHS.Test
             var coPmSchedule = new FakeModelFactory().MakeCircuitVisitPmSchedule();
             Assert.IsNotNull(coPmSchedule);
             Assert.IsNotNull(coPmSchedule.PublicTalk);
-            Assert.IsNotNull(coPmSchedule.PublicTalk.Brother);
+            Assert.IsNotNull(coPmSchedule.PublicTalk.Friend);
             Assert.IsNotNull(coPmSchedule.ClosingTalk);
             Assert.IsNotNull(coPmSchedule.ClosingTalk.CircuitOverseer);
-            Assert.AreEqual(coPmSchedule.PublicTalk.Brother.Lastname, coPmSchedule.ClosingTalk.CircuitOverseer.Lastname);
+            Assert.AreEqual(coPmSchedule.PublicTalk.Friend.Lastname, coPmSchedule.ClosingTalk.CircuitOverseer.Lastname);
         }
 
         [TestMethod]
@@ -128,9 +128,7 @@ namespace OpenKHS.Test
             var assistedMeetingPart = new FakeModelFactory().MakeAssistedSchoolPart(false);
             Assert.IsNotNull(assistedMeetingPart);
             Assert.IsNotNull(assistedMeetingPart.Student);
-            Assert.IsFalse(assistedMeetingPart.Student.Male);
             Assert.IsNotNull(assistedMeetingPart.Assistant);
-            Assert.IsFalse(assistedMeetingPart.Assistant.Male);
         }
 
         [TestMethod]
@@ -139,11 +137,9 @@ namespace OpenKHS.Test
             var publicTalk = new FakeModelFactory().MakePublicTalk();
             Assert.IsNotNull(publicTalk.TalkNumber);
             Assert.IsTrue(publicTalk.TalkNumber > 0);
-            Assert.IsNotNull(publicTalk.Brother);
-            Assert.IsNotNull(publicTalk.Brother.Firstname);
-            Assert.IsNotNull(publicTalk.Brother.Lastname);
-            Assert.IsNotNull(publicTalk.Brother.Mobile);
-            Assert.IsTrue(publicTalk.Brother.Male);
+            Assert.IsNotNull(publicTalk.Friend);
+            Assert.IsNotNull(publicTalk.Friend.Firstname);
+            Assert.IsNotNull(publicTalk.Friend.Lastname);
         }
 
         [TestMethod]
@@ -151,7 +147,7 @@ namespace OpenKHS.Test
         {
             var privileges = new Privileges { Attendant = true };
             var congMemberWithPrivileges = new FakeModelFactory().MakeCongMemberWithPrivileges(true, privileges);
-            Assert.IsTrue(congMemberWithPrivileges.Male);
+            Assert.IsInstanceOfType(congMemberWithPrivileges, typeof(Friend));
             Assert.IsNotNull(congMemberWithPrivileges.Privileges);
             Assert.IsTrue(congMemberWithPrivileges.Privileges.Attendant);
         }
@@ -159,19 +155,9 @@ namespace OpenKHS.Test
         [TestMethod]
         public void TestFakeFriendMaker()
         {
-            var friends = new FakeModelFactory().MakeFriends(40, false);
+            var friends = new FakeModelFactory().MakeFriends(40);
             Assert.AreEqual(40, friends.Count);
             Assert.AreNotEqual(friends.First().Lastname, friends.Last().Lastname);
-            var sisterFound = false;
-            foreach(var friend in friends)
-            {
-                if (!friend.Male)
-                {
-                    sisterFound = true;
-                    break;
-                }
-            }
-            Assert.IsTrue(sisterFound);
         }
 
         [TestMethod]
@@ -194,8 +180,8 @@ namespace OpenKHS.Test
         public void TestFakeCircuitOverseerMaker()
         {
             var co = new FakeModelFactory().MakeCircuitOverseer();
-            Assert.IsTrue(co.Male);
-            Assert.IsFalse(co.Wife.Male);
+            Assert.IsInstanceOfType(co, typeof(Friend));
+            Assert.IsInstanceOfType(co.Wife, typeof(Friend));
         }
 
         [TestMethod]
@@ -205,6 +191,11 @@ namespace OpenKHS.Test
             Assert.IsNotNull(privileges);
             Assert.IsInstanceOfType(privileges, typeof(Privileges));
             Assert.IsFalse(privileges.WtReader);
+
+            privileges = new FakeModelFactory().MakeRandomPrivileges(true);
+            Assert.IsNotNull(privileges);
+            Assert.IsInstanceOfType(privileges, typeof(Privileges));
+            Assert.IsTrue(privileges.WtReader);
         }
 
         [TestMethod]
@@ -213,6 +204,8 @@ namespace OpenKHS.Test
             var congMembers = new FakeModelFactory().MakeCongregationMembers(80);
             Assert.AreEqual(80, congMembers.Count);
             Assert.IsNotNull(congMembers.First().Privileges);
+            // TODO compare privileges to find those of sisters
+            Assert.Fail();
         }
     }
 }

@@ -7,18 +7,18 @@ namespace OpenKHS.Models
     {
         public int Week { get; set; }
 
-        public CongregationMember Chairman { get; set; }
+        public Friend Chairman { get; set; }
 
-        public CongregationMember Attendant { get; set; }
+        public Friend Attendant { get; set; }
 
-        public CongregationMember Security { get; set; }
+        public Friend Security { get; set; }
 
-        public CongregationMember SoundDesk { get; set; }
+        public Friend SoundDesk { get; set; }
 
-        public CongregationMember Platform { get; set; }
+        public Friend Platform { get; set; }
 
-        public CongregationMember RovingMic1 { get; set; }
+        public Friend RovingMic1 { get; set; }
 
-        public CongregationMember RovingMic2 { get; set; }
+        public Friend RovingMic2 { get; set; }
     }
 }

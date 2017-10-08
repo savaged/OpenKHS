@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Bogus;
+using OpenKHS.Interfaces;
 using OpenKHS.Models;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace OpenKHS.Seeder
 
         #region Main API / Helper methods
 
-        public static HomeCongregation MakeFakeHomeCongregation()
+        public static Congregation MakeFakeHomeCongregation()
         {
             var self = new FakeModelFactory();
             return self.MakeHomeCongregation();
@@ -39,9 +40,9 @@ namespace OpenKHS.Seeder
 
         #region Behind the scenes-ish (can be used)
 
-        public HomeCongregation MakeHomeCongregation()
+        public Congregation MakeHomeCongregation()
         {
-            var homeCong = new HomeCongregation
+            var homeCong = new Congregation
             {
                 Name = new Faker().Address.City(),
                 Members = MakeCongregationMembers(80)
@@ -164,7 +165,7 @@ namespace OpenKHS.Seeder
             var fakeMeetingPart = new MeetingPart
             {
                 Title = new Faker().Random.Words(4),
-                Friend = MakeFriends(1, male).First()
+                Friend = MakeFriends(1).First()
             };
             return fakeMeetingPart;
         }
@@ -207,11 +208,10 @@ namespace OpenKHS.Seeder
             return publicTalk;
         }
 
-        public CongregationMember MakeCongMemberWithPrivileges(bool male, Privileges privileges)
+        public Friend MakeCongMemberWithPrivileges(bool male, Privileges privileges)
         {
             var list = MakeCongregationMembers(1, privileges);
             var congMemberWithPrivileges = list.First();
-            congMemberWithPrivileges.Male = male;
             return congMemberWithPrivileges;
         }
 
@@ -260,37 +260,33 @@ namespace OpenKHS.Seeder
             var config = new MapperConfiguration(cfg => cfg.CreateMap<Friend, CircuitOverseer>());
             var mapper = config.CreateMapper();
 
-            var co = mapper.Map<CircuitOverseer>((Friend)FriendFaker(true));
-            co.Wife = (Friend)FriendFaker(false);
+            var co = mapper.Map<CircuitOverseer>(FriendFaker());
+            co.Wife = FriendFaker();
             return co;
         }
 
-        public List<CongregationMember> MakeCongregationMembers(int count = 1, Privileges privileges = null)
+        public List<Friend> MakeCongregationMembers(int count = 1, Privileges privileges = null)
         {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<Friend, CongregationMember>());
-            var mapper = config.CreateMapper();
-
             var fakeFriends = MakeFriends(count);
 
-            var fakeCongregationMembers = new List<CongregationMember>();
+            var fakeCongregationMembers = new List<Friend>();
 
             foreach (var fakeFriend in fakeFriends)
             {
-                var congregationMember = mapper.Map<CongregationMember>(fakeFriend);
                 if (privileges is null)
                 {
-                    congregationMember.Privileges = MakeRandomPrivileges(congregationMember.Male);
+                    fakeFriend.Privileges = MakeRandomPrivileges();
                 }
                 else
                 {
-                    congregationMember.Privileges = privileges;
+                    fakeFriend.Privileges = privileges;
                 }
-                fakeCongregationMembers.Add(congregationMember);
+                fakeCongregationMembers.Add(fakeFriend);
             }
             return fakeCongregationMembers;
         }
 
-        public Privileges MakeRandomPrivileges(bool male)
+        public Privileges MakeRandomPrivileges(bool male = false)
         {
             Faker<Privileges> privilegesFaker;
             if (male)
@@ -315,64 +311,24 @@ namespace OpenKHS.Seeder
             return privilegesFaker.Generate();
         }
 
-        public List<Friend> MakeFriends(int count = 1, bool male = true)
+        public List<Friend> MakeFriends(int count = 1)
         {
-            List<Friend> fakeFriends;
-            if (male)
-            {
-                fakeFriends = MakeMaleFriends(count);
-            }
-            else
-            {
-                if (count > 1)
-                {
-                    var randomFactor = (int)(count * 0.8);
-                    var mix = new Faker().Random.Number(randomFactor);
-                    var firstList = MakeMaleFriends(count - mix);
-                    var secondList = MakeFemaleFriends(mix);
-                    firstList.AddRange(secondList);
-                    fakeFriends = firstList;
-                }
-                else
-                {
-                    fakeFriends = MakeFemaleFriends(count);
-                }
-            }
-            return fakeFriends;
-        }
-
-        private List<Friend> MakeMaleFriends(int count = 1)
-        {
-            var fakeFriends = new List<Friend>();
+            var friends = new List<Friend>();
             while (count > 0)
             {
-                fakeFriends.Add(FriendFaker(true));
+                friends.Add(FriendFaker());
                 count--;
             }
-            return fakeFriends;
+            return friends;
         }
+        
 
-        private List<Friend> MakeFemaleFriends(int count = 1)
-        {
-            var fakeFriends = new List<Friend>();
-            while (count > 0)
-            {
-                fakeFriends.Add(FriendFaker(false));
-                count--;
-            }
-            return fakeFriends;
-        }
-
-        private Faker<Friend> FriendFaker(bool male)
+        private Faker<Friend> FriendFaker()
         {
             var fakeFriend = new Faker<Friend>()
                 .StrictMode(true)
                 .RuleFor(p => p.Firstname, f => f.Name.FirstName())
-                .RuleFor(p => p.Lastname, f => f.Name.LastName())
-                .RuleFor(p => p.Mobile, f => new Person().Phone)
-                .RuleFor(p => p.Landline, f => new Person().Phone)
-                .RuleFor(p => p.Email, (f, p) => f.Internet.Email(p.Firstname, p.Lastname))
-                .RuleFor(p => p.Male, f => male);
+                .RuleFor(p => p.Lastname, f => f.Name.LastName());
             return fakeFriend;
         }
 

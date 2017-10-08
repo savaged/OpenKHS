@@ -2,10 +2,8 @@
 
 namespace OpenKHS.Models
 {
-    public sealed class CircuitOverseer : Friend, IBrother
+    public sealed class CircuitOverseer : Friend
     {
         public Friend Wife { get; set; }
-
-        public new bool Male { get => true; private set { } }
     }
 }

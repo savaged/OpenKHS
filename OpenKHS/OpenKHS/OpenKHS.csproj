@@ -104,10 +104,8 @@
     <Compile Include="Controls\SpinnerCogs.xaml.cs">
       <DependentUpon>SpinnerCogs.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\IBrother.cs" />
     <Compile Include="Interfaces\ICongregation.cs" />
     <Compile Include="Interfaces\IDumpsJson.cs" />
-    <Compile Include="Interfaces\IFriend.cs" />
     <Compile Include="Interfaces\IManagedView.cs" />
     <Compile Include="Interfaces\IViewManager.cs" />
     <Compile Include="IocBindings.cs" />
@@ -119,10 +117,7 @@
     <Compile Include="Models\CircuitVisitPmSchedule.cs" />
     <Compile Include="Models\ClmmSchedule.cs" />
     <Compile Include="Models\Congregation.cs" />
-    <Compile Include="Models\CongregationMember.cs" />
     <Compile Include="Models\Friend.cs" />
-    <Compile Include="Models\HomeCongregation.cs" />
-    <Compile Include="Models\LocalBrother.cs" />
     <Compile Include="Models\Meeting.cs" />
     <Compile Include="Models\PmSchedule.cs" />
     <Compile Include="Models\PmSpeaker.cs" />

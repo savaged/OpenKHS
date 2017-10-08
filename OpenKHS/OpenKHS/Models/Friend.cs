@@ -1,4 +1,6 @@
 ﻿
+using System;
+using System.Collections.Generic;
 
 namespace OpenKHS.Models
 {
@@ -8,12 +10,8 @@ namespace OpenKHS.Models
 
         public string Lastname { get; set; }
 
-        public string Mobile { get; set; }
+        public Privileges Privileges { get; set; }
 
-        public string Landline { get; set; }
-
-        public string Email { get; set; }
-
-        public virtual bool Male { get; set; }
+        public List<TimeSpan> UnavailablePeriods { get; set; }
     }
 }
