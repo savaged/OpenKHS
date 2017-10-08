@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Bogus;
-using OpenKHS.Interfaces;
 using OpenKHS.Models;
 using System;
 using System.Collections.Generic;
@@ -54,7 +53,7 @@ namespace OpenKHS.Seeder
         {
             var fakeMeeting = MakeMeeting();
 
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<Meeting, PmSchedule>());
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Meeting, ClmmSchedule>());
             var mapper = config.CreateMapper();
             var fakeClmmSchedule = mapper.Map<ClmmSchedule>(fakeMeeting);
 
@@ -80,7 +79,7 @@ namespace OpenKHS.Seeder
             fakeClmmSchedule.BibleReading = fakeBibleReader;
             fakeClmmSchedule.InitialCall = MakeAssistedSchoolPart(true);
             fakeClmmSchedule.ReturnVisit = MakeAssistedSchoolPart(false);
-            fakeClmmSchedule.ReturnVisit = MakeAssistedSchoolPart(false);
+            fakeClmmSchedule.BibleStudy = MakeAssistedSchoolPart(false);
             fakeClmmSchedule.LacPart1 = MakeMeetingPart(true);
             fakeClmmSchedule.LacPart2 = MakeMeetingPart(true);
             fakeClmmSchedule.CbsConductor = fakeBibleReader;
@@ -249,7 +248,6 @@ namespace OpenKHS.Seeder
         private Faker<Congregation> CongregationFaker()
         {
             var congFaker = new Faker<Congregation>()
-                .StrictMode(true)
                 .RuleFor(c => c.Name, f => f.Name.FullName())
                 .RuleFor(c => c.PublicTalkCoordinator, f => (Friend)MakeFriends().First());
             return congFaker;
@@ -259,9 +257,9 @@ namespace OpenKHS.Seeder
         {
             var config = new MapperConfiguration(cfg => cfg.CreateMap<Friend, CircuitOverseer>());
             var mapper = config.CreateMapper();
-
-            var co = mapper.Map<CircuitOverseer>(FriendFaker());
-            co.Wife = FriendFaker();
+            var friend = MakeFriend();
+            var co = mapper.Map<CircuitOverseer>(friend);
+            co.Wife = MakeFriend();
             return co;
         }
 
@@ -288,27 +286,54 @@ namespace OpenKHS.Seeder
 
         public Privileges MakeRandomPrivileges(bool male = false)
         {
+            
             Faker<Privileges> privilegesFaker;
             if (male)
             {
                 privilegesFaker = new Faker<Privileges>()
                     .Rules((f, p) => {
-                        p.ClmmPrayer = p.ClmmLacParts = p.Platform = p.Attendant = p.Security = p.SoundDesk = f.Random.Bool();
-                        p.ClmmTreasures = p.ClmmChairman = p.ClmmCbsConductor = f.Random.Bool();
-                        p.ClmmSchoolBibleStudy = p.ClmmSchoolInitialCall = p.ClmmSchoolReturnVisit = p.ClmmSchoolTalk = f.Random.Bool();
-                        p.ClmmCbsReader = p.ClmmSchoolMonthPresentations = p.ClmmGems = f.Random.Bool();
-                        p.WtReader = p.AwaySpeaker = f.Random.Bool();
+                        p.ClmmPrayer = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                        p.ClmmLacParts = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                        p.Platform = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                        p.Attendant = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                        p.Security = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                        p.SoundDesk = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                        p.ClmmTreasures = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                        p.ClmmChairman = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                        p.ClmmCbsConductor = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                        p.ClmmSchoolBibleStudy = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                        p.ClmmSchoolInitialCall = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                        p.ClmmSchoolReturnVisit = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                        p.ClmmSchoolTalk = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                        p.ClmmCbsReader = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                        p.ClmmSchoolMonthPresentations = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                        p.ClmmGems = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                        p.WtReader = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                        p.AwaySpeaker = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
                     });
             }
             else
             {
                 privilegesFaker = new Faker<Privileges>()
                     .Rules((f, p) => {
-                        p.ClmmSchoolBibleStudy = p.ClmmSchoolInitialCall = p.ClmmSchoolReturnVisit = f.Random.Bool();
-                        p.ClmmSecondSchoolOnly = f.Random.Bool();
+                        p.ClmmSchoolBibleStudy = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                        p.ClmmSchoolInitialCall = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                        p.ClmmSchoolReturnVisit = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                        p.ClmmSecondSchoolOnly = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
                     });
             }
-            return privilegesFaker.Generate();
+            var fakePrivileges = (Privileges)privilegesFaker;
+            return fakePrivileges;
+        }
+
+        private bool TheBogusRandomBoolWontWorkSoIveCreatedMyOwn()
+        {
+            bool b = false;
+            string binString = Convert.ToString(Randomizer.Seed.Next(2), 2); 
+            string c = binString[binString.Length - 1].ToString();
+            int i = Int32.Parse(c);
+            b = 0 != i;
+            return b;
         }
 
         public List<Friend> MakeFriends(int count = 1)
@@ -316,20 +341,19 @@ namespace OpenKHS.Seeder
             var friends = new List<Friend>();
             while (count > 0)
             {
-                friends.Add(FriendFaker());
+                friends.Add(MakeFriend());
                 count--;
             }
             return friends;
         }
         
 
-        private Faker<Friend> FriendFaker()
+        private Friend MakeFriend()
         {
             var fakeFriend = new Faker<Friend>()
-                .StrictMode(true)
                 .RuleFor(p => p.Firstname, f => f.Name.FirstName())
                 .RuleFor(p => p.Lastname, f => f.Name.LastName());
-            return fakeFriend;
+            return fakeFriend.Generate();
         }
 
         #endregion

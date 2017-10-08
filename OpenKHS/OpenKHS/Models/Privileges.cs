@@ -57,5 +57,16 @@ namespace OpenKHS.Models
         public bool RovingMic { get; set; }
 
         public bool WtConductor { get; set; }
+
+        public int Count()
+        {
+            var count = 0;
+            foreach (var prop in this.GetType().GetProperties())
+            {
+                var val = prop.GetValue(this);
+                if (val is bool && (bool)val) count++;
+            }
+            return count;
+        }
     }
 }

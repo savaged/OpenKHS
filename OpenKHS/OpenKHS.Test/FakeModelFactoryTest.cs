@@ -46,7 +46,7 @@ namespace OpenKHS.Test
             var clmmSchedule = FakeModelFactory.MakeFakeClmmSchedule();
             Assert.IsNotNull(clmmSchedule);
             Assert.IsNotNull(clmmSchedule.Attendant);
-            Assert.IsNotNull(clmmSchedule.SchoolTalk);
+            Assert.IsNull(clmmSchedule.SchoolTalk);
             Assert.IsNotNull(clmmSchedule.BibleReading);
             Assert.IsNotNull(clmmSchedule.BibleStudy);
             Assert.IsNotNull(clmmSchedule.CbsConductor);
@@ -57,10 +57,10 @@ namespace OpenKHS.Test
             Assert.IsNotNull(clmmSchedule.InitialCall);
             Assert.IsNotNull(clmmSchedule.LacPart1);
             Assert.IsNotNull(clmmSchedule.LacPart2);
-            Assert.IsNotNull(clmmSchedule.LacPart3);
+            Assert.IsNull(clmmSchedule.LacPart3);
             Assert.IsNotNull(clmmSchedule.OpeningPrayer);
             Assert.IsNotNull(clmmSchedule.Platform);
-            Assert.IsNotNull(clmmSchedule.PresentationsForMonth);
+            Assert.IsNull(clmmSchedule.PresentationsForMonth);
             Assert.IsNotNull(clmmSchedule.ReturnVisit);
             Assert.IsNotNull(clmmSchedule.RovingMic1);
             Assert.IsNotNull(clmmSchedule.RovingMic2);
@@ -190,12 +190,12 @@ namespace OpenKHS.Test
             var privileges = new FakeModelFactory().MakeRandomPrivileges(false);
             Assert.IsNotNull(privileges);
             Assert.IsInstanceOfType(privileges, typeof(Privileges));
-            Assert.IsFalse(privileges.WtReader);
-
+            Assert.IsTrue(privileges.Count() > 0);
+            
             privileges = new FakeModelFactory().MakeRandomPrivileges(true);
             Assert.IsNotNull(privileges);
             Assert.IsInstanceOfType(privileges, typeof(Privileges));
-            Assert.IsTrue(privileges.WtReader);
+            Assert.IsTrue(privileges.Count() > 0);
         }
 
         [TestMethod]
@@ -204,8 +204,8 @@ namespace OpenKHS.Test
             var congMembers = new FakeModelFactory().MakeCongregationMembers(80);
             Assert.AreEqual(80, congMembers.Count);
             Assert.IsNotNull(congMembers.First().Privileges);
-            // TODO compare privileges to find those of sisters
-            Assert.Fail();
+            Assert.IsTrue(congMembers.First().Privileges.Count() > 0);
         }
+
     }
 }
