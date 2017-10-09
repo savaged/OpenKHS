@@ -111,6 +111,7 @@
     <Compile Include="Interfaces\ISchedule.cs" />
     <Compile Include="Interfaces\IViewManager.cs" />
     <Compile Include="IocBindings.cs" />
+    <Compile Include="Models\AssignmentTally.cs" />
     <Compile Include="Models\AssistedSchoolMeetingPart.cs" />
     <Compile Include="Models\SchoolMeetingPart.cs" />
     <Compile Include="Models\CircuitVisitClmmSchedule.cs" />
