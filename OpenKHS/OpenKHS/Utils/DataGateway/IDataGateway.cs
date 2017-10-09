@@ -6,9 +6,9 @@ namespace OpenKHS.Utils.DataGateway
 {
     public interface IDataGateway
     {
-        Task<ResponseRootObject> Request(string resourceLocation);
+        Task<ResponseRootObject> Request(string resourceLocation, Methods method);
 
         Task<ResponseRootObject> Request(
-            string resourceLocation, Dictionary<string, object> data);
+            string resourceLocation, Methods method, Dictionary<string, object> data);
     }
 }

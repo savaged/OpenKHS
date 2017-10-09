@@ -104,8 +104,9 @@
     <Compile Include="Controls\SpinnerCogs.xaml.cs">
       <DependentUpon>SpinnerCogs.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Facades\CongregationFacade.cs" />
     <Compile Include="Interfaces\ICongregation.cs" />
-    <Compile Include="Interfaces\IDumpsJson.cs" />
+    <Compile Include="Interfaces\IJsonEncode.cs" />
     <Compile Include="Interfaces\IManagedView.cs" />
     <Compile Include="Interfaces\ISchedule.cs" />
     <Compile Include="Interfaces\IViewManager.cs" />
@@ -133,6 +134,7 @@
     </Compile>
     <Compile Include="Utils\DataGateway\DataGateway.cs" />
     <Compile Include="Utils\DataGateway\IDataGateway.cs" />
+    <Compile Include="Utils\DataGateway\Methods..cs" />
     <Compile Include="Utils\DataGateway\ResponseConverter.cs" />
     <Compile Include="Utils\DataGateway\ResponseRootObject.cs" />
     <Compile Include="Utils\RelayCommand.cs" />

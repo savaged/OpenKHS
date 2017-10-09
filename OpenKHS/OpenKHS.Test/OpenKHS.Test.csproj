@@ -75,7 +75,7 @@
     <Compile Include="ResponseConverterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestBase.cs" />
-    <Compile Include="ModelsDumpAsJson.cs" />
+    <Compile Include="PersistModelTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

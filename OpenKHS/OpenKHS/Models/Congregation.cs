@@ -1,4 +1,5 @@
 ﻿
+using Newtonsoft.Json;
 using OpenKHS.Interfaces;
 using System.Collections.Generic;
 using System.IO;
@@ -13,14 +14,14 @@ namespace OpenKHS.Models
 
         public List<Friend> Members { get; set; }
 
-        public string JsonEncode()
+        public override string ToString()
         {
-            throw new System.NotImplementedException();
+            return JsonEncode();
         }
 
-        public void Dump(FileStream outputFile)
+        public string JsonEncode()
         {
-            throw new System.NotImplementedException();
+            return JsonConvert.SerializeObject(this);
         }
     }
 }

@@ -3,10 +3,8 @@ using System.IO;
 
 namespace OpenKHS.Interfaces
 {
-    public interface IDumpsJson
+    public interface IJsonEncode
     {
         string JsonEncode();
-
-        void Dump(FileStream outputFile);
     }
 }

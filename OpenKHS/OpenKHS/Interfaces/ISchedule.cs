@@ -1,7 +1,7 @@
 ﻿
 namespace OpenKHS.Interfaces
 {
-    public interface ISchedule : IDumpsJson
+    public interface ISchedule : IJsonEncode
     {
         void Autofill();        
     }

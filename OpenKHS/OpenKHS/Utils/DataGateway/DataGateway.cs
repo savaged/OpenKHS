@@ -8,12 +8,12 @@ namespace OpenKHS.Utils.DataGateway
 {
     public class DataGateway : IDataGateway
     {
-        public Task<ResponseRootObject> Request(string resourceLocation)
+        public Task<ResponseRootObject> Request(string resourceLocation, Methods method)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ResponseRootObject> Request(string resourceLocation, Dictionary<string, object> data)
+        public Task<ResponseRootObject> Request(string resourceLocation, Methods method, Dictionary<string, object> data)
         {
             throw new NotImplementedException();
         }

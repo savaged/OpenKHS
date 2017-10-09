@@ -1,4 +1,6 @@
 ﻿
+using Newtonsoft.Json;
+using System.IO;
 
 namespace OpenKHS.Models
 {
@@ -7,5 +9,20 @@ namespace OpenKHS.Models
         public CircuitVisitMeetingPart CircuitVisitOpeningTalk { get; set; }
 
         public CircuitVisitMeetingPart CircuitVisitClosingTalk { get; set; }
+
+        public override void Autofill()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override string ToString()
+        {
+            return JsonEncode();
+        }
+
+        public override string JsonEncode()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
     }
 }
