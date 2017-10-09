@@ -69,6 +69,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoFillSchedulesTest.cs" />
     <Compile Include="FakeModelFactoryTest.cs" />
     <Compile Include="PrivilegesTests.cs" />
     <Compile Include="ResponseConverterTest.cs" />

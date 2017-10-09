@@ -107,6 +107,7 @@
     <Compile Include="Interfaces\ICongregation.cs" />
     <Compile Include="Interfaces\IDumpsJson.cs" />
     <Compile Include="Interfaces\IManagedView.cs" />
+    <Compile Include="Interfaces\ISchedule.cs" />
     <Compile Include="Interfaces\IViewManager.cs" />
     <Compile Include="IocBindings.cs" />
     <Compile Include="Models\AssistedSchoolMeetingPart.cs" />

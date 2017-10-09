@@ -6,7 +6,7 @@ namespace OpenKHS.Models
     /// <summary>
     /// Christian Life and Ministry Meeting Schedule
     /// </summary>
-    public class ClmmSchedule : Meeting, IDumpsJson
+    public class ClmmSchedule : Meeting, ISchedule
     {
         // TODO add validation to each property i.e. brother has privilege
 
@@ -39,6 +39,16 @@ namespace OpenKHS.Models
         public Friend CbsReader { get; set; }
 
         public Friend ClosingPrayer { get; set; }
+
+        public void Autofill()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public string JsonEncode()
+        {
+            throw new System.NotImplementedException();
+        }
 
         public void Dump(FileStream outputFile)
         {

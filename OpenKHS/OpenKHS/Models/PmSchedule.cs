@@ -6,7 +6,7 @@ namespace OpenKHS.Models
     /// <summary>
     /// Public Meeting Schedule
     /// </summary>
-    public class PmSchedule : Meeting, IDumpsJson
+    public class PmSchedule : Meeting, ISchedule
     {
         public PublicTalk PublicTalk { get; set; }
 
@@ -14,6 +14,16 @@ namespace OpenKHS.Models
         public Friend WtConductor { get; set; }
 
         public Friend WtReader { get; set; }
+
+        public void Autofill()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public string JsonEncode()
+        {
+            throw new System.NotImplementedException();
+        }
 
         public void Dump(FileStream outputFile)
         {

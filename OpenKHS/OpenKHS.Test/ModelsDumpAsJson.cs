@@ -15,11 +15,23 @@ namespace OpenKHS.Test
         [TestMethod]
         public void TestClmmScheduleDump()
         {
-            Assert.Fail(); 
+            Assert.Fail();
         }
 
         [TestMethod]
         public void TestPmScheduleDump()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void TestCoVisitClmmScheduleDump()
+        {
+            Assert.Fail(); 
+        }
+
+        [TestMethod]
+        public void TestCoVisitPmScheduleDump()
         {
             Assert.Fail();
         }

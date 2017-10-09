@@ -23,18 +23,6 @@ namespace OpenKHS.Seeder
             return self.MakeHomeCongregation();
         }
 
-        public static PmSchedule MakeFakePmSchedule()
-        {
-            var self = new FakeModelFactory();
-            return self.MakePmSchedule();
-        }
-
-        public static ClmmSchedule MakeFakeClmmSchedule()
-        {
-            var self = new FakeModelFactory();
-            return self.MakeClmmSchedule();
-        }
-
         #endregion
 
         #region Behind the scenes-ish (can be used)
@@ -47,78 +35,6 @@ namespace OpenKHS.Seeder
                 Members = MakeCongregationMembers(80)
             };
             return homeCong;
-        }
-
-        public ClmmSchedule MakeClmmSchedule()
-        {
-            var fakeMeeting = MakeMeeting();
-
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<Meeting, ClmmSchedule>());
-            var mapper = config.CreateMapper();
-            var fakeClmmSchedule = mapper.Map<ClmmSchedule>(fakeMeeting);
-
-            var privileges = new Privileges { ClmmChairman = true };
-            var fakeChairman = MakeCongMemberWithPrivileges(true, privileges);
-
-            privileges = new Privileges { ClmmTreasures = true, ClmmPrayer = true };
-            var fakeTreasuresBro = MakeCongMemberWithPrivileges(true, privileges);
-
-            privileges = new Privileges { ClmmGems = true, ClmmLacParts = true, ClmmPrayer = true };
-            var fakeGemsBro = MakeCongMemberWithPrivileges(true, privileges);
-
-            privileges = new Privileges { ClmmBibleReading = true, ClmmCbsConductor = true };
-            var fakeBibleReader = MakeCongMemberWithPrivileges(true, privileges);
-
-            privileges = new Privileges { ClmmCbsReader = true, ClmmCbsConductor = true };
-            var fakeCbsReader = MakeCongMemberWithPrivileges(true, privileges);
-
-            fakeClmmSchedule.OpeningPrayer = fakeGemsBro;
-            fakeClmmSchedule.Chairman = fakeChairman;
-            fakeClmmSchedule.Treasures = fakeTreasuresBro;
-            fakeClmmSchedule.Gems = fakeGemsBro;
-            fakeClmmSchedule.BibleReading = fakeBibleReader;
-            fakeClmmSchedule.InitialCall = MakeAssistedSchoolPart(true);
-            fakeClmmSchedule.ReturnVisit = MakeAssistedSchoolPart(false);
-            fakeClmmSchedule.BibleStudy = MakeAssistedSchoolPart(false);
-            fakeClmmSchedule.LacPart1 = MakeMeetingPart(true);
-            fakeClmmSchedule.LacPart2 = MakeMeetingPart(true);
-            fakeClmmSchedule.CbsConductor = fakeBibleReader;
-            fakeClmmSchedule.CbsReader = fakeCbsReader;
-            fakeClmmSchedule.ClosingPrayer = fakeTreasuresBro;
-
-            return fakeClmmSchedule;
-        }
-
-        public PmSchedule MakePmSchedule()
-        {
-            var fakeMeeting = MakeMeeting();
-
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<Meeting, PmSchedule>());
-            var mapper = config.CreateMapper();
-            var fakePmSchedule = mapper.Map<PmSchedule>(fakeMeeting);
-
-            var privileges = new Privileges { PmChairman = true, WtReader = true };
-            var fakeChairman = MakeCongMemberWithPrivileges(true, privileges);
-
-            privileges = new Privileges { WtConductor = true };
-            var fakeWtConductor = MakeCongMemberWithPrivileges(true, privileges);
-
-            fakePmSchedule.Chairman = fakeChairman;
-            fakePmSchedule.WtReader = fakeChairman;
-            fakePmSchedule.WtConductor = fakeWtConductor;
-            fakePmSchedule.PublicTalk = MakePublicTalk();
-
-            return fakePmSchedule;
-        }
-
-        public CircuitVisitClmmSchedule MakeCircuitVisitClmmSchedule()
-        {
-            return null;
-        }
-
-        public CircuitVisitPmSchedule MakeCircuitVisitPmSchedule()
-        {
-            return null;
         }
 
         public AssistedSchoolMeetingPart MakeAssistedSchoolPart(bool male)
