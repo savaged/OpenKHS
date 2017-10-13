@@ -4,7 +4,7 @@ using OpenKHS.Models;
 using OpenKHS.Facades.Converters;
 using OpenKHS.Seeder;
 
-namespace OpenKHS.Test
+namespace OpenKHS.Test.Unit
 {
     [TestClass]
     public class ResponseConverterTest : TestBase

@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenKHS.Models;
 
-namespace OpenKHS.Test
+namespace OpenKHS.Test.Feature
 {
     [TestClass]
     public class AutoFillSchedulesTest : TestBase

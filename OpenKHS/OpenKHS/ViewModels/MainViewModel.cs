@@ -101,7 +101,6 @@ namespace OpenKHS.ViewModels
         }
         private void OnShowAboutDialog()
         {
-            Log.Info("Opening About dialog");
             AboutViewModel dialog = new AboutViewModel();
             var result = DialogService.ShowDialog<About>(this, dialog);
         }

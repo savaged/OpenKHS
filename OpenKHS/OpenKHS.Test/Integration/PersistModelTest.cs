@@ -3,13 +3,13 @@ using OpenKHS.Seeder;
 using OpenKHS.Utils.DataGateway;
 using OpenKHS.Facades;
 
-namespace OpenKHS.Test
+namespace OpenKHS.Test.Integration
 {
     [TestClass]
     public class PersistModelTest : TestBase
     {
         [TestMethod]
-        public void TestCongregationCrudViaGateway()
+        public void IntegrationTestCongregationCrudViaGateway()
         {
             var homeCong = FakeModelFactory.MakeFakeHomeCongregation();
             Assert.IsNotNull(homeCong.Name);

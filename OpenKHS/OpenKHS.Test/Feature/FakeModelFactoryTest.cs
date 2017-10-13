@@ -1,10 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
 using System.Linq;
 using OpenKHS.Seeder;
 using OpenKHS.Models;
 
-namespace OpenKHS.Test
+namespace OpenKHS.Test.Feature
 {
     [TestClass]
     public class FakeModelFactoryTest : TestBase

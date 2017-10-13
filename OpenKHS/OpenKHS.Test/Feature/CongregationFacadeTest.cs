@@ -6,7 +6,7 @@ using OpenKHS.Facades;
 using OpenKHS.Models;
 using Newtonsoft.Json;
 
-namespace OpenKHS.Test
+namespace OpenKHS.Test.Feature
 {
     [TestClass]
     public class CongregationFacadeTest : TestBase
