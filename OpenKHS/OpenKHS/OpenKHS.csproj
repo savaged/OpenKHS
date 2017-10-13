@@ -105,6 +105,7 @@
       <DependentUpon>SpinnerCogs.xaml</DependentUpon>
     </Compile>
     <Compile Include="Facades\CongregationFacade.cs" />
+    <Compile Include="Facades\Converters\CongregationConverter.cs" />
     <Compile Include="Interfaces\ICongregation.cs" />
     <Compile Include="Interfaces\IJsonEncode.cs" />
     <Compile Include="Interfaces\IManagedView.cs" />
@@ -133,11 +134,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Utils\DataGateway\DataGateway.cs" />
-    <Compile Include="Utils\DataGateway\IDataGateway.cs" />
-    <Compile Include="Utils\DataGateway\Methods..cs" />
-    <Compile Include="Utils\DataGateway\ResponseConverter.cs" />
-    <Compile Include="Utils\DataGateway\ResponseRootObject.cs" />
+    <Compile Include="Interfaces\IDataGateway.cs" />
+    <Compile Include="Interfaces\Methods..cs" />
     <Compile Include="Utils\RelayCommand.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\DialogViewModelBase.cs" />
@@ -174,11 +178,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Resources\Logo.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Utils\Facades\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,7 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
-using OpenKHS.Utils.DataGateway;
-using System.Linq;
+using OpenKHS.Models;
+using OpenKHS.Facades.Converters;
+using OpenKHS.Seeder;
 
 namespace OpenKHS.Test
 {
@@ -11,15 +12,13 @@ namespace OpenKHS.Test
         [TestMethod]
         public void TestConvert()
         {
-            var rawResponseContent = "{ \"data\":[{ \"id\":1,\"version\":\"1.0\"}] }";
-            var response = JsonConvert.DeserializeObject<ResponseRootObject>(rawResponseContent, new ResponseConverter());
+            var cong = FakeModelFactory.MakeFakeHomeCongregation();
+            var rawResponseContent = cong.ToString();
+            var response = JsonConvert.DeserializeObject<Congregation>(rawResponseContent, new CongregationConverter());
             Assert.IsNotNull(response);
-            Assert.IsNotNull(response.Data);
-            Assert.IsNotNull(response.Data[0]);
-            Assert.IsNotNull(response.Data[0].Field);
-            Assert.AreEqual("1.0", response.Data[0].Field["version"]);
-            Assert.AreEqual("1.0", response.Data[0]["version"]);
-            Assert.AreEqual("1.0", response.Data.First()["version"]);
+            Assert.AreEqual(cong.Name, response.Name);
+            Assert.IsNotNull(response.Members);
+            Assert.AreEqual(cong.Members.Count, response.Members.Count);
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿
-namespace OpenKHS.Utils.DataGateway
+namespace OpenKHS.Interfaces
 {
     public enum Methods
     {

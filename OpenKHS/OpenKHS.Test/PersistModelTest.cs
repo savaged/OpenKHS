@@ -8,7 +8,7 @@ namespace OpenKHS.Test
     public class PersistModelTest : TestBase
     {
         [TestMethod]
-        public void TestCongregationDataDump()
+        public void TestCongregationCrudViaGateway()
         {
             var homeCong = FakeModelFactory.MakeFakeHomeCongregation();
             Assert.IsNotNull(homeCong.Name);
@@ -20,34 +20,6 @@ namespace OpenKHS.Test
             Assert.IsTrue(json.Length > 1000);
             var file = new FileInfo("test-cong.json");
             // TODO vm uses gateway to persist to file
-            Assert.Fail("todo");
-        }
-
-        [TestMethod]
-        public void TestClmmScheduleDump()
-        {
-            // TODO vm gets command to autofill calls model then facade to use gateway to persist
-            Assert.Fail("todo");
-        }
-
-        [TestMethod]
-        public void TestPmScheduleDump()
-        {
-            // TODO vm gets command to autofill calls model then facade to use gateway to persist
-            Assert.Fail("todo");
-        }
-
-        [TestMethod]
-        public void TestCoVisitClmmScheduleDump()
-        {
-            // TODO vm gets command to autofill calls model then facade to use gateway to persist
-            Assert.Fail("todo");
-        }
-
-        [TestMethod]
-        public void TestCoVisitPmScheduleDump()
-        {
-            // TODO vm gets command to autofill calls model then facade to use gateway to persist
             Assert.Fail("todo");
         }
     }
