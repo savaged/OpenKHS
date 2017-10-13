@@ -28,5 +28,12 @@ namespace OpenKHS.Facades
             var response = JsonConvert.DeserializeObject<bool>(rawResponse);
             return response;
         }
+
+        public bool DeleteCongregation()
+        {
+            var rawResponse = _gateway.Request(typeof(Congregation), Methods.Delete, null);
+            var response = JsonConvert.DeserializeObject<bool>(rawResponse);
+            return response;
+        }
     }
 }

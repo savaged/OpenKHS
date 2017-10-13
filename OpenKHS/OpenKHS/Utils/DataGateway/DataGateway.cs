@@ -54,9 +54,7 @@ namespace OpenKHS.Utils.DataGateway
                     response = ReadJsonFile(resource);
                     break;
                 case Methods.Delete:
-                    // delete
-                    // TODO use real object for success and error
-                    response = "{ \"error\":\"Not implemented\" }";
+                    response = DeleteJsonFile(resource);
                     break;
             }
             return response;
@@ -68,7 +66,7 @@ namespace OpenKHS.Utils.DataGateway
             string result = JsonConvert.SerializeObject(false);
             try
             {
-                using (StreamReader sr = new StreamReader(_resourceLocation + filename + ".json"))
+                using (StreamReader sr = new StreamReader(JsonFullLocation(resource)))
                 {
                     result = sr.ReadToEnd();
                 }
@@ -86,7 +84,7 @@ namespace OpenKHS.Utils.DataGateway
             string result = JsonConvert.SerializeObject(true);
             try
             {
-                using (StreamWriter sw = new StreamWriter(_resourceLocation + filename + ".json"))
+                using (StreamWriter sw = new StreamWriter(JsonFullLocation(resource)))
                 {
                     sw.Write(content);
                 }
@@ -96,6 +94,26 @@ namespace OpenKHS.Utils.DataGateway
                 result = JsonConvert.SerializeObject(e.Message);
             }
             return result;
+        }
+
+        private string DeleteJsonFile(Type resource)
+        {
+            var filename = resource.Name;
+            string result = JsonConvert.SerializeObject(true);
+            try
+            {
+                File.Delete(_resourceLocation + filename + ".json");
+            }
+            catch (Exception e)
+            {
+                result = JsonConvert.SerializeObject(e.Message);
+            }
+            return result;
+        }
+
+        private string JsonFullLocation(Type resource)
+        {
+            return _resourceLocation + resource.Name + ".json";
         }
     }
 }
