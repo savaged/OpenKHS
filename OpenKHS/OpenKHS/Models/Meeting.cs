@@ -20,5 +20,16 @@ namespace OpenKHS.Models
         public Friend RovingMic1 { get; set; }
 
         public Friend RovingMic2 { get; set; }
+
+        public virtual void Publish()
+        {
+            Chairman.AssignmentTally++;
+            Attendant.AssignmentTally++;
+            Security.AssignmentTally++;
+            SoundDesk.AssignmentTally++;
+            Platform.AssignmentTally++;
+            RovingMic1.AssignmentTally++;
+            RovingMic2.AssignmentTally++;
+        }
     }
 }

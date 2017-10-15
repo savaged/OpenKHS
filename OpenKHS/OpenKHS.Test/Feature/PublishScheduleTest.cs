@@ -9,7 +9,7 @@ namespace OpenKHS.Test.Feature
         [TestMethod]
         public void TestPublishScheduleUpdatesCongMemberAssignmentCount()
         {
-            // TODO code the test
+            // TODO code the test that runs the Publish method then checks for all assignees having had their tally incremented
             Assert.Fail("todo");
         }
 

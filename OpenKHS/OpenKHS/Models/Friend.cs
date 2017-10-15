@@ -6,7 +6,7 @@ namespace OpenKHS.Models
 {
     public class Friend
     {
-        private readonly AssignmentTally _assignmentTally;
+        private AssignmentTally _assignmentTally;
 
         public Friend()
         {
@@ -21,6 +21,6 @@ namespace OpenKHS.Models
 
         public List<TimeSpan> UnavailablePeriods { get; set; }
 
-        public AssignmentTally AssignmentTally { get => _assignmentTally; }
+        public AssignmentTally AssignmentTally { get => _assignmentTally; set { _assignmentTally = value; } }
     }
 }

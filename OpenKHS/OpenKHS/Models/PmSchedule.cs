@@ -1,6 +1,6 @@
-﻿using System.IO;
-using OpenKHS.Interfaces;
+﻿using OpenKHS.Interfaces;
 using Newtonsoft.Json;
+using System;
 
 namespace OpenKHS.Models
 {
@@ -16,9 +16,11 @@ namespace OpenKHS.Models
 
         public Friend WtReader { get; set; }
 
-        public virtual void Autofill()
+        public override void Publish()
         {
-            throw new System.NotImplementedException();
+            WtConductor.AssignmentTally++;
+            WtReader.AssignmentTally++;
+            base.Publish();
         }
 
         public override string ToString()

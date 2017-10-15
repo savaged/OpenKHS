@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace OpenKHS.Models
 {
     public class AssignmentTally
@@ -8,6 +10,11 @@ namespace OpenKHS.Models
         public AssignmentTally()
         {
             _tally = 0;
+        }
+
+        public AssignmentTally(int tally)
+        {
+            _tally = tally;
         }
 
         public void Reset(int lowestCongMemberTally)
@@ -50,6 +57,33 @@ namespace OpenKHS.Models
         {
             if (a is null) return false;
             return a._tally == _tally;
+        }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode() ^ _tally;
+        }
+
+        public static bool operator <(AssignmentTally a, int i)
+        {
+            if (a is null)
+            {
+                return false;
+            }
+            return a._tally < i;
+        }
+        public static bool operator >(AssignmentTally a, int i)
+        {
+            if (a is null)
+            {
+                return false;
+            }
+            return a._tally > i;
+        }
+
+        public static implicit operator AssignmentTally(int i)
+        {
+            var a = new AssignmentTally(i);
+            return a;
         }
 
         public override string ToString()

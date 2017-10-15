@@ -62,10 +62,19 @@ namespace OpenKHS.Test.Feature
         public void TestFakeCongMemberWithPrivileges()
         {
             var privileges = new Privileges { Attendant = true };
-            var congMemberWithPrivileges = new FakeModelFactory().MakeCongMemberWithPrivileges(true, privileges);
+            var congMemberWithPrivileges = new FakeModelFactory().MakeCongMemberWithPrivileges(privileges);
             Assert.IsInstanceOfType(congMemberWithPrivileges, typeof(Friend));
             Assert.IsNotNull(congMemberWithPrivileges.Privileges);
             Assert.IsTrue(congMemberWithPrivileges.Privileges.Attendant);
+        }
+
+        [TestMethod]
+        public void TestFakeCongMemberWithAssignmentsTally()
+        {
+            var privileges = new Privileges { Attendant = true };
+            var congMember = new FakeModelFactory().MakeCongMemberWithAssignmentTally();
+            Assert.IsNotNull(congMember.AssignmentTally);
+            Assert.IsTrue(congMember.AssignmentTally < 6);
         }
 
         [TestMethod]

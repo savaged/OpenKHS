@@ -53,7 +53,7 @@ namespace OpenKHS.Seeder
                 ClmmSchoolReturnVisit = true,
                 ClmmSchoolBibleStudy = true
             };
-            fakeAssistedSchoolPart.Assistant = MakeCongMemberWithPrivileges(male, privileges);
+            fakeAssistedSchoolPart.Assistant = MakeCongMemberWithPrivileges(privileges);
             
             return fakeAssistedSchoolPart;
         }
@@ -88,15 +88,15 @@ namespace OpenKHS.Seeder
         public Meeting MakeMeeting()
         {
             var privileges = new Privileges { Attendant = true, Security = true };
-            var fakeAttendant = MakeCongMemberWithPrivileges(true, privileges);
-            var fakeSecurityBro = MakeCongMemberWithPrivileges(true, privileges);
+            var fakeAttendant = MakeCongMemberWithPrivileges(privileges);
+            var fakeSecurityBro = MakeCongMemberWithPrivileges(privileges);
 
             privileges = new Privileges { Platform = true };
-            var fakePlatformBro = MakeCongMemberWithPrivileges(true, privileges);
+            var fakePlatformBro = MakeCongMemberWithPrivileges(privileges);
 
             privileges = new Privileges { RovingMic = true, SoundDesk = true };
-            var fakeRovingMic1Bro = MakeCongMemberWithPrivileges(true, privileges);
-            var fakeRovingMic2Bro = MakeCongMemberWithPrivileges(true, privileges);
+            var fakeRovingMic1Bro = MakeCongMemberWithPrivileges(privileges);
+            var fakeRovingMic2Bro = MakeCongMemberWithPrivileges(privileges);
 
             var fakeMeeting = new Meeting
             {
@@ -123,11 +123,19 @@ namespace OpenKHS.Seeder
             return publicTalk;
         }
 
-        public Friend MakeCongMemberWithPrivileges(bool male, Privileges privileges)
+        public Friend MakeCongMemberWithPrivileges(Privileges privileges)
         {
             var list = MakeCongregationMembers(1, privileges);
             var congMemberWithPrivileges = list.First();
             return congMemberWithPrivileges;
+        }
+
+        public Friend MakeCongMemberWithAssignmentTally()
+        {
+            var list = MakeCongregationMembers(1);
+            var congMember = list.First();
+            congMember.AssignmentTally = new Faker().Random.Number(5);
+            return congMember;
         }
 
         public List<VisitingSpeaker> MakeVisitingSpeakers(int count = 1)

@@ -1,8 +1,10 @@
 ﻿
+using System;
+
 namespace OpenKHS.Interfaces
 {
     public interface ISchedule : IJsonEncode
     {
-        void Autofill();        
+        void Publish();        
     }
 }

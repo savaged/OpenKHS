@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using OpenKHS.Interfaces;
+using System;
 using System.IO;
 
 namespace OpenKHS.Models
@@ -41,9 +42,10 @@ namespace OpenKHS.Models
 
         public Friend ClosingPrayer { get; set; }
 
-        public virtual void Autofill()
+        public void Publish()
         {
-            throw new System.NotImplementedException();
+            // TODO increment tally for each assigned cong member
+            base.Publish();
         }
 
         public override string ToString()
