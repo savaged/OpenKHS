@@ -85,6 +85,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\ClmmScheduleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CongregationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PmScheduleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PublicTalksView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\SpinnerCogs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -100,6 +116,18 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\ClmmScheduleView.xaml.cs">
+      <DependentUpon>ClmmScheduleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CongregationView.xaml.cs">
+      <DependentUpon>CongregationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PmScheduleView.xaml.cs">
+      <DependentUpon>PmScheduleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PublicTalksView.xaml.cs">
+      <DependentUpon>PublicTalksView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\SpinnerCogs.xaml.cs">
       <DependentUpon>SpinnerCogs.xaml</DependentUpon>
@@ -144,8 +172,12 @@
     <Compile Include="Interfaces\Methods..cs" />
     <Compile Include="Utils\RelayCommand.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
+    <Compile Include="ViewModels\CongregationViewModel.cs" />
     <Compile Include="ViewModels\DialogViewModelBase.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\ClmmScheduleViewModel.cs" />
+    <Compile Include="ViewModels\PmScheduleViewModel.cs" />
+    <Compile Include="ViewModels\PublicTalksViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>

@@ -6,13 +6,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OpenKHS.Views"
         xmlns:localVMs="clr-namespace:OpenKHS.ViewModels"
-        xmlns:localModels="clr-namespace:OpenKHS.Models"
-        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:localCtrls="clr-namespace:OpenKHS.Controls"
         xmlns:md="clr-namespace:MvvmDialogs;assembly=MvvmDialogs"
         md:DialogServiceViews.IsRegistered="True"
         mc:Ignorable="d"
         Title="{Binding Title}" Height="480" Width="640"
-        WindowState="Normal"
+        WindowState="Normal" 
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
@@ -29,20 +28,34 @@
 
     <DockPanel>
         <!-- File Menu -->
-        <Menu DockPanel.Dock="Top" Margin="0,0,0.4,0">
+        <Menu DockPanel.Dock="Top">
             <MenuItem Header="File">
                 <MenuItem Header="New" Command="{Binding NewCmd}" InputGestureText="Ctrl+N" />
                 <MenuItem Header="Open" Command="{Binding OpenCmd}" InputGestureText="Ctrl+O" />
                 <MenuItem Header="Save" Command="{Binding SaveCmd}" InputGestureText="Ctrl+S" />
                 <MenuItem Header="Save As" Command="{Binding SaveAsCmd}" InputGestureText="Ctrl+Shift+S"/>
                 <Separator />
+                <MenuItem Header="About" Command="{Binding ShowAboutDialogCmd}" />
                 <MenuItem Header="Exit" Command="{Binding ExitCmd}" InputGestureText="Alt+F4"/>
             </MenuItem>
-            <MenuItem Header="About" Command="{Binding ShowAboutDialogCmd}"/>
+            
         </Menu>
 
-        <StackPanel>
-            <!-- Place here your content -->
-        </StackPanel>
+        <Grid>
+            <TabControl TabStripPlacement="Bottom">
+                <TabItem Header="Congregation" Background="White">
+                    <localCtrls:CongregationView/>
+                </TabItem>
+                <TabItem Header="Public Talks" Background="White">
+                    <localCtrls:PublicTalksView/>
+                </TabItem>
+                <TabItem Header="Public Meeting" Background="White">
+                    <localCtrls:PmScheduleView/>
+                </TabItem>
+                <TabItem Header="CLMM Meeting" Background="White">
+
+                </TabItem>
+            </TabControl>
+        </Grid>
     </DockPanel>
 </Window>
