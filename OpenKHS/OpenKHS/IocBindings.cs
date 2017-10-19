@@ -21,8 +21,7 @@ namespace OpenKHS
             Bind<IDataGateway>().To<Gateway>().InSingletonScope();
             Bind<IMainView>().To<MainWindow>();
             Bind<IMainViewModel>().To<MainViewModel>();
-
-            // Map datacontext using interface
+            
         }
     }
 }

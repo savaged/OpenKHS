@@ -9,7 +9,6 @@ namespace OpenKHS.Views
     /// </summary>
     public partial class MainWindow : IMainView
     {
-        
         public MainWindow()
         {
             InitializeComponent();
@@ -18,8 +17,13 @@ namespace OpenKHS.Views
 
         private void Window_SourceInitialized(object sender, EventArgs e)
         {
-            var vm = ((IViewManager)DataContext);
+            var vm = ((IMainViewModel) DataContext);
             vm.RequestClose += OnRequestClose;
+
+            CongregationView.DataContext = vm.CongregationVM;
+            PublicTalksView.DataContext = vm.PublicTalksVM;
+            PmScheduleView.DataContext = vm.PmScheduleVM;
+            ClmmScheduleView.DataContext = vm.ClmmScheduleVM;
         }
         
         public void OnRequestClose(object sender, EventArgs args)

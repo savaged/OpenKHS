@@ -24,5 +24,7 @@ namespace OpenKHS.Controls
         {
             InitializeComponent();
         }
+
+
     }
 }

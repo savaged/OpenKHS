@@ -3,10 +3,10 @@ using MvvmDialogs;
 
 namespace OpenKHS.Interfaces
 {
-    public interface IViewManager
+    public interface IViewManager : IViewModel
     {
         event EventHandler RequestClose;
         IDialogService DialogService { get; }
-        IDataGateway DataGateway { get; }
+        IDataGateway Gateway { get; }
     }
 }

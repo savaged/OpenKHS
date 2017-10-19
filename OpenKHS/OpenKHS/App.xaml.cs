@@ -3,7 +3,6 @@ using System;
 using System.Reflection;
 using System.Windows;
 using System.ComponentModel;
-using OpenKHS.ViewModels;
 using Ninject;
 using OpenKHS.Interfaces;
 
@@ -27,7 +26,7 @@ namespace OpenKHS
             var iocKernel = new StandardKernel(new IocBindings());
             iocKernel.Load(AppDomain.CurrentDomain.GetAssemblies());
             var vm = iocKernel.Get<IMainViewModel>();
-            
+
             _mainWindow = iocKernel.Get<IMainView>();
             _mainWindow.DataContext = vm;
             ShutdownMode = ShutdownMode.OnMainWindowClose;
@@ -53,6 +52,5 @@ namespace OpenKHS
             Log.Fatal("Application has crashed", e);
         }
 
-        
     }
 }

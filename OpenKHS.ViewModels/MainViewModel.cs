@@ -10,16 +10,28 @@ namespace OpenKHS.ViewModels
 {
     public class MainViewModel : ViewModelBase, IMainViewModel
     {
-        #region Parameters
+        #region Parameters / Properties
         
         public IDialogService DialogService { get; }
+        public IDataGateway Gateway { get; }
+
+        public IViewModel CongregationVM { get; }
+        public IViewModel PublicTalksVM { get; }
+        public IViewModel PmScheduleVM { get; }
+        public IViewModel ClmmScheduleVM { get; }
 
         #endregion
 
         #region Constructors
-        public MainViewModel(IDataGateway dataGateway, IDialogService dialogService) : base(dataGateway)
+
+        public MainViewModel(IDataGateway gateway, IDialogService dialogService) 
         {
             DialogService = dialogService;
+            Gateway = gateway;
+            CongregationVM = new CongregationViewModel(gateway);
+            PublicTalksVM = new PublicTalksViewModel(gateway);
+            PmScheduleVM = new PmScheduleViewModel(gateway);
+            ClmmScheduleVM = new ClmmScheduleViewModel(gateway);
         }
 
         #endregion

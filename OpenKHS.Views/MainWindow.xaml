@@ -44,16 +44,16 @@
         <Grid>
             <TabControl TabStripPlacement="Bottom">
                 <TabItem Header="Congregation" Background="White">
-                    <ctrls:CongregationView/>
+                    <ctrls:CongregationView x:Name="CongregationView"/>
                 </TabItem>
                 <TabItem Header="Public Talks" Background="White">
-                    <ctrls:PublicTalksView/>
+                    <ctrls:PublicTalksView x:Name="PublicTalksView"/>
                 </TabItem>
                 <TabItem Header="Public Meeting" Background="White">
-                    <ctrls:PmScheduleView/>
+                    <ctrls:PmScheduleView x:Name="PmScheduleView"/>
                 </TabItem>
                 <TabItem Header="CLMM Meeting" Background="White">
-                    <ctrls:ClmmScheduleView/>
+                    <ctrls:ClmmScheduleView x:Name="ClmmScheduleView"/>
                 </TabItem>
             </TabControl>
         </Grid>
