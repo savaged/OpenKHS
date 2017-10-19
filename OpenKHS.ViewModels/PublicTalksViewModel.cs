@@ -4,6 +4,11 @@ namespace OpenKHS.ViewModels
 {
     public class PublicTalksViewModel : ViewModelBase
     {
-        public PublicTalksViewModel(IDataGateway dataGateway) { }
+        private readonly IDataGateway _dataGateway;
+
+        public PublicTalksViewModel(IDataGateway dataGateway)
+        {
+            _dataGateway = dataGateway;
+        }
     }
 }

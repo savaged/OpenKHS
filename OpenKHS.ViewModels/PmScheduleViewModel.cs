@@ -4,6 +4,11 @@ namespace OpenKHS.ViewModels
 {
     public class PmScheduleViewModel : ViewModelBase
     {
-        public PmScheduleViewModel(IDataGateway dataGateway) { }
+        private readonly IDataGateway _dataGateway;
+
+        public PmScheduleViewModel(IDataGateway dataGateway)
+        {
+            _dataGateway = dataGateway;
+        }
     }
 }
