@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A5809CBC-B65D-4D6C-9B40-BE00F7389E29}</ProjectGuid>
+    <ProjectGuid>{D5405F26-9AE5-4147-9BED-AC398FE998FF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OpenKHS.Seeder</RootNamespace>
-    <AssemblyName>OpenKHS.Seeder</AssemblyName>
+    <RootNamespace>OpenKHS.Views</RootNamespace>
+    <AssemblyName>OpenKHS.Views</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,40 +30,55 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
-    </Reference>
-    <Reference Include="Bogus, Version=18.0.2.0, Culture=neutral, PublicKeyToken=fa1bb3f3f218129a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bogus.18.0.2\lib\net40\Bogus.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FakeModelFactory.cs" />
+    <Compile Include="About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OpenKHS.Models\OpenKHS.Models.csproj">
-      <Project>{f8a01958-c187-4ca8-b255-f942e7d22bff}</Project>
-      <Name>OpenKHS.Models</Name>
+    <ProjectReference Include="..\..\mvvm-dialogs\MvvmDialogs.csproj">
+      <Project>{6ee68bdd-0567-408e-b40b-74afaf273302}</Project>
+      <Name>MvvmDialogs</Name>
     </ProjectReference>
-    <ProjectReference Include="..\OpenKHS\OpenKHS\OpenKHS.csproj">
-      <Project>{8f9b2503-dca1-4b62-9888-7094063a1172}</Project>
-      <Name>OpenKHS</Name>
+    <ProjectReference Include="..\OpenKHS.Controls\OpenKHS.Controls.csproj">
+      <Project>{4d46bcd7-6633-4e68-9be2-2d1b2facdd29}</Project>
+      <Name>OpenKHS.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenKHS.Interfaces\OpenKHS.Interfaces.csproj">
+      <Project>{2a2760a3-b447-42aa-8001-37bbe92582da}</Project>
+      <Name>OpenKHS.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenKHS.ViewModels\OpenKHS.ViewModels.csproj">
+      <Project>{e3c5cbc7-94a4-4e71-b493-71a6193b43b4}</Project>
+      <Name>OpenKHS.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <Page Include="About.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

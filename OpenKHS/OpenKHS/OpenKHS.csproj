@@ -39,11 +39,8 @@
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Ninject, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Ninject.3.3.0\lib\net45\Ninject.dll</HintPath>
+    <Reference Include="Ninject, Version=3.3.1.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Ninject.3.3.1\lib\net45\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -61,102 +58,17 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Extended.Wpf.Toolkit.3.2.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Extended.Wpf.Toolkit.3.2.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Extended.Wpf.Toolkit.3.2.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Extended.Wpf.Toolkit.3.2.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.DataGrid, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Extended.Wpf.Toolkit.3.2.0\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.Toolkit, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Extended.Wpf.Toolkit.3.2.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Controls\ClmmScheduleView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\CongregationView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\PmScheduleView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\PublicTalksView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\SpinnerCogs.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\About.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controls\ClmmScheduleView.xaml.cs">
-      <DependentUpon>ClmmScheduleView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\CongregationView.xaml.cs">
-      <DependentUpon>CongregationView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\PmScheduleView.xaml.cs">
-      <DependentUpon>PmScheduleView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\PublicTalksView.xaml.cs">
-      <DependentUpon>PublicTalksView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\SpinnerCogs.xaml.cs">
-      <DependentUpon>SpinnerCogs.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Facades\CongregationFacade.cs" />
-    <Compile Include="Facades\Converters\CongregationConverter.cs" />
-    <Compile Include="Interfaces\ICongregation.cs" />
-    <Compile Include="Interfaces\IJsonEncode.cs" />
-    <Compile Include="Interfaces\IManagedView.cs" />
-    <Compile Include="Interfaces\ISchedule.cs" />
-    <Compile Include="Interfaces\IViewManager.cs" />
     <Compile Include="IocBindings.cs" />
-    <Compile Include="Models\AssignmentTally.cs" />
-    <Compile Include="Models\AssistedSchoolMeetingPart.cs" />
-    <Compile Include="Models\SchoolMeetingPart.cs" />
-    <Compile Include="Models\CircuitVisitClmmSchedule.cs" />
-    <Compile Include="Models\CircuitVisitMeetingPart.cs" />
-    <Compile Include="Models\CircuitOverseer.cs" />
-    <Compile Include="Models\CircuitVisitPmSchedule.cs" />
-    <Compile Include="Models\ClmmSchedule.cs" />
-    <Compile Include="Models\Congregation.cs" />
-    <Compile Include="Models\Friend.cs" />
-    <Compile Include="Models\Meeting.cs" />
-    <Compile Include="Models\PmSchedule.cs" />
-    <Compile Include="Models\PmSpeaker.cs" />
-    <Compile Include="Models\Privileges.cs" />
-    <Compile Include="Models\PublicTalk.cs" />
-    <Compile Include="Models\MeetingPart.cs" />
-    <Compile Include="Models\VisitingSpeaker.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -166,25 +78,6 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="Utils\DataGateway\DataGateway.cs" />
-    <Compile Include="Interfaces\IDataGateway.cs" />
-    <Compile Include="Interfaces\Methods..cs" />
-    <Compile Include="Utils\RelayCommand.cs" />
-    <Compile Include="ViewModels\AboutViewModel.cs" />
-    <Compile Include="ViewModels\CongregationViewModel.cs" />
-    <Compile Include="ViewModels\DialogViewModelBase.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\ClmmScheduleViewModel.cs" />
-    <Compile Include="ViewModels\PmScheduleViewModel.cs" />
-    <Compile Include="ViewModels\PublicTalksViewModel.cs" />
-    <Compile Include="ViewModels\ViewModelBase.cs" />
-    <Compile Include="Views\About.xaml.cs">
-      <DependentUpon>About.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -200,6 +93,26 @@
     <ProjectReference Include="..\..\..\mvvm-dialogs\MvvmDialogs.csproj">
       <Project>{6ee68bdd-0567-408e-b40b-74afaf273302}</Project>
       <Name>MvvmDialogs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OpenKHS.Controls\OpenKHS.Controls.csproj">
+      <Project>{4d46bcd7-6633-4e68-9be2-2d1b2facdd29}</Project>
+      <Name>OpenKHS.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OpenKHS.Data\OpenKHS.Data.csproj">
+      <Project>{15669d09-eb1e-4f56-a8f4-c6e71183a6e1}</Project>
+      <Name>OpenKHS.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OpenKHS.Interfaces\OpenKHS.Interfaces.csproj">
+      <Project>{2a2760a3-b447-42aa-8001-37bbe92582da}</Project>
+      <Name>OpenKHS.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OpenKHS.ViewModels\OpenKHS.ViewModels.csproj">
+      <Project>{e3c5cbc7-94a4-4e71-b493-71a6193b43b4}</Project>
+      <Name>OpenKHS.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OpenKHS.Views\OpenKHS.Views.csproj">
+      <Project>{d5405f26-9ae5-4147-9bed-ac398fe998ff}</Project>
+      <Name>OpenKHS.Views</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

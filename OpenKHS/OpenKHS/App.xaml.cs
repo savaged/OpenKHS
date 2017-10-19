@@ -4,7 +4,6 @@ using System.Reflection;
 using System.Windows;
 using System.ComponentModel;
 using OpenKHS.ViewModels;
-using OpenKHS.Views;
 using Ninject;
 using OpenKHS.Interfaces;
 
@@ -13,7 +12,7 @@ namespace OpenKHS
     public partial class App
     {
         private static readonly ILog Log = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-        private static MainWindow _app;
+        private static IMainView _mainWindow;
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
@@ -27,12 +26,12 @@ namespace OpenKHS
 
             var iocKernel = new StandardKernel(new IocBindings());
             iocKernel.Load(AppDomain.CurrentDomain.GetAssemblies());
-            IViewManager vm = iocKernel.Get<MainViewModel>();
+            var vm = iocKernel.Get<IMainViewModel>();
             
-            _app = iocKernel.Get<MainWindow>();
-            _app.DataContext = vm;
+            _mainWindow = iocKernel.Get<IMainView>();
+            _mainWindow.DataContext = vm;
             ShutdownMode = ShutdownMode.OnMainWindowClose;
-            _app.Show();
+            _mainWindow.Show();
         }
 
         static void UnhandledExceptionOccured(object sender, UnhandledExceptionEventArgs args)
@@ -43,7 +42,7 @@ namespace OpenKHS
 
             // Show a message before closing application
             var dialogService = new MvvmDialogs.DialogService();
-            dialogService.ShowMessageBox((INotifyPropertyChanged)(_app.DataContext),
+            dialogService.ShowMessageBox((INotifyPropertyChanged)(_mainWindow.DataContext),
                 "Oops, something went wrong and the application must close. Please find a " +
                 "report on the issue at: " + path + Environment.NewLine +
                 "If the problem persist, please contact david@savaged.info.",

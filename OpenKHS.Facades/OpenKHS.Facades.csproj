@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A5809CBC-B65D-4D6C-9B40-BE00F7389E29}</ProjectGuid>
+    <ProjectGuid>{42229033-E664-472C-9214-785120941843}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OpenKHS.Seeder</RootNamespace>
-    <AssemblyName>OpenKHS.Seeder</AssemblyName>
+    <RootNamespace>OpenKHS.Facades</RootNamespace>
+    <AssemblyName>OpenKHS.Facades</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,11 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
-    </Reference>
-    <Reference Include="Bogus, Version=18.0.2.0, Culture=neutral, PublicKeyToken=fa1bb3f3f218129a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bogus.18.0.2\lib\net40\Bogus.dll</HintPath>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -49,17 +46,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FakeModelFactory.cs" />
+    <Compile Include="CongregationFacade.cs" />
+    <Compile Include="Converters\CongregationConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OpenKHS.Data\OpenKHS.Data.csproj">
+      <Project>{15669d09-eb1e-4f56-a8f4-c6e71183a6e1}</Project>
+      <Name>OpenKHS.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenKHS.Interfaces\OpenKHS.Interfaces.csproj">
+      <Project>{2a2760a3-b447-42aa-8001-37bbe92582da}</Project>
+      <Name>OpenKHS.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OpenKHS.Models\OpenKHS.Models.csproj">
       <Project>{f8a01958-c187-4ca8-b255-f942e7d22bff}</Project>
       <Name>OpenKHS.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OpenKHS\OpenKHS\OpenKHS.csproj">
-      <Project>{8f9b2503-dca1-4b62-9888-7094063a1172}</Project>
-      <Name>OpenKHS</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

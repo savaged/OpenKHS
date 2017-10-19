@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenKHS.Seeder;
-using OpenKHS.Utils.DataGateway;
+using OpenKHS.Data;
 using OpenKHS.Facades;
 
 namespace OpenKHS.Test.Integration
@@ -19,7 +19,7 @@ namespace OpenKHS.Test.Integration
             var json = homeCong.JsonEncode();
             Assert.IsNotNull(json);
             Assert.IsTrue(json.Length > 1000);
-            var gateway = new DataGateway();
+            var gateway = new Gateway();
             var f = new CongregationFacade(gateway);
             // create
             var result = f.SaveCongregation(homeCong);

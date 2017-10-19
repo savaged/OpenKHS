@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenKHS", "OpenKHS\OpenKHS\OpenKHS.csproj", "{8F9B2503-DCA1-4B62-9888-7094063A1172}"
 EndProject
@@ -10,6 +10,20 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmDialogs", "..\mvvm-dialogs\MvvmDialogs.csproj", "{6EE68BDD-0567-408E-B40B-74AFAF273302}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenKHS.Seeder", "OpenKHS.Seeder\OpenKHS.Seeder.csproj", "{A5809CBC-B65D-4D6C-9B40-BE00F7389E29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenKHS.Interfaces", "OpenKHS.Interfaces\OpenKHS.Interfaces.csproj", "{2A2760A3-B447-42AA-8001-37BBE92582DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenKHS.Data", "OpenKHS.Data\OpenKHS.Data.csproj", "{15669D09-EB1E-4F56-A8F4-C6E71183A6E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenKHS.ViewModels", "OpenKHS.ViewModels\OpenKHS.ViewModels.csproj", "{E3C5CBC7-94A4-4E71-B493-71A6193B43B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenKHS.Models", "OpenKHS.Models\OpenKHS.Models.csproj", "{F8A01958-C187-4CA8-B255-F942E7D22BFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenKHS.Facades", "OpenKHS.Facades\OpenKHS.Facades.csproj", "{42229033-E664-472C-9214-785120941843}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenKHS.Views", "OpenKHS.Views\OpenKHS.Views.csproj", "{D5405F26-9AE5-4147-9BED-AC398FE998FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenKHS.Controls", "OpenKHS.Controls\OpenKHS.Controls.csproj", "{4D46BCD7-6633-4E68-9BE2-2D1B2FACDD29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +47,34 @@ Global
 		{A5809CBC-B65D-4D6C-9B40-BE00F7389E29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5809CBC-B65D-4D6C-9B40-BE00F7389E29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5809CBC-B65D-4D6C-9B40-BE00F7389E29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A2760A3-B447-42AA-8001-37BBE92582DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A2760A3-B447-42AA-8001-37BBE92582DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A2760A3-B447-42AA-8001-37BBE92582DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A2760A3-B447-42AA-8001-37BBE92582DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15669D09-EB1E-4F56-A8F4-C6E71183A6E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15669D09-EB1E-4F56-A8F4-C6E71183A6E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15669D09-EB1E-4F56-A8F4-C6E71183A6E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15669D09-EB1E-4F56-A8F4-C6E71183A6E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3C5CBC7-94A4-4E71-B493-71A6193B43B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3C5CBC7-94A4-4E71-B493-71A6193B43B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3C5CBC7-94A4-4E71-B493-71A6193B43B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3C5CBC7-94A4-4E71-B493-71A6193B43B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8A01958-C187-4CA8-B255-F942E7D22BFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8A01958-C187-4CA8-B255-F942E7D22BFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8A01958-C187-4CA8-B255-F942E7D22BFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8A01958-C187-4CA8-B255-F942E7D22BFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42229033-E664-472C-9214-785120941843}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42229033-E664-472C-9214-785120941843}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42229033-E664-472C-9214-785120941843}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42229033-E664-472C-9214-785120941843}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5405F26-9AE5-4147-9BED-AC398FE998FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5405F26-9AE5-4147-9BED-AC398FE998FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5405F26-9AE5-4147-9BED-AC398FE998FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5405F26-9AE5-4147-9BED-AC398FE998FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D46BCD7-6633-4E68-9BE2-2D1B2FACDD29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D46BCD7-6633-4E68-9BE2-2D1B2FACDD29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D46BCD7-6633-4E68-9BE2-2D1B2FACDD29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D46BCD7-6633-4E68-9BE2-2D1B2FACDD29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
