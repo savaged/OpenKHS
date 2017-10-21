@@ -22,14 +22,5 @@ namespace OpenKHS.Data.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\\\temp\\\\")]
-        public string DataResourceLocation {
-            get {
-                return ((string)(this["DataResourceLocation"]));
-            }
-        }
     }
 }

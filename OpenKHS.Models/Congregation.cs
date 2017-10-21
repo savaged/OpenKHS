@@ -8,9 +8,13 @@ namespace OpenKHS.Models
 {
     public class Congregation : ICongregation
     {
-        public string Name { get; set; }
+        public Congregation()
+        {
+            Name = string.Empty;
+            Members = new List<Friend>();
+        }
 
-        public Friend PublicTalkCoordinator { get; set; }
+        public string Name { get; set; }
 
         public List<Friend> Members { get; set; }
 

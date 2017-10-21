@@ -172,8 +172,7 @@ namespace OpenKHS.Seeder
         private Faker<Congregation> CongregationFaker()
         {
             var congFaker = new Faker<Congregation>()
-                .RuleFor(c => c.Name, f => f.Name.FullName())
-                .RuleFor(c => c.PublicTalkCoordinator, f => (Friend)MakeFriends().First());
+                .RuleFor(c => c.Name, f => f.Name.FullName());
             return congFaker;
         }
 

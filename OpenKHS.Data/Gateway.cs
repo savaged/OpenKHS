@@ -9,11 +9,15 @@ namespace OpenKHS.Data
     public class Gateway : IDataGateway
     {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-#if DEBUG
-        private readonly string _resourceLocation = "c:\\tmp\\";
-#else
-        private readonly string _resourceLocation = Properties.Settings.Default.DataResourceLocation;
-#endif
+
+        private readonly string _resourceLocation;
+
+        public Gateway()
+        {
+            _resourceLocation = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            _resourceLocation += "\\";
+        }
+        
         public string Request(Type resource, Methods method, IJsonEncode data)
         {
             Log.Info("Requesting access at " + _resourceLocation);
@@ -63,17 +67,19 @@ namespace OpenKHS.Data
         private string ReadJsonFile(Type resource)
         {
             var filename = resource.Name;
-            string result = JsonConvert.SerializeObject(false);
+            var resourceLocation = JsonFullLocation(resource);
+            string result;
             try
             {
-                using (StreamReader sr = new StreamReader(JsonFullLocation(resource)))
+                using (StreamReader sr = new StreamReader(resourceLocation))
                 {
                     result = sr.ReadToEnd();
                 }
             }
-            catch (Exception e)
+            catch (FileNotFoundException e)
             {
-                result = JsonConvert.SerializeObject(e.Message);
+                Log.Error(e.Message);
+                throw;
             }
             return result;
         }
@@ -81,17 +87,20 @@ namespace OpenKHS.Data
         private string WriteJsonFile(Type resource, string content)
         {
             var filename = resource.Name;
+            var resourceLocation = JsonFullLocation(resource);
             string result = JsonConvert.SerializeObject(true);
             try
             {
-                using (StreamWriter sw = new StreamWriter(JsonFullLocation(resource)))
+                using (StreamWriter sw = new StreamWriter(resourceLocation))
                 {
                     sw.Write(content);
                 }
             }
             catch (Exception e)
             {
-                result = JsonConvert.SerializeObject(e.Message);
+                // TODO catch anticipated exceptions
+                Log.Error(e.Message);
+                throw;
             }
             return result;
         }
@@ -106,7 +115,9 @@ namespace OpenKHS.Data
             }
             catch (Exception e)
             {
-                result = JsonConvert.SerializeObject(e.Message);
+                // TODO catch anticipated exceptions
+                Log.Error(e.Message);
+                throw;
             }
             return result;
         }

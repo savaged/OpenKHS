@@ -22,16 +22,16 @@ namespace OpenKHS.Test.Integration
             var gateway = new Gateway();
             var f = new CongregationFacade(gateway);
             // create
-            var result = f.SaveCongregation(homeCong);
+            var result = f.Store(homeCong);
             Assert.IsTrue(result);
             // update
-            var retrievedCong = f.GetCongregation();
+            var retrievedCong = f.Show();
             Assert.IsNotNull(retrievedCong);
             Assert.AreEqual(homeCong.Name, retrievedCong.Name);
             Assert.IsNotNull(retrievedCong.Members);
             Assert.AreEqual(homeCong.Members.Count, retrievedCong.Members.Count);
             // delete
-            result = f.DeleteCongregation();
+            result = f.Delete();
             Assert.IsTrue(result);
         }
     }

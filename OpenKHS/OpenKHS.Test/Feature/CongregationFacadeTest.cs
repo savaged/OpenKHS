@@ -5,6 +5,7 @@ using OpenKHS.Interfaces;
 using OpenKHS.Facades;
 using OpenKHS.Models;
 using Newtonsoft.Json;
+using System.IO;
 
 namespace OpenKHS.Test.Feature
 {
@@ -27,7 +28,7 @@ namespace OpenKHS.Test.Feature
                 homeCong
                 )).Returns(mockResponse);
             var f = new CongregationFacade(mockGateway.Object);
-            var result = f.SaveCongregation(homeCong);
+            var result = f.Store(homeCong);
             Assert.IsTrue(result);
         }
 
@@ -49,11 +50,28 @@ namespace OpenKHS.Test.Feature
                 null
                 )).Returns(mockResponse);
             var f = new CongregationFacade(mockGateway.Object);
-            var retrievedCong = f.GetCongregation();
+            var retrievedCong = f.Show();
             Assert.IsNotNull(retrievedCong);
             Assert.AreEqual(homeCong.Name, retrievedCong.Name);
             Assert.IsNotNull(retrievedCong.Members);
             Assert.AreEqual(homeCong.Members.Count, retrievedCong.Members.Count);
-        }        
+        }
+
+        [TestMethod]
+        public void TestCongregationGetNewViaFacade()
+        {
+            var mockGateway = new Mock<IDataGateway>();
+            mockGateway.Setup(g => g.Request(
+                typeof(Congregation),
+                Methods.Get,
+                null
+                )).Throws<FileNotFoundException>();
+            var f = new CongregationFacade(mockGateway.Object);
+            var retrievedCong = f.Show();
+            Assert.IsNotNull(retrievedCong);
+            Assert.AreEqual(string.Empty, retrievedCong.Name);
+            Assert.IsNotNull(retrievedCong.Members);
+            Assert.AreEqual(0, retrievedCong.Members.Count);
+        }
     }
 }
