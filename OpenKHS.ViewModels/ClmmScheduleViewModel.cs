@@ -7,13 +7,18 @@ using System.Threading.Tasks;
 
 namespace OpenKHS.ViewModels
 {
-    public class ClmmScheduleViewModel : ViewModelBase
+    public class ClmmScheduleViewModel : ViewModelBase, IDataViewModel
     {
         private readonly IDataGateway _dataGateway;
 
         public ClmmScheduleViewModel(IDataGateway dataGateway)
         {
             _dataGateway = dataGateway;
+        }
+
+        public bool New()
+        {
+            throw new NotImplementedException();
         }
     }
 }

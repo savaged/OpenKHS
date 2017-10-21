@@ -86,6 +86,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\mvvm-dialogs\MvvmDialogs.csproj">
+      <Project>{6ee68bdd-0567-408e-b40b-74afaf273302}</Project>
+      <Name>MvvmDialogs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OpenKHS.Interfaces\OpenKHS.Interfaces.csproj">
       <Project>{2a2760a3-b447-42aa-8001-37bbe92582da}</Project>
       <Name>OpenKHS.Interfaces</Name>

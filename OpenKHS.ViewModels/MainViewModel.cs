@@ -15,10 +15,10 @@ namespace OpenKHS.ViewModels
         public IDialogService DialogService { get; }
         public IDataGateway Gateway { get; }
 
-        public IViewModel CongregationVM { get; }
-        public IViewModel PublicTalksVM { get; }
-        public IViewModel PmScheduleVM { get; }
-        public IViewModel ClmmScheduleVM { get; }
+        public IDataViewModel CongregationVM { get; }
+        public IDataViewModel PublicTalksVM { get; }
+        public IDataViewModel PmScheduleVM { get; }
+        public IDataViewModel ClmmScheduleVM { get; }
 
         #endregion
 
@@ -28,7 +28,7 @@ namespace OpenKHS.ViewModels
         {
             DialogService = dialogService;
             Gateway = gateway;
-            CongregationVM = new CongregationViewModel(gateway);
+            CongregationVM = new CongregationViewModel(gateway, dialogService);
             PublicTalksVM = new PublicTalksViewModel(gateway);
             PmScheduleVM = new PmScheduleViewModel(gateway);
             ClmmScheduleVM = new ClmmScheduleViewModel(gateway);
@@ -51,7 +51,7 @@ namespace OpenKHS.ViewModels
 
         public ICommand SaveAsCmd { get { return new RelayCommand(OnSaveAsTest, AlwaysFalse); } }
         public ICommand SaveCmd { get { return new RelayCommand(OnSaveTest, AlwaysFalse); } }
-        public ICommand NewCmd { get { return new RelayCommand(OnNewTest, AlwaysFalse); } }
+        public ICommand NewCongMemberCmd { get { return new RelayCommand(OnNewCongMember, () => true); } }
         public ICommand OpenCmd { get { return new RelayCommand(OnOpenTest, AlwaysFalse); } }
         public ICommand ShowAboutDialogCmd { get { return new RelayCommand(OnShowAboutDialog, AlwaysTrue); } }
         public ICommand ExitCmd { get { return new RelayCommand(OnExitApp, AlwaysTrue); } }
@@ -86,9 +86,9 @@ namespace OpenKHS.ViewModels
         {
             // TODO
         }
-        private void OnNewTest()
+        private void OnNewCongMember()
         {
-            // TODO
+            CongregationVM.New();
         }
         private void OnOpenTest()
         {

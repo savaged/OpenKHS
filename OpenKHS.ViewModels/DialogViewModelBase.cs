@@ -2,7 +2,7 @@
 
 namespace OpenKHS.ViewModels
 {
-    abstract class DialogViewModelBase : ViewModelBase, IModalDialogViewModel
+    public abstract class DialogViewModelBase : ViewModelBase, IModalDialogViewModel
     {
         private bool? _dialogResult = false;
 

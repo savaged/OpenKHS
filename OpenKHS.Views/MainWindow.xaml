@@ -5,7 +5,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OpenKHS.Views"
-        xmlns:localVMs="clr-namespace:OpenKHS.ViewModels"
         xmlns:ctrls="clr-namespace:OpenKHS.Controls;assembly=OpenKHS.Controls"
         xmlns:md="clr-namespace:MvvmDialogs;assembly=MvvmDialogs"
         md:DialogServiceViews.IsRegistered="True"
@@ -22,7 +21,7 @@
         <KeyBinding Command="{Binding SaveCmd}" Key="S" Modifiers="Ctrl" />
         <KeyBinding Command="{Binding SaveAsCmd}" Gesture="Ctrl+Shift+S" />
         <KeyBinding Command="{Binding OpenCmd}" Gesture="Ctrl+O" />
-        <KeyBinding Command="{Binding NewCmd}" Gesture="Ctrl+N" />
+        <KeyBinding Command="{Binding NewCongMemberCmd}" Gesture="Ctrl+N" />
         <KeyBinding Command="{Binding ExitCmd}" Gesture="Alt+F4" />
     </Window.InputBindings>
 
@@ -30,7 +29,7 @@
         <!-- File Menu -->
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File">
-                <MenuItem Header="New" Command="{Binding NewCmd}" InputGestureText="Ctrl+N" />
+                <MenuItem Header="New Congregation Member" Command="{Binding NewCongMemberCmd}" InputGestureText="Ctrl+N" />
                 <MenuItem Header="Open" Command="{Binding OpenCmd}" InputGestureText="Ctrl+O" />
                 <MenuItem Header="Save" Command="{Binding SaveCmd}" InputGestureText="Ctrl+S" />
                 <MenuItem Header="Save As" Command="{Binding SaveAsCmd}" InputGestureText="Ctrl+Shift+S"/>

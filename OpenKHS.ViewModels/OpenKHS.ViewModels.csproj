@@ -49,6 +49,7 @@
     <Compile Include="ClmmScheduleViewModel.cs" />
     <Compile Include="CongregationViewModel.cs" />
     <Compile Include="DialogViewModelBase.cs" />
+    <Compile Include="FriendFormDialogViewModel.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="PmScheduleViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

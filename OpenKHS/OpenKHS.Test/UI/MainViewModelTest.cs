@@ -22,5 +22,6 @@ namespace OpenKHS.Test.Unit
             Assert.IsNotNull(cvm.Members);
             Assert.AreEqual(0, cvm.Members.Count);
         }
+        
     }
 }

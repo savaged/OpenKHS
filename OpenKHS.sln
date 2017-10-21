@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2002
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenKHS", "OpenKHS\OpenKHS\OpenKHS.csproj", "{8F9B2503-DCA1-4B62-9888-7094063A1172}"
 EndProject
@@ -24,6 +24,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenKHS.Views", "OpenKHS.Views\OpenKHS.Views.csproj", "{D5405F26-9AE5-4147-9BED-AC398FE998FF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenKHS.Controls", "OpenKHS.Controls\OpenKHS.Controls.csproj", "{4D46BCD7-6633-4E68-9BE2-2D1B2FACDD29}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0AF0BADF-D89E-41BA-B552-7D4DE8CF48DB}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
