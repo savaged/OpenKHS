@@ -104,12 +104,12 @@ namespace OpenKHS.Test.Feature
             var privileges = new FakeModelFactory().MakeRandomPrivileges(false);
             Assert.IsNotNull(privileges);
             Assert.IsInstanceOfType(privileges, typeof(Privileges));
-            Assert.IsTrue(privileges.Count() > 0);
+            Assert.IsTrue(privileges.CountPrivileges() > 0);
             
             privileges = new FakeModelFactory().MakeRandomPrivileges(true);
             Assert.IsNotNull(privileges);
             Assert.IsInstanceOfType(privileges, typeof(Privileges));
-            Assert.IsTrue(privileges.Count() > 0);
+            Assert.IsTrue(privileges.CountPrivileges() > 0);
         }
 
         [TestMethod]
@@ -118,8 +118,8 @@ namespace OpenKHS.Test.Feature
             var congMembers = new FakeModelFactory().MakeCongregationMembers(80);
             Assert.AreEqual(80, congMembers.Count);
             Assert.IsNotNull(congMembers.First().Privileges);
-            Assert.IsTrue(congMembers.First().Privileges.Count() > 0);
+            Assert.IsTrue(congMembers.First().Privileges.CountPrivileges() > 0);
         }
-
+        
     }
 }

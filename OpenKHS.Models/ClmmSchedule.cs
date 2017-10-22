@@ -42,7 +42,7 @@ namespace OpenKHS.Models
 
         public Friend ClosingPrayer { get; set; }
 
-        public void Publish()
+        public override void Publish()
         {
             // TODO increment tally for each assigned cong member
             base.Publish();
