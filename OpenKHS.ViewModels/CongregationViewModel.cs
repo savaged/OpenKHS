@@ -27,9 +27,8 @@ namespace OpenKHS.ViewModels
 
         public bool New()
         {
-            var friendFormDialogVM = new FriendFormDialogViewModel(_dataGateway);
-            var result = _dialogService.ShowDialog(this, friendFormDialogVM);
-            return (bool)result;
+            // TODO rather than open a dialog this control should have the form appear on the right
+            return true;
         }
     }
 }
