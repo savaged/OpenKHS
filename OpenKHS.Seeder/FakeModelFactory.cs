@@ -45,12 +45,12 @@ namespace OpenKHS.Seeder
 
             var fakeAssistedSchoolPart = mapper.Map<AssistedSchoolMeetingPart>(schoolMeetingPart);
 
-            var privileges = new Privileges
+            var privileges = new List<string>
             {
-                ClmmSchoolAssistant = true,
-                ClmmSchoolInitialCall = true,
-                ClmmSchoolReturnVisit = true,
-                ClmmSchoolBibleStudy = true
+                "ClmmSchoolAssistant",
+                "ClmmSchoolInitialCall",
+                "ClmmSchoolReturnVisit",
+                "ClmmSchoolBibleStudy"
             };
             fakeAssistedSchoolPart.Assistant = MakeCongMemberWithPrivileges(privileges);
             
@@ -62,19 +62,14 @@ namespace OpenKHS.Seeder
             var config = new MapperConfiguration(cfg => cfg.CreateMap<MeetingPart, SchoolMeetingPart>());
             var mapper = config.CreateMapper();
 
-            var fakeSchoolMeetingPart = mapper.Map<SchoolMeetingPart>(MakeMeetingPart(male));
+            var fakeSchoolMeetingPart = mapper.Map<SchoolMeetingPart>(MakeMeetingPart());
 
-            var privileges = new Privileges();
-            if (male)
-            {
-                privileges.ClmmSchoolTalk = privileges.ClmmBibleReading = true;
-            }
             fakeSchoolMeetingPart.CounselPoint = new Faker().Random.Number(1, 53);
 
             return fakeSchoolMeetingPart;
         }
 
-        public MeetingPart MakeMeetingPart(bool male = true)
+        public MeetingPart MakeMeetingPart()
         {
             var fakeMeetingPart = new MeetingPart
             {
@@ -124,7 +119,7 @@ namespace OpenKHS.Seeder
             return publicTalk;
         }
 
-        public Friend MakeCongMemberWithPrivileges(Privileges privileges)
+        public Friend MakeCongMemberWithPrivileges(List<string> privileges)
         {
             var list = MakeCongregationMembers(1, privileges);
             var congMemberWithPrivileges = list.First();
@@ -167,7 +162,7 @@ namespace OpenKHS.Seeder
             return co;
         }
 
-        public List<Friend> MakeCongregationMembers(int count = 1, Privileges privileges = null)
+        public List<Friend> MakeCongregationMembers(int count = 1, List<string> privileges = null)
         {
             var fakeFriends = MakeFriends(count);
 
@@ -175,59 +170,143 @@ namespace OpenKHS.Seeder
 
             foreach (var fakeFriend in fakeFriends)
             {
+                Friend friendWithFakePrivileges;
                 if (privileges is null)
                 {
-                    fakeFriend.Privileges = MakeRandomPrivileges();
+                    friendWithFakePrivileges = AddRandomPrivileges(fakeFriend);
                 }
                 else
                 {
-                    fakeFriend.Privileges = privileges;
+                    friendWithFakePrivileges = AddPrivileges(fakeFriend, privileges);
                 }
-                fakeCongregationMembers.Add(fakeFriend);
+                fakeCongregationMembers.Add(friendWithFakePrivileges);
             }
             return fakeCongregationMembers;
         }
 
-        public Privileges MakeRandomPrivileges(bool male = false)
+        public Friend AddPrivileges(Friend friend, List<string> privileges)
         {
-            
-            Faker<Privileges> privilegesFaker;
+            foreach (var privilege in privileges)
+            {
+                switch (privilege)
+                {
+                    case "Attendant":
+                        friend.Attendant = true;
+                        break;
+                    case "AwaySpeaker":
+                        friend.AwaySpeaker = true;
+                        break;
+                    case "ClmmBibleReading":
+                        friend.ClmmBibleReading = true;
+                        break;
+                    case "ClmmCbsConductor":
+                        friend.ClmmCbsConductor = true;
+                        break;
+                    case "ClmmCbsReader":
+                        friend.ClmmCbsReader = true;
+                        break;
+                    case "ClmmChairman":
+                        friend.ClmmChairman = true;
+                        break;
+                    case "ClmmGems":
+                        friend.ClmmGems = true;
+                        break;
+                    case "ClmmLacParts":
+                        friend.ClmmLacParts = true;
+                        break;
+                    case "ClmmMainHallOnly":
+                        friend.ClmmMainHallOnly = true;
+                        break;
+                    case "ClmmPrayer":
+                        friend.ClmmPrayer = true;
+                        break;
+                    case "ClmmSchoolAssistant":
+                        friend.ClmmSchoolAssistant = true;
+                        break;
+                    case "ClmmSchoolBibleStudy":
+                        friend.ClmmSchoolBibleStudy = true;
+                        break;
+                    case "ClmmSchoolInitialCall":
+                        friend.ClmmSchoolInitialCall = true;
+                        break;
+                    case "ClmmSchoolMonthPresentations":
+                        friend.ClmmSchoolMonthPresentations = true;
+                        break;
+                    case "ClmmSchoolReturnVisit":
+                        friend.ClmmSchoolReturnVisit = true;
+                        break;
+                    case "ClmmSecondSchoolCounselor":
+                        friend.ClmmSchoolTalk = true;
+                        break;
+                    case "":
+                        friend.ClmmSecondSchoolCounselor = true;
+                        break;
+                    case "ClmmSecondSchoolOnly":
+                        friend.ClmmSecondSchoolOnly = true;
+                        break;
+                    case "ClmmTreasures":
+                        friend.ClmmTreasures = true;
+                        break;
+                    case "Platform":
+                        friend.Platform = true;
+                        break;
+                    case "PmChairman":
+                        friend.PmChairman = true;
+                        break;
+                    case "PublicSpeaker":
+                        friend.PublicSpeaker = true;
+                        break;
+                    case "RovingMic":
+                        friend.RovingMic = true;
+                        break;
+                    case "Security":
+                        friend.Security = true;
+                        break;
+                    case "SoundDesk":
+                        friend.SoundDesk = true;
+                        break;
+                    case "WtConductor":
+                        friend.WtConductor = true;
+                        break;
+                    case "WtReader":
+                        friend.WtReader = true;
+                        break;
+                }
+            }
+            return friend;
+        }
+
+        public Friend AddRandomPrivileges(Friend friend, bool male = false)
+        {
             if (male)
             {
-                privilegesFaker = new Faker<Privileges>()
-                    .Rules((f, p) => {
-                        p.ClmmPrayer = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
-                        p.ClmmLacParts = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
-                        p.Platform = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
-                        p.Attendant = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
-                        p.Security = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
-                        p.SoundDesk = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
-                        p.ClmmTreasures = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
-                        p.ClmmChairman = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
-                        p.ClmmCbsConductor = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
-                        p.ClmmSchoolBibleStudy = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
-                        p.ClmmSchoolInitialCall = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
-                        p.ClmmSchoolReturnVisit = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
-                        p.ClmmSchoolTalk = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
-                        p.ClmmCbsReader = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
-                        p.ClmmSchoolMonthPresentations = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
-                        p.ClmmGems = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
-                        p.WtReader = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
-                        p.AwaySpeaker = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
-                    });
+                friend.ClmmPrayer = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                friend.ClmmLacParts = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                friend.Platform = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                friend.Attendant = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                friend.Security = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                friend.SoundDesk = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                friend.ClmmTreasures = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                friend.ClmmChairman = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                friend.ClmmCbsConductor = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                friend.ClmmSchoolBibleStudy = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                friend.ClmmSchoolInitialCall = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                friend.ClmmSchoolReturnVisit = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                friend.ClmmSchoolTalk = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                friend.ClmmCbsReader = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                friend.ClmmSchoolMonthPresentations = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                friend.ClmmGems = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                friend.WtReader = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                friend.AwaySpeaker = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
             }
             else
             {
-                privilegesFaker = new Faker<Privileges>()
-                    .Rules((f, p) => {
-                        p.ClmmSchoolBibleStudy = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
-                        p.ClmmSchoolInitialCall = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
-                        p.ClmmSchoolReturnVisit = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
-                        p.ClmmSecondSchoolOnly = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
-                    });
+                friend.ClmmSchoolBibleStudy = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                friend.ClmmSchoolInitialCall = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                friend.ClmmSchoolReturnVisit = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                friend.ClmmSecondSchoolOnly = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
             }
-            var fakePrivileges = (Privileges)privilegesFaker;
-            return fakePrivileges;
+            return friend;
         }
 
         private bool TheBogusRandomBoolWontWorkSoIveCreatedMyOwn()

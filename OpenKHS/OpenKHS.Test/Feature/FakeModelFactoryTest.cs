@@ -2,6 +2,8 @@
 using System.Linq;
 using OpenKHS.Seeder;
 using OpenKHS.Models;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace OpenKHS.Test.Feature
 {
@@ -58,17 +60,16 @@ namespace OpenKHS.Test.Feature
         [TestMethod]
         public void TestFakeCongMemberWithPrivileges()
         {
-            var privileges = new Privileges { Attendant = true };
+            var privileges = new List<string> { "Attendant" };
             var congMemberWithPrivileges = new FakeModelFactory().MakeCongMemberWithPrivileges(privileges);
             Assert.IsInstanceOfType(congMemberWithPrivileges, typeof(Friend));
-            Assert.IsNotNull(congMemberWithPrivileges.Privileges);
-            Assert.IsTrue(congMemberWithPrivileges.Privileges.Attendant);
+            Assert.IsTrue(congMemberWithPrivileges.Attendant);
         }
 
         [TestMethod]
         public void TestFakeCongMemberWithAssignmentsTally()
         {
-            var privileges = new Privileges { Attendant = true };
+            var privileges = new List<string> { "Attendant" };
             var congMember = new FakeModelFactory().MakeCongMemberWithAssignmentTally();
             Assert.IsNotNull(congMember.AssignmentTally);
             Assert.IsTrue(congMember.AssignmentTally < 6);
@@ -101,15 +102,17 @@ namespace OpenKHS.Test.Feature
         [TestMethod]
         public void TestFakePrivilegesMaker()
         {
-            var privileges = new FakeModelFactory().MakeRandomPrivileges(false);
-            Assert.IsNotNull(privileges);
-            Assert.IsInstanceOfType(privileges, typeof(Privileges));
-            Assert.IsTrue(privileges.CountPrivileges() > 0);
+            var factory = new FakeModelFactory();
+            var friend = factory.MakeFriends(1).First();
+            var friendWithRandomPrivileges = factory.AddRandomPrivileges(friend, false);
+            Assert.IsNotNull(friendWithRandomPrivileges);
+            Assert.IsInstanceOfType(friendWithRandomPrivileges, typeof(Friend));
+            Assert.IsTrue(friendWithRandomPrivileges.CountPrivileges() > 0);
             
-            privileges = new FakeModelFactory().MakeRandomPrivileges(true);
-            Assert.IsNotNull(privileges);
-            Assert.IsInstanceOfType(privileges, typeof(Privileges));
-            Assert.IsTrue(privileges.CountPrivileges() > 0);
+            friendWithRandomPrivileges = factory.AddPrivileges(friend, new List<string>{"WtReader"});
+            Assert.IsNotNull(friendWithRandomPrivileges);
+            Assert.IsInstanceOfType(friendWithRandomPrivileges, typeof(Friend));
+            Assert.IsTrue(friendWithRandomPrivileges.CountPrivileges() > 0);
         }
 
         [TestMethod]
@@ -117,8 +120,7 @@ namespace OpenKHS.Test.Feature
         {
             var congMembers = new FakeModelFactory().MakeCongregationMembers(80);
             Assert.AreEqual(80, congMembers.Count);
-            Assert.IsNotNull(congMembers.First().Privileges);
-            Assert.IsTrue(congMembers.First().Privileges.CountPrivileges() > 0);
+            Assert.IsTrue(congMembers.First().CountPrivileges() > 0);
         }
         
     }
