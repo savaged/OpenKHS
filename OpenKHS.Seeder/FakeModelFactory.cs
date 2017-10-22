@@ -17,22 +17,21 @@ namespace OpenKHS.Seeder
 
         #region Main API / Helper methods
 
-        public static Congregation MakeFakeHomeCongregation()
+        public static Congregation MakeFakeCongregation()
         {
             var self = new FakeModelFactory();
-            return self.MakeHomeCongregation();
+            return self.MakeCongregation();
         }
 
         #endregion
 
         #region Behind the scenes-ish (can be used)
 
-        public Congregation MakeHomeCongregation()
+        public Congregation MakeCongregation(int members = 80)
         {
             var homeCong = new Congregation
             {
-                Name = new Faker().Address.City(),
-                Members = MakeCongregationMembers(80)
+                Members = MakeCongregationMembers(members)
             };
             return homeCong;
         }
@@ -85,7 +84,8 @@ namespace OpenKHS.Seeder
             return fakeMeetingPart;
         }
 
-        public Meeting MakeMeeting()
+        /*
+         public Meeting MakeMeeting()
         {
             var privileges = new Privileges { Attendant = true, Security = true };
             var fakeAttendant = MakeCongMemberWithPrivileges(privileges);
@@ -111,6 +111,7 @@ namespace OpenKHS.Seeder
             };
             return fakeMeeting;
         }
+        */
 
         public PublicTalk MakePublicTalk()
         {
@@ -150,30 +151,10 @@ namespace OpenKHS.Seeder
             foreach (var fakeFriend in fakeFriends)
             {
                 var visitingSpeaker = mapper.Map<VisitingSpeaker>(fakeFriend);
-                visitingSpeaker.Congregation = MakeCongregations().First();
+                visitingSpeaker.Congregation = "Another congregation";
                 fakeVisitingSpeakers.Add(visitingSpeaker);
             }
             return fakeVisitingSpeakers;
-        }
-
-        public List<Congregation> MakeCongregations(int count = 1)
-        {
-            var congFaker = CongregationFaker();
-
-            var fakeCongregations = new List<Congregation>();
-            while (count > 0)
-            {
-                fakeCongregations.Add((Congregation)congFaker);
-                count--;
-            }
-            return fakeCongregations;
-        }
-
-        private Faker<Congregation> CongregationFaker()
-        {
-            var congFaker = new Faker<Congregation>()
-                .RuleFor(c => c.Name, f => f.Name.FullName());
-            return congFaker;
         }
 
         public CircuitOverseer MakeCircuitOverseer()
@@ -182,7 +163,7 @@ namespace OpenKHS.Seeder
             var mapper = config.CreateMapper();
             var friend = MakeFriend();
             var co = mapper.Map<CircuitOverseer>(friend);
-            co.Wife = MakeFriend();
+            co.Wife = new Faker().Name.FullName();
             return co;
         }
 
@@ -274,8 +255,7 @@ namespace OpenKHS.Seeder
         private Friend MakeFriend()
         {
             var fakeFriend = new Faker<Friend>()
-                .RuleFor(p => p.Firstname, f => f.Name.FirstName())
-                .RuleFor(p => p.Lastname, f => f.Name.LastName());
+                .RuleFor(p => p.Name, f => f.Name.FullName());
             return fakeFriend.Generate();
         }
 

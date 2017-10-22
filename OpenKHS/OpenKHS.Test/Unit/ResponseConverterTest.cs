@@ -12,11 +12,10 @@ namespace OpenKHS.Test.Unit
         [TestMethod]
         public void TestConvert()
         {
-            var cong = FakeModelFactory.MakeFakeHomeCongregation();
+            var cong = FakeModelFactory.MakeFakeCongregation();
             var rawResponseContent = cong.ToString();
             var response = JsonConvert.DeserializeObject<Congregation>(rawResponseContent, new CongregationConverter());
             Assert.IsNotNull(response);
-            Assert.AreEqual(cong.Name, response.Name);
             Assert.IsNotNull(response.Members);
             Assert.AreEqual(cong.Members.Count, response.Members.Count);
         }

@@ -13,9 +13,7 @@ namespace OpenKHS.Models
             _assignmentTally = new AssignmentTally();
         }
 
-        public string Firstname { get; set; }
-
-        public string Lastname { get; set; }
+        public string Name { get; set; }
 
         public Privileges Privileges { get; set; }
 

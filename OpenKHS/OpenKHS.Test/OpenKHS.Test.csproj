@@ -70,8 +70,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Feature\CongregationFacadeTest.cs" />
-    <Compile Include="Feature\PublishScheduleTest.cs" />
-    <Compile Include="Feature\CongMemberOptionListOrderedTests.cs" />
     <Compile Include="Feature\FakeModelFactoryTest.cs" />
     <Compile Include="Feature\AssignmentTallyTest.cs" />
     <Compile Include="UI\MainViewModelTest.cs" />

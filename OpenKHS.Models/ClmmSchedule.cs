@@ -53,7 +53,7 @@ namespace OpenKHS.Models
             return JsonEncode();
         }
 
-        public virtual string JsonEncode()
+        public override string JsonEncode()
         {
             return JsonConvert.SerializeObject(this);
         }

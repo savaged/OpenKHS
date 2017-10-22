@@ -15,9 +15,7 @@ namespace OpenKHS.Test.Feature
         [TestMethod]
         public void TestCongregationWriteDataViaFacade()
         {
-            var homeCong = FakeModelFactory.MakeFakeHomeCongregation();
-            Assert.IsNotNull(homeCong.Name);
-            Assert.IsTrue(homeCong.Name.Length > 0);
+            var homeCong = FakeModelFactory.MakeFakeCongregation();
             Assert.IsNotNull(homeCong.Members);
             Assert.IsTrue(homeCong.Members.Count > 0);
             var mockResponse = JsonConvert.SerializeObject(true);
@@ -35,9 +33,7 @@ namespace OpenKHS.Test.Feature
         [TestMethod]
         public void TestCongregationGetDataViaFacade()
         {
-            var homeCong = FakeModelFactory.MakeFakeHomeCongregation();
-            Assert.IsNotNull(homeCong.Name);
-            Assert.IsTrue(homeCong.Name.Length > 0);
+            var homeCong = FakeModelFactory.MakeFakeCongregation();
             Assert.IsNotNull(homeCong.Members);
             Assert.IsTrue(homeCong.Members.Count > 0);
             var json = homeCong.JsonEncode();
@@ -52,7 +48,6 @@ namespace OpenKHS.Test.Feature
             var f = new CongregationFacade(mockGateway.Object);
             var retrievedCong = f.Show();
             Assert.IsNotNull(retrievedCong);
-            Assert.AreEqual(homeCong.Name, retrievedCong.Name);
             Assert.IsNotNull(retrievedCong.Members);
             Assert.AreEqual(homeCong.Members.Count, retrievedCong.Members.Count);
         }
@@ -69,7 +64,6 @@ namespace OpenKHS.Test.Feature
             var f = new CongregationFacade(mockGateway.Object);
             var retrievedCong = f.Show();
             Assert.IsNotNull(retrievedCong);
-            Assert.AreEqual(string.Empty, retrievedCong.Name);
             Assert.IsNotNull(retrievedCong.Members);
             Assert.AreEqual(0, retrievedCong.Members.Count);
         }

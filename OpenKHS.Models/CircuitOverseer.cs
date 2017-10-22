@@ -2,8 +2,10 @@
 
 namespace OpenKHS.Models
 {
-    public sealed class CircuitOverseer : Friend
+    public sealed class CircuitOverseer
     {
-        public Friend Wife { get; set; }
+        public string Name { get; set; }
+
+        public string Wife { get; set; }
     }
 }

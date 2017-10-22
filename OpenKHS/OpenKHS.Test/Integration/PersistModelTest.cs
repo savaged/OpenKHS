@@ -11,9 +11,7 @@ namespace OpenKHS.Test.Integration
         [TestMethod]
         public void IntegrationTestCongregationCrudViaGateway()
         {
-            var homeCong = FakeModelFactory.MakeFakeHomeCongregation();
-            Assert.IsNotNull(homeCong.Name);
-            Assert.IsTrue(homeCong.Name.Length > 0);
+            var homeCong = FakeModelFactory.MakeFakeCongregation();
             Assert.IsNotNull(homeCong.Members);
             Assert.IsTrue(homeCong.Members.Count > 0);
             var json = homeCong.JsonEncode();
@@ -27,7 +25,6 @@ namespace OpenKHS.Test.Integration
             // update
             var retrievedCong = f.Show();
             Assert.IsNotNull(retrievedCong);
-            Assert.AreEqual(homeCong.Name, retrievedCong.Name);
             Assert.IsNotNull(retrievedCong.Members);
             Assert.AreEqual(homeCong.Members.Count, retrievedCong.Members.Count);
             // delete

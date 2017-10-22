@@ -11,9 +11,7 @@ namespace OpenKHS.Test.Feature
         [TestMethod]
         public void TestFakeHomeCongregationMaker()
         {
-            var homeCong = FakeModelFactory.MakeFakeHomeCongregation();
-            Assert.IsNotNull(homeCong.Name);
-            Assert.IsTrue(homeCong.Name.Length > 0);
+            var homeCong = FakeModelFactory.MakeFakeCongregation();
             Assert.IsNotNull(homeCong.Members);
             Assert.IsTrue(homeCong.Members.Count > 0);
         }
@@ -54,8 +52,7 @@ namespace OpenKHS.Test.Feature
             Assert.IsNotNull(publicTalk.TalkNumber);
             Assert.IsTrue(publicTalk.TalkNumber > 0);
             Assert.IsNotNull(publicTalk.Friend);
-            Assert.IsNotNull(publicTalk.Friend.Firstname);
-            Assert.IsNotNull(publicTalk.Friend.Lastname);
+            Assert.IsNotNull(publicTalk.Friend.Name);
         }
 
         [TestMethod]
@@ -82,15 +79,7 @@ namespace OpenKHS.Test.Feature
         {
             var friends = new FakeModelFactory().MakeFriends(40);
             Assert.AreEqual(40, friends.Count);
-            Assert.AreNotEqual(friends.First().Lastname, friends.Last().Lastname);
-        }
-
-        [TestMethod]
-        public void TestFakeCongregationMaker()
-        {
-            var congregations = new FakeModelFactory().MakeCongregations(3);
-            Assert.AreEqual(3, congregations.Count);
-            Assert.AreNotEqual(congregations.First(), congregations.Last());
+            Assert.AreNotEqual(friends.First().Name, friends.Last().Name);
         }
 
         [TestMethod]
@@ -105,8 +94,8 @@ namespace OpenKHS.Test.Feature
         public void TestFakeCircuitOverseerMaker()
         {
             var co = new FakeModelFactory().MakeCircuitOverseer();
-            Assert.IsInstanceOfType(co, typeof(Friend));
-            Assert.IsInstanceOfType(co.Wife, typeof(Friend));
+            Assert.IsInstanceOfType(co.Name, typeof(string));
+            Assert.IsInstanceOfType(co.Wife, typeof(string));
         }
 
         [TestMethod]
