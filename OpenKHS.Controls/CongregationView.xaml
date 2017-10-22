@@ -12,16 +12,24 @@
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="8*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="29*"/>
+            <ColumnDefinition Width="40*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="8*"/>
+            <RowDefinition Height="28*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <DataGrid Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Members}">
+        <DataGrid Grid.Column="1" Grid.Row="1" 
+                  ItemsSource="{Binding Members}"
+                  AutoGenerateColumns="False"
+                  AlternatingRowBackground="LightSlateGray"  AlternationCount="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Firstname" Binding="{Binding Firstname}"/>
+                <DataGridTextColumn Header="Lastname" Binding="{Binding Lastname}"/>
+                <DataGridTextColumn Header="Assignments" Binding="{Binding AssignmentTally}"/>
+            </DataGrid.Columns>
             
         </DataGrid>
         
