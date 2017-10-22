@@ -30,12 +30,15 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Assignments" Binding="{Binding AssignmentTally}"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding UnavailablePeriods}"/>
             </DataGrid.Columns>            
         </DataGrid>
 
-        <StackPanel Grid.Column="2" Grid.Row="1">
-            <Label Content="Name"/>
-            <TextBox Text="{Binding Name}"/>
+        <StackPanel Grid.Column="2" Grid.Row="1" Margin="10,0,0,10">
+            <WrapPanel>
+                <Label Content="Name"/>
+                <TextBox Text="{Binding Name}" Width="200"/>
+            </WrapPanel>
         </StackPanel>
         
     </Grid>
