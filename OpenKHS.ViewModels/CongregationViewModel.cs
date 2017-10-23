@@ -2,7 +2,10 @@
 using OpenKHS.Facades;
 using OpenKHS.Interfaces;
 using OpenKHS.Models;
+using OpenKHS.Utils;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
+using System;
 
 namespace OpenKHS.ViewModels
 {
@@ -12,6 +15,7 @@ namespace OpenKHS.ViewModels
         private readonly IDialogService _dialogService;
         private Congregation _congregation;
         private CongregationFacade _facade;
+        private Friend _selectedCongMember;
 
         public CongregationViewModel(IDataGateway dataGateway, IDialogService dialogService)
         {
@@ -25,9 +29,26 @@ namespace OpenKHS.ViewModels
 
         public ObservableCollection<Friend> Members { get; }
 
+        public Friend SelectedCongMember
+        {
+            get => _selectedCongMember;
+            set
+            {
+                _selectedCongMember = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public ICommand FormSaveCmd { get { return new RelayCommand(OnFormSave, () => true); } }
+
+        private void OnFormSave()
+        {
+            // TODO figure out how to add new member and save
+        }
+
         public bool New()
         {
-            // TODO rather than open a dialog this control should have the form appear on the right
+            SelectedCongMember = new Friend();
             return true;
         }
     }

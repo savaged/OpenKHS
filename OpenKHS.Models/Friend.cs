@@ -16,7 +16,7 @@ namespace OpenKHS.Models
 
         public string Name { get; set; }
         
-        public List<TimeSpan> UnavailablePeriods { get; set; }
+        public List<DateRange> UnavailablePeriods { get; set; }
 
         public AssignmentTally AssignmentTally { get => _assignmentTally; set { _assignmentTally = value; } }
 
@@ -118,5 +118,11 @@ namespace OpenKHS.Models
 
         #endregion
 
+    }
+
+    public struct DateRange
+    {
+        public DateTime Start { get; set; }
+        public DateTime End { get; set; }
     }
 }

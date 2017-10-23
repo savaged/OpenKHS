@@ -37,8 +37,9 @@
         <StackPanel Grid.Column="2" Grid.Row="1" Margin="10,0,0,10">
             <WrapPanel>
                 <Label Content="Name"/>
-                <TextBox Text="{Binding Name}" Width="200"/>
+                <TextBox Text="{Binding SelectedMember.Name}" Width="200"/>
             </WrapPanel>
+            <Button Content="Save" Command="{Binding FormSaveCmd}"/>
         </StackPanel>
         
     </Grid>

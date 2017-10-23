@@ -19,7 +19,7 @@ namespace OpenKHS.Facades
         public Congregation Show()
         {
             string response;
-            var cong = new Congregation();
+            var model = new Congregation();
             var isNew = false;
             try
             {
@@ -28,19 +28,19 @@ namespace OpenKHS.Facades
             catch (FileNotFoundException)
             {
                 isNew = true;
-                response = _gateway.Request(typeof(Congregation), Methods.Post, cong);
+                response = _gateway.Request(typeof(Congregation), Methods.Post, model);
             }
             if (isNew)
             {
-                return cong;
+                return model;
             }
-            cong = JsonConvert.DeserializeObject<Congregation>(response, new CongregationConverter());
-            return cong;
+            model = JsonConvert.DeserializeObject<Congregation>(response, new CongregationConverter());
+            return model;
         }
 
-        public bool Store(Congregation cong)
+        public bool Store(Congregation model)
         {
-            var rawResponse = _gateway.Request(cong.GetType(), Methods.Post, cong);
+            var rawResponse = _gateway.Request(model.GetType(), Methods.Post, model);
             var response = JsonConvert.DeserializeObject<bool>(rawResponse);
             return response;
         }

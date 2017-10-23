@@ -16,6 +16,11 @@ namespace OpenKHS.Data
         {
             _resourceLocation = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             _resourceLocation += "\\";
+            if (!Directory.Exists(_resourceLocation + "OpenKHS"))
+            {
+                Directory.CreateDirectory(_resourceLocation + "OpenKHS");
+            }
+            _resourceLocation += "OpenKHS\\";
         }
         
         public string Request(Type resource, Methods method, IJsonEncode data)
