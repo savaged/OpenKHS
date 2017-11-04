@@ -8,39 +8,20 @@
              md:DialogServiceViews.IsRegistered="True"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="600">
-    <Grid>
+    <StackPanel>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="38*"/>
-            <ColumnDefinition Width="60*"/>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="38*"/>
-            <RowDefinition Height="1*"/>
-        </Grid.RowDefinitions>
 
-        <DataGrid Grid.Column="1" Grid.Row="1" 
+        <DataGrid 
                   ItemsSource="{Binding Members}"
                   AutoGenerateColumns="False"
                   AlternatingRowBackground="LightSlateGray"  AlternationCount="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Assignments" Binding="{Binding AssignmentTally}"/>
-                <DataGridTextColumn Header="Name" Binding="{Binding UnavailablePeriods}"/>
-            </DataGrid.Columns>            
+                <DataGridTextColumn Header="Unavailable Periods" Binding="{Binding UnavailablePeriods}"/>
+            </DataGrid.Columns>
         </DataGrid>
+        <Button Command="{Binding FormSaveCmd}" Content="Save" Width="50" Margin="10,10,10,10"/>
 
-        <StackPanel Grid.Column="2" Grid.Row="1" Margin="10,0,0,10">
-            <WrapPanel>
-                <Label Content="Name"/>
-                <TextBox Text="{Binding SelectedMember.Name}" Width="200"/>
-            </WrapPanel>
-            <Button Content="Save" Command="{Binding FormSaveCmd}"/>
-        </StackPanel>
-        
-    </Grid>
+    </StackPanel>
 </UserControl>

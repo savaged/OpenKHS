@@ -29,11 +29,6 @@
         <!-- File Menu -->
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File">
-                <MenuItem Header="New Congregation Member" Command="{Binding NewCongMemberCmd}" InputGestureText="Ctrl+N" />
-                <MenuItem Header="Open" Command="{Binding OpenCmd}" InputGestureText="Ctrl+O" />
-                <MenuItem Header="Save" Command="{Binding SaveCmd}" InputGestureText="Ctrl+S" />
-                <MenuItem Header="Save As" Command="{Binding SaveAsCmd}" InputGestureText="Ctrl+Shift+S"/>
-                <Separator />
                 <MenuItem Header="About" Command="{Binding ShowAboutDialogCmd}" />
                 <MenuItem Header="Exit" Command="{Binding ExitCmd}" InputGestureText="Alt+F4"/>
             </MenuItem>

@@ -2,6 +2,7 @@
 using OpenKHS.Seeder;
 using OpenKHS.Data;
 using OpenKHS.Facades;
+using OpenKHS.Models;
 
 namespace OpenKHS.Test.Integration
 {
@@ -18,7 +19,7 @@ namespace OpenKHS.Test.Integration
             Assert.IsNotNull(json);
             Assert.IsTrue(json.Length > 1000);
             var gateway = new Gateway();
-            var f = new CongregationFacade(gateway);
+            var f = new DataGatewayFacade<Congregation>(gateway);
             // create
             var result = f.Store(homeCong);
             Assert.IsTrue(result);
