@@ -37,16 +37,16 @@
 
         <Grid>
             <TabControl TabStripPlacement="Bottom">
-                <TabItem Header="Congregation" Background="White">
+                <TabItem Header="Congregation">
                     <ctrls:CongregationView x:Name="CongregationView"/>
                 </TabItem>
-                <TabItem Header="Public Talks" Background="White">
+                <TabItem Header="Public Talks">
                     <ctrls:PublicTalksView x:Name="PublicTalksView"/>
                 </TabItem>
-                <TabItem Header="Public Meeting" Background="White">
+                <TabItem Header="Public Meeting">
                     <ctrls:PmScheduleView x:Name="PmScheduleView"/>
                 </TabItem>
-                <TabItem Header="CLMM Meeting" Background="White">
+                <TabItem Header="CLMM Meeting">
                     <ctrls:ClmmScheduleView x:Name="ClmmScheduleView"/>
                 </TabItem>
             </TabControl>
