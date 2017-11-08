@@ -1,6 +1,7 @@
 ﻿
 using OpenKHS.Interfaces;
 using System;
+using System.Windows;
 
 namespace OpenKHS.Views
 {
@@ -28,14 +29,7 @@ namespace OpenKHS.Views
         
         public void OnRequestClose(object sender, EventArgs args)
         {
-            Close();
+            Application.Current.Shutdown();
         }
-
-        public new void Show()
-        {
-            base.Show();
-        }
-
-        public new object DataContext { get => base.DataContext; set { base.DataContext = value; } }
     }
 }

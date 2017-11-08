@@ -52,12 +52,5 @@ namespace OpenKHS
             Log.Fatal("Application has crashed", e);
         }
 
-        public void ChangeTheme()
-        {
-            // TODO ThemeDictionary.MergedDictionaries.Clear();
-            // TODO ThemeDictionary.MergedDictionaries.Add(new ResourceDictionary() { Source = uri });
-            // See https://stackoverflow.com/questions/23102504/access-resourcedictionary-by-name
-        }
-
     }
 }
