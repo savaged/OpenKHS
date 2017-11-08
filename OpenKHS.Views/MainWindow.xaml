@@ -17,25 +17,13 @@
     <Window.Resources>
         
     </Window.Resources>
-    
+
     <Window.InputBindings>
-        <KeyBinding Command="{Binding SaveCmd}" Key="S" Modifiers="Ctrl" />
-        <KeyBinding Command="{Binding SaveAsCmd}" Gesture="Ctrl+Shift+S" />
-        <KeyBinding Command="{Binding OpenCmd}" Gesture="Ctrl+O" />
-        <KeyBinding Command="{Binding NewCongMemberCmd}" Gesture="Ctrl+N" />
+        <KeyBinding Command="{Binding ShowAboutDialogCmd}" Gesture="Alt+F2" />
         <KeyBinding Command="{Binding ExitCmd}" Gesture="Alt+F4" />
     </Window.InputBindings>
 
     <DockPanel>
-        <!-- File Menu -->
-        <Menu DockPanel.Dock="Top">
-            <MenuItem Header="File">
-                <MenuItem Header="About" Command="{Binding ShowAboutDialogCmd}" />
-                <MenuItem Header="Exit" Command="{Binding ExitCmd}" InputGestureText="Alt+F4"/>
-            </MenuItem>
-            
-        </Menu>
-
         <Grid>
             <TabControl TabStripPlacement="Top">
                 <TabItem Header="Congregation">
