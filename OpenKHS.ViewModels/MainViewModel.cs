@@ -53,7 +53,7 @@ namespace OpenKHS.ViewModels
         
         private void OnShowAboutDialog()
         {
-            var dialog = new AboutViewModel();
+            var dialog = new AboutDialogViewModel();
             var result = DialogService.ShowDialog(this, dialog);
         }
 

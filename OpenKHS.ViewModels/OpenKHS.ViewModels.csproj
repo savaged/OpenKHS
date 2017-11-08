@@ -45,7 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutViewModel.cs" />
+    <Compile Include="FriendDialogViewModel.cs" />
+    <Compile Include="AboutDialogViewModel.cs" />
     <Compile Include="ClmmScheduleViewModel.cs" />
     <Compile Include="CongregationViewModel.cs" />
     <Compile Include="DialogViewModelBase.cs" />

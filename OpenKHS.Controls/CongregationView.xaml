@@ -10,18 +10,21 @@
              d:DesignHeight="400" d:DesignWidth="600">
     <StackPanel>
 
-
-        <DataGrid 
+        <DataGrid x:Name="CongMembersGrid"
                   ItemsSource="{Binding Members}"
                   AutoGenerateColumns="False"
                   AlternatingRowBackground="LightSlateGray"  AlternationCount="2">
+            <DataGrid.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding EditSelectedItemCmd}" 
+                              CommandParameter="{Binding SelectedItem, ElementName=CongMembersGrid}" />
+            </DataGrid.InputBindings>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Assignments" Binding="{Binding AssignmentTally}"/>
-                <DataGridTextColumn Header="Unavailable Periods" Binding="{Binding UnavailablePeriods}"/>
+                <DataGridTextColumn Header="Assignments" Binding="{Binding AssignmentTally}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Unavailable Periods" Binding="{Binding UnavailablePeriods}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Command="{Binding FormSaveCmd}" Content="Save" Width="50" Margin="10,10,10,10"/>
+        <Button HorizontalAlignment="Right" Command="{Binding FormSaveCmd}" Content="Save" Width="50" Margin="10,10,10,10"/>
 
     </StackPanel>
 </UserControl>

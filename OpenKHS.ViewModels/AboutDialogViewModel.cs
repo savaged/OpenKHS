@@ -3,7 +3,7 @@ using System;
 
 namespace OpenKHS.ViewModels
 {
-    class AboutViewModel : DialogViewModelBase
+    class AboutDialogViewModel : DialogViewModelBase
     {
         public string Content
         {

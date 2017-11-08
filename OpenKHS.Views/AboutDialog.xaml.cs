@@ -17,9 +17,9 @@ namespace OpenKHS.Views
     /// <summary>
     /// Interaction logic for About.xaml
     /// </summary>
-    public partial class About : Window
+    public partial class AboutDialog
     {
-        public About()
+        public AboutDialog()
         {
             InitializeComponent();
         }

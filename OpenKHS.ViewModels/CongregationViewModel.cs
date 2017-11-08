@@ -45,7 +45,9 @@ namespace OpenKHS.ViewModels
             }
         }
 
-        public ICommand FormSaveCmd => new RelayCommand(OnFormSave); 
+        public ICommand FormSaveCmd => new RelayCommand(OnFormSave);
+
+        public ICommand EditSelectedItemCmd => new RelayCommand<object>(OnEditSelectedItem);
 
         private void OnFormSave()
         {
@@ -60,6 +62,14 @@ namespace OpenKHS.ViewModels
             }
             new DataGatewayFacade<Congregation>(_dataGateway).Update(_congregation);
             NotifyPropertyChanged(nameof(Members));
+        }
+
+        public void OnEditSelectedItem(object selectedItem)
+        {
+            var selectedFriend = (Friend)selectedItem;
+            var vm = new FriendDialogViewModel(_dataGateway, _dialogService, selectedFriend);
+            var result = _dialogService.ShowDialog(this, vm);
+
         }
 
         public bool New()
