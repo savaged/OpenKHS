@@ -9,7 +9,6 @@ Feel free to have a look at the code by cloning this repository using:
 
 
 ## TO DO List ##
-* Switch theme to use http://mahapps.com/
 * Functional Requirement: Add cleaning schedule
 * NFR: Simplify model to flat objects that can be passed to the gateway as a data Dictionary
 * First run creates APPDATA/OpenKHS folder
