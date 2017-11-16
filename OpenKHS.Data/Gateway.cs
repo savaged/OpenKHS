@@ -14,7 +14,7 @@ namespace OpenKHS.Data
 
         public Gateway()
         {
-            _resourceLocation = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            _resourceLocation = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             _resourceLocation += "\\";
             if (!Directory.Exists(_resourceLocation + "OpenKHS"))
             {

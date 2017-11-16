@@ -10,7 +10,7 @@ namespace OpenKHS
 {
     public partial class App
     {
-        private static readonly ILog Log = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         private static IMainView _mainWindow;
 
         private void Application_Startup(object sender, StartupEventArgs e)
