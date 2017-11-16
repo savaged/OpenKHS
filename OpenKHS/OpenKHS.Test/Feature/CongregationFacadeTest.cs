@@ -16,6 +16,7 @@ namespace OpenKHS.Test.Feature
         public void TestCongregationWriteDataViaFacade()
         {
             var homeCong = FakeModelFactory.MakeFakeCongregation();
+            var data = homeCong.GetData();
             Assert.IsNotNull(homeCong.Members);
             Assert.IsTrue(homeCong.Members.Count > 0);
             var mockResponse = JsonConvert.SerializeObject(true);
@@ -23,7 +24,7 @@ namespace OpenKHS.Test.Feature
             mockGateway.Setup(g => g.Request(
                 typeof(Congregation),
                 Methods.Post,
-                homeCong
+                data
                 )).Returns(mockResponse);
             var f = new DataGatewayFacade<Congregation>(mockGateway.Object);
             var result = f.Store(homeCong);

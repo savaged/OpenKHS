@@ -6,7 +6,7 @@ using System.Collections;
 
 namespace OpenKHS.Models
 {
-    public class Congregation : ICongregation
+    public class Congregation : ModelBase, ICongregation
     {
         public Congregation()
         {
@@ -15,15 +15,5 @@ namespace OpenKHS.Models
 
         public List<Friend> Members { get; set; }
 
-        
-        public override string ToString()
-        {
-            return JsonEncode();
-        }
-
-        public string JsonEncode()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
     }
 }

@@ -1,11 +1,11 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
+using System.Collections.Generic;
+using OpenKHS.Models.Attributes;
 
 namespace OpenKHS.Models
 {
-    public class Friend
+    public class Friend : ModelBase
     {
         private AssignmentTally _assignmentTally;
 

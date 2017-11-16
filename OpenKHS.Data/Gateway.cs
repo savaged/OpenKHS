@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using OpenKHS.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace OpenKHS.Data
@@ -23,7 +24,7 @@ namespace OpenKHS.Data
             _resourceLocation += "OpenKHS\\";
         }
         
-        public string Request(Type resource, Methods method, IJsonEncode data)
+        public string Request(Type resource, Methods method, IDictionary<string, object> data)
         {
             Log.Info("Requesting access at " + _resourceLocation);
 
@@ -42,7 +43,7 @@ namespace OpenKHS.Data
             return rawResponse;
         }
 
-        private string FormatContent(IJsonEncode data)
+        private string FormatContent(IDictionary<string, object> data)
         {
             var json = JsonConvert.SerializeObject(data, Formatting.Indented);
             return json;

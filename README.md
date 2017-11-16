@@ -10,8 +10,6 @@ Feel free to have a look at the code by cloning this repository using:
 
 ## TO DO List ##
 * Functional Requirement: Add cleaning schedule
-* NFR: Simplify model to flat objects that can be passed to the gateway as a data Dictionary
-* First run creates APPDATA/OpenKHS folder
 * Assignment selection by list ordered by assignment tally
 * Publish method increments all assignees tally
 * Adding new cong member resets everyones tally to lowest tally

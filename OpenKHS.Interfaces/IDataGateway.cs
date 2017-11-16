@@ -1,10 +1,10 @@
-﻿
-using System;
+﻿using System;
+using System.Collections.Generic;
 
 namespace OpenKHS.Interfaces
 {
     public interface IDataGateway
     {
-        string Request(Type resource, Methods method, IJsonEncode data);
+        string Request(Type resource, Methods method, IDictionary<string, object> data);
     }
 }

@@ -1,14 +1,11 @@
-﻿
-using Newtonsoft.Json;
-using OpenKHS.Facades.Converters;
+﻿using Newtonsoft.Json;
 using OpenKHS.Interfaces;
 using OpenKHS.Models;
-using System;
 using System.IO;
 
 namespace OpenKHS.Facades
 {
-    public class DataGatewayFacade<T> where T : IJsonEncode, new()
+    public class DataGatewayFacade<T> where T : ModelBase, new()
     {
         private IDataGateway _gateway;
         private JsonSerializerSettings _settings;
@@ -34,7 +31,7 @@ namespace OpenKHS.Facades
             catch (FileNotFoundException)
             {
                 isNew = true;
-                response = _gateway.Request(typeof(T), Methods.Post, model);
+                response = _gateway.Request(typeof(T), Methods.Post, model.GetData());
             }
             if (isNew)
             {
@@ -46,14 +43,14 @@ namespace OpenKHS.Facades
 
         public bool Store(T model)
         {
-            var rawResponse = _gateway.Request(model.GetType(), Methods.Post, model);
+            var rawResponse = _gateway.Request(model.GetType(), Methods.Post, model.GetData());
             var response = JsonConvert.DeserializeObject<bool>(rawResponse, _settings);
             return response;
         }
 
         public bool Update(T model)
         {
-            var rawResponse = _gateway.Request(model.GetType(), Methods.Put, model);
+            var rawResponse = _gateway.Request(model.GetType(), Methods.Put, model.GetData());
             var response = JsonConvert.DeserializeObject<bool>(rawResponse, _settings);
             return response;
         }

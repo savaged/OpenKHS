@@ -2,7 +2,7 @@
 
 namespace OpenKHS.Models
 {
-    public class MeetingPart
+    public class MeetingPart : ModelBase
     {
         public string Title { get; set; }
 
