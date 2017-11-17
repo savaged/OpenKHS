@@ -1,3 +1,4 @@
+
 # OpenKHS #
 Free open source KHS (Kingdom Hall Scheduling) application. Totally free - no "donations"!
 
@@ -9,6 +10,8 @@ Feel free to have a look at the code by cloning this repository using:
 
 
 ## TO DO List ##
+* Make look and feel like JW Library
+* Make Universal Application
 * Functional Requirement: Add cleaning schedule
 * Assignment selection by list ordered by assignment tally
 * Publish method increments all assignees tally
