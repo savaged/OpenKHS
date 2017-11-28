@@ -3,8 +3,9 @@
                     xmlns:local="clr-namespace:OpenKHS"
                     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls">
 
-    <Style BasedOn="{StaticResource MetroTabItem}" TargetType="{x:Type TabItem}">
+    <Style TargetType="{x:Type TabItem}">
         <Setter Property="mah:ControlsHelper.HeaderFontSize" Value="16"/>
+        <Setter Property="Background" Value="Snow"/>
     </Style>
 
 </ResourceDictionary>

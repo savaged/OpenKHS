@@ -14,10 +14,6 @@
         WindowState="Normal" 
         WindowStartupLocation="CenterScreen">
 
-    <Window.Resources>
-        
-    </Window.Resources>
-
     <Window.InputBindings>
         <KeyBinding Command="{Binding ShowAboutDialogCmd}" Gesture="Alt+F2" />
         <KeyBinding Command="{Binding ExitCmd}" Gesture="Alt+F4" />
@@ -25,17 +21,17 @@
 
     <DockPanel>
         <Grid>
-            <TabControl TabStripPlacement="Top">
-                <TabItem Header="Congregation">
+            <TabControl TabStripPlacement="Left">
+                <TabItem Header="&#128100;">
                     <ctrls:CongregationView x:Name="CongregationView"/>
                 </TabItem>
-                <TabItem Header="Public Talks">
+                <TabItem Header="&#128116;">
                     <ctrls:PublicTalksView x:Name="PublicTalksView"/>
                 </TabItem>
-                <TabItem Header="Public Meeting">
+                <TabItem Header="&#128214;">
                     <ctrls:PmScheduleView x:Name="PmScheduleView"/>
                 </TabItem>
-                <TabItem Header="CLMM Meeting">
+                <TabItem Header="&#128203;">
                     <ctrls:ClmmScheduleView x:Name="ClmmScheduleView"/>
                 </TabItem>
             </TabControl>
