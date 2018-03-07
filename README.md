@@ -13,7 +13,10 @@ Feel free to have a look at the code by cloning this repository using:
 
 ## TO DO List ##
 * Make look and feel like JW Library
-* Make it UWP first and then create a version for older versions and perhaps cross-platform including Android
+* UWP version using https://github.com/Microsoft/WindowsTemplateStudio
+* Work on Metro version for older Windows clients
+* Android version
+* iOS version
 * Functional Requirement: Add cleaning schedule
 * Assignment selection by list ordered by assignment tally
 * Publish method increments all assignees tally
