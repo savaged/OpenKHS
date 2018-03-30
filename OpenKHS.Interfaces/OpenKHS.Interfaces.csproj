@@ -46,9 +46,10 @@
     <Compile Include="IMainView.cs" />
     <Compile Include="IMainViewModel.cs" />
     <Compile Include="IManagedView.cs" />
+    <Compile Include="IModel.cs" />
     <Compile Include="ISchedule.cs" />
-    <Compile Include="IDataViewModel.cs" />
     <Compile Include="IViewManager.cs" />
+    <Compile Include="IModelBoundViewModel.cs" />
     <Compile Include="IViewModel.cs" />
     <Compile Include="Methods..cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

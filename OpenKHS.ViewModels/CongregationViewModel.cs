@@ -1,15 +1,15 @@
-﻿using MvvmDialogs;
+﻿using System;
+using MvvmDialogs;
 using OpenKHS.Facades;
 using OpenKHS.Interfaces;
 using OpenKHS.Models;
-using OpenKHS.Utils;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using System.Linq;
+using GalaSoft.MvvmLight.CommandWpf;
 
 namespace OpenKHS.ViewModels
 {
-    public class CongregationViewModel : ViewModelBase, IDataViewModel
+    public class CongregationViewModel : ModelBoundViewModelBase<Congregation>
     {
         private readonly IDataGateway _dataGateway;
         private readonly IDialogService _dialogService;
@@ -27,10 +27,26 @@ namespace OpenKHS.ViewModels
             } 
             else
             {
-                Members = new ObservableCollection<Friend>();
+                Members = new ObservableCollection<Friend>
+                {
+                    new Friend()
+                };
             }
-            NotifyPropertyChanged(nameof(Members));
-            SelectedCongMember = new Friend();
+            PropertyChanged += OnPropertyChanged;
+        }
+
+        public override void Cleanup()
+        {
+            PropertyChanged -= OnPropertyChanged;
+            base.Cleanup();
+        }
+
+        private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(SelectedCongMember) && SelectedCongMember != null)
+            {
+                OnEditSelectedItem(SelectedCongMember);
+            }
         }
 
         public ObservableCollection<Friend> Members { get; }
@@ -38,16 +54,10 @@ namespace OpenKHS.ViewModels
         public Friend SelectedCongMember
         {
             get => _selectedCongMember;
-            set
-            {
-                _selectedCongMember = value;
-                NotifyPropertyChanged();
-            }
+            set => Set(ref _selectedCongMember, value);
         }
 
         public ICommand FormSaveCmd => new RelayCommand(OnFormSave);
-
-        public ICommand EditSelectedItemCmd => new RelayCommand<object>(OnEditSelectedItem);
 
         private void OnFormSave()
         {
@@ -61,15 +71,13 @@ namespace OpenKHS.ViewModels
                 _congregation.Members.Add(friend);
             }
             new DataGatewayFacade<Congregation>(_dataGateway).Update(_congregation);
-            NotifyPropertyChanged(nameof(Members));
         }
 
-        public void OnEditSelectedItem(object selectedItem)
+        public void OnEditSelectedItem(Friend selectedItem)
         {
-            var selectedFriend = (Friend)selectedItem;
-            var vm = new FriendDialogViewModel(_dataGateway, _dialogService, selectedFriend);
+            var selectedFriend = selectedItem;
+            var vm = new FriendDialogViewModel<Friend>(_dataGateway, _dialogService, selectedFriend);
             var result = _dialogService.ShowDialog(this, vm);
-
         }
 
         public bool New()

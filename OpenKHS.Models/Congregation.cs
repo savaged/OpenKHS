@@ -1,8 +1,6 @@
-﻿
-using Newtonsoft.Json;
+﻿using System;
 using OpenKHS.Interfaces;
 using System.Collections.Generic;
-using System.Collections;
 
 namespace OpenKHS.Models
 {

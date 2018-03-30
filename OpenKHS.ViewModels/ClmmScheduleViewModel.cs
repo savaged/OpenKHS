@@ -1,24 +1,16 @@
-﻿using OpenKHS.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using OpenKHS.Interfaces;
+using OpenKHS.Models;
 
 namespace OpenKHS.ViewModels
 {
-    public class ClmmScheduleViewModel : ViewModelBase, IDataViewModel
+    public class ClmmScheduleViewModel : ModelBoundViewModelBase<ClmmSchedule>
     {
         private readonly IDataGateway _dataGateway;
 
         public ClmmScheduleViewModel(IDataGateway dataGateway)
         {
             _dataGateway = dataGateway;
-        }
-
-        public bool New()
-        {
-            throw new NotImplementedException();
         }
     }
 }

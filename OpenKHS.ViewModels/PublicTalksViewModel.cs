@@ -1,9 +1,10 @@
-﻿using OpenKHS.Interfaces;
-using System;
+﻿using System;
+using OpenKHS.Interfaces;
+using OpenKHS.Models;
 
 namespace OpenKHS.ViewModels
 {
-    public class PublicTalksViewModel : ViewModelBase, IDataViewModel
+    public class PublicTalksViewModel : ModelBoundViewModelBase<PublicTalk>
     {
         private readonly IDataGateway _dataGateway;
 

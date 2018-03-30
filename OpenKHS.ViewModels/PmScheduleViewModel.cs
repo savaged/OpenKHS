@@ -1,9 +1,10 @@
-﻿using OpenKHS.Interfaces;
-using System;
+﻿using System;
+using OpenKHS.Interfaces;
+using OpenKHS.Models;
 
 namespace OpenKHS.ViewModels
 {
-    public class PmScheduleViewModel : ViewModelBase, IDataViewModel
+    public class PmScheduleViewModel : ModelBoundViewModelBase<PmSchedule>
     {
         private readonly IDataGateway _dataGateway;
 

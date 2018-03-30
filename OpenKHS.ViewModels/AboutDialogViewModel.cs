@@ -1,9 +1,9 @@
-﻿
-using System;
+﻿using System;
+using GalaSoft.MvvmLight;
 
 namespace OpenKHS.ViewModels
 {
-    class AboutDialogViewModel : DialogViewModelBase
+    class AboutDialogViewModel : ViewModelBase
     {
         public string Content
         {

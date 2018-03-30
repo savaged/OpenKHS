@@ -14,12 +14,9 @@
         
         <DataGrid x:Name="CongMembersGrid"
                   ItemsSource="{Binding Members}"
+                  SelectedItem="{Binding SelectedCongMember}"
                   AutoGenerateColumns="False"
-                  AlternatingRowBackground="LightSlateGray"  AlternationCount="2">
-            <DataGrid.InputBindings>
-                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding EditSelectedItemCmd}" 
-                              CommandParameter="{Binding SelectedItem, ElementName=CongMembersGrid}" />
-            </DataGrid.InputBindings>
+                  AlternatingRowBackground="LightSlateGray" AlternationCount="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Assignments" Binding="{Binding AssignmentTally}" IsReadOnly="True"/>

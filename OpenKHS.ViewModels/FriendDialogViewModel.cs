@@ -5,11 +5,11 @@ using OpenKHS.Interfaces;
 
 namespace OpenKHS.ViewModels
 {
-    class FriendDialogViewModel : DialogViewModelBase
+    class FriendDialogViewModel<IFriend> : DialogViewModelBase<Friend>
     {
         public FriendDialogViewModel(IDataGateway dataGateway, IDialogService dialogService, Friend friend)
         {
-            // TODO wrap model properties in observable collection(s) which go in datagrids and see if that will suffice for editing
+            ModelObject = friend;
         }
     }
 }

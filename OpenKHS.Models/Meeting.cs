@@ -4,7 +4,7 @@ using System;
 namespace OpenKHS.Models
 {
     // TODO add validation to each property i.e. brother has privilege
-    public abstract class Meeting : ISchedule
+    public abstract class Meeting : ModelBase, ISchedule
     {
         public int Week { get; set; }
 
@@ -32,7 +32,5 @@ namespace OpenKHS.Models
             RovingMic1.AssignmentTally++;
             RovingMic2.AssignmentTally++;
         }
-
-        public abstract string JsonEncode();
     }
 }

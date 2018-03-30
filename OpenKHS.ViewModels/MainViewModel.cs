@@ -1,10 +1,12 @@
-﻿using MvvmDialogs;
-using MvvmDialogs.FrameworkDialogs.OpenFile;
-using MvvmDialogs.FrameworkDialogs.SaveFile;
+﻿using System;
+using log4net;
+using System.Reflection;
+using MvvmDialogs;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 using System.Windows.Input;
-using OpenKHS.Utils;
 using OpenKHS.Interfaces;
-using System;
+using OpenKHS.Models;
 
 namespace OpenKHS.ViewModels
 {
@@ -15,10 +17,12 @@ namespace OpenKHS.ViewModels
         public IDialogService DialogService { get; }
         public IDataGateway Gateway { get; }
 
-        public IDataViewModel CongregationVM { get; }
-        public IDataViewModel PublicTalksVM { get; }
-        public IDataViewModel PmScheduleVM { get; }
-        public IDataViewModel ClmmScheduleVM { get; }
+        public IViewModel CongregationVM { get; }
+        public IViewModel PublicTalksVM { get; }
+        public IViewModel PmScheduleVM { get; }
+        public IViewModel ClmmScheduleVM { get; }
+
+        protected static readonly ILog Log = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         #endregion
 
@@ -54,7 +58,7 @@ namespace OpenKHS.ViewModels
         private void OnShowAboutDialog()
         {
             var dialog = new AboutDialogViewModel();
-            var result = DialogService.ShowDialog(this, dialog);
+            DialogService.Show(this, dialog);
         }
 
         private void OnExitApp()

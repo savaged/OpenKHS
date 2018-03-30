@@ -1,7 +1,7 @@
 ﻿
 namespace OpenKHS.Interfaces
 {
-    public interface ICongregation : IJsonEncode
+    public interface ICongregation : IModel
     {
     }
 }

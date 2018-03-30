@@ -1,6 +1,5 @@
-﻿using OpenKHS.Interfaces;
-using Newtonsoft.Json;
-using System;
+﻿using System;
+using OpenKHS.Interfaces;
 
 namespace OpenKHS.Models
 {
@@ -21,16 +20,6 @@ namespace OpenKHS.Models
             WtConductor.AssignmentTally++;
             WtReader.AssignmentTally++;
             base.Publish();
-        }
-
-        public override string ToString()
-        {
-            return JsonEncode();
-        }
-
-        public override string JsonEncode()
-        {
-            return JsonConvert.SerializeObject(this);
         }
     }
 }

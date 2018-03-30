@@ -4,10 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:converters="clr-namespace:OpenKHS.Converters;assembly=OpenKHS.Converters"
              xmlns:local="clr-namespace:OpenKHS.Views"
              mc:Ignorable="d" 
              Height="300" Width="400">
+    <mah:MetroWindow.Resources>
+        <converters:DiagnosticsValueOutputter x:Key="DebugOutputter"/>
+    </mah:MetroWindow.Resources>
     <Grid>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="0" Content="Name"/>
+        <TextBlock Grid.Column="1" Text="{Binding ModelObject.Name, Converter={StaticResource DebugOutputter}}"/>
     </Grid>
 </mah:MetroWindow>

@@ -3,10 +3,11 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.ComponentModel;
 using OpenKHS.Models.Attributes;
+using OpenKHS.Interfaces;
 
 namespace OpenKHS.Models
 {
-    public abstract class ModelBase
+    public abstract class ModelBase : IModel
     {
         public override string ToString()
         {

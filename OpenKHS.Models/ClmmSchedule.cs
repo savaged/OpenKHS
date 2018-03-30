@@ -1,7 +1,6 @@
-﻿using Newtonsoft.Json;
-using OpenKHS.Interfaces;
-using System;
+﻿using System;
 using System.IO;
+using OpenKHS.Interfaces;
 
 namespace OpenKHS.Models
 {
@@ -46,16 +45,6 @@ namespace OpenKHS.Models
         {
             // TODO increment tally for each assigned cong member
             base.Publish();
-        }
-
-        public override string ToString()
-        {
-            return JsonEncode();
-        }
-
-        public override string JsonEncode()
-        {
-            return JsonConvert.SerializeObject(this);
         }
     }
 }
