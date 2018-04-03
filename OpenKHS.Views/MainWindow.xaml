@@ -22,16 +22,16 @@
     <DockPanel>
         <Grid>
             <TabControl TabStripPlacement="Left">
-                <TabItem Header="&#128100;">
+                <TabItem Header="&#128100;" ToolTip="Congregation Members">
                     <ctrls:CongregationView x:Name="CongregationView"/>
                 </TabItem>
-                <TabItem Header="&#128116;">
+                <TabItem Header="&#128116;" ToolTip="Public Talks">
                     <ctrls:PublicTalksView x:Name="PublicTalksView"/>
                 </TabItem>
-                <TabItem Header="&#128214;">
+                <TabItem Header="&#128214;" ToolTip="Public Meeting Schedule">
                     <ctrls:PmScheduleView x:Name="PmScheduleView"/>
                 </TabItem>
-                <TabItem Header="&#128203;">
+                <TabItem Header="&#128203;" ToolTip="Christian Life &amp; Ministry Meeting Schedule">
                     <ctrls:ClmmScheduleView x:Name="ClmmScheduleView"/>
                 </TabItem>
             </TabControl>

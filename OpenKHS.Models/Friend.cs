@@ -7,18 +7,23 @@ namespace OpenKHS.Models
 {
     public class Friend : ModelBase
     {
-        private AssignmentTally _assignmentTally;
-
         public Friend()
         {
-            _assignmentTally = new AssignmentTally();
+            AssignmentTally = new AssignmentTally();
+            if (UnavailablePeriods == null)
+            {
+                UnavailablePeriods = new List<DateRange>
+                {
+                    new DateRange()
+                };
+            }
         }
 
         public string Name { get; set; }
         
         public List<DateRange> UnavailablePeriods { get; set; }
 
-        public AssignmentTally AssignmentTally { get => _assignmentTally; set { _assignmentTally = value; } }
+        public AssignmentTally AssignmentTally { get; set; }
 
         #region Privileges
 
@@ -107,7 +112,7 @@ namespace OpenKHS.Models
         public int CountPrivileges()
         {
             var count = 0;
-            var privileges = this.GetType().GetProperties().Where(p => Attribute.IsDefined(p, typeof(PrivilegeAttribute)));
+            var privileges = GetType().GetProperties().Where(p => Attribute.IsDefined(p, typeof(PrivilegeAttribute)));
             foreach (var privilege in privileges)
             {
                 var val = privilege.GetValue(this);
@@ -120,8 +125,26 @@ namespace OpenKHS.Models
 
     }
 
-    public struct DateRange
+    public class DateRange
     {
+        public DateRange()
+        {
+            if (Start == null)
+            {
+                Start = DateTime.Now;
+            }
+            if (End == null)
+            {
+                End = DateTime.Now;
+            }
+        }
+
+        public DateRange(DateTime start, DateTime end)
+        {
+            Start = start;
+            End = end;
+        }
+
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
     }

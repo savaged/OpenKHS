@@ -21,7 +21,6 @@ namespace OpenKHS.Test.Unit
             var cvm = (CongregationViewModel)mvm.CongregationVM;
             Assert.IsNotNull(cvm.Members);
             Assert.AreEqual(1, cvm.Members.Count);
-            Assert.AreEqual(string.Empty, cvm.Members[0]);
         }
         
     }

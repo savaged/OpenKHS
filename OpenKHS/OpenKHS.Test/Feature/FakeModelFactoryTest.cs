@@ -76,6 +76,18 @@ namespace OpenKHS.Test.Feature
         }
 
         [TestMethod]
+        public void TestFakeCongMemberWithUnavailablePeriods()
+        {
+            var privileges = new List<string> { "Attendant" };
+            var congMember = new FakeModelFactory().MakeCongMemberWithUnavailablePeriods();
+            Assert.IsNotNull(congMember.UnavailablePeriods);
+            Assert.IsTrue(congMember.UnavailablePeriods.Count == 1);
+            Assert.IsNotNull(congMember.UnavailablePeriods[0]);
+            Assert.IsNotNull(congMember.UnavailablePeriods[0].Start);
+            Assert.IsNotNull(congMember.UnavailablePeriods[0].End);
+        }
+
+        [TestMethod]
         public void TestFakeFriendMaker()
         {
             var friends = new FakeModelFactory().MakeFriends(40);

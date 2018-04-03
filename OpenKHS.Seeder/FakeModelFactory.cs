@@ -134,6 +134,17 @@ namespace OpenKHS.Seeder
             return congMember;
         }
 
+        public Friend MakeCongMemberWithUnavailablePeriods()
+        {
+            var list = MakeCongregationMembers(1);
+            var congMember = list.First();
+            congMember.UnavailablePeriods = new List<DateRange>
+            {
+                new DateRange(new DateTime(2018, 04, 01), DateTime.Now)
+            };
+            return congMember;
+        }
+
         public List<VisitingSpeaker> MakeVisitingSpeakers(int count = 1)
         {
             var config = new MapperConfiguration(cfg => cfg.CreateMap<Friend, VisitingSpeaker>());

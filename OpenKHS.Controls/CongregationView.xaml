@@ -72,7 +72,15 @@
                     </Grid>
                 </TabItem>
                 <TabItem Header="Availability">
-                    
+                    <DataGrid ItemsSource="{Binding SelectedCongMember.UnavailablePeriods}"
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="True" CanUserDeleteRows="True"
+                              AlternatingRowBackground="LightSlateGray" AlternationCount="2">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Start" Binding="{Binding Start, StringFormat=yyyy-MM-dd}"/>
+                            <DataGridTextColumn Header="End" Binding="{Binding End, StringFormat=yyyy-MM-dd}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </TabItem>
             </TabControl>
         </StackPanel>

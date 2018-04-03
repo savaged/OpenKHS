@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Linq;
 using MvvmDialogs;
 using OpenKHS.Facades;
 using OpenKHS.Interfaces;
 using OpenKHS.Models;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 
@@ -58,6 +60,12 @@ namespace OpenKHS.ViewModels
             _congregation.Members.Clear();
             foreach (var friend in Members)
             {
+                var validDateRanges = friend.UnavailablePeriods
+                    .Where(u => u.Start != DateTime.MinValue)
+                    .Where(u => u.End != DateTime.MinValue)
+                    .ToList();
+                friend.UnavailablePeriods = validDateRanges;
+
                 _congregation.Members.Add(friend);
             }
             new DataGatewayFacade<Congregation>(_dataGateway).Update(_congregation);
