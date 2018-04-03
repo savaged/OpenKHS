@@ -5,9 +5,9 @@ using OpenKHS.Interfaces;
 
 namespace OpenKHS.ViewModels
 {
-    class FriendDialogViewModel<IFriend> : DialogViewModelBase<Friend>
+    class FriendViewModel<IFriend> : DialogViewModelBase<Friend>
     {
-        public FriendDialogViewModel(IDataGateway dataGateway, IDialogService dialogService, Friend friend)
+        public FriendViewModel(IDataGateway dataGateway, IDialogService dialogService, Friend friend)
         {
             ModelObject = friend;
         }

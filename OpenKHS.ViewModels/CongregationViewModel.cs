@@ -32,21 +32,6 @@ namespace OpenKHS.ViewModels
                     new Friend()
                 };
             }
-            PropertyChanged += OnPropertyChanged;
-        }
-
-        public override void Cleanup()
-        {
-            PropertyChanged -= OnPropertyChanged;
-            base.Cleanup();
-        }
-
-        private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(SelectedCongMember) && SelectedCongMember != null)
-            {
-                OnEditSelectedItem(SelectedCongMember);
-            }
         }
 
         public ObservableCollection<Friend> Members { get; }
@@ -57,33 +42,21 @@ namespace OpenKHS.ViewModels
             set => Set(ref _selectedCongMember, value);
         }
 
+        public bool CongMemberSelected
+        {
+            get => SelectedCongMember != null;
+        }
+
         public ICommand FormSaveCmd => new RelayCommand(OnFormSave);
 
         private void OnFormSave()
         {
-            if (!Members.Contains(SelectedCongMember))
-            {
-                Members.Add(SelectedCongMember);
-            }
             _congregation.Members.Clear();
             foreach (var friend in Members)
             {
                 _congregation.Members.Add(friend);
             }
             new DataGatewayFacade<Congregation>(_dataGateway).Update(_congregation);
-        }
-
-        public void OnEditSelectedItem(Friend selectedItem)
-        {
-            var selectedFriend = selectedItem;
-            var vm = new FriendDialogViewModel<Friend>(_dataGateway, _dialogService, selectedFriend);
-            var result = _dialogService.ShowDialog(this, vm);
-        }
-
-        public bool New()
-        {
-            SelectedCongMember = new Friend();
-            return true;
         }
     }
 }

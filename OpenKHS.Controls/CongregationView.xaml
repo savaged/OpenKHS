@@ -8,11 +8,17 @@
              md:DialogServiceViews.IsRegistered="True"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="600">
-    <StackPanel>
-
-        <Button HorizontalAlignment="Right" Command="{Binding FormSaveCmd}" Content="Save" Width="50" Margin="10,10,10,10"/>
-        
-        <DataGrid x:Name="CongMembersGrid"
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid Grid.Column="0"
+                  Margin="10"
+                  x:Name="CongMembersGrid"
                   ItemsSource="{Binding Members}"
                   SelectedItem="{Binding SelectedCongMember}"
                   AutoGenerateColumns="False"
@@ -24,5 +30,17 @@
             </DataGrid.Columns>
         </DataGrid>
 
-    </StackPanel>
+        <StackPanel Grid.Column="1" Margin="10">
+            <Button HorizontalAlignment="Right" Command="{Binding FormSaveCmd}" Content="Save" Width="50"/>
+            <Label Content="{Binding SelectedCongMember.Name}"/>
+            <TabControl Visibility="{Binding CongMemberSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TabItem Header="Assignments">
+                    
+                </TabItem>
+                <TabItem Header="Availability">
+                    
+                </TabItem>
+            </TabControl>
+        </StackPanel>
+    </Grid>
 </UserControl>

@@ -14,10 +14,10 @@
         WindowState="Normal" 
         WindowStartupLocation="CenterScreen">
 
-    <Window.InputBindings>
+    <mah:MetroWindow.InputBindings>
         <KeyBinding Command="{Binding ShowAboutDialogCmd}" Gesture="Alt+F2" />
         <KeyBinding Command="{Binding ExitCmd}" Gesture="Alt+F4" />
-    </Window.InputBindings>
+    </mah:MetroWindow.InputBindings>
 
     <DockPanel>
         <Grid>
