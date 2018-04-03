@@ -60,13 +60,16 @@ namespace OpenKHS.ViewModels
             _congregation.Members.Clear();
             foreach (var friend in Members)
             {
-                var validDateRanges = friend.UnavailablePeriods
-                    .Where(u => u.Start != DateTime.MinValue)
-                    .Where(u => u.End != DateTime.MinValue)
-                    .ToList();
-                friend.UnavailablePeriods = validDateRanges;
+                if (friend.Name != string.Empty)
+                {
+                    var validDateRanges = friend.UnavailablePeriods
+                        .Where(u => u.Start != DateTime.MinValue)
+                        .Where(u => u.End != DateTime.MinValue)
+                        .ToList();
+                    friend.UnavailablePeriods = validDateRanges;
 
-                _congregation.Members.Add(friend);
+                    _congregation.Members.Add(friend);
+                }
             }
             new DataGatewayFacade<Congregation>(_dataGateway).Update(_congregation);
         }

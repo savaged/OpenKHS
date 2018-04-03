@@ -12,10 +12,7 @@ namespace OpenKHS.Models
             AssignmentTally = new AssignmentTally();
             if (UnavailablePeriods == null)
             {
-                UnavailablePeriods = new List<DateRange>
-                {
-                    new DateRange()
-                };
+                UnavailablePeriods = new List<DateRange>();
             }
         }
 

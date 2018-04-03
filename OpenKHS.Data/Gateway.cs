@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using OpenKHS.Interfaces;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.IO;
 
@@ -9,6 +10,8 @@ namespace OpenKHS.Data
 {
     public class Gateway : IDataGateway
     {
+        private static readonly bool _isRunningFromTest = AppDomain.CurrentDomain.GetAssemblies().Any(a => a.FullName.StartsWith("Microsoft.VisualStudio.Test"));
+
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private readonly string _resourceLocation;
@@ -130,7 +133,16 @@ namespace OpenKHS.Data
 
         private string JsonFullLocation(Type resource)
         {
-            return _resourceLocation + resource.Name + ".json";
+            return _resourceLocation + resource.Name + GetRunningModeSuffix() + ".json";
+        }
+
+        private string GetRunningModeSuffix()
+        {
+            if (_isRunningFromTest)
+            {
+                return "test";
+            }
+            return string.Empty;
         }
     }
 }

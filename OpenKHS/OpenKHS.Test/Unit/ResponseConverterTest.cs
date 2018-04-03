@@ -20,7 +20,7 @@ namespace OpenKHS.Test.Unit
             Assert.AreEqual(cong.Members.Count, response.Members.Count);
             Assert.IsNotNull(cong.Members[0]);
             Assert.IsNotNull(cong.Members[0].UnavailablePeriods);
-            Assert.AreEqual(1, cong.Members[0].UnavailablePeriods.Count);
+            Assert.AreEqual(0, cong.Members[0].UnavailablePeriods.Count);
         }
     }
 }
