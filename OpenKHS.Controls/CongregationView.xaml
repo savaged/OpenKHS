@@ -7,14 +7,14 @@
              xmlns:md="clr-namespace:MvvmDialogs;assembly=MvvmDialogs"
              md:DialogServiceViews.IsRegistered="True"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="600">
+             d:DesignHeight="500" d:DesignWidth="700">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         <DataGrid Grid.Column="0"
                   Margin="10"
@@ -25,17 +25,51 @@
                   AlternatingRowBackground="LightSlateGray" AlternationCount="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Assignments" Binding="{Binding AssignmentTally}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Unavailable Periods" Binding="{Binding UnavailablePeriods}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
 
         <StackPanel Grid.Column="1" Margin="10">
             <Button HorizontalAlignment="Right" Command="{Binding FormSaveCmd}" Content="Save" Width="50"/>
             <Label Content="{Binding SelectedCongMember.Name}"/>
-            <TabControl Visibility="{Binding CongMemberSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <TabControl Visibility="{Binding CongMemberSelected, Converter={StaticResource BooleanToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}">
                 <TabItem Header="Assignments">
-                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmChairman}">CLMM Chairman</CheckBox>
+                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmPrayer}">CLMM Prayer</CheckBox>
+                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmTreasures}">CLMM Treasures</CheckBox>
+                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmGems}">CLMM Gems</CheckBox>
+                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmBibleReading}">CLMM Bible Reading</CheckBox>
+                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmSchoolMonthPresentations}">Ministry Video Presentations</CheckBox>
+                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmSchoolInitialCall}">Initial Call</CheckBox>
+                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmSchoolReturnVisit}">Return Visit</CheckBox>
+                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmSchoolBibleStudy}">Bible Study Demonstration</CheckBox>
+                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmSchoolTalk}">Student Talk</CheckBox>
+                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmSchoolAssistant}">School Assistant</CheckBox>
+                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmSecondSchoolOnly}">Second School Only</CheckBox>
+                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmMainHallOnly}">Main Hall Only</CheckBox>
+                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmLacParts}">Living as Christians Parts</CheckBox>
+                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmCbsConductor}">Cong Bible Study Conductor</CheckBox>
+                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmCbsReader}">Cong Bible Study Reader</CheckBox>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <CheckBox IsChecked="{Binding SelectedCongMember.PublicSpeaker}">Public Speaker</CheckBox>
+                            <CheckBox IsChecked="{Binding SelectedCongMember.AwaySpeaker}">Away Speaker</CheckBox>
+                            <CheckBox IsChecked="{Binding SelectedCongMember.PmChairman}">Public Meeting Chairman</CheckBox>
+                            <CheckBox IsChecked="{Binding SelectedCongMember.WtReader}">WT Reader</CheckBox>
+                            <CheckBox IsChecked="{Binding SelectedCongMember.WtConductor}">WT Conductor</CheckBox>
+                            <Separator/>
+                            <CheckBox IsChecked="{Binding SelectedCongMember.Attendant}">Attendant</CheckBox>
+                            <CheckBox IsChecked="{Binding SelectedCongMember.Security}">Security</CheckBox>
+                            <CheckBox IsChecked="{Binding SelectedCongMember.SoundDesk}">Sound Desk</CheckBox>
+                            <CheckBox IsChecked="{Binding SelectedCongMember.Platform}">Platform</CheckBox>
+                            <CheckBox IsChecked="{Binding SelectedCongMember.RovingMic}">Roving Mic</CheckBox>
+                        </StackPanel>
+                    </Grid>
                 </TabItem>
                 <TabItem Header="Availability">
                     

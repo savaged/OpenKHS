@@ -39,7 +39,11 @@ namespace OpenKHS.ViewModels
         public Friend SelectedCongMember
         {
             get => _selectedCongMember;
-            set => Set(ref _selectedCongMember, value);
+            set
+            {
+                Set(ref _selectedCongMember, value);
+                RaisePropertyChanged(nameof(CongMemberSelected));
+            }
         }
 
         public bool CongMemberSelected
