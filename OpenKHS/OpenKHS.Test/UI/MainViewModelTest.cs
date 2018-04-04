@@ -15,6 +15,8 @@ namespace OpenKHS.Test.Unit
             var mockGateway = new Mock<IDataGateway>();
             mockGateway.Setup(g => g.Request(typeof(Congregation), Methods.Get, null)).Returns(
                 new Congregation().ToString());
+            mockGateway.Setup(g => g.Request(typeof(PmSchedules), Methods.Get, null)).Returns(
+                new PmSchedules().ToString());
             // TODO tests for each section/main model object
 
             var mvm = new MainViewModel(mockGateway.Object, null);

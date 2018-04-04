@@ -15,7 +15,7 @@ namespace OpenKHS.ViewModels
         public CongregationViewModel(IDataGateway dataGateway)
             : base(dataGateway)
         {
-            InitialiseAsSingleObject(1);
+            Initialise();
 
             if (ModelObject.Members.Count > 0)
             {
@@ -25,7 +25,7 @@ namespace OpenKHS.ViewModels
             {
                 Members = new ObservableCollection<Friend>
                 {
-                    new Friend{ Id = 1 }
+                    new Friend()
                 };
             }
         }

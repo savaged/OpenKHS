@@ -3,7 +3,7 @@ using System;
 
 namespace OpenKHS.Interfaces
 {
-    public interface ISchedule : IModel
+    public interface ISchedule
     {
         void Publish();        
     }

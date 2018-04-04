@@ -5,7 +5,7 @@ using OpenKHS.Models.Attributes;
 
 namespace OpenKHS.Models
 {
-    public class Friend : ModelBase
+    public class Friend
     {
         public Friend()
         {

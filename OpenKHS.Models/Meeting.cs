@@ -5,7 +5,7 @@ using OpenKHS.Models.Utils;
 namespace OpenKHS.Models
 {
     // TODO add validation to each property i.e. brother has privilege
-    public abstract class Meeting : ModelBase, ISchedule
+    public abstract class Meeting : ISchedule
     {
         public int Week { get; set; }
 

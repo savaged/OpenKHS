@@ -1,14 +1,14 @@
 ﻿using System;
+using log4net;
 using OpenKHS.Interfaces;
 using GalaSoft.MvvmLight;
 using System.Reflection;
-using log4net;
 using OpenKHS.Facades;
-using System.Collections.ObjectModel;
 
 namespace OpenKHS.ViewModels
 {
-    public abstract class ModelBoundViewModelBase<T> : ViewModelBase, IModelBoundViewModel<T>
+    public abstract class ModelBoundViewModelBase<T> 
+        : ViewModelBase, IModelBoundViewModel<T>
         where T : IModel, new()
     {
         private T _modelObject;
@@ -22,14 +22,9 @@ namespace OpenKHS.ViewModels
             _facade = new DataGatewayFacade<T>(dataGateway);
         }
 
-        protected void InitialiseAsSingleObject(int id)
+        protected virtual void Initialise()
         {
-            ModelObject = _facade.Show(id);
-        }
-
-        protected void InitialiseAsIndex()
-        {
-            // TODO
+            ModelObject = _facade.Show();
         }
 
         public T ModelObject
@@ -37,8 +32,6 @@ namespace OpenKHS.ViewModels
             get => _modelObject;
             set => Set(ref _modelObject, value);
         }
-
-        public ObservableCollection<T> Index { get; set; }
 
         protected virtual void SaveForm()
         {

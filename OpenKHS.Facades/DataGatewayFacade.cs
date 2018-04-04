@@ -20,7 +20,7 @@ namespace OpenKHS.Facades
             };
         }
 
-        public T Show(int id)
+        public T Show()
         {
             string response;
             var model = new T();
@@ -40,12 +40,6 @@ namespace OpenKHS.Facades
             }
             model = JsonConvert.DeserializeObject<T>(response, _settings);
             return model;
-        }
-
-        public IList<T> Index()
-        {
-            // TODO
-            return new List<T>();
         }
 
         public bool Store(T model)

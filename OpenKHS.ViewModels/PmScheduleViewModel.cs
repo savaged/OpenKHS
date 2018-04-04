@@ -4,10 +4,11 @@ using OpenKHS.Models;
 
 namespace OpenKHS.ViewModels
 {
-    public class PmScheduleViewModel : ModelBoundViewModelBase<PmSchedule>
+    public class PmScheduleViewModel : IndexBoundViewModelBase<PmSchedules, PmSchedule>
     {
         public PmScheduleViewModel(IDataGateway dataGateway) : base(dataGateway)
         {
+            Initialise();
         }
     }
 }

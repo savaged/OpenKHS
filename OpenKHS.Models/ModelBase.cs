@@ -35,7 +35,8 @@ namespace OpenKHS.Models
                     {
                         if (Attribute.IsDefined(p, typeof(DisplayNameAttribute)))
                         {
-                            var attrib = (DisplayNameAttribute)Attribute.GetCustomAttribute(p, typeof(DisplayNameAttribute));
+                            var attrib = (DisplayNameAttribute)Attribute.GetCustomAttribute(
+                                p, typeof(DisplayNameAttribute));
                             key = attrib.DisplayName;
                         }
                     }
