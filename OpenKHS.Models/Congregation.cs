@@ -9,6 +9,7 @@ namespace OpenKHS.Models
         public Congregation()
         {
             Members = new List<Friend>();
+            Id = 1; // only ever one
         }
 
         public List<Friend> Members { get; set; }

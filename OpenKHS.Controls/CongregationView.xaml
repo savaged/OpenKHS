@@ -21,8 +21,7 @@
                   x:Name="CongMembersGrid"
                   ItemsSource="{Binding Members}"
                   SelectedItem="{Binding SelectedCongMember}"
-                  AutoGenerateColumns="False"
-                  AlternatingRowBackground="LightSlateGray" AlternationCount="2">
+                  AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="1*"/>
             </DataGrid.Columns>

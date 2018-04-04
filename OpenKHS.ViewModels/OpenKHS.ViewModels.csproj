@@ -60,7 +60,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FriendViewModel.cs" />
     <Compile Include="AboutDialogViewModel.cs" />
     <Compile Include="ClmmScheduleViewModel.cs" />
     <Compile Include="CongregationViewModel.cs" />

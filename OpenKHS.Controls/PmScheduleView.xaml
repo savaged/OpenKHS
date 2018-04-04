@@ -7,6 +7,25 @@
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="600">
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid Grid.Column="0"
+                  Margin="10"
+                  x:Name="WeeksGrid"
+                  ItemsSource="{Binding Weeks}"
+                  SelectedItem="{Binding SelectedWeek}"
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Week" Binding="{Binding Week}" Width="1*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Column="1" Margin="10">
+            <WrapPanel>
+                <Label Width="100">Week Starting</Label>
+                <TextBox Width="160" />
+            </WrapPanel>
+        </StackPanel>
     </Grid>
 </UserControl>

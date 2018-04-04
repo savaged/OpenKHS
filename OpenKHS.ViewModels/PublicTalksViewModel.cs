@@ -6,16 +6,8 @@ namespace OpenKHS.ViewModels
 {
     public class PublicTalksViewModel : ModelBoundViewModelBase<PublicTalk>
     {
-        private readonly IDataGateway _dataGateway;
-
-        public PublicTalksViewModel(IDataGateway dataGateway)
+        public PublicTalksViewModel(IDataGateway dataGateway) : base(dataGateway)
         {
-            _dataGateway = dataGateway;
-        }
-
-        public bool New()
-        {
-            throw new NotImplementedException();
         }
     }
 }

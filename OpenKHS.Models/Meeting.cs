@@ -1,5 +1,6 @@
-﻿using OpenKHS.Interfaces;
-using System;
+﻿using System;
+using OpenKHS.Interfaces;
+using OpenKHS.Models.Utils;
 
 namespace OpenKHS.Models
 {
@@ -32,5 +33,10 @@ namespace OpenKHS.Models
             RovingMic1.AssignmentTally++;
             RovingMic2.AssignmentTally++;
         }
+
+        public DateTime GetWeekStartingDate()
+        {
+            return WeekNumberAdapter.FirstDateOfWeekIso8601(Week);
+        }        
     }
 }

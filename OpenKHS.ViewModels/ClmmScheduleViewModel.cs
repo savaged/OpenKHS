@@ -6,11 +6,8 @@ namespace OpenKHS.ViewModels
 {
     public class ClmmScheduleViewModel : ModelBoundViewModelBase<ClmmSchedule>
     {
-        private readonly IDataGateway _dataGateway;
-
-        public ClmmScheduleViewModel(IDataGateway dataGateway)
+        public ClmmScheduleViewModel(IDataGateway dataGateway) : base(dataGateway)
         {
-            _dataGateway = dataGateway;
         }
     }
 }

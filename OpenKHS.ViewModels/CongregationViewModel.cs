@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Linq;
-using MvvmDialogs;
-using OpenKHS.Facades;
 using OpenKHS.Interfaces;
 using OpenKHS.Models;
 using System.Collections.ObjectModel;
-using System.Collections.Generic;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 
@@ -13,25 +10,22 @@ namespace OpenKHS.ViewModels
 {
     public class CongregationViewModel : ModelBoundViewModelBase<Congregation>
     {
-        private readonly IDataGateway _dataGateway;
-        private readonly IDialogService _dialogService;
-        private Congregation _congregation;
         private Friend _selectedCongMember;
 
-        public CongregationViewModel(IDataGateway dataGateway, IDialogService dialogService)
+        public CongregationViewModel(IDataGateway dataGateway)
+            : base(dataGateway)
         {
-            _dataGateway = dataGateway;
-            _dialogService = dialogService;
-            _congregation = new DataGatewayFacade<Congregation>(_dataGateway).Show();
-            if (_congregation.Members.Count > 0)
+            InitialiseAsSingleObject(1);
+
+            if (ModelObject.Members.Count > 0)
             {
-                Members = new ObservableCollection<Friend>(_congregation.Members);
+                Members = new ObservableCollection<Friend>(ModelObject.Members);
             } 
             else
             {
                 Members = new ObservableCollection<Friend>
                 {
-                    new Friend()
+                    new Friend{ Id = 1 }
                 };
             }
         }
@@ -57,7 +51,7 @@ namespace OpenKHS.ViewModels
 
         private void OnFormSave()
         {
-            _congregation.Members.Clear();
+            ModelObject.Members.Clear();
             foreach (var friend in Members)
             {
                 if (friend.Name != string.Empty)
@@ -68,10 +62,10 @@ namespace OpenKHS.ViewModels
                         .ToList();
                     friend.UnavailablePeriods = validDateRanges;
 
-                    _congregation.Members.Add(friend);
+                    ModelObject.Members.Add(friend);
                 }
             }
-            new DataGatewayFacade<Congregation>(_dataGateway).Update(_congregation);
+            SaveForm();
         }
     }
 }

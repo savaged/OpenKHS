@@ -1,11 +1,12 @@
 ﻿using Newtonsoft.Json;
 using OpenKHS.Interfaces;
 using OpenKHS.Models;
+using System.Collections.Generic;
 using System.IO;
 
 namespace OpenKHS.Facades
 {
-    public class DataGatewayFacade<T> where T : ModelBase, new()
+    public class DataGatewayFacade<T> where T : IModel, new()
     {
         private IDataGateway _gateway;
         private JsonSerializerSettings _settings;
@@ -19,7 +20,7 @@ namespace OpenKHS.Facades
             };
         }
 
-        public T Show()
+        public T Show(int id)
         {
             string response;
             var model = new T();
@@ -39,6 +40,12 @@ namespace OpenKHS.Facades
             }
             model = JsonConvert.DeserializeObject<T>(response, _settings);
             return model;
+        }
+
+        public IList<T> Index()
+        {
+            // TODO
+            return new List<T>();
         }
 
         public bool Store(T model)

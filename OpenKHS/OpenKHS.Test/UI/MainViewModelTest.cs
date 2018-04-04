@@ -12,10 +12,11 @@ namespace OpenKHS.Test.Unit
         [TestMethod]
         public void TestLoadNewCong()
         {
-            var cong = new Congregation();
-            var mockResponse = cong.ToString();
             var mockGateway = new Mock<IDataGateway>();
-            mockGateway.Setup(g => g.Request(typeof(Congregation), Methods.Get, null)).Returns(mockResponse);
+            mockGateway.Setup(g => g.Request(typeof(Congregation), Methods.Get, null)).Returns(
+                new Congregation().ToString());
+            // TODO tests for each section/main model object
+
             var mvm = new MainViewModel(mockGateway.Object, null);
             Assert.IsNotNull(mvm.CongregationVM);
             var cvm = (CongregationViewModel)mvm.CongregationVM;

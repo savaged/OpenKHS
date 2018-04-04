@@ -32,7 +32,7 @@ namespace OpenKHS.ViewModels
         {
             DialogService = dialogService;
             Gateway = gateway;
-            CongregationVM = new CongregationViewModel(gateway, dialogService);
+            CongregationVM = new CongregationViewModel(gateway);
             PublicTalksVM = new PublicTalksViewModel(gateway);
             PmScheduleVM = new PmScheduleViewModel(gateway);
             ClmmScheduleVM = new ClmmScheduleViewModel(gateway);

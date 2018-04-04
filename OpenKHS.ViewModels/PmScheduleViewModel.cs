@@ -6,16 +6,8 @@ namespace OpenKHS.ViewModels
 {
     public class PmScheduleViewModel : ModelBoundViewModelBase<PmSchedule>
     {
-        private readonly IDataGateway _dataGateway;
-
-        public PmScheduleViewModel(IDataGateway dataGateway)
+        public PmScheduleViewModel(IDataGateway dataGateway) : base(dataGateway)
         {
-            _dataGateway = dataGateway;
-        }
-
-        public bool New()
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -9,6 +9,8 @@ namespace OpenKHS.Models
 {
     public abstract class ModelBase : IModel
     {
+        public int Id { get; set; }
+
         public override string ToString()
         {
             return JsonEncode();
