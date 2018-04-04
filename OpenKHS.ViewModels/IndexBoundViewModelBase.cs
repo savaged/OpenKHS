@@ -10,6 +10,8 @@ namespace OpenKHS.ViewModels
         where TModel : Weeks<TIndex>, new()
         where TIndex : ISchedule
     {
+        private TIndex _selectedItem;
+
         public IndexBoundViewModelBase(IDataGateway dataGateway) : base(dataGateway)
         {
             Index = new ObservableCollection<TIndex>();
@@ -32,5 +34,17 @@ namespace OpenKHS.ViewModels
         }
 
         public ObservableCollection<TIndex> Index { get; set; }
+
+        public TIndex SelectedItem
+        {
+            get => _selectedItem;
+            set
+            {
+                Set(ref _selectedItem, value);
+                RaisePropertyChanged(nameof(IsItemSelected));
+            }
+        }
+
+        public bool IsItemSelected => SelectedItem != null;
     }
 }

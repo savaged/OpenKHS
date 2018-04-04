@@ -116,11 +116,11 @@ namespace OpenKHS.Data
 
         private string DeleteJsonFile(Type resource)
         {
-            var filename = resource.Name;
+            var resourceLocation = JsonFullLocation(resource);
             string result = JsonConvert.SerializeObject(true);
             try
             {
-                File.Delete(_resourceLocation + filename + ".json");
+                File.Delete(resourceLocation);
             }
             catch (Exception e)
             {
@@ -140,7 +140,7 @@ namespace OpenKHS.Data
         {
             if (_isRunningFromTest)
             {
-                return "test";
+                return ".test";
             }
             return string.Empty;
         }

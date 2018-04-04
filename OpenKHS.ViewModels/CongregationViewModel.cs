@@ -38,13 +38,13 @@ namespace OpenKHS.ViewModels
             set
             {
                 Set(ref _selectedCongMember, value);
-                RaisePropertyChanged(nameof(CongMemberSelected));
+                RaisePropertyChanged(nameof(IsCongMemberSelected));
             }
         }
 
-        public bool CongMemberSelected
+        public bool IsCongMemberSelected
         {
-            get => SelectedCongMember != null;
+            get => SelectedCongMember != null && SelectedCongMember.Name != null && SelectedCongMember.Name != "";
         }
 
         public ICommand FormSaveCmd => new RelayCommand(OnFormSave);

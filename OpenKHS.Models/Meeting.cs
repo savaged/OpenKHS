@@ -34,9 +34,9 @@ namespace OpenKHS.Models
             RovingMic2.AssignmentTally++;
         }
 
-        public DateTime GetWeekStartingDate()
+        public DateTime WeekStartingDate
         {
-            return WeekNumberAdapter.FirstDateOfWeekIso8601(Week);
+            get => WeekNumberAdapter.FirstDateOfWeekIso8601(Week);
         }        
     }
 }

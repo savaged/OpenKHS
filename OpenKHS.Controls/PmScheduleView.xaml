@@ -9,23 +9,79 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="6*"/>
         </Grid.ColumnDefinitions>
         <DataGrid Grid.Column="0"
                   Margin="10"
                   x:Name="WeeksGrid"
-                  ItemsSource="{Binding Weeks}"
-                  SelectedItem="{Binding SelectedWeek}"
-                  AutoGenerateColumns="False">
+                  ItemsSource="{Binding Index}"
+                  SelectedItem="{Binding SelectedItem}"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="True" CanUserDeleteRows="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Week" Binding="{Binding Week}" Width="1*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Column="1" Margin="10">
-            <WrapPanel>
+        <Grid Grid.Column="1" IsEnabled="{Binding IsItemSelected}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <WrapPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Margin="10">
                 <Label Width="100">Week Starting</Label>
-                <TextBox Width="160" />
+                <TextBox Width="160" Text="{Binding SelectedItem.WeekStartingDate, Mode=OneWay, StringFormat=yyyy-MM-dd}" 
+                         IsReadOnly="True" />
             </WrapPanel>
-        </StackPanel>
+            <StackPanel Grid.Column="0" Grid.Row="1" Margin="10">
+                <WrapPanel>
+                    <Label Width="100">Attendant</Label>
+                    <ComboBox Width="160" ItemsSource="{Binding Attendants}"
+                              SelectedItem="{Binding SelectedItem.Attendant}"
+                              DisplayMemberPath="Name"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <Label Width="100">Security</Label>
+                    <TextBox Width="160" Text="{Binding SelectedItem.Security}" />
+                </WrapPanel>
+                <WrapPanel>
+                    <Label Width="100">Sound Desk</Label>
+                    <TextBox Width="160" Text="{Binding SelectedItem.SoundDesk}" />
+                </WrapPanel>
+                <WrapPanel>
+                    <Label Width="100">Platform</Label>
+                    <TextBox Width="160" Text="{Binding SelectedItem.Platform}" />
+                </WrapPanel>
+                <WrapPanel>
+                    <Label Width="100">Roving Mic 1</Label>
+                    <TextBox Width="160" Text="{Binding SelectedItem.RovingMic1}" />
+                </WrapPanel>
+                <WrapPanel>
+                    <Label Width="100">Roving Mic 2</Label>
+                    <TextBox Width="160" Text="{Binding SelectedItem.RovingMic2}" />
+                </WrapPanel>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.Row="1" Margin="10">
+                <WrapPanel>
+                    <Label Width="100">Chairman</Label>
+                    <TextBox Width="160" Text="{Binding SelectedItem.Chairman}" />
+                </WrapPanel>
+                <WrapPanel>
+                    <Label Width="100">Public Talk</Label>
+                    <TextBox Width="160" Text="{Binding SelectedItem.PublicTalk}" />
+                </WrapPanel>
+                <WrapPanel>
+                    <Label Width="100">WT Conductor</Label>
+                    <TextBox Width="160" Text="{Binding SelectedItem.WtConductor}"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <Label Width="100">WT Reader</Label>
+                    <TextBox Width="160" Text="{Binding SelectedItem.WtReader}"/>
+                </WrapPanel>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

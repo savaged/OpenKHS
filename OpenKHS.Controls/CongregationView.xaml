@@ -29,8 +29,7 @@
 
         <StackPanel Grid.Column="1" Margin="10">
             <Button HorizontalAlignment="Right" Command="{Binding FormSaveCmd}" Content="Save" />
-            <Label Content="{Binding SelectedCongMember.Name}"/>
-            <TabControl Visibility="{Binding CongMemberSelected, Converter={StaticResource BooleanToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}">
+            <TabControl Visibility="{Binding IsCongMemberSelected, Converter={StaticResource BooleanToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}">
                 <TabItem Header="Assignments">
                     <Grid>
                         <Grid.ColumnDefinitions>
