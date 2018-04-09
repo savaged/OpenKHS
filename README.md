@@ -12,7 +12,7 @@ Feel free to have a look at the code by cloning this repository using:
 * Sorry, I've not had time to do anything for ages but still aim to make this happen
 
 ## TO DO List ##
-* Need to use a lightweight database and have cong member refs in schedules saved as IDs whilst maintaining publish incrementing tallies
+* Need to make all data 'friend' centric (with redundancy) - only cong will be persisted
 * UWP version using https://github.com/Microsoft/WindowsTemplateStudio
 * Work on Metro version for older Windows clients
 * Android version
