@@ -15,16 +15,20 @@ namespace OpenKHS.ViewModels
         #region Parameters / Properties
 
         private int _selectedIndex;
+        private CongregationViewModel _congregationViewModel;
+        private PublicTalksViewModel _publicTalksViewModel;
+        private PmScheduleViewModel _pmScheduleViewModel;
+        private ClmmScheduleViewModel _clmmScheduleViewModel;
 
         protected static readonly ILog Log = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public IDialogService DialogService { get; }
         public IDataGateway Gateway { get; }
 
-        public IViewModel CongregationVM { get; }
-        public IViewModel PublicTalksVM { get; } 
-        public IViewModel PmScheduleVM { get; }
-        public IViewModel ClmmScheduleVM { get; }
+        public IViewModel CongregationVM { get => _congregationViewModel; }
+        public IViewModel PublicTalksVM { get => _publicTalksViewModel; } 
+        public IViewModel PmScheduleVM { get => _pmScheduleViewModel; }
+        public IViewModel ClmmScheduleVM { get => _clmmScheduleViewModel; }
 
         public int SelectedIndex
         {
@@ -40,12 +44,11 @@ namespace OpenKHS.ViewModels
         {
             DialogService = dialogService;
             Gateway = gateway;
-            var cvm = new CongregationViewModel(gateway);
+            _congregationViewModel = new CongregationViewModel(gateway);
             // TODO figure out how talks should work
-            PublicTalksVM = new PublicTalksViewModel(gateway);
-            PmScheduleVM = new PmScheduleViewModel(gateway, cvm.Members);
-            ClmmScheduleVM = new ClmmScheduleViewModel(gateway, cvm.Members);
-            CongregationVM = cvm;
+            _publicTalksViewModel = new PublicTalksViewModel(gateway);
+            _pmScheduleViewModel = new PmScheduleViewModel(gateway, _congregationViewModel.Members);
+            _clmmScheduleViewModel = new ClmmScheduleViewModel(gateway, _congregationViewModel.Members);
 
             PropertyChanged += OnPropertyChanged;
         }
@@ -92,10 +95,10 @@ namespace OpenKHS.ViewModels
         {
             if (e.PropertyName == nameof(SelectedIndex))
             {
-                // TODO
-                //CongregationVM.SaveModelObject();
-                //PmScheduleVM.SaveModelObject();
-                //ClmmScheduleVM.SaveModelObject();
+                // TODO is there a better way to auto-save?
+                _congregationViewModel.SaveModelObject();
+                _pmScheduleViewModel.SaveModelObject();
+                //_clmmScheduleViewModel.SaveModelObject();
             }
         }
 

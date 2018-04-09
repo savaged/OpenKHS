@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using OpenKHS.Interfaces;
 using OpenKHS.Models;
 using System.Collections.Generic;
@@ -44,6 +45,7 @@ namespace OpenKHS.Facades
 
         public bool Store(T model)
         {
+            ValidateAction(Methods.Post, model);
             var rawResponse = _gateway.Request(model.GetType(), Methods.Post, model.GetData());
             var response = JsonConvert.DeserializeObject<bool>(rawResponse, _settings);
             return response;
@@ -51,6 +53,7 @@ namespace OpenKHS.Facades
 
         public bool Update(T model)
         {
+            ValidateAction(Methods.Put, model);
             var rawResponse = _gateway.Request(model.GetType(), Methods.Put, model.GetData());
             var response = JsonConvert.DeserializeObject<bool>(rawResponse, _settings);
             return response;
@@ -61,6 +64,15 @@ namespace OpenKHS.Facades
             var rawResponse = _gateway.Request(typeof(T), Methods.Delete, null);
             var response = JsonConvert.DeserializeObject<bool>(rawResponse);
             return response;
+        }
+
+        private void ValidateAction(Methods method, T model)
+        {
+            if (model == null)
+            {
+                throw new ArgumentNullException("Expected model of type " + typeof(T) +
+                    " never to be null when calling the " + method + " action.");
+            }
         }
     }
 }
