@@ -7,7 +7,7 @@ namespace OpenKHS.Models
     /// <summary>
     /// Christian Life and Ministry Meeting Schedule
     /// </summary>
-    public class ClmmSchedule : Meeting, ISchedule
+    public class ClmmSchedule : Meeting
     {
         // TODO add validation to each property i.e. brother has privilege
 

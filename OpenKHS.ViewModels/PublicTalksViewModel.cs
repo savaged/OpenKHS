@@ -5,9 +5,9 @@ using OpenKHS.Models;
 
 namespace OpenKHS.ViewModels
 {
-    public class PublicTalksViewModel : ModelBoundViewModelBase<PublicTalk>
+    public class PublicTalksViewModel : IViewModel
     {
-        public PublicTalksViewModel(IDataGateway dataGateway) : base(dataGateway)
+        public PublicTalksViewModel(IDataGateway dataGateway)
         {
         }
     }

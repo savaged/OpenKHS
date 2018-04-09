@@ -5,10 +5,10 @@ using OpenKHS.Models;
 
 namespace OpenKHS.ViewModels
 {
-    public abstract class IndexBoundViewModelBase<TModel, TIndex> 
+    public abstract class IndexBoundViewModelBase<TModel, TIndex>
         : ModelBoundViewModelBase<TModel>
         where TModel : Weeks<TIndex>, new()
-        where TIndex : ISchedule
+        where TIndex : ISchedule, new()
     {
         private TIndex _selectedItem;
 

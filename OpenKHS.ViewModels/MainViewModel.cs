@@ -13,16 +13,24 @@ namespace OpenKHS.ViewModels
     public class MainViewModel : ViewModelBase, IMainViewModel
     {
         #region Parameters / Properties
-        
+
+        private int _selectedIndex;
+
+        protected static readonly ILog Log = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         public IDialogService DialogService { get; }
         public IDataGateway Gateway { get; }
 
         public IViewModel CongregationVM { get; }
-        public IViewModel PublicTalksVM { get; }
+        public IViewModel PublicTalksVM { get; } 
         public IViewModel PmScheduleVM { get; }
         public IViewModel ClmmScheduleVM { get; }
 
-        protected static readonly ILog Log = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        public int SelectedIndex
+        {
+            get => _selectedIndex;
+            set => Set(ref _selectedIndex, value);
+        }
 
         #endregion
 
@@ -32,11 +40,20 @@ namespace OpenKHS.ViewModels
         {
             DialogService = dialogService;
             Gateway = gateway;
-            var congregationVM = new CongregationViewModel(gateway);
+            var cvm = new CongregationViewModel(gateway);
+            // TODO figure out how talks should work
             PublicTalksVM = new PublicTalksViewModel(gateway);
-            PmScheduleVM = new PmScheduleViewModel(gateway, congregationVM.Members);
-            ClmmScheduleVM = new ClmmScheduleViewModel(gateway);
-            CongregationVM = congregationVM;
+            PmScheduleVM = new PmScheduleViewModel(gateway, cvm.Members);
+            ClmmScheduleVM = new ClmmScheduleViewModel(gateway, cvm.Members);
+            CongregationVM = cvm;
+
+            PropertyChanged += OnPropertyChanged;
+        }
+
+        public override void Cleanup()
+        {
+            PropertyChanged -= OnPropertyChanged;
+            base.Cleanup();
         }
 
         #endregion
@@ -55,7 +72,7 @@ namespace OpenKHS.ViewModels
 
         public ICommand ShowAboutDialogCmd { get { return new RelayCommand(OnShowAboutDialog, () => true); } }
         public ICommand ExitCmd { get { return new RelayCommand(OnExitApp, () => true); } }
-        
+
         private void OnShowAboutDialog()
         {
             var dialog = new AboutDialogViewModel();
@@ -70,6 +87,17 @@ namespace OpenKHS.ViewModels
         #endregion
 
         #region Events
+
+        private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(SelectedIndex))
+            {
+                // TODO
+                //CongregationVM.SaveModelObject();
+                //PmScheduleVM.SaveModelObject();
+                //ClmmScheduleVM.SaveModelObject();
+            }
+        }
 
         public event EventHandler RequestClose;
 

@@ -21,7 +21,7 @@
 
     <DockPanel>
         <Grid>
-            <TabControl TabStripPlacement="Left">
+            <TabControl TabStripPlacement="Left" SelectedIndex="{Binding SelectedIndex}">
                 <TabItem Header="&#128100;" ToolTip="Congregation Members">
                     <ctrls:CongregationView x:Name="CongregationView"/>
                 </TabItem>

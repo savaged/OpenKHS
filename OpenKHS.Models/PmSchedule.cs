@@ -6,7 +6,7 @@ namespace OpenKHS.Models
     /// <summary>
     /// Public Meeting Schedule
     /// </summary>
-    public class PmSchedule : Meeting, ISchedule
+    public class PmSchedule : Meeting
     {
         public PublicTalk PublicTalk { get; set; }
 

@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ICongregation.cs" />
     <Compile Include="IDataGateway.cs" />
     <Compile Include="IJsonEncode.cs" />
     <Compile Include="IMainView.cs" />

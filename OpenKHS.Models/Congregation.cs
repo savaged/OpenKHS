@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace OpenKHS.Models
 {
-    public class Congregation : ModelBase, ICongregation
+    public class Congregation : ModelBase
     {
         public Congregation()
         {

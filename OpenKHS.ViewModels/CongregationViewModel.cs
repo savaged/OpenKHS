@@ -65,7 +65,7 @@ namespace OpenKHS.ViewModels
                     ModelObject.Members.Add(friend);
                 }
             }
-            SaveForm();
+            SaveModelObject();
         }
     }
 }

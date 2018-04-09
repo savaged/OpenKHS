@@ -7,8 +7,8 @@ using OpenKHS.Facades;
 
 namespace OpenKHS.ViewModels
 {
-    public abstract class ModelBoundViewModelBase<T> 
-        : ViewModelBase, IModelBoundViewModel<T>
+    public abstract class ModelBoundViewModelBase<T>
+        : ViewModelBase, IModelBoundViewModel<T> 
         where T : IModel, new()
     {
         private T _modelObject;
@@ -33,7 +33,7 @@ namespace OpenKHS.ViewModels
             set => Set(ref _modelObject, value);
         }
 
-        protected virtual void SaveForm()
+        public virtual void SaveModelObject()
         {
             _facade.Update(ModelObject);
         }

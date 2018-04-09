@@ -2,10 +2,11 @@
 using System.Linq;
 using System.Collections.Generic;
 using OpenKHS.Models.Attributes;
+using OpenKHS.Interfaces;
 
 namespace OpenKHS.Models
 {
-    public class Friend
+    public class Friend : ModelBase, IModel
     {
         public Friend()
         {

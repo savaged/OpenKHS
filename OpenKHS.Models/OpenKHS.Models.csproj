@@ -73,6 +73,7 @@
     <Compile Include="ModelBase.cs" />
     <Compile Include="PmSchedule.cs" />
     <Compile Include="ClmmSchedules.cs" />
+    <Compile Include="PublicTalks.cs" />
     <Compile Include="Weeks.cs" />
     <Compile Include="PmSpeaker.cs" />
     <Compile Include="Attributes\PrivilegeAttribute.cs" />
