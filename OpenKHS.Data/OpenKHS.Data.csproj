@@ -105,6 +105,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseContext\FriendContext.cs" />
     <Compile Include="JsonFileGateway.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -117,6 +118,10 @@
     <ProjectReference Include="..\OpenKHS.Interfaces\OpenKHS.Interfaces.csproj">
       <Project>{2a2760a3-b447-42aa-8001-37bbe92582da}</Project>
       <Name>OpenKHS.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenKHS.Models\OpenKHS.Models.csproj">
+      <Project>{f8a01958-c187-4ca8-b255-f942e7d22bff}</Project>
+      <Name>OpenKHS.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
