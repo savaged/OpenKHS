@@ -17,8 +17,8 @@ namespace OpenKHS.Models
 
         public override void Publish()
         {
-            WtConductor.AssignmentTally++;
-            WtReader.AssignmentTally++;
+            WtConductor.Tally++;
+            WtReader.Tally++;
             base.Publish();
         }
     }

@@ -36,6 +36,9 @@
     <Reference Include="Microsoft.EntityFrameworkCore, Version=2.0.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.EntityFrameworkCore.2.0.2\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.Design, Version=2.0.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.EntityFrameworkCore.Design.2.0.2\lib\net461\Microsoft.EntityFrameworkCore.Design.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.EntityFrameworkCore.Relational, Version=2.0.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.EntityFrameworkCore.Relational.2.0.2\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Relational.dll</HintPath>
     </Reference>
@@ -105,8 +108,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DatabaseContext\FriendContext.cs" />
+    <Compile Include="DatabaseContext.cs" />
     <Compile Include="JsonFileGateway.cs" />
+    <Compile Include="Migrations\20180411102229_init.cs" />
+    <Compile Include="Migrations\20180411102229_init.designer.cs">
+      <DependentUpon>20180411102229_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\DatabaseContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>

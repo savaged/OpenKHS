@@ -27,5 +27,14 @@ namespace OpenKHS.Test.Feature
             Assert.AreEqual(assignmentTally.ToString(), "1");
         }
 
+        [TestMethod]
+        public void TestAssignmentTallyCast()
+        {
+            var assignmentTally = new AssignmentTally();
+            Assert.AreEqual(assignmentTally, 0);
+            assignmentTally++;
+            Assert.AreEqual(assignmentTally, 1);
+            int i = (int)assignmentTally;
+        }
     }
 }

@@ -130,7 +130,7 @@ namespace OpenKHS.Seeder
         {
             var list = MakeCongregationMembers(1);
             var congMember = list.First();
-            congMember.AssignmentTally = new Faker().Random.Number(5);
+            congMember.Tally = new Faker().Random.Number(5);
             return congMember;
         }
 

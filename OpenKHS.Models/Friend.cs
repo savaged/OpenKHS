@@ -10,7 +10,7 @@ namespace OpenKHS.Models
     {
         public Friend()
         {
-            AssignmentTally = new AssignmentTally();
+            Tally = new AssignmentTally();
             if (UnavailablePeriods == null)
             {
                 UnavailablePeriods = new List<DateRange>();
@@ -21,7 +21,12 @@ namespace OpenKHS.Models
         
         public List<DateRange> UnavailablePeriods { get; set; }
 
-        public AssignmentTally AssignmentTally { get; set; }
+        public AssignmentTally Tally { get; set; }
+
+        public int AssignmentTally
+        {
+            get => (int)Tally;
+        }
 
         #region Privileges
 
@@ -123,7 +128,7 @@ namespace OpenKHS.Models
 
     }
 
-    public class DateRange
+    public class DateRange : ModelBase
     {
         public DateRange()
         {

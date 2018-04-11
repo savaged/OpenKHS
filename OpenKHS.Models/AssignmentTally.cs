@@ -90,5 +90,10 @@ namespace OpenKHS.Models
         {
             return _tally.ToString();
         }
+
+        public static explicit operator int(AssignmentTally a)
+        {
+            return a._tally;
+        }
     }
 }
