@@ -33,8 +33,8 @@
     <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="Bogus, Version=22.0.7.0, Culture=neutral, PublicKeyToken=fa1bb3f3f218129a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bogus.22.0.7\lib\net40\Bogus.dll</HintPath>
+    <Reference Include="Bogus, Version=22.0.8.0, Culture=neutral, PublicKeyToken=fa1bb3f3f218129a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bogus.22.0.8\lib\net40\Bogus.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>

@@ -8,7 +8,7 @@ using System.IO;
 
 namespace OpenKHS.Data
 {
-    public class Gateway : IDataGateway
+    public class JsonFileGateway : IDataGateway
     {
         private static readonly bool _isRunningFromTest = AppDomain.CurrentDomain.GetAssemblies().Any(a => a.FullName.StartsWith("Microsoft.VisualStudio.Test"));
 
@@ -16,7 +16,7 @@ namespace OpenKHS.Data
 
         private readonly string _resourceLocation;
 
-        public Gateway()
+        public JsonFileGateway()
         {
             _resourceLocation = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             _resourceLocation += "\\";

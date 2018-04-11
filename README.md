@@ -12,7 +12,7 @@ Feel free to have a look at the code by cloning this repository using:
 * Sorry, I've not had time to do anything for ages but still aim to make this happen
 
 ## TO DO List ##
-* Need to make all data 'friend' centric (with redundancy) - only cong will be persisted
+* Switch to ORM for data persistance using Entity Framework Core
 * UWP version using https://github.com/Microsoft/WindowsTemplateStudio
 * Work on Metro version for older Windows clients
 * Android version
