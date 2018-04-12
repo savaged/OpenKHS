@@ -5,6 +5,7 @@ using System.Windows;
 using System.ComponentModel;
 using Ninject;
 using OpenKHS.Interfaces;
+using OpenKHS.Data;
 
 namespace OpenKHS
 {
@@ -21,7 +22,14 @@ namespace OpenKHS
             AppDomain currentDomain = AppDomain.CurrentDomain;
             currentDomain.UnhandledException += new UnhandledExceptionEventHandler(UnhandledExceptionOccured);
 
-            Log.Info("Starting App");
+            Log.Info("Initialising local database");
+
+            using (var db = new DatabaseContext())
+            {
+                db.Database.EnsureCreated();
+            }
+
+            Log.Info("Initialising application structure");
 
             var iocKernel = new StandardKernel(new IocBindings());
             iocKernel.Load(AppDomain.CurrentDomain.GetAssemblies());
@@ -30,6 +38,8 @@ namespace OpenKHS
             _mainWindow = iocKernel.Get<IMainView>();
             _mainWindow.DataContext = vm;
             ShutdownMode = ShutdownMode.OnMainWindowClose;
+
+            Log.Info("Showing main window");
             _mainWindow.Show();
         }
 

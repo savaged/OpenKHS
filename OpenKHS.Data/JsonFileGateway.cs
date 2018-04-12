@@ -10,7 +10,7 @@ namespace OpenKHS.Data
 {
     public class JsonFileGateway : IDataGateway
     {
-        private static readonly bool _isRunningFromTest = AppDomain.CurrentDomain.GetAssemblies().Any(a => a.FullName.StartsWith("Microsoft.VisualStudio.Test"));
+        private readonly bool _isRunningFromTest;
 
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -18,13 +18,8 @@ namespace OpenKHS.Data
 
         public JsonFileGateway()
         {
-            _resourceLocation = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            _resourceLocation += "\\";
-            if (!Directory.Exists(_resourceLocation + "OpenKHS"))
-            {
-                Directory.CreateDirectory(_resourceLocation + "OpenKHS");
-            }
-            _resourceLocation += "OpenKHS\\";
+            _resourceLocation = ApplicationData.ResourceLocation;
+            _isRunningFromTest = ApplicationData.IsRunningFromTest;
         }
         
         public string Request(Type resource, Methods method, IDictionary<string, object> data)
