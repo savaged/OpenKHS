@@ -13,34 +13,22 @@ namespace OpenKHS.Test.Integration
         [TestMethod]
         public void IntegrationTestDbConfig()
         {
-            var connection = new SqliteConnection("DataSource=:memory:");
-            connection.Open();
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>()
+                .UseInMemoryDatabase("DataSource=:memory:");
 
-            try
+            SQLitePCL.Batteries.Init();
+
+            using (var context = new DatabaseContext(optionsBuilder.Options))
             {
-                var options = new DbContextOptionsBuilder<DatabaseContext>()
-                        .UseSqlite(connection)
-                        .Options;
-
-                using (var context = new DatabaseContext(options))
-                {
-                    context.Database.EnsureCreated();
-                }
-
-                using (var context = new DatabaseContext())
-                {
-                    var friend = new Friend();
-                    Assert.AreEqual(0, friend.Id);
-                    context.Friends.Add(friend);
-                    var efDefaultId = friend.Id;
-                    Assert.IsTrue(efDefaultId < 0);
-                    context.SaveChanges();
-                    Assert.AreNotEqual(efDefaultId, friend.Id);
-                }
-            }
-            finally
-            {
-                connection.Close();
+                context.Database.EnsureCreated();
+            
+                var friend = new Friend();
+                Assert.AreEqual(0, friend.Id);
+                context.Friends.Add(friend);
+                var efDefaultId = friend.Id;
+                Assert.AreNotEqual(0, efDefaultId);
+                context.SaveChanges();
+                Assert.AreEqual(efDefaultId, friend.Id);
             }
         }
     }
