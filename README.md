@@ -1,4 +1,3 @@
- 
 # OpenKHS #
 Free open source KHS (Kingdom Hall Scheduling) application. Totally free - no "donations"!
 
@@ -13,6 +12,7 @@ Feel free to have a look at the code by cloning this repository using:
 
 ## TO DO List ##
 * Switch to ORM for data persistance using Entity Framework Core and SqlLite
+    * Re-work base view models to handle both single model object binding and indexed
 * UWP version using https://github.com/Microsoft/WindowsTemplateStudio
 * Work on Metro version for older Windows clients
 * Android version
