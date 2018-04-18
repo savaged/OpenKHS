@@ -5,16 +5,15 @@ using OpenKHS.Models;
 
 namespace OpenKHS.ViewModels
 {
-    public abstract class IndexBoundViewModelBase<TModel, TIndex>
-        : ModelBoundViewModelBase<TModel>
-        where TModel : Weeks<TIndex>, new()
-        where TIndex : ISchedule, new()
+    public abstract class IndexBoundViewModelBase<T>
+        : ModelBoundViewModelBase<T>
+        where T : IModel, new()
     {
-        private TIndex _selectedItem;
+        private T _selectedItem;
 
         public IndexBoundViewModelBase(IDataGateway dataGateway) : base(dataGateway)
         {
-            Index = new ObservableCollection<TIndex>();
+            Index = new ObservableCollection<T>();
         }
 
         protected override void Initialise()
@@ -24,18 +23,12 @@ namespace OpenKHS.ViewModels
             {
                 Index.Clear();
             }
-            if (ModelObject.Schedules != null)
-            {
-                foreach (var schedule in ModelObject.Schedules)
-                {
-                    Index.Add(schedule);
-                }
-            }
+            // TODO load index
         }
 
-        public ObservableCollection<TIndex> Index { get; set; }
+        public ObservableCollection<T> Index { get; set; }
 
-        public TIndex SelectedItem
+        public T SelectedItem
         {
             get => _selectedItem;
             set
@@ -49,12 +42,7 @@ namespace OpenKHS.ViewModels
 
         public override void SaveModelObject()
         {
-            ModelObject.Schedules.Clear();
-            foreach (var item in Index)
-            {
-                ModelObject.Schedules.Add(item);
-            }
-            base.SaveModelObject();
+            // TODO
         }
     }
 }

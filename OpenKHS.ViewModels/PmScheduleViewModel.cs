@@ -6,7 +6,7 @@ using OpenKHS.Models;
 
 namespace OpenKHS.ViewModels
 {
-    public class PmScheduleViewModel : IndexBoundViewModelBase<PmSchedules, PmSchedule>
+    public class PmScheduleViewModel : SchedulesViewModelBase<PmSchedules, PmSchedule>
     {
         public PmScheduleViewModel(IDataGateway dataGateway, IList<Friend> congMembers) : base(dataGateway)
         {

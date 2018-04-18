@@ -5,7 +5,7 @@ using OpenKHS.Models;
 
 namespace OpenKHS.ViewModels
 {
-    public class ClmmScheduleViewModel : IndexBoundViewModelBase<ClmmSchedules, ClmmSchedule>
+    public class ClmmScheduleViewModel : SchedulesViewModelBase<ClmmSchedules, ClmmSchedule>
     {
         public ClmmScheduleViewModel(IDataGateway dataGateway, IList<Friend> congMembers) : base(dataGateway)
         {

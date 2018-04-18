@@ -1,8 +1,6 @@
 ﻿using System;
-using log4net;
 using OpenKHS.Interfaces;
 using GalaSoft.MvvmLight;
-using System.Reflection;
 using OpenKHS.Facades;
 
 namespace OpenKHS.ViewModels
@@ -14,8 +12,6 @@ namespace OpenKHS.ViewModels
         private T _modelObject;
 
         private readonly DataGatewayFacade<T> _facade;
-
-        protected static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public ModelBoundViewModelBase(IDataGateway dataGateway)
         {
