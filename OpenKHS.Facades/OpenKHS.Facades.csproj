@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataGatewayFacade.cs" />
+    <Compile Include="JsonDataGatewayFacade.cs" />
     <Compile Include="Converters\CongregationConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

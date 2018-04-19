@@ -8,7 +8,7 @@ namespace OpenKHS.ViewModels
 {
     public class PmScheduleViewModel : SchedulesViewModelBase<PmSchedules, PmSchedule>
     {
-        public PmScheduleViewModel(IDataGateway dataGateway, IList<Friend> congMembers) : base(dataGateway)
+        public PmScheduleViewModel(IList<Friend> congMembers)
         {
             Initialise();
             Attendants = congMembers.Where(f => f.Attendant).ToList();

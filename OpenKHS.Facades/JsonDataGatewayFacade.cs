@@ -7,12 +7,12 @@ using System.IO;
 
 namespace OpenKHS.Facades
 {
-    public class DataGatewayFacade<T> where T : IModel, new()
+    public class JsonDataGatewayFacade<T> where T : IModel, new()
     {
         private IDataGateway _gateway;
         private JsonSerializerSettings _settings;
 
-        public DataGatewayFacade(IDataGateway gateway)
+        public JsonDataGatewayFacade(IDataGateway gateway)
         {
             _gateway = gateway;
             _settings = new JsonSerializerSettings

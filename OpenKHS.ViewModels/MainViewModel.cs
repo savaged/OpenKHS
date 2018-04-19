@@ -23,7 +23,6 @@ namespace OpenKHS.ViewModels
         protected static readonly ILog Log = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public IDialogService DialogService { get; }
-        public IDataGateway Gateway { get; }
 
         public IViewModel CongregationVM { get => _congregationViewModel; }
         public IViewModel PublicTalksVM { get => _publicTalksViewModel; } 
@@ -40,15 +39,14 @@ namespace OpenKHS.ViewModels
 
         #region Constructors
 
-        public MainViewModel(IDataGateway gateway, IDialogService dialogService) 
+        public MainViewModel(IDialogService dialogService) 
         {
             DialogService = dialogService;
-            Gateway = gateway;
-            _congregationViewModel = new CongregationViewModel(gateway);
+            _congregationViewModel = new CongregationViewModel();
             // TODO figure out how talks should work
-            _publicTalksViewModel = new PublicTalksViewModel(gateway);
-            _pmScheduleViewModel = new PmScheduleViewModel(gateway, _congregationViewModel.Index);
-            _clmmScheduleViewModel = new ClmmScheduleViewModel(gateway, _congregationViewModel.Index);
+            _publicTalksViewModel = new PublicTalksViewModel();
+            _pmScheduleViewModel = new PmScheduleViewModel(_congregationViewModel.Index);
+            _clmmScheduleViewModel = new ClmmScheduleViewModel(_congregationViewModel.Index);
 
             PropertyChanged += OnPropertyChanged;
         }

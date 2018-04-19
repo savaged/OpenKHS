@@ -19,7 +19,7 @@ namespace OpenKHS.Test.Integration
             Assert.IsNotNull(json);
             Assert.IsTrue(json.Length > 1000);
             var gateway = new JsonFileGateway();
-            var f = new DataGatewayFacade<Congregation>(gateway);
+            var f = new JsonDataGatewayFacade<Congregation>(gateway);
             // create
             var result = f.Store(homeCong);
             Assert.IsTrue(result);

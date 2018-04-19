@@ -7,6 +7,5 @@ namespace OpenKHS.Interfaces
     {
         event EventHandler RequestClose;
         IDialogService DialogService { get; }
-        IDataGateway Gateway { get; }
     }
 }

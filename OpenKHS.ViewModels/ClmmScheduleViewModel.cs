@@ -7,7 +7,7 @@ namespace OpenKHS.ViewModels
 {
     public class ClmmScheduleViewModel : SchedulesViewModelBase<ClmmSchedules, ClmmSchedule>
     {
-        public ClmmScheduleViewModel(IDataGateway dataGateway, IList<Friend> congMembers) : base(dataGateway)
+        public ClmmScheduleViewModel(IList<Friend> congMembers)
         {
         }
     }

@@ -1,26 +1,21 @@
 ﻿using System;
 using OpenKHS.Interfaces;
 using GalaSoft.MvvmLight;
-using OpenKHS.Facades;
 
 namespace OpenKHS.ViewModels
 {
-    public abstract class ModelBoundViewModelBase<T>
-        : ViewModelBase, IModelBoundViewModel<T> 
+    public abstract class ModelBoundViewModelBase<T> : ViewModelBase, IModelBoundViewModel<T> 
         where T : IModel, new()
     {
         private T _modelObject;
 
-        private readonly DataGatewayFacade<T> _facade;
-
-        public ModelBoundViewModelBase(IDataGateway dataGateway)
+        public ModelBoundViewModelBase()
         {
-            _facade = new DataGatewayFacade<T>(dataGateway);
         }
 
         protected virtual void Initialise()
         {
-            ModelObject = _facade.Show();
+            // TODO Load ModelObject 
         }
 
         public T ModelObject
@@ -31,7 +26,7 @@ namespace OpenKHS.ViewModels
 
         public virtual void Save()
         {
-            _facade.Update(ModelObject);
+            // TODO Save model object
         }
     }
 }

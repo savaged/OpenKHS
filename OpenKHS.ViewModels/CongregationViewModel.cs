@@ -10,10 +10,7 @@ namespace OpenKHS.ViewModels
 {
     public class CongregationViewModel : IndexBoundViewModelBase<Friend>
     {
-        private Friend _selectedCongMember;
-
-        public CongregationViewModel(IDataGateway dataGateway)
-            : base(dataGateway)
+        public CongregationViewModel()
         {
             Initialise();
 

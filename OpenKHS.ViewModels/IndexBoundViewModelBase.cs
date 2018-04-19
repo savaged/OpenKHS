@@ -5,13 +5,12 @@ using OpenKHS.Models;
 
 namespace OpenKHS.ViewModels
 {
-    public abstract class IndexBoundViewModelBase<T>
-        : ModelBoundViewModelBase<T>
+    public abstract class IndexBoundViewModelBase<T> : ModelBoundViewModelBase<T>
         where T : IModel, new()
     {
         private T _selectedItem;
 
-        public IndexBoundViewModelBase(IDataGateway dataGateway) : base(dataGateway)
+        public IndexBoundViewModelBase()
         {
             Index = new ObservableCollection<T>();
         }

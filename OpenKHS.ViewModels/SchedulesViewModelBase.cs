@@ -12,7 +12,7 @@ namespace OpenKHS.ViewModels
     {
         private TIndex _selectedItem;
 
-        public SchedulesViewModelBase(IDataGateway dataGateway) : base(dataGateway)
+        public SchedulesViewModelBase()
         {
             Index = new ObservableCollection<TIndex>();
         }

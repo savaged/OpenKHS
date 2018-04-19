@@ -26,7 +26,7 @@ namespace OpenKHS.Test.Feature
                 Methods.Post,
                 data
                 )).Returns(mockResponse);
-            var f = new DataGatewayFacade<Congregation>(mockGateway.Object);
+            var f = new JsonDataGatewayFacade<Congregation>(mockGateway.Object);
             var result = f.Store(homeCong);
             Assert.IsTrue(result);
         }
@@ -46,7 +46,7 @@ namespace OpenKHS.Test.Feature
                 Methods.Get,
                 null
                 )).Returns(mockResponse);
-            var f = new DataGatewayFacade<Congregation>(mockGateway.Object);
+            var f = new JsonDataGatewayFacade<Congregation>(mockGateway.Object);
             var retrievedCong = f.Show();
             Assert.IsNotNull(retrievedCong);
             Assert.IsNotNull(retrievedCong.Members);
@@ -62,7 +62,7 @@ namespace OpenKHS.Test.Feature
                 Methods.Get,
                 null
                 )).Throws<FileNotFoundException>();
-            var f = new DataGatewayFacade<Congregation>(mockGateway.Object);
+            var f = new JsonDataGatewayFacade<Congregation>(mockGateway.Object);
             var retrievedCong = f.Show();
             Assert.IsNotNull(retrievedCong);
             Assert.IsNotNull(retrievedCong.Members);

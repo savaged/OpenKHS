@@ -7,7 +7,7 @@ namespace OpenKHS.ViewModels
 {
     public class PublicTalksViewModel : IViewModel
     {
-        public PublicTalksViewModel(IDataGateway dataGateway)
+        public PublicTalksViewModel()
         {
         }
     }

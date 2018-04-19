@@ -10,7 +10,6 @@ namespace OpenKHS.ViewModels
         private IDialogService _dialogService;
 
         public DialogViewModelBase(IDataGateway dataGateway, IDialogService dialogService)
-            : base(dataGateway)
         {
             _dialogService = dialogService;
         }
