@@ -18,7 +18,7 @@ namespace OpenKHS.Test.Feature
             Assert.IsTrue(assignmentTally == 1);
 
             Assert.AreEqual(assignmentTally, 1);
-            Assert.AreEqual(1, assignmentTally);
+            Assert.AreEqual(1, (int)assignmentTally);
 
             var another = assignmentTally;
             Assert.AreEqual(another, assignmentTally);
@@ -33,7 +33,7 @@ namespace OpenKHS.Test.Feature
             var assignmentTally = new AssignmentTally();
             Assert.AreEqual(assignmentTally, 0);
             assignmentTally++;
-            Assert.AreEqual(assignmentTally, 1);
+            Assert.AreEqual((int)assignmentTally, 1);
             int i = (int)assignmentTally;
         }
     }

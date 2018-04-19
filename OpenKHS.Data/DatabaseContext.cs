@@ -29,7 +29,7 @@ namespace OpenKHS.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Ignore<AssignmentTally>();
+            modelBuilder.Ignore(typeof(AssignmentTally));
         }
     }
 }

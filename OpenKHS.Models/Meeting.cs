@@ -25,13 +25,13 @@ namespace OpenKHS.Models
 
         public virtual void Publish()
         {
-            Chairman.Tally++;
-            Attendant.Tally++;
-            Security.Tally++;
-            SoundDesk.Tally++;
-            Platform.Tally++;
-            RovingMic1.Tally++;
-            RovingMic2.Tally++;
+            Chairman.IncrementTally();
+            Attendant.IncrementTally();
+            Security.IncrementTally();
+            SoundDesk.IncrementTally();
+            Platform.IncrementTally();
+            RovingMic1.IncrementTally();
+            RovingMic2.IncrementTally();
         }
 
         public DateTime WeekStartingDate

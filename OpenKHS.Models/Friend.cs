@@ -8,9 +8,11 @@ namespace OpenKHS.Models
 {
     public class Friend : ModelBase, IModel
     {
+        private AssignmentTally _tally;
+
         public Friend()
         {
-            Tally = new AssignmentTally();
+            _tally = new AssignmentTally();
             if (UnavailablePeriods == null)
             {
                 UnavailablePeriods = new List<DateRange>();
@@ -20,12 +22,16 @@ namespace OpenKHS.Models
         public string Name { get; set; }
         
         public List<DateRange> UnavailablePeriods { get; set; }
-
-        public AssignmentTally Tally { get; set; }
-
+        
         public int AssignmentTally
         {
-            get => (int)Tally;
+            get => _tally;
+            set => _tally = new AssignmentTally(value);
+        }
+
+        public void IncrementTally()
+        {
+            _tally++;
         }
 
         #region Privileges

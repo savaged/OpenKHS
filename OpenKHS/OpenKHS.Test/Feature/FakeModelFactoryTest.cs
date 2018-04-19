@@ -71,7 +71,6 @@ namespace OpenKHS.Test.Feature
         {
             var privileges = new List<string> { "Attendant" };
             var congMember = new FakeModelFactory().MakeCongMemberWithAssignmentTally();
-            Assert.IsNotNull(congMember.Tally);
             Assert.IsTrue(congMember.AssignmentTally < 6);
         }
 

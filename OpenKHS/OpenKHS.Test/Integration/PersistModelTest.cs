@@ -5,6 +5,8 @@ using OpenKHS.Seeder;
 using OpenKHS.Data;
 using OpenKHS.Facades;
 using OpenKHS.Models;
+using Microsoft.EntityFrameworkCore;
+using SQLitePCL;
 
 namespace OpenKHS.Test.Integration
 {
@@ -45,7 +47,20 @@ namespace OpenKHS.Test.Integration
             Assert.IsNotNull(json);
             Assert.IsTrue(json.Length > 1000);
 
-            using (var context = new DatabaseContext(OptionsBuilder.Options))
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>()
+                .UseInMemoryDatabase("DataSource=:memory:");
+            Batteries.Init();
+
+            using (var context = new DatabaseContext(optionsBuilder.Options))
+            {
+                context.Database.EnsureDeleted();
+            }
+            using (var context = new DatabaseContext(optionsBuilder.Options))
+            {
+                context.Database.EnsureCreated();
+            }
+
+            using (var context = new DatabaseContext(optionsBuilder.Options))
             {
                 foreach (var friend in homeCong.Members)
                 {
@@ -55,7 +70,7 @@ namespace OpenKHS.Test.Integration
                 context.SaveChanges();
             }
 
-            using (var context = new DatabaseContext(OptionsBuilder.Options))
+            using (var context = new DatabaseContext(optionsBuilder.Options))
             {
                 // read
                 var retrievedCong = new Congregation
@@ -69,7 +84,7 @@ namespace OpenKHS.Test.Integration
 
             string name;
             int id;
-            using (var context = new DatabaseContext(OptionsBuilder.Options))
+            using (var context = new DatabaseContext(optionsBuilder.Options))
             {
                 var first = context.Friends.First();
                 id = first.Id;
@@ -78,14 +93,30 @@ namespace OpenKHS.Test.Integration
                 first.Name = "I Altered";
                 context.SaveChanges();
             }
-            using (var context = new DatabaseContext(OptionsBuilder.Options))
+            using (var context = new DatabaseContext(optionsBuilder.Options))
             {
                 // check updated
                 var updated = context.Friends.Single(f => f.Id == id);
                 Assert.AreNotEqual(name, updated.Name);
             }
+            int tally;
+            using (var context = new DatabaseContext(optionsBuilder.Options))
+            {
+                var first = context.Friends.First();
+                id = first.Id;
+                tally = first.AssignmentTally;
+                // update
+                first.IncrementTally();
+                context.SaveChanges();
+            }
+            using (var context = new DatabaseContext(optionsBuilder.Options))
+            {
+                // check updated
+                var updated = context.Friends.Single(f => f.Id == id);
+                Assert.AreNotEqual(tally, updated.AssignmentTally);
+            }
 
-            using (var context = new DatabaseContext(OptionsBuilder.Options))
+            using (var context = new DatabaseContext(optionsBuilder.Options))
             {
                 foreach (var friend in context.Friends)
                 {

@@ -7,7 +7,7 @@ using OpenKHS.Models;
 namespace OpenKHS.Test.Integration
 {
     [TestClass]
-    public class DbConfigTest : TestBase
+    public class DbConfigTest : DbContextTestBase
     {
         [TestMethod]
         public void IntegrationTestDbConfig()

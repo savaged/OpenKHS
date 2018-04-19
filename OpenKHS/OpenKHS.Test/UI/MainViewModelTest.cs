@@ -8,7 +8,7 @@ using OpenKHS.ViewModels;
 namespace OpenKHS.Test.Unit
 {
     [TestClass]
-    public class MainViewModelTest : TestBase
+    public class MainViewModelTest : DbContextTestBase
     {
         [TestMethod]
         public void TestLoadNewCong()
