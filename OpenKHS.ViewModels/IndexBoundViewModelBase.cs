@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using OpenKHS.Data;
 using OpenKHS.Interfaces;
-using OpenKHS.Models;
 
 namespace OpenKHS.ViewModels
 {
@@ -22,7 +22,10 @@ namespace OpenKHS.ViewModels
             {
                 Index.Clear();
             }
-            // TODO load index
+            using (var dbContext = new DatabaseContext())
+            {
+                // TODO
+            }
         }
 
         public ObservableCollection<T> Index { get; set; }

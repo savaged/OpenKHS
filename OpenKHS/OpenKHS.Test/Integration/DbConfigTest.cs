@@ -1,9 +1,9 @@
 ﻿using System;
-using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenKHS.Data;
 using OpenKHS.Models;
+using SQLitePCL;
 
 namespace OpenKHS.Test.Integration
 {
@@ -16,7 +16,7 @@ namespace OpenKHS.Test.Integration
             var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>()
                 .UseInMemoryDatabase("DataSource=:memory:");
 
-            SQLitePCL.Batteries.Init();
+            Batteries.Init();
 
             using (var context = new DatabaseContext(optionsBuilder.Options))
             {

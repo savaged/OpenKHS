@@ -6,6 +6,7 @@ using System.ComponentModel;
 using Ninject;
 using OpenKHS.Interfaces;
 using OpenKHS.Data;
+using SQLitePCL;
 
 namespace OpenKHS
 {
@@ -24,6 +25,7 @@ namespace OpenKHS
 
             Log.Info("Initialising local database");
 
+            Batteries.Init();
             using (var db = new DatabaseContext())
             {
                 db.Database.EnsureCreated();

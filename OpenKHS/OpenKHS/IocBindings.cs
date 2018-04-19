@@ -18,7 +18,6 @@ namespace OpenKHS
         public override void Load()
         {
             Bind<IDialogService>().To<DialogService>().InSingletonScope();
-            Bind<IDataGateway>().To<JsonFileGateway>().InSingletonScope();
             Bind<IMainView>().To<MainWindow>();
             Bind<IMainViewModel>().To<MainViewModel>();
             
