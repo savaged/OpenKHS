@@ -2,6 +2,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics;
 using System.IO;
+using Microsoft.EntityFrameworkCore;
+using OpenKHS.Data;
+using SQLitePCL;
 
 namespace OpenKHS.Test
 {
@@ -9,6 +12,9 @@ namespace OpenKHS.Test
     public class TestBase
     {
         private TestContext testContextInstance;
+
+        protected DbContextOptionsBuilder<DatabaseContext> OptionsBuilder;
+
         /// <summary>
         ///Gets or sets the test context which provides
         ///information about and functionality for the current test run.
@@ -33,6 +39,14 @@ namespace OpenKHS.Test
         [TestInitialize]
         public void Initialization()
         {
+            OptionsBuilder = new DbContextOptionsBuilder<DatabaseContext>()
+                .UseInMemoryDatabase("DataSource=:memory:");
+            Batteries.Init();
+            using (var context = new DatabaseContext(OptionsBuilder.Options))
+            {
+                context.Database.EnsureCreated();
+            }
+
             // Start counting time
             this.Stopwatch = new Stopwatch();
             this.Stopwatch.Start();

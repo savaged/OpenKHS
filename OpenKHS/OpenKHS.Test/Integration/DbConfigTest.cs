@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenKHS.Data;
 using OpenKHS.Models;
-using SQLitePCL;
 
 namespace OpenKHS.Test.Integration
 {
@@ -13,15 +12,8 @@ namespace OpenKHS.Test.Integration
         [TestMethod]
         public void IntegrationTestDbConfig()
         {
-            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>()
-                .UseInMemoryDatabase("DataSource=:memory:");
-
-            Batteries.Init();
-
-            using (var context = new DatabaseContext(optionsBuilder.Options))
+            using (var context = new DatabaseContext(OptionsBuilder.Options))
             {
-                context.Database.EnsureCreated();
-            
                 var friend = new Friend();
                 Assert.AreEqual(0, friend.Id);
                 context.Friends.Add(friend);
