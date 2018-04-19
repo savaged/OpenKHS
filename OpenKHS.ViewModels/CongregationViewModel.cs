@@ -8,7 +8,7 @@ using GalaSoft.MvvmLight.CommandWpf;
 
 namespace OpenKHS.ViewModels
 {
-    public class CongregationViewModel : ModelBoundViewModelBase<Congregation>
+    public class CongregationViewModel : IndexBoundViewModelBase<Friend>
     {
         private Friend _selectedCongMember;
 
@@ -17,42 +17,26 @@ namespace OpenKHS.ViewModels
         {
             Initialise();
 
-            if (ModelObject.Members.Count > 0)
+            if (Index.Count == 0)
             {
-                Members = new ObservableCollection<Friend>(ModelObject.Members);
-            } 
-            else
-            {
-                Members = new ObservableCollection<Friend>
+                Index = new ObservableCollection<Friend>
                 {
                     new Friend()
                 };
             }
         }
 
-        public ObservableCollection<Friend> Members { get; }
-
-        public Friend SelectedCongMember
-        {
-            get => _selectedCongMember;
-            set
-            {
-                Set(ref _selectedCongMember, value);
-                RaisePropertyChanged(nameof(IsCongMemberSelected));
-            }
-        }
-
         public bool IsCongMemberSelected
         {
-            get => SelectedCongMember != null && SelectedCongMember.Name != null && SelectedCongMember.Name != "";
+            get => SelectedItem != null && SelectedItem.Name != null && SelectedItem.Name != "";
         }
 
         public ICommand FormSaveCmd => new RelayCommand(OnFormSave);
 
         private void OnFormSave()
         {
-            ModelObject.Members.Clear();
-            foreach (var friend in Members)
+            Index.Clear();
+            foreach (var friend in Index)
             {
                 if (friend.Name != string.Empty)
                 {
@@ -62,10 +46,10 @@ namespace OpenKHS.ViewModels
                         .ToList();
                     friend.UnavailablePeriods = validDateRanges;
 
-                    ModelObject.Members.Add(friend);
+                    Index.Add(friend);
                 }
             }
-            SaveModelObject();
+            Save();
         }
     }
 }

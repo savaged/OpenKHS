@@ -40,7 +40,7 @@ namespace OpenKHS.ViewModels
 
         public bool IsItemSelected => SelectedItem != null;
 
-        public override void SaveModelObject()
+        public override void Save()
         {
             // TODO
         }

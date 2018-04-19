@@ -47,8 +47,8 @@ namespace OpenKHS.ViewModels
             _congregationViewModel = new CongregationViewModel(gateway);
             // TODO figure out how talks should work
             _publicTalksViewModel = new PublicTalksViewModel(gateway);
-            _pmScheduleViewModel = new PmScheduleViewModel(gateway, _congregationViewModel.Members);
-            _clmmScheduleViewModel = new ClmmScheduleViewModel(gateway, _congregationViewModel.Members);
+            _pmScheduleViewModel = new PmScheduleViewModel(gateway, _congregationViewModel.Index);
+            _clmmScheduleViewModel = new ClmmScheduleViewModel(gateway, _congregationViewModel.Index);
 
             PropertyChanged += OnPropertyChanged;
         }
@@ -96,8 +96,8 @@ namespace OpenKHS.ViewModels
             if (e.PropertyName == nameof(SelectedIndex))
             {
                 // TODO is there a better way to auto-save?
-                _congregationViewModel.SaveModelObject();
-                _pmScheduleViewModel.SaveModelObject();
+                _congregationViewModel.Save();
+                _pmScheduleViewModel.Save();
                 //_clmmScheduleViewModel.SaveModelObject();
             }
         }

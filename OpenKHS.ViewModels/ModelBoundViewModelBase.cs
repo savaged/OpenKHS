@@ -29,7 +29,7 @@ namespace OpenKHS.ViewModels
             set => Set(ref _modelObject, value);
         }
 
-        public virtual void SaveModelObject()
+        public virtual void Save()
         {
             _facade.Update(ModelObject);
         }

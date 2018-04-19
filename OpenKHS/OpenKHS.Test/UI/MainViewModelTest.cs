@@ -22,8 +22,8 @@ namespace OpenKHS.Test.Unit
             var mvm = new MainViewModel(mockGateway.Object, null);
             Assert.IsNotNull(mvm.CongregationVM);
             var cvm = (CongregationViewModel)mvm.CongregationVM;
-            Assert.IsNotNull(cvm.Members);
-            Assert.AreEqual(1, cvm.Members.Count);
+            Assert.IsNotNull(cvm.Index);
+            Assert.AreEqual(1, cvm.Index.Count);
         }
         
     }

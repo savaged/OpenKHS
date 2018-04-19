@@ -47,14 +47,14 @@ namespace OpenKHS.ViewModels
 
         public bool IsItemSelected => SelectedItem != null;
 
-        public override void SaveModelObject()
+        public override void Save()
         {
             ModelObject.Schedules.Clear();
             foreach (var item in Index)
             {
                 ModelObject.Schedules.Add(item);
             }
-            base.SaveModelObject();
+            base.Save();
         }
     }
 }

@@ -5,6 +5,6 @@ namespace OpenKHS.Interfaces
     {
         T ModelObject { get; set; }
 
-        void SaveModelObject();
+        void Save();
     }
 }
