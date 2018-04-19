@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using OpenKHS.Interfaces;
+using OpenKHS.Data;
 using OpenKHS.Models;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -12,9 +12,11 @@ namespace OpenKHS.ViewModels
     {
         public CongregationViewModel()
         {
-            Initialise();
-
-            if (Index.Count == 0)
+            using (var db = new DatabaseContext())
+            {
+                Initialise(db.Friends.ToList());
+            }
+            if (Index == null || Index.Count == 0)
             {
                 Index = new ObservableCollection<Friend>
                 {

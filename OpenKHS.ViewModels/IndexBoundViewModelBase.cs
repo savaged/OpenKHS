@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using OpenKHS.Data;
 using OpenKHS.Interfaces;
 
 namespace OpenKHS.ViewModels
@@ -8,23 +8,20 @@ namespace OpenKHS.ViewModels
     public abstract class IndexBoundViewModelBase<T> : ModelBoundViewModelBase<T>
         where T : IModel, new()
     {
-        private T _selectedItem;
-
         public IndexBoundViewModelBase()
         {
             Index = new ObservableCollection<T>();
         }
 
-        protected override void Initialise()
+        protected void Initialise(IList<T> data)
         {
-            base.Initialise();
             if (Index.Count > 0)
             {
                 Index.Clear();
             }
-            using (var dbContext = new DatabaseContext())
+            foreach (var item in data)
             {
-                // TODO
+                Index.Add(item);
             }
         }
 
@@ -32,19 +29,15 @@ namespace OpenKHS.ViewModels
 
         public T SelectedItem
         {
-            get => _selectedItem;
+            get => ModelObject;
             set
             {
-                Set(ref _selectedItem, value);
+                ModelObject = value;
+                RaisePropertyChanged(nameof(SelectedItem));
                 RaisePropertyChanged(nameof(IsItemSelected));
             }
         }
 
         public bool IsItemSelected => SelectedItem != null;
-
-        public override void Save()
-        {
-            // TODO
-        }
     }
 }

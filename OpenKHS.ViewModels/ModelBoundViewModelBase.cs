@@ -1,6 +1,7 @@
 ﻿using System;
 using OpenKHS.Interfaces;
 using GalaSoft.MvvmLight;
+using OpenKHS.Data;
 
 namespace OpenKHS.ViewModels
 {
@@ -13,9 +14,9 @@ namespace OpenKHS.ViewModels
         {
         }
 
-        protected virtual void Initialise()
+        protected void Initialise(T data)
         {
-            // TODO Load ModelObject 
+            ModelObject = data;
         }
 
         public T ModelObject
@@ -24,9 +25,12 @@ namespace OpenKHS.ViewModels
             set => Set(ref _modelObject, value);
         }
 
-        public virtual void Save()
+        public void Save()
         {
-            // TODO Save model object
+            using (var db = new DatabaseContext())
+            {
+                db.SaveChanges();
+            }
         }
     }
 }

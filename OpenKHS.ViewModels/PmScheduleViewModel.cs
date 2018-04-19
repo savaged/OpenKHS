@@ -6,11 +6,10 @@ using OpenKHS.Models;
 
 namespace OpenKHS.ViewModels
 {
-    public class PmScheduleViewModel : SchedulesViewModelBase<PmSchedules, PmSchedule>
+    public class PmScheduleViewModel : IndexBoundViewModelBase<PmSchedule>
     {
         public PmScheduleViewModel(IList<Friend> congMembers)
         {
-            Initialise();
             Attendants = congMembers.Where(f => f.Attendant).ToList();
         }
 
