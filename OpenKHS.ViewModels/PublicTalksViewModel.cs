@@ -5,7 +5,7 @@ using OpenKHS.Models;
 
 namespace OpenKHS.ViewModels
 {
-    public class PublicTalksViewModel : IViewModel
+    public class PublicTalksViewModel : LocalViewModelBase, IViewModel
     {
         public PublicTalksViewModel()
         {

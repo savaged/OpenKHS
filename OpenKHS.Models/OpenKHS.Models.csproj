@@ -72,9 +72,7 @@
     <Compile Include="MeetingPart.cs" />
     <Compile Include="ModelBase.cs" />
     <Compile Include="PmSchedule.cs" />
-    <Compile Include="ClmmSchedules.cs" />
     <Compile Include="PublicTalks.cs" />
-    <Compile Include="Weeks.cs" />
     <Compile Include="PmSpeaker.cs" />
     <Compile Include="Attributes\PrivilegeAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -82,7 +80,6 @@
     <Compile Include="SchoolMeetingPart.cs" />
     <Compile Include="Utils\WeekNumberAdapter.cs" />
     <Compile Include="VisitingSpeaker.cs" />
-    <Compile Include="PmSchedules.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OpenKHS.Interfaces\OpenKHS.Interfaces.csproj">

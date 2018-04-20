@@ -113,10 +113,13 @@
     <Compile Include="DialogViewModelBase.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="IndexBoundViewModelBase.cs" />
+    <Compile Include="LocalViewModelBase.cs" />
+    <Compile Include="ScheduleViewModelBase.cs" />
     <Compile Include="PmScheduleViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublicTalksViewModel.cs" />
     <Compile Include="ModelBoundViewModelBase.cs" />
+    <Compile Include="Utils\ViewState.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\mvvm-dialogs\MvvmDialogs.csproj">
@@ -140,8 +143,6 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Utils\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

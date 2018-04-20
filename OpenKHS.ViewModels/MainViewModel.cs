@@ -2,15 +2,14 @@
 using log4net;
 using System.Reflection;
 using MvvmDialogs;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System.Windows.Input;
 using OpenKHS.Interfaces;
-using OpenKHS.Models;
+using OpenKHS.ViewModels.Utils;
 
 namespace OpenKHS.ViewModels
 {
-    public class MainViewModel : ViewModelBase, IMainViewModel
+    public class MainViewModel : LocalViewModelBase, IMainViewModel
     {
         #region Parameters / Properties
 
@@ -39,7 +38,7 @@ namespace OpenKHS.ViewModels
 
         #region Constructors
 
-        public MainViewModel(IDialogService dialogService) 
+        public MainViewModel(IDialogService dialogService)
         {
             DialogService = dialogService;
             _congregationViewModel = new CongregationViewModel();

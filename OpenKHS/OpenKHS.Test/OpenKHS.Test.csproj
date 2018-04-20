@@ -176,6 +176,7 @@
     <Compile Include="Integration\DbConfigTest.cs" />
     <Compile Include="DbContextTestBase.cs" />
     <Compile Include="UI\MainViewModelTest.cs" />
+    <Compile Include="Feature\PmScheduleLoadFirstTimeTest.cs" />
     <Compile Include="Unit\ResponseConverterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestBase.cs" />

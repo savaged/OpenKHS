@@ -5,7 +5,7 @@ using OpenKHS.Data;
 
 namespace OpenKHS.ViewModels
 {
-    public abstract class ModelBoundViewModelBase<T> : ViewModelBase, IModelBoundViewModel<T> 
+    public abstract class ModelBoundViewModelBase<T> : LocalViewModelBase, IModelBoundViewModel<T> 
         where T : IModel, new()
     {
         private T _modelObject;
