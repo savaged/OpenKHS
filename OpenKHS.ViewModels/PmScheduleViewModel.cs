@@ -12,11 +12,11 @@ namespace OpenKHS.ViewModels
         {
         }
 
-        protected override void LoadSchedule(int week)
+        protected override void LoadSchedule(DateTime weekStaring)
         {
             using (var db = new DatabaseContext())
             {
-                var data = db.PmSchedules.SingleOrDefault(s => s.Week == week);
+                var data = db.PmSchedules.SingleOrDefault(s => s.WeekStarting == weekStaring);
                 Initialise(data);
             }
         }

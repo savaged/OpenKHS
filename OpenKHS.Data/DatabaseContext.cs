@@ -2,6 +2,7 @@
 using System.IO;
 using Microsoft.EntityFrameworkCore;
 using OpenKHS.Models;
+using SQLitePCL;
 
 namespace OpenKHS.Data
 {
@@ -25,6 +26,7 @@ namespace OpenKHS.Data
                 databaseFilePath = ApplicationData.ResourceLocation + databaseFilePath;
                 optionsBuilder.UseSqlite($"Data source={databaseFilePath}");
             }
+            Batteries.Init();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

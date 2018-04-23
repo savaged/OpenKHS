@@ -9,10 +9,10 @@ namespace OpenKHS.Models
     {
         public Meeting()
         {
-            Week = WeekNumberAdapter.GetIso8601WeekOfYear(DateTime.Now);
+            WeekStarting = WeekNumberAdapter.GetFirstDateOfWeekIso8601(DateTime.Now);
         }
 
-        public int Week { get; set; }
+        public DateTime WeekStarting { get; set; }
 
         public Friend Chairman { get; set; }
 
@@ -37,11 +37,6 @@ namespace OpenKHS.Models
             Platform.IncrementTally();
             RovingMic1.IncrementTally();
             RovingMic2.IncrementTally();
-        }
-
-        public DateTime WeekStartingDate
-        {
-            get => WeekNumberAdapter.FirstDateOfWeekIso8601(Week);
-        }        
+        }      
     }
 }

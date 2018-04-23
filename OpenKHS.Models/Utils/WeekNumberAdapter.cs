@@ -1,15 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OpenKHS.Models.Utils
 {
     public static class WeekNumberAdapter
     {
-        public static DateTime FirstDateOfWeekIso8601(int weekOfYear)
+        public static DateTime GetFirstDateOfWeekIso8601(DateTime dateTime)
+        {
+            int week = GetIso8601WeekOfYear(dateTime);
+            return GetFirstDateOfWeekIso8601(week);
+        }
+
+        private static DateTime GetFirstDateOfWeekIso8601(int weekOfYear)
         {
             var year = DateTime.Now.Year;
             var jan1 = new DateTime(year, 1, 1);
@@ -28,14 +30,15 @@ namespace OpenKHS.Models.Utils
             return result.AddDays(-3);
         }
 
-        public static int GetIso8601WeekOfYear(DateTime time)
+        private static int GetIso8601WeekOfYear(DateTime time)
         {
             DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(time);
             if (day >= DayOfWeek.Monday && day <= DayOfWeek.Wednesday)
             {
                 time = time.AddDays(3);
             }
-            return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+            return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(
+                time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
         }
     }
 }

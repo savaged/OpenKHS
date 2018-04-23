@@ -7,6 +7,6 @@ namespace OpenKHS.Interfaces
     {
         void Publish();
 
-        int Week { get; set; }
+        DateTime WeekStarting { get; set; }
     }
 }

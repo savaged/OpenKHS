@@ -36,10 +36,10 @@ namespace OpenKHS.ViewModels
 
         private void OnViewWeek(DateTime dateTime)
         {
-            var week = WeekNumberAdapter.GetIso8601WeekOfYear(dateTime);
-            LoadSchedule(week);
+            var weekStarting = WeekNumberAdapter.GetFirstDateOfWeekIso8601(dateTime);
+            LoadSchedule(weekStarting);
         }
-        protected abstract void LoadSchedule(int week);
+        protected abstract void LoadSchedule(DateTime weekStarting);
 
         #endregion
     }

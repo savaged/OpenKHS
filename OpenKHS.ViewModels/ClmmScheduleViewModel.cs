@@ -11,7 +11,7 @@ namespace OpenKHS.ViewModels
         {
         }
 
-        protected override void LoadSchedule(int week)
+        protected override void LoadSchedule(DateTime weekStarting)
         {
             throw new NotImplementedException();
         }
