@@ -1,13 +1,12 @@
 ﻿using System;
 using Newtonsoft.Json;
 using OpenKHS.Interfaces;
-using OpenKHS.Models;
-using System.Collections.Generic;
 using System.IO;
+using System.Collections.Generic;
 
 namespace OpenKHS.Facades
 {
-    public class JsonDataGatewayFacade<T> where T : IModel, new()
+    public class JsonDataGatewayFacade<T> : IDataGatewayFacade<T> where T : IModel, new()
     {
         private IDataGateway _gateway;
         private JsonSerializerSettings _settings;
@@ -21,7 +20,7 @@ namespace OpenKHS.Facades
             };
         }
 
-        public T Show()
+        public T Show(int id)
         {
             string response;
             var model = new T();
@@ -73,6 +72,11 @@ namespace OpenKHS.Facades
                 throw new ArgumentNullException("Expected model of type " + typeof(T) +
                     " never to be null when calling the " + method + " action.");
             }
+        }
+
+        public IList<T> Index()
+        {
+            throw new NotImplementedException();
         }
     }
 }

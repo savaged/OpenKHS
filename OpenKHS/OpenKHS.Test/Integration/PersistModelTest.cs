@@ -28,7 +28,7 @@ namespace OpenKHS.Test.Integration
             var result = f.Store(homeCong);
             Assert.IsTrue(result);
             // update
-            var retrievedCong = f.Show();
+            var retrievedCong = f.Show(1);
             Assert.IsNotNull(retrievedCong);
             Assert.IsNotNull(retrievedCong.Members);
             Assert.AreEqual(homeCong.Members.Count, retrievedCong.Members.Count);
