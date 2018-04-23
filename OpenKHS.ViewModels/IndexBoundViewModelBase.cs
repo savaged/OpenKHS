@@ -32,12 +32,18 @@ namespace OpenKHS.ViewModels
             get => ModelObject;
             set
             {
+                base.Save();
                 ModelObject = value;
                 RaisePropertyChanged(nameof(SelectedItem));
                 RaisePropertyChanged(nameof(IsItemSelected));
             }
         }
 
-        public bool IsItemSelected => SelectedItem != null;
+        public virtual bool IsItemSelected => SelectedItem != null;
+
+        public override void Save()
+        {
+            throw new NotImplementedException("Saving is expected on a single model object");
+        }
     }
 }

@@ -28,8 +28,9 @@ namespace OpenKHS.ViewModels
             set => Set(ref _modelObject, value);
         }
 
-        public void Save()
+        public virtual void Save()
         {
+            // TODO Move this to a facade
             using (var db = new DatabaseContext())
             {
                 db.SaveChanges();

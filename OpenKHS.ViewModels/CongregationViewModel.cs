@@ -25,16 +25,15 @@ namespace OpenKHS.ViewModels
             }
         }
 
-        public bool IsCongMemberSelected
+        public override bool IsItemSelected
         {
-            get => SelectedItem != null && SelectedItem.Name != null && SelectedItem.Name != "";
+            get => base.IsItemSelected && !string.IsNullOrEmpty(SelectedItem.Name);        
         }
 
         public ICommand FormSaveCmd => new RelayCommand(OnFormSave);
 
         private void OnFormSave()
         {
-            Index.Clear();
             foreach (var friend in Index)
             {
                 if (friend.Name != string.Empty)
@@ -44,8 +43,6 @@ namespace OpenKHS.ViewModels
                         .Where(u => u.End != DateTime.MinValue)
                         .ToList();
                     friend.UnavailablePeriods = validDateRanges;
-
-                    Index.Add(friend);
                 }
             }
             Save();

@@ -19,68 +19,66 @@
         <DataGrid Grid.Column="0"
                   Margin="10"
                   x:Name="CongMembersGrid"
-                  ItemsSource="{Binding Members}"
-                  SelectedItem="{Binding SelectedCongMember}"
+                  ItemsSource="{Binding Index}"
+                  SelectedItem="{Binding SelectedItem}"
                   AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="1*"/>
             </DataGrid.Columns>
         </DataGrid>
 
-        <StackPanel Grid.Column="1" Margin="10">
-            <Button HorizontalAlignment="Right" Command="{Binding FormSaveCmd}" Content="Save" />
-            <TabControl Visibility="{Binding IsCongMemberSelected, Converter={StaticResource BooleanToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}">
-                <TabItem Header="Assignments">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Column="0">
-                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmChairman}">CLMM Chairman</CheckBox>
-                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmPrayer}">CLMM Prayer</CheckBox>
-                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmTreasures}">CLMM Treasures</CheckBox>
-                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmGems}">CLMM Gems</CheckBox>
-                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmBibleReading}">CLMM Bible Reading</CheckBox>
-                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmSchoolMonthPresentations}">Ministry Video Presentations</CheckBox>
-                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmSchoolInitialCall}">Initial Call</CheckBox>
-                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmSchoolReturnVisit}">Return Visit</CheckBox>
-                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmSchoolBibleStudy}">Bible Study Demonstration</CheckBox>
-                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmSchoolTalk}">Student Talk</CheckBox>
-                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmSchoolAssistant}">School Assistant</CheckBox>
-                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmSecondSchoolOnly}">Second School Only</CheckBox>
-                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmMainHallOnly}">Main Hall Only</CheckBox>
-                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmLacParts}">Living as Christians Parts</CheckBox>
-                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmCbsConductor}">Cong Bible Study Conductor</CheckBox>
-                            <CheckBox IsChecked="{Binding SelectedCongMember.ClmmCbsReader}">Cong Bible Study Reader</CheckBox>
-                        </StackPanel>
-                        <StackPanel Grid.Column="1">
-                            <CheckBox IsChecked="{Binding SelectedCongMember.PublicSpeaker}">Public Speaker</CheckBox>
-                            <CheckBox IsChecked="{Binding SelectedCongMember.AwaySpeaker}">Away Speaker</CheckBox>
-                            <CheckBox IsChecked="{Binding SelectedCongMember.PmChairman}">Public Meeting Chairman</CheckBox>
-                            <CheckBox IsChecked="{Binding SelectedCongMember.WtReader}">WT Reader</CheckBox>
-                            <CheckBox IsChecked="{Binding SelectedCongMember.WtConductor}">WT Conductor</CheckBox>
-                            <Separator/>
-                            <CheckBox IsChecked="{Binding SelectedCongMember.Attendant}">Attendant</CheckBox>
-                            <CheckBox IsChecked="{Binding SelectedCongMember.Security}">Security</CheckBox>
-                            <CheckBox IsChecked="{Binding SelectedCongMember.SoundDesk}">Sound Desk</CheckBox>
-                            <CheckBox IsChecked="{Binding SelectedCongMember.Platform}">Platform</CheckBox>
-                            <CheckBox IsChecked="{Binding SelectedCongMember.RovingMic}">Roving Mic</CheckBox>
-                        </StackPanel>
-                    </Grid>
-                </TabItem>
-                <TabItem Header="Availability">
-                    <DataGrid ItemsSource="{Binding SelectedCongMember.UnavailablePeriods}"
+        <TabControl Grid.Column="1" Margin="10"
+                    Visibility="{Binding IsItemSelected, Converter={StaticResource BooleanToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}">
+            <TabItem Header="Assignments">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <CheckBox IsChecked="{Binding SelectedItem.ClmmChairman}">CLMM Chairman</CheckBox>
+                        <CheckBox IsChecked="{Binding SelectedItem.ClmmPrayer}">CLMM Prayer</CheckBox>
+                        <CheckBox IsChecked="{Binding SelectedItem.ClmmTreasures}">CLMM Treasures</CheckBox>
+                        <CheckBox IsChecked="{Binding SelectedItem.ClmmGems}">CLMM Gems</CheckBox>
+                        <CheckBox IsChecked="{Binding SelectedItem.ClmmBibleReading}">CLMM Bible Reading</CheckBox>
+                        <CheckBox IsChecked="{Binding SelectedItem.ClmmSchoolMonthPresentations}">Ministry Video Presentations</CheckBox>
+                        <CheckBox IsChecked="{Binding SelectedItem.ClmmSchoolInitialCall}">Initial Call</CheckBox>
+                        <CheckBox IsChecked="{Binding SelectedItem.ClmmSchoolReturnVisit}">Return Visit</CheckBox>
+                        <CheckBox IsChecked="{Binding SelectedItem.ClmmSchoolBibleStudy}">Bible Study Demonstration</CheckBox>
+                        <CheckBox IsChecked="{Binding SelectedItem.ClmmSchoolTalk}">Student Talk</CheckBox>
+                        <CheckBox IsChecked="{Binding SelectedItem.ClmmSchoolAssistant}">School Assistant</CheckBox>
+                        <CheckBox IsChecked="{Binding SelectedItem.ClmmSecondSchoolOnly}">Second School Only</CheckBox>
+                        <CheckBox IsChecked="{Binding SelectedItem.ClmmMainHallOnly}">Main Hall Only</CheckBox>
+                        <CheckBox IsChecked="{Binding SelectedItem.ClmmLacParts}">Living as Christians Parts</CheckBox>
+                        <CheckBox IsChecked="{Binding SelectedItem.ClmmCbsConductor}">Cong Bible Study Conductor</CheckBox>
+                        <CheckBox IsChecked="{Binding SelectedItem.ClmmCbsReader}">Cong Bible Study Reader</CheckBox>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1">
+                        <CheckBox IsChecked="{Binding SelectedItem.PublicSpeaker}">Public Speaker</CheckBox>
+                        <CheckBox IsChecked="{Binding SelectedItem.AwaySpeaker}">Away Speaker</CheckBox>
+                        <CheckBox IsChecked="{Binding SelectedItem.PmChairman}">Public Meeting Chairman</CheckBox>
+                        <CheckBox IsChecked="{Binding SelectedItem.WtReader}">WT Reader</CheckBox>
+                        <CheckBox IsChecked="{Binding SelectedItem.WtConductor}">WT Conductor</CheckBox>
+                        <Separator/>
+                        <CheckBox IsChecked="{Binding SelectedItem.Attendant}">Attendant</CheckBox>
+                        <CheckBox IsChecked="{Binding SelectedItem.Security}">Security</CheckBox>
+                        <CheckBox IsChecked="{Binding SelectedItem.SoundDesk}">Sound Desk</CheckBox>
+                        <CheckBox IsChecked="{Binding SelectedItem.Platform}">Platform</CheckBox>
+                        <CheckBox IsChecked="{Binding SelectedItem.RovingMic}">Roving Mic</CheckBox>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Availability">
+                <DataGrid ItemsSource="{Binding SelectedItem.UnavailablePeriods}"
                               AutoGenerateColumns="False"
                               CanUserAddRows="True" CanUserDeleteRows="True"
                               AlternatingRowBackground="LightSlateGray" AlternationCount="2">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Start" Binding="{Binding Start, StringFormat=yyyy-MM-dd}"/>
-                            <DataGridTextColumn Header="End" Binding="{Binding End, StringFormat=yyyy-MM-dd}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </TabItem>
-            </TabControl>
-        </StackPanel>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Start" Binding="{Binding Start, StringFormat=yyyy-MM-dd}"/>
+                        <DataGridTextColumn Header="End" Binding="{Binding End, StringFormat=yyyy-MM-dd}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </UserControl>
