@@ -5,6 +5,8 @@ namespace OpenKHS.Interfaces
 {
     public interface ISchedule : IModel
     {
-        void Publish();        
+        void Publish();
+
+        int Week { get; set; }
     }
 }

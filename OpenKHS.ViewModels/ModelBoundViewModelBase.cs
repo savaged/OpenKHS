@@ -1,6 +1,5 @@
 ﻿using System;
 using OpenKHS.Interfaces;
-using GalaSoft.MvvmLight;
 using OpenKHS.Data;
 
 namespace OpenKHS.ViewModels
@@ -14,8 +13,12 @@ namespace OpenKHS.ViewModels
         {
         }
 
-        protected void Initialise(T data)
+        protected virtual void Initialise(T data)
         {
+            if (data == null)
+            {
+                data = new T();
+            }
             ModelObject = data;
         }
 

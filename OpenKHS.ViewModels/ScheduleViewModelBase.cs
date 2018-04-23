@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using OpenKHS.Models;
 using OpenKHS.Interfaces;
 using GalaSoft.MvvmLight.CommandWpf;
-using System.Globalization;
+using OpenKHS.Models.Utils;
 
 namespace OpenKHS.ViewModels
 {
@@ -36,8 +36,7 @@ namespace OpenKHS.ViewModels
 
         private void OnViewWeek(DateTime dateTime)
         {
-            var cal = new GregorianCalendar(GregorianCalendarTypes.Localized);
-            var week = cal.GetWeekOfYear(dateTime, CalendarWeekRule.FirstFullWeek, DayOfWeek.Monday);
+            var week = WeekNumberAdapter.GetIso8601WeekOfYear(dateTime);
             LoadSchedule(week);
         }
         protected abstract void LoadSchedule(int week);

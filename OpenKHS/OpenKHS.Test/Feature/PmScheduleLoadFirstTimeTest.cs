@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenKHS.Data;
 using OpenKHS.Models;
 using OpenKHS.ViewModels;
+using OpenKHS.Models.Utils;
 
 namespace OpenKHS.Test.Feature
 {
@@ -22,10 +23,11 @@ namespace OpenKHS.Test.Feature
             var vm = new PmScheduleViewModel(congMembers);
 
             Assert.IsNull(vm.ModelObject);
-            
-            vm.ViewWeekCmd.Execute(new DateTime(2018, 4, 20));
 
+            // Default empty schedule for new week
+            vm.ViewWeekCmd.Execute(DateTime.Now);
             Assert.IsNotNull(vm.ModelObject);
+            Assert.AreEqual(WeekNumberAdapter.GetIso8601WeekOfYear(DateTime.Now), vm.ModelObject.Week);
         }
     }
 }
