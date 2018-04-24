@@ -12,9 +12,8 @@ namespace OpenKHS.ViewModels
         private T _modelObject;
         private IDictionary<Type, object> repos;
 
-        public ModelBoundViewModelBase()
+        public ModelBoundViewModelBase(DatabaseContext dbContext)
         {
-            var dbContext = new DatabaseContext();
             repos = new Dictionary<Type, object>
             {
                 { typeof(Friend), new FriendRepository(dbContext) },

@@ -8,8 +8,7 @@ namespace OpenKHS.Data
 {
     public class PmScheduleRepository : ModelRepositoryBase, IModelRepository<PmSchedule>
     {
-        public PmScheduleRepository(DatabaseContext dbContext) 
-            : base(dbContext) { }
+        public PmScheduleRepository(DatabaseContext dbContext) : base(dbContext) { }
 
         public IList<PmSchedule> Index()
         {

@@ -31,5 +31,11 @@ namespace OpenKHS.Views
         {
             Application.Current.Shutdown();
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var vm = ((IMainViewModel)DataContext);
+            vm.CloseView();
+        }
     }
 }

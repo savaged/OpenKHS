@@ -5,6 +5,7 @@ using OpenKHS.Models;
 using OpenKHS.Interfaces;
 using GalaSoft.MvvmLight.CommandWpf;
 using OpenKHS.Models.Utils;
+using OpenKHS.Data;
 
 namespace OpenKHS.ViewModels
 {
@@ -13,7 +14,8 @@ namespace OpenKHS.ViewModels
     {
         private RelayCommand<DateTime> _viewWeekCmd;
 
-        public ScheduleViewModelBase(IList<Friend> congMembers)
+        public ScheduleViewModelBase(DatabaseContext dbContext, IList<Friend> congMembers) 
+            : base(dbContext)
         {
             _viewWeekCmd = new RelayCommand<DateTime>(OnViewWeek, (f) => GlobalViewState.IsNotBusy);
             LoadLookups(congMembers);

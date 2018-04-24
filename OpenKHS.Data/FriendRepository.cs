@@ -8,8 +8,7 @@ namespace OpenKHS.Data
 {
     public class FriendRepository : ModelRepositoryBase, IModelRepository<Friend>
     {
-        public FriendRepository(DatabaseContext dbContext)
-            : base(dbContext) { }
+        public FriendRepository(DatabaseContext dbContext) : base(dbContext) { }
 
         public IList<Friend> Index()
         {

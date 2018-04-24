@@ -4,6 +4,7 @@ using OpenKHS.ViewModels;
 using Ninject.Modules;
 using OpenKHS.Interfaces;
 using OpenKHS.Views;
+using OpenKHS.Data;
 
 namespace OpenKHS
 {
@@ -19,7 +20,7 @@ namespace OpenKHS
             Bind<IDialogService>().To<DialogService>().InSingletonScope();
             Bind<IMainView>().To<MainWindow>();
             Bind<IMainViewModel>().To<MainViewModel>();
-            
+            Bind<DatabaseContext>().ToSelf().InSingletonScope();
         }
     }
 }

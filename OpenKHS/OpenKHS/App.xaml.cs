@@ -22,17 +22,15 @@ namespace OpenKHS
             AppDomain currentDomain = AppDomain.CurrentDomain;
             currentDomain.UnhandledException += new UnhandledExceptionEventHandler(UnhandledExceptionOccured);
 
-            Log.Info("Initialising local database");
-
-            using (var db = new DatabaseContext())
-            {
-                db.Database.EnsureCreated();
-            }
-
             Log.Info("Initialising application structure");
 
             var iocKernel = new StandardKernel(new IocBindings());
             iocKernel.Load(AppDomain.CurrentDomain.GetAssemblies());
+
+            Log.Info("Initialising local database");
+            var db = iocKernel.Get<DatabaseContext>();
+            db.Database.EnsureCreated();
+
             var vm = iocKernel.Get<IMainViewModel>();
 
             _mainWindow = iocKernel.Get<IMainView>();

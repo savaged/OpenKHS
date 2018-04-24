@@ -12,7 +12,8 @@
         mc:Ignorable="d"
         Title="Open KHS" Height="480" Width="640"
         WindowState="Normal" 
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Closing="Window_Closing">
 
     <mah:MetroWindow.InputBindings>
         <KeyBinding Command="{Binding ShowAboutDialogCmd}" Gesture="Alt+F2" />

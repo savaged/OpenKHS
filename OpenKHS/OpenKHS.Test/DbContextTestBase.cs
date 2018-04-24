@@ -8,7 +8,7 @@ namespace OpenKHS.Test
     [TestClass]
     public class DbContextTestBase : TestBase
     {
-        protected DbContextOptionsBuilder<DatabaseContext> OptionsBuilder;
+        protected DatabaseContext DbContext;
 
         /// <summary>
         /// Starts a clock
@@ -16,13 +16,13 @@ namespace OpenKHS.Test
         [TestInitialize]
         public override void Initialization()
         {
-            OptionsBuilder = new DbContextOptionsBuilder<DatabaseContext>()
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>()
                 .UseInMemoryDatabase("DataSource=:memory:");
             Batteries.Init();
-            using (var context = new DatabaseContext(OptionsBuilder.Options))
-            {
-                context.Database.EnsureCreated();
-            }
+            DbContext = new DatabaseContext(optionsBuilder.Options);
+
+            DbContext.Database.EnsureCreated();
+            
             base.Initialization();
         }
     }

@@ -10,7 +10,7 @@ namespace OpenKHS.Test.Unit
         public void TestLoadNewCong()
         {
             // TODO tests for each section/main model object
-            var mvm = new MainViewModel(null);
+            var mvm = new MainViewModel(null, DbContext);
             Assert.IsNotNull(mvm.CongregationVM);
             var cvm = (CongregationViewModel)mvm.CongregationVM;
             Assert.IsNotNull(cvm.ModelObject);
@@ -19,11 +19,11 @@ namespace OpenKHS.Test.Unit
 
             var pmsvm = (PmScheduleViewModel)mvm.PmScheduleVM;
             Assert.IsNotNull(pmsvm.ModelObject);
-            Assert.IsTrue(pmsvm.ModelObject.IsNew);
+            Assert.IsFalse(pmsvm.ModelObject.IsNew);
 
             var clmmsvm = (ClmmScheduleViewModel)mvm.ClmmScheduleVM;
             Assert.IsNotNull(clmmsvm.ModelObject);
-            Assert.IsTrue(clmmsvm.ModelObject.IsNew);
+            Assert.IsFalse(clmmsvm.ModelObject.IsNew);
         }
         
     }

@@ -1,12 +1,13 @@
 ﻿using System;
 using OpenKHS.Models;
 using System.Collections.ObjectModel;
+using OpenKHS.Data;
 
 namespace OpenKHS.ViewModels
 {
     public class CongregationViewModel : IndexBoundViewModelBase<Friend>
     {
-        public CongregationViewModel()
+        public CongregationViewModel(DatabaseContext dbContext) : base(dbContext)
         {
             var list = DbContext.Index();
             Initialise(list);

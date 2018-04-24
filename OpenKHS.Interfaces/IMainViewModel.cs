@@ -8,5 +8,6 @@ namespace OpenKHS.Interfaces
         IViewModel PublicTalksVM { get; }
         IViewModel PmScheduleVM { get; }
         IViewModel ClmmScheduleVM { get; }
+        void CloseView();
     }
 }

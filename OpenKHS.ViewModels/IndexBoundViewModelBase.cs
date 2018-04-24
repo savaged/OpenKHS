@@ -3,13 +3,14 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using OpenKHS.Interfaces;
+using OpenKHS.Data;
 
 namespace OpenKHS.ViewModels
 {
     public abstract class IndexBoundViewModelBase<T> : ModelBoundViewModelBase<T>, IIndexBoundViewModel<T> 
         where T : IModel, new()
     {
-        public IndexBoundViewModelBase()
+        public IndexBoundViewModelBase(DatabaseContext dbContext) : base(dbContext)
         {
             Index = new ObservableCollection<T>();
         }

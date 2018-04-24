@@ -8,8 +8,7 @@ namespace OpenKHS.Data
 {
     public class ClmmScheduleRepository : ModelRepositoryBase, IModelRepository<ClmmSchedule>
     {
-        public ClmmScheduleRepository(DatabaseContext dbContext) 
-            : base(dbContext) { }
+        public ClmmScheduleRepository(DatabaseContext dbContext) : base(dbContext) { }
 
         public IList<ClmmSchedule> Index()
         {
