@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using OpenKHS.Data;
 using OpenKHS.Models;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
@@ -9,13 +8,10 @@ namespace OpenKHS.ViewModels
 {
     public class CongregationViewModel : IndexBoundViewModelBase<Friend>
     {
-        public CongregationViewModel() 
+        public CongregationViewModel()
         {
             var list = new List<Friend>();
-            using (var db = new DatabaseContext())
-            {
-                list = db.Friends.ToList();
-            }
+            list = DbContext.Friends.ToList();
             Initialise(list);
 
             if (Index == null || Index.Count == 0)
@@ -29,7 +25,9 @@ namespace OpenKHS.ViewModels
 
         public override bool IsItemSelected
         {
-            get => base.IsItemSelected && !string.IsNullOrEmpty(SelectedItem.Name);        
+            get => base.IsItemSelected && !string.IsNullOrEmpty(SelectedItem.Name);
         }
+
+        protected override void AddModelObjectToDbContext() { if (ModelObject != null) DbContext.Add(ModelObject); }
     }
 }

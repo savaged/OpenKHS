@@ -9,6 +9,13 @@ namespace OpenKHS.ViewModels
     {
         private T _modelObject;
 
+        public ModelBoundViewModelBase()
+        {
+            DbContext = new DatabaseContext();
+        }
+
+        protected DatabaseContext DbContext { get; }
+
         protected virtual void Initialise(T data)
         {
             if (data == null)
@@ -21,8 +28,16 @@ namespace OpenKHS.ViewModels
         public T ModelObject
         {
             get => _modelObject;
-            set => Set(ref _modelObject, value);
+            set
+            {
+                Set(ref _modelObject, value);
+                if (_modelObject != null && _modelObject.IsNew)
+                {
+                    AddModelObjectToDbContext();
+                }
+            }
         }
+        protected abstract void AddModelObjectToDbContext();
 
         public virtual void Save()
         {
@@ -30,10 +45,7 @@ namespace OpenKHS.ViewModels
             {
                 throw new ArgumentNullException("Model object should be initialised prior to Save");
             }
-            using (var db = new DatabaseContext())
-            {
-                db.SaveChanges();
-            }
+            DbContext.SaveChanges();
         }
     }
 }

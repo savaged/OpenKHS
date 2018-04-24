@@ -40,11 +40,20 @@ namespace OpenKHS.ViewModels
         public MainViewModel(IDialogService dialogService)
         {
             DialogService = dialogService;
+
             _congregationViewModel = new CongregationViewModel();
             // TODO figure out how talks should work
             _publicTalksViewModel = new PublicTalksViewModel();
             _pmScheduleViewModel = new PmScheduleViewModel(_congregationViewModel.Index);
             _clmmScheduleViewModel = new ClmmScheduleViewModel(_congregationViewModel.Index);
+
+            PropertyChanged += OnPropertyChanged;
+        }
+
+        public override void Cleanup()
+        {
+            PropertyChanged -= OnPropertyChanged;
+            base.Cleanup();
         }
 
         #endregion
@@ -53,8 +62,17 @@ namespace OpenKHS.ViewModels
 
         private void CloseView()
         {
+            Save();
             Log.Info("Closing App");
             RequestClose?.Invoke(this, null);
+        }
+
+        private void Save()
+        {
+            _congregationViewModel.Save();
+            _clmmScheduleViewModel.Save();
+            _pmScheduleViewModel.Save();
+            // TODO _publicTalksViewModel.Save();
         }
 
         #endregion
@@ -80,6 +98,14 @@ namespace OpenKHS.ViewModels
         #region Events
 
         public event EventHandler RequestClose;
+
+        private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(SelectedIndex))
+            {
+                Save();
+            }
+        }
 
         #endregion
     }

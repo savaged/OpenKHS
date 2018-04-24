@@ -1,7 +1,6 @@
 ﻿
 using MvvmDialogs;
 using OpenKHS.ViewModels;
-using OpenKHS.Data;
 using Ninject.Modules;
 using OpenKHS.Interfaces;
 using OpenKHS.Views;

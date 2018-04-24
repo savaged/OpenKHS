@@ -110,7 +110,6 @@
     <Compile Include="AboutDialogViewModel.cs" />
     <Compile Include="ClmmScheduleViewModel.cs" />
     <Compile Include="CongregationViewModel.cs" />
-    <Compile Include="DialogViewModelBase.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="IndexBoundViewModelBase.cs" />
     <Compile Include="LocalViewModelBase.cs" />

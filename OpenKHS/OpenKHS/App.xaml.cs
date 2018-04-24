@@ -6,7 +6,6 @@ using System.ComponentModel;
 using Ninject;
 using OpenKHS.Interfaces;
 using OpenKHS.Data;
-using SQLitePCL;
 
 namespace OpenKHS
 {

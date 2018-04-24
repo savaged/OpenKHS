@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using OpenKHS.Models.Attributes;
 using OpenKHS.Interfaces;
+using System.ComponentModel.DataAnnotations;
 
 namespace OpenKHS.Models
 {
@@ -19,6 +20,7 @@ namespace OpenKHS.Models
             }
         }
 
+        [Required]
         public string Name { get; set; }
         
         public List<DateRange> UnavailablePeriods { get; set; }
