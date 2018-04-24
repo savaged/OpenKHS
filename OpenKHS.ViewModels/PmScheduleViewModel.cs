@@ -15,10 +15,10 @@ namespace OpenKHS.ViewModels
         protected override void LoadSchedule(DateTime weekStarting)
         {
             var data = new PmSchedule();
-            data = DbContext.PmSchedules.SingleOrDefault(s => s.WeekStarting == weekStarting);
+            data = DbContext.Index().SingleOrDefault(s => s.WeekStarting == weekStarting);
             Initialise(data);
         }
 
-        protected override void AddModelObjectToDbContext() { if (ModelObject != null) DbContext.Add(ModelObject); }
+        protected override void AddModelObjectToDbContext() { if (ModelObject != null) DbContext.Store(ModelObject); }
     }
 }

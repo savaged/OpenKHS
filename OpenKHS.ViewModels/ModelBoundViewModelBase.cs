@@ -1,6 +1,8 @@
 ﻿using System;
 using OpenKHS.Interfaces;
 using OpenKHS.Data;
+using System.Collections.Generic;
+using OpenKHS.Models;
 
 namespace OpenKHS.ViewModels
 {
@@ -8,13 +10,21 @@ namespace OpenKHS.ViewModels
         where T : IModel, new()
     {
         private T _modelObject;
+        private IDictionary<Type, object> repos;
 
         public ModelBoundViewModelBase()
         {
-            DbContext = new DatabaseContext();
+            var dbContext = new DatabaseContext();
+            repos = new Dictionary<Type, object>
+            {
+                { typeof(Friend), new FriendRepository(dbContext) },
+                { typeof(PmSchedule), new PmScheduleRepository(dbContext) },
+                { typeof(ClmmSchedule), new ClmmScheduleRepository(dbContext) }
+            };
+            DbContext = (IModelRepository<T>)repos[typeof(T)];
         }
 
-        protected DatabaseContext DbContext { get; }
+        protected IModelRepository<T> DbContext { get; }
 
         protected virtual void Initialise(T data)
         {
@@ -45,7 +55,7 @@ namespace OpenKHS.ViewModels
             {
                 throw new ArgumentNullException("Model object should be initialised prior to Save");
             }
-            DbContext.SaveChanges();
+            DbContext.Update(ModelObject);
         }
     }
 }

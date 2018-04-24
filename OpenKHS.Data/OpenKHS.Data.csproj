@@ -194,6 +194,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseContext.cs" />
+    <Compile Include="ClmmScheduleRepository.cs" />
+    <Compile Include="PmScheduleRepository.cs" />
+    <Compile Include="ModelRepositoryBase.cs" />
     <Compile Include="Migrations\20180424083449_initial.cs" />
     <Compile Include="Migrations\20180424083449_initial.designer.cs">
       <DependentUpon>20180424083449_initial.cs</DependentUpon>
@@ -206,6 +209,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="ApplicationData.cs" />
+    <Compile Include="FriendRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OpenKHS.Interfaces\OpenKHS.Interfaces.csproj">
