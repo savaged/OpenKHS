@@ -10,16 +10,7 @@ namespace OpenKHS.ViewModels
     {
         public CongregationViewModel(DatabaseContext dbContext) : base(dbContext)
         {
-            var list = DbContext.Index();
-            Initialise(list);
-
-            if (Index == null || Index.Count == 0)
-            {
-                Index = new ObservableCollection<Friend>
-                {
-                    new Friend()
-                };
-            }
+            Initialise(DbContext.Index(), new Friend());
         }
 
         public override bool IsItemSelected

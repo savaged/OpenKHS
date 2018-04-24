@@ -20,7 +20,7 @@ namespace OpenKHS.ViewModels
             _deleteSelectedItemCmd = new RelayCommand(OnDeleteSelectedItem, () => CanExecute);
         }
 
-        protected void Initialise(IList<T> data)
+        protected void Initialise(IList<T> data, T defaultFirstItem)
         {
             if (Index.Count > 0)
             {
@@ -29,6 +29,13 @@ namespace OpenKHS.ViewModels
             foreach (var item in data)
             {
                 Index.Add(item);
+            }
+            if (Index.Count == 0)
+            {
+                Index = new ObservableCollection<T>
+                {
+                    defaultFirstItem != null ? defaultFirstItem : new T()
+                };
             }
             Initialise(data.FirstOrDefault());
         }

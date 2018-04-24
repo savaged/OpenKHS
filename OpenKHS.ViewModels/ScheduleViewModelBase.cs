@@ -9,7 +9,7 @@ using OpenKHS.Data;
 
 namespace OpenKHS.ViewModels
 {
-    public abstract class ScheduleViewModelBase<T> : ModelBoundViewModelBase<T>
+    public abstract class ScheduleViewModelBase<T> : IndexBoundViewModelBase<T>
         where T : ISchedule, new()
     {
         private RelayCommand<DateTime> _viewWeekCmd;
@@ -17,10 +17,11 @@ namespace OpenKHS.ViewModels
         public ScheduleViewModelBase(DatabaseContext dbContext, IList<Friend> congMembers) 
             : base(dbContext)
         {
-            _viewWeekCmd = new RelayCommand<DateTime>(OnViewWeek, (f) => GlobalViewState.IsNotBusy);
-            LoadLookups(congMembers);
             var weekStarting = WeekNumberAdapter.GetFirstDateOfWeekIso8601(DateTime.Now);
-            LoadSchedule(weekStarting);
+            Initialise(DbContext.Index(), GetDefaultSchedule(weekStarting));
+
+            _viewWeekCmd = new RelayCommand<DateTime>(OnViewWeek, (f) => CanExecute);
+            LoadLookups(congMembers);
         }
 
         protected virtual void LoadLookups(IList<Friend> congMembers)
@@ -41,9 +42,10 @@ namespace OpenKHS.ViewModels
         private void OnViewWeek(DateTime dateTime)
         {
             var weekStarting = WeekNumberAdapter.GetFirstDateOfWeekIso8601(dateTime);
-            LoadSchedule(weekStarting);
+            var defaultSchedule = GetDefaultSchedule(weekStarting);
+            SelectedItem = defaultSchedule;
         }
-        protected abstract void LoadSchedule(DateTime weekStarting);
+        protected abstract T GetDefaultSchedule(DateTime weekStarting);
 
         #endregion
     }

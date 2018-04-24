@@ -9,15 +9,11 @@ namespace OpenKHS.ViewModels
     public class PmScheduleViewModel : ScheduleViewModelBase<PmSchedule>
     {
         public PmScheduleViewModel(DatabaseContext dbContext, IList<Friend> congMembers)
-            : base(dbContext, congMembers)
-        {
-        }
+            : base(dbContext, congMembers) { }
 
-        protected override void LoadSchedule(DateTime weekStarting)
+        protected override PmSchedule GetDefaultSchedule(DateTime weekStarting)
         {
-            var data = new PmSchedule();
-            data = DbContext.Index().SingleOrDefault(s => s.WeekStarting == weekStarting);
-            Initialise(data);
+            return DbContext.Index().SingleOrDefault(s => s.WeekStarting == weekStarting);
         }
 
         protected override void AddModelObjectToDbContext() { if (ModelObject != null) DbContext.Store(ModelObject); }
