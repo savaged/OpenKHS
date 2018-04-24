@@ -195,9 +195,9 @@
   <ItemGroup>
     <Compile Include="DatabaseContext.cs" />
     <Compile Include="JsonFileGateway.cs" />
-    <Compile Include="Migrations\20180423075607_initial.cs" />
-    <Compile Include="Migrations\20180423075607_initial.designer.cs">
-      <DependentUpon>20180423075607_initial.cs</DependentUpon>
+    <Compile Include="Migrations\20180424083449_initial.cs" />
+    <Compile Include="Migrations\20180424083449_initial.designer.cs">
+      <DependentUpon>20180424083449_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\DatabaseContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

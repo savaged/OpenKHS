@@ -11,6 +11,8 @@ namespace OpenKHS.Models
     {
         public int Id { get; set; }
 
+        public bool IsNew => Id < 1;
+
         public override string ToString()
         {
             return JsonEncode();

@@ -1,6 +1,5 @@
 ﻿using System;
 using OpenKHS.Interfaces;
-using OpenKHS.Data;
 
 namespace OpenKHS.ViewModels
 {
@@ -9,9 +8,13 @@ namespace OpenKHS.ViewModels
     {
         private T _modelObject;
 
-        public ModelBoundViewModelBase()
+        public ModelBoundViewModelBase(IDataGatewayFacade<T> dataGatewayFacade)
         {
+            DataGatewayFacade = dataGatewayFacade ?? throw new ArgumentNullException(
+                "The data gateway facade should have been set by the last sub-class");
         }
+
+        protected IDataGatewayFacade<T> DataGatewayFacade { get; }
 
         protected virtual void Initialise(T data)
         {
@@ -30,10 +33,17 @@ namespace OpenKHS.ViewModels
 
         public virtual void Save()
         {
-            // TODO Move this to a facade
-            using (var db = new DatabaseContext())
+            if (ModelObject == null)
             {
-                db.SaveChanges();
+                throw new ArgumentNullException("Model object should be set prior to Save");
+            }
+            if (ModelObject.IsNew)
+            {
+                DataGatewayFacade.Store(ModelObject);
+            }
+            else
+            {
+                DataGatewayFacade.Update(ModelObject);
             }
         }
     }

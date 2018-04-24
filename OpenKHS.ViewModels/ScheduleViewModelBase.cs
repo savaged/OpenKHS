@@ -13,7 +13,8 @@ namespace OpenKHS.ViewModels
     {
         private RelayCommand<DateTime> _viewWeekCmd;
 
-        public ScheduleViewModelBase(IList<Friend> congMembers)
+        public ScheduleViewModelBase(IList<Friend> congMembers, IDataGatewayFacade<T> dataGatewayFacade)
+            : base(dataGatewayFacade)
         {
             _viewWeekCmd = new RelayCommand<DateTime>(OnViewWeek, (f) => GlobalViewState.IsNotBusy);
             LoadLookups(congMembers);

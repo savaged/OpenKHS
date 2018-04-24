@@ -119,7 +119,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DatabaseGatewayFacade.cs" />
+    <Compile Include="DbPmScheduleGatewayFacade.cs" />
+    <Compile Include="DbClmmScheduleGatewayFacade.cs" />
+    <Compile Include="DbFriendGatewayFacade.cs" />
     <Compile Include="JsonDataGatewayFacade.cs" />
     <Compile Include="Converters\CongregationConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

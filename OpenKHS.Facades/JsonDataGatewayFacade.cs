@@ -11,6 +11,11 @@ namespace OpenKHS.Facades
         private IDataGateway _gateway;
         private JsonSerializerSettings _settings;
 
+        public IList<T> Search(string field, object arg)
+        {
+            throw new NotImplementedException();
+        }
+
         public JsonDataGatewayFacade(IDataGateway gateway)
         {
             _gateway = gateway;

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
-using OpenKHS.Data;
 using OpenKHS.Models;
+using OpenKHS.Facades;
+using OpenKHS.Interfaces;
+
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -10,12 +12,10 @@ namespace OpenKHS.ViewModels
 {
     public class CongregationViewModel : IndexBoundViewModelBase<Friend>
     {
-        public CongregationViewModel()
+        public CongregationViewModel() : base(new DbFriendGatewayFacade())
         {
-            using (var db = new DatabaseContext())
-            {
-                Initialise(db.Friends.ToList());
-            }
+            Initialise(DataGatewayFacade.Index());
+            
             if (Index == null || Index.Count == 0)
             {
                 Index = new ObservableCollection<Friend>
