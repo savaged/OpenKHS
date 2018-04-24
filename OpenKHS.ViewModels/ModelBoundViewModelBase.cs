@@ -8,14 +8,6 @@ namespace OpenKHS.ViewModels
     {
         private T _modelObject;
 
-        public ModelBoundViewModelBase(IDataGatewayFacade<T> dataGatewayFacade)
-        {
-            DataGatewayFacade = dataGatewayFacade ?? throw new ArgumentNullException(
-                "The data gateway facade should have been set by the last sub-class");
-        }
-
-        protected IDataGatewayFacade<T> DataGatewayFacade { get; }
-
         protected virtual void Initialise(T data)
         {
             if (data == null)
@@ -39,11 +31,11 @@ namespace OpenKHS.ViewModels
             }
             if (ModelObject.IsNew)
             {
-                DataGatewayFacade.Store(ModelObject);
+                //DataGatewayFacade.Store(ModelObject);
             }
             else
             {
-                DataGatewayFacade.Update(ModelObject);
+                //DataGatewayFacade.Update(ModelObject);
             }
         }
     }

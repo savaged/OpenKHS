@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using OpenKHS.Facades;
 using OpenKHS.Models;
 
 namespace OpenKHS.ViewModels
 {
     public class ClmmScheduleViewModel : ScheduleViewModelBase<ClmmSchedule>
     {
-        public ClmmScheduleViewModel(IList<Friend> congMembers) 
-            : base(congMembers, new DbClmmGatewayFacade())
+        public ClmmScheduleViewModel(IList<Friend> congMembers) : base(congMembers)
         {
         }
 

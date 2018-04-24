@@ -8,7 +8,7 @@ namespace OpenKHS.ViewModels
     public abstract class IndexBoundViewModelBase<T> : ModelBoundViewModelBase<T>
         where T : IModel, new()
     {
-        public IndexBoundViewModelBase(IDataGatewayFacade<T> dataGatewayFacade) : base(dataGatewayFacade)
+        public IndexBoundViewModelBase()
         {
             Index = new ObservableCollection<T>();
         }

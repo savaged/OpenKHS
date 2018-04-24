@@ -9,8 +9,7 @@ namespace OpenKHS.ViewModels
         private bool? _dialogResult = false;
         private IDialogService _dialogService;
 
-        public DialogViewModelBase(IDialogService dialogService, IDataGatewayFacade<T> dataGatewayFacade)
-            : base(dataGatewayFacade)
+        public DialogViewModelBase(IDialogService dialogService)
         {
             _dialogService = dialogService;
         }

@@ -41,7 +41,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IDataGateway.cs" />
-    <Compile Include="IDataGatewayFacade.cs" />
     <Compile Include="IJsonEncode.cs" />
     <Compile Include="IMainView.cs" />
     <Compile Include="IMainViewModel.cs" />

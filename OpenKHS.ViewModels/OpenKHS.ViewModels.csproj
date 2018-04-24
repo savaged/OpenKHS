@@ -130,10 +130,6 @@
       <Project>{15669d09-eb1e-4f56-a8f4-c6e71183a6e1}</Project>
       <Name>OpenKHS.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\OpenKHS.Facades\OpenKHS.Facades.csproj">
-      <Project>{42229033-e664-472c-9214-785120941843}</Project>
-      <Name>OpenKHS.Facades</Name>
-    </ProjectReference>
     <ProjectReference Include="..\OpenKHS.Interfaces\OpenKHS.Interfaces.csproj">
       <Project>{2a2760a3-b447-42aa-8001-37bbe92582da}</Project>
       <Name>OpenKHS.Interfaces</Name>
