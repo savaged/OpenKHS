@@ -20,7 +20,6 @@ namespace OpenKHS.Test.Feature
             var vm = new PmScheduleViewModel(DbContext, congMembers);
 
             // Default empty schedule for new week
-            vm.ViewWeekCmd.Execute(DateTime.Now);
             Assert.IsNotNull(vm.ModelObject);
             Assert.AreEqual(
                 WeekNumberAdapter.GetFirstDateOfWeekIso8601(DateTime.Now), vm.ModelObject.WeekStarting);
