@@ -119,6 +119,9 @@ namespace OpenKHS.Models
         [Privilege]
         public bool WtConductor { get; set; }
 
+        [Privilege]
+        public bool MainWtConductor { get; set; }
+
 
         public int CountPrivileges()
         {

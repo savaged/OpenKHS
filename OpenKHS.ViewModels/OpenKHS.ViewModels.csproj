@@ -113,6 +113,7 @@
     <Compile Include="MainViewModel.cs" />
     <Compile Include="IndexBoundViewModelBase.cs" />
     <Compile Include="LocalViewModelBase.cs" />
+    <Compile Include="Messages\CongregationChangedMessage.cs" />
     <Compile Include="ScheduleViewModelBase.cs" />
     <Compile Include="PmScheduleViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

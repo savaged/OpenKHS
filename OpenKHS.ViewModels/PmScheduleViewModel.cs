@@ -16,6 +16,24 @@ namespace OpenKHS.ViewModels
             return DbContext.Index().SingleOrDefault(s => s.WeekStarting == weekStarting);
         }
 
-        protected override void AddModelObjectToDbContext() { if (ModelObject != null) DbContext.Store(ModelObject); }
+        protected override void AddModelObjectToDbContext() { if (IsValidSchedule()) DbContext.Store(ModelObject); }
+
+        protected override void LoadLookups(IList<Friend> congMembers)
+        {
+            base.LoadLookups(congMembers);
+            Chairmen = congMembers.Where(f => f.PmChairman).ToList();
+            WtReaders = congMembers.Where(f => f.WtReader).ToList();
+            WtConductors = congMembers.Where(f => f.WtConductor).ToList();
+            if (ModelObject != null && ModelObject.WtConductor == null)
+            {
+                ModelObject.WtConductor = congMembers.Where(f => f.MainWtConductor).FirstOrDefault();
+            }
+        }
+
+        public IList<Friend> Chairmen { get; private set; }
+
+        public IList<Friend> WtReaders { get; private set; }
+
+        public IList<Friend> WtConductors { get; private set; }
     }
 }

@@ -183,7 +183,10 @@ namespace OpenKHS.Data.Migrations
 
                     b.Property<bool>("ClmmTreasures");
 
-                    b.Property<string>("Name");
+                    b.Property<bool>("MainWtConductor");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.Property<bool>("Platform");
 

@@ -45,29 +45,41 @@
                 </WrapPanel>
                 <WrapPanel>
                     <Label Width="100">Security</Label>
-                    <TextBox Width="160" Text="{Binding SelectedItem.Security}" />
+                    <ComboBox Width="160" ItemsSource="{Binding Security}"
+                              SelectedItem="{Binding SelectedItem.Security, Mode=TwoWay}"
+                              DisplayMemberPath="Name"/>
                 </WrapPanel>
                 <WrapPanel>
                     <Label Width="100">Sound Desk</Label>
-                    <TextBox Width="160" Text="{Binding SelectedItem.SoundDesk}" />
+                    <ComboBox Width="160" ItemsSource="{Binding Sound}"
+                              SelectedItem="{Binding SelectedItem.SoundDesk, Mode=TwoWay}"
+                              DisplayMemberPath="Name"/>
                 </WrapPanel>
                 <WrapPanel>
                     <Label Width="100">Platform</Label>
-                    <TextBox Width="160" Text="{Binding SelectedItem.Platform}" />
+                    <ComboBox Width="160" ItemsSource="{Binding Platform}"
+                              SelectedItem="{Binding SelectedItem.Platform, Mode=TwoWay}"
+                              DisplayMemberPath="Name"/>
                 </WrapPanel>
                 <WrapPanel>
                     <Label Width="100">Roving Mic 1</Label>
-                    <TextBox Width="160" Text="{Binding SelectedItem.RovingMic1}" />
+                    <ComboBox Width="160" ItemsSource="{Binding RovingMic}"
+                              SelectedItem="{Binding SelectedItem.RovingMic1, Mode=TwoWay}"
+                              DisplayMemberPath="Name"/>
                 </WrapPanel>
                 <WrapPanel>
                     <Label Width="100">Roving Mic 2</Label>
-                    <TextBox Width="160" Text="{Binding SelectedItem.RovingMic2}" />
+                    <ComboBox Width="160" ItemsSource="{Binding RovingMic}"
+                              SelectedItem="{Binding SelectedItem.RovingMic2, Mode=TwoWay}"
+                              DisplayMemberPath="Name"/>
                 </WrapPanel>
             </StackPanel>
             <StackPanel Grid.Column="1" Grid.Row="1" Margin="10">
                 <WrapPanel>
                     <Label Width="100">Chairman</Label>
-                    <TextBox Width="160" Text="{Binding SelectedItem.Chairman}" />
+                    <ComboBox Width="160" ItemsSource="{Binding Chairmen}"
+                              SelectedItem="{Binding SelectedItem.Chairman, Mode=TwoWay}"
+                              DisplayMemberPath="Name"/>
                 </WrapPanel>
                 <WrapPanel>
                     <Label Width="100">Public Talk</Label>
@@ -75,11 +87,15 @@
                 </WrapPanel>
                 <WrapPanel>
                     <Label Width="100">WT Conductor</Label>
-                    <TextBox Width="160" Text="{Binding SelectedItem.WtConductor}"/>
+                    <ComboBox Width="160" ItemsSource="{Binding WtConductors}"
+                              SelectedItem="{Binding SelectedItem.WtConductor, Mode=TwoWay}"
+                              DisplayMemberPath="Name"/>
                 </WrapPanel>
                 <WrapPanel>
                     <Label Width="100">WT Reader</Label>
-                    <TextBox Width="160" Text="{Binding SelectedItem.WtReader}"/>
+                    <ComboBox Width="160" ItemsSource="{Binding WtReaders}"
+                              SelectedItem="{Binding SelectedItem.WtReader, Mode=TwoWay}"
+                              DisplayMemberPath="Name"/>
                 </WrapPanel>
             </StackPanel>
         </Grid>

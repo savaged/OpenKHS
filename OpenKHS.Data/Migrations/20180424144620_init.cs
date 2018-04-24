@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace OpenKHS.Data.Migrations
 {
-    public partial class initial : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -34,7 +34,8 @@ namespace OpenKHS.Data.Migrations
                     ClmmSecondSchoolCounselor = table.Column<bool>(nullable: false),
                     ClmmSecondSchoolOnly = table.Column<bool>(nullable: false),
                     ClmmTreasures = table.Column<bool>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
+                    MainWtConductor = table.Column<bool>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
                     Platform = table.Column<bool>(nullable: false),
                     PmChairman = table.Column<bool>(nullable: false),
                     PublicSpeaker = table.Column<bool>(nullable: false),

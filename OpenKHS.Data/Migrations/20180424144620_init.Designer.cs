@@ -12,8 +12,8 @@ using System;
 namespace OpenKHS.Data.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20180424083449_initial")]
-    partial class initial
+    [Migration("20180424144620_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -184,7 +184,10 @@ namespace OpenKHS.Data.Migrations
 
                     b.Property<bool>("ClmmTreasures");
 
-                    b.Property<string>("Name");
+                    b.Property<bool>("MainWtConductor");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.Property<bool>("Platform");
 

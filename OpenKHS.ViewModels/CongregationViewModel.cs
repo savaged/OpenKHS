@@ -1,8 +1,7 @@
-﻿using System;
-using OpenKHS.Models;
-using System.Collections.ObjectModel;
+﻿using OpenKHS.Models;
 using OpenKHS.Data;
-using System.Windows.Input;
+using OpenKHS.ViewModels.Messages;
+using System.Collections.Generic;
 
 namespace OpenKHS.ViewModels
 {
@@ -11,6 +10,13 @@ namespace OpenKHS.ViewModels
         public CongregationViewModel(DatabaseContext dbContext) : base(dbContext)
         {
             Initialise(DbContext.Index(), new Friend());
+            Index.CollectionChanged += IndexChanged;
+        }
+
+        public override void Cleanup()
+        {
+            Index.CollectionChanged -= IndexChanged;
+            base.Cleanup();
         }
 
         public override bool IsItemSelected
@@ -18,6 +24,19 @@ namespace OpenKHS.ViewModels
             get => base.IsItemSelected && !string.IsNullOrEmpty(SelectedItem.Name);
         }
 
-        protected override void AddModelObjectToDbContext() { if (ModelObject != null) DbContext.Store(ModelObject); }
+        protected override void AddModelObjectToDbContext()
+        {
+            if (ModelObject != null && !string.IsNullOrEmpty(ModelObject.Name)) DbContext.Store(ModelObject);
+        }
+
+        private void IndexChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            var members = new List<Friend>();
+            foreach (var member in Index)
+            {
+                members.Add(member);
+            }
+            MessengerInstance.Send(new CongregationChangedMessage(members));
+        }
     }
 }

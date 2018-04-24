@@ -64,6 +64,7 @@
                         <CheckBox IsChecked="{Binding SelectedItem.PmChairman}">Public Meeting Chairman</CheckBox>
                         <CheckBox IsChecked="{Binding SelectedItem.WtReader}">WT Reader</CheckBox>
                         <CheckBox IsChecked="{Binding SelectedItem.WtConductor}">WT Conductor</CheckBox>
+                        <CheckBox IsChecked="{Binding SelectedItem.MainWtConductor}">Main WT Conductor</CheckBox>
                         <Separator/>
                         <CheckBox IsChecked="{Binding SelectedItem.Attendant}">Attendant</CheckBox>
                         <CheckBox IsChecked="{Binding SelectedItem.Security}">Security</CheckBox>
