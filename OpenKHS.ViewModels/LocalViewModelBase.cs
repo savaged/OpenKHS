@@ -8,5 +8,7 @@ namespace OpenKHS.ViewModels
     public abstract class LocalViewModelBase : ViewModelBase
     {
         public IViewState GlobalViewState => ViewState.Default;
+
+        public virtual bool CanExecute => GlobalViewState.IsNotBusy;
     }
 }

@@ -32,6 +32,7 @@ namespace OpenKHS.ViewModels
                 data = new T();
             }
             ModelObject = data;
+            
         }
 
         public T ModelObject

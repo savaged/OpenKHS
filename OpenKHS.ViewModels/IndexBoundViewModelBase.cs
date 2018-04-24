@@ -4,15 +4,20 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using OpenKHS.Interfaces;
 using OpenKHS.Data;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.CommandWpf;
 
 namespace OpenKHS.ViewModels
 {
     public abstract class IndexBoundViewModelBase<T> : ModelBoundViewModelBase<T>, IIndexBoundViewModel<T> 
         where T : IModel, new()
     {
+        private ICommand _deleteSelectedItemCmd;
+
         public IndexBoundViewModelBase(DatabaseContext dbContext) : base(dbContext)
         {
             Index = new ObservableCollection<T>();
+            _deleteSelectedItemCmd = new RelayCommand(OnDeleteSelectedItem, () => CanExecute);
         }
 
         protected void Initialise(IList<T> data)
@@ -30,6 +35,8 @@ namespace OpenKHS.ViewModels
 
         public ObservableCollection<T> Index { get; set; }
 
+        public ICommand DeleteSelectedItemCmd => _deleteSelectedItemCmd;
+
         public T SelectedItem
         {
             get => ModelObject;
@@ -42,5 +49,17 @@ namespace OpenKHS.ViewModels
         }
 
         public virtual bool IsItemSelected => SelectedItem != null;
+
+        public override bool CanExecute => GlobalViewState.IsNotBusy && IsItemSelected;
+
+        private void OnDeleteSelectedItem()
+        {
+            if (SelectedItem == null)
+            {
+                throw new ArgumentNullException("Expected to have the selected item set!");
+            }
+            Index.Remove(SelectedItem);
+            DbContext.Delete(SelectedItem);
+        }
     }
 }
