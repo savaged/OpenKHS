@@ -40,10 +40,5 @@ namespace OpenKHS.ViewModels
         }
 
         public virtual bool IsItemSelected => SelectedItem != null;
-
-        public override void Save()
-        {
-            throw new NotImplementedException("Saving is expected on a single model object");
-        }
     }
 }

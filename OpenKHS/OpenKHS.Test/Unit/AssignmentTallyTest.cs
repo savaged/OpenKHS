@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenKHS.Models;
 
-namespace OpenKHS.Test.Feature
+namespace OpenKHS.Test.Unit
 {
     [TestClass]
     public class AssignmentTallyTest : TestBase

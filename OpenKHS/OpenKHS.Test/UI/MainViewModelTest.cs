@@ -1,8 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using OpenKHS.Data;
-using OpenKHS.Interfaces;
-using OpenKHS.Models;
 using OpenKHS.ViewModels;
 
 namespace OpenKHS.Test.Unit
@@ -19,6 +15,14 @@ namespace OpenKHS.Test.Unit
             var cvm = (CongregationViewModel)mvm.CongregationVM;
             Assert.IsNotNull(cvm.Index);
             Assert.AreEqual(1, cvm.Index.Count);
+
+            var pmsvm = (PmScheduleViewModel)mvm.PmScheduleVM;
+            Assert.IsNotNull(pmsvm.ModelObject);
+            Assert.IsTrue(pmsvm.ModelObject.IsNew);
+
+            var clmmsvm = (ClmmScheduleViewModel)mvm.ClmmScheduleVM;
+            Assert.IsNotNull(clmmsvm.ModelObject);
+            Assert.IsTrue(clmmsvm.ModelObject.IsNew);
         }
         
     }

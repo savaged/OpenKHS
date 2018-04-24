@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
+using OpenKHS.Data;
 using OpenKHS.Models;
 
 namespace OpenKHS.ViewModels
@@ -12,7 +14,12 @@ namespace OpenKHS.ViewModels
 
         protected override void LoadSchedule(DateTime weekStarting)
         {
-            throw new NotImplementedException();
+            var data = new ClmmSchedule();
+            using (var db = new DatabaseContext())
+            {
+                data = db.ClmmSchedules.SingleOrDefault(s => s.WeekStarting == weekStarting);
+            }
+            Initialise(data);
         }
     }
 }

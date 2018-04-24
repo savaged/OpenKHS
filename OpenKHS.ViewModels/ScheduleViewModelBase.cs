@@ -17,6 +17,8 @@ namespace OpenKHS.ViewModels
         {
             _viewWeekCmd = new RelayCommand<DateTime>(OnViewWeek, (f) => GlobalViewState.IsNotBusy);
             LoadLookups(congMembers);
+            var weekStarting = WeekNumberAdapter.GetFirstDateOfWeekIso8601(DateTime.Now);
+            LoadSchedule(weekStarting);
         }
 
         protected virtual void LoadLookups(IList<Friend> congMembers)

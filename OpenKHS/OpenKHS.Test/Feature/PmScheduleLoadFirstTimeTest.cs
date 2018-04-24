@@ -22,8 +22,6 @@ namespace OpenKHS.Test.Feature
             }
             var vm = new PmScheduleViewModel(congMembers);
 
-            Assert.IsNull(vm.ModelObject);
-
             // Default empty schedule for new week
             vm.ViewWeekCmd.Execute(DateTime.Now);
             Assert.IsNotNull(vm.ModelObject);

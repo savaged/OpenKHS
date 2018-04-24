@@ -5,7 +5,6 @@ using MvvmDialogs;
 using GalaSoft.MvvmLight.CommandWpf;
 using System.Windows.Input;
 using OpenKHS.Interfaces;
-using OpenKHS.ViewModels.Utils;
 
 namespace OpenKHS.ViewModels
 {
@@ -46,14 +45,6 @@ namespace OpenKHS.ViewModels
             _publicTalksViewModel = new PublicTalksViewModel();
             _pmScheduleViewModel = new PmScheduleViewModel(_congregationViewModel.Index);
             _clmmScheduleViewModel = new ClmmScheduleViewModel(_congregationViewModel.Index);
-
-            PropertyChanged += OnPropertyChanged;
-        }
-
-        public override void Cleanup()
-        {
-            PropertyChanged -= OnPropertyChanged;
-            base.Cleanup();
         }
 
         #endregion
@@ -87,17 +78,6 @@ namespace OpenKHS.ViewModels
         #endregion
 
         #region Events
-
-        private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(SelectedIndex))
-            {
-                // TODO is there a better way to auto-save?
-                _congregationViewModel.Save();
-                _pmScheduleViewModel.Save();
-                //_clmmScheduleViewModel.SaveModelObject();
-            }
-        }
 
         public event EventHandler RequestClose;
 

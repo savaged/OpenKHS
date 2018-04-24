@@ -1,5 +1,6 @@
 ﻿using System;
 using OpenKHS.Interfaces;
+using OpenKHS.Data;
 
 namespace OpenKHS.ViewModels
 {
@@ -27,15 +28,11 @@ namespace OpenKHS.ViewModels
         {
             if (ModelObject == null)
             {
-                throw new ArgumentNullException("Model object should be set prior to Save");
+                throw new ArgumentNullException("Model object should be initialised prior to Save");
             }
-            if (ModelObject.IsNew)
+            using (var db = new DatabaseContext())
             {
-                //DataGatewayFacade.Store(ModelObject);
-            }
-            else
-            {
-                //DataGatewayFacade.Update(ModelObject);
+                db.SaveChanges();
             }
         }
     }
