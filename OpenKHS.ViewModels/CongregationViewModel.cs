@@ -17,7 +17,6 @@ namespace OpenKHS.ViewModels
         public CongregationViewModel(DatabaseContext dbContext) : base(dbContext)
         {
             Initialise(DbContext.Index(), null);
-            Index.CollectionChanged += IndexChanged;
             _togglePrivilegesCmd = new RelayCommand(OnTogglePrivileges, () => CanExecute);
             PropertyChanged += OnPropertyChanged;
         }
@@ -27,13 +26,30 @@ namespace OpenKHS.ViewModels
             if (e.PropertyName == nameof(ModelObject))
             {
                 _previousTogglePrivilegesSetting = false;
+
+                if (ModelObject != null)
+                {
+                    ModelObject.PropertyChanged += OnModelObjectPropertyChanged;
+                }
+            }
+        }
+
+        private void OnModelObjectPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (ModelObject != null && !string.IsNullOrEmpty(ModelObject.Name))
+            {
+                MessengerInstance.Send(new CongregationChangedMessage(Index));
             }
         }
 
         public override void Cleanup()
         {
-            Index.CollectionChanged -= IndexChanged;
             PropertyChanged -= OnPropertyChanged;
+
+            if (ModelObject != null)
+            {
+                ModelObject.PropertyChanged -= OnModelObjectPropertyChanged;
+            }
             base.Cleanup();
         }
 
@@ -47,38 +63,6 @@ namespace OpenKHS.ViewModels
             if (ModelObject != null && !string.IsNullOrEmpty(ModelObject.Name))
             {
                 DbContext.Store(ModelObject);
-            }
-        }
-
-        private void IndexChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            var isChangeRelevant = false;
-            if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
-            {
-                if (e.NewItems != null && e.NewItems.Count > 0)
-                {
-                    foreach (Friend newItem in e.NewItems)
-                    {
-                        if (!string.IsNullOrEmpty(newItem.Name))
-                        {
-                            isChangeRelevant = true;
-                            break;
-                        }
-                    }
-                }
-            }
-            else if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
-            {
-                isChangeRelevant = true;
-            }
-            if (isChangeRelevant)
-            {
-                var members = new List<Friend>();
-                foreach (var member in Index)
-                {
-                    members.Add(member);
-                }
-                MessengerInstance.Send(new CongregationChangedMessage(members));
             }
         }
 
