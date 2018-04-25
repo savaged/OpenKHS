@@ -11,23 +11,7 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid Grid.Column="0"
-                  Margin="10"
-                  x:Name="WeeksGrid"
-                  ItemsSource="{Binding Index}"
-                  SelectedItem="{Binding SelectedItem}"
-                  AutoGenerateColumns="False"
-                  CanUserAddRows="False" CanUserDeleteRows="False">
-            <DataGrid.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Header="Add" Command="{Binding NewCmd}"/>
-                    <MenuItem Header="Delete" Command="{Binding DeleteSelectedItemCmd}"/>
-                </ContextMenu>
-            </DataGrid.ContextMenu>
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Week" Binding="{Binding WeekStarting, StringFormat=yyyy-MM-dd}" Width="1*"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <local:SchedulesView Grid.Column="0" DataContext="{Binding}"/>
         <Grid Grid.Column="1" IsEnabled="{Binding IsItemSelected}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>

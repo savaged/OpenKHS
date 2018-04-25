@@ -55,10 +55,8 @@ namespace OpenKHS.ViewModels
 
         protected override void New()
         {
-            var @new = new T()
-            {
-                WeekStarting = DateTime.MinValue
-            };
+            var @new = new T();
+            SetWeekStartingDate(@new);
             Index.Add(@new);
             SelectedItem = @new;
         }
@@ -113,20 +111,25 @@ namespace OpenKHS.ViewModels
                 }
                 if (ModelObject.WeekStarting == DateTime.MinValue)
                 {
-                    if (Index != null && Index.Count == 0)
-                    {
-                        ModelObject.WeekStarting = WeekNumberAdapter.GetFirstDateOfWeekIso8601(DateTime.Now);
-                    }
-                    else
-                    {
-                        var latestScheduleDate = Index
-                            .OrderByDescending(s => s.WeekStarting)
-                            .Select(s => s.WeekStarting)
-                            .First();
-                        ModelObject.WeekStarting = latestScheduleDate.AddDays(7);
-                    }
+                    SetWeekStartingDate(ModelObject);
                 }
                 LoadLookups();
+            }
+        }
+
+        private void SetWeekStartingDate(T schedule)
+        {
+            if (Index != null && Index.Count == 0)
+            {
+                schedule.WeekStarting = WeekNumberAdapter.GetFirstDateOfWeekIso8601(DateTime.Now);
+            }
+            else
+            {
+                var latestScheduleDate = Index
+                    .OrderByDescending(s => s.WeekStarting)
+                    .Select(s => s.WeekStarting)
+                    .First();
+                schedule.WeekStarting = latestScheduleDate.AddDays(7);
             }
         }
 
