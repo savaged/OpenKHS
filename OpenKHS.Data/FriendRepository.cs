@@ -28,7 +28,10 @@ namespace OpenKHS.Data
 
         public void Delete(Friend model)
         {
-            DbContext.Friends.Remove(model);
+            if (model != null)
+            {
+                DbContext.Friends.Remove(model);
+            }
         }
     }
 }

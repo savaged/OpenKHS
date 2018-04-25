@@ -7,21 +7,62 @@ namespace OpenKHS.Models
     // TODO add validation to each property i.e. brother has privilege
     public abstract class Meeting : ModelBase, ISchedule
     {
-        public DateTime WeekStarting { get; set; }
+        private DateTime _weekStarting;
+        private Friend _chairman;
+        private Friend _attendant;
+        private Friend _security;
+        private Friend _soundDesk;
+        private Friend _platform;
+        private Friend _rovingMic1;
+        private Friend _rovingMic2;
 
-        public Friend Chairman { get; set; }
+        public DateTime WeekStarting
+        {
+            get => _weekStarting;
+            set => Set(ref _weekStarting, value);
+        }
 
-        public Friend Attendant { get; set; }
+        public Friend Chairman
+        {
+            get => _chairman;
+            set => Set(ref _chairman, value);
+        }
 
-        public Friend Security { get; set; }
+        public Friend Attendant
+        {
+            get => _attendant;
+            set => Set(ref _attendant, value);
+        }
 
-        public Friend SoundDesk { get; set; }
+        public Friend Security
+        {
+            get => _security;
+            set => Set(ref _security, value);
+        }
 
-        public Friend Platform { get; set; }
+        public Friend SoundDesk
+        {
+            get => _soundDesk;
+            set => Set(ref _soundDesk, value);
+        }
 
-        public Friend RovingMic1 { get; set; }
+        public Friend Platform
+        {
+            get => _platform;
+            set => Set(ref _platform, value);
+        }
 
-        public Friend RovingMic2 { get; set; }
+        public Friend RovingMic1
+        {
+            get => _rovingMic1;
+            set => Set(ref _rovingMic1, value);
+        }
+
+        public Friend RovingMic2
+        {
+            get => _rovingMic2;
+            set => Set(ref _rovingMic2, value);
+        }
 
         public virtual void Publish()
         {

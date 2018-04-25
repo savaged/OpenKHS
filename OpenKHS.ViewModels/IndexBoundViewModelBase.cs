@@ -12,11 +12,13 @@ namespace OpenKHS.ViewModels
     public abstract class IndexBoundViewModelBase<T> : ModelBoundViewModelBase<T>, IIndexBoundViewModel<T> 
         where T : IModel, new()
     {
+        private ICommand _newCmd;
         private ICommand _deleteSelectedItemCmd;
 
         public IndexBoundViewModelBase(DatabaseContext dbContext) : base(dbContext)
         {
             Index = new ObservableCollection<T>();
+            _newCmd = new RelayCommand(OnNew, () => GlobalViewState.IsNotBusy);
             _deleteSelectedItemCmd = new RelayCommand(OnDeleteSelectedItem, () => CanExecute);
         }
 
@@ -39,6 +41,7 @@ namespace OpenKHS.ViewModels
 
         public ObservableCollection<T> Index { get; set; }
 
+        public ICommand NewCmd => _newCmd;
         public ICommand DeleteSelectedItemCmd => _deleteSelectedItemCmd;
 
         public T SelectedItem
@@ -55,6 +58,16 @@ namespace OpenKHS.ViewModels
         public virtual bool IsItemSelected => SelectedItem != null;
 
         public override bool CanExecute => GlobalViewState.IsNotBusy && IsItemSelected;
+
+        private void OnNew()
+        {
+            New();
+        }
+
+        protected virtual void New()
+        {
+            Index.Add(new T());
+        }
 
         private void OnDeleteSelectedItem()
         {

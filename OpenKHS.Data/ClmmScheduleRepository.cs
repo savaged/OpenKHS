@@ -28,7 +28,10 @@ namespace OpenKHS.Data
 
         public void Delete(ClmmSchedule model)
         {
-            DbContext.ClmmSchedules.Remove(model);
+            if (model != null)
+            {
+                DbContext.ClmmSchedules.Remove(model);
+            }
         }
     }
 }

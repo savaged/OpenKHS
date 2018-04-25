@@ -28,7 +28,10 @@ namespace OpenKHS.Data
 
         public void Delete(PmSchedule model)
         {
-            DbContext.PmSchedules.Remove(model);
+            if (model != null)
+            {
+                DbContext.PmSchedules.Remove(model);
+            }
         }
     }
 }

@@ -16,7 +16,7 @@ namespace OpenKHS.ViewModels
             Chairmen = new ObservableCollection<Friend>();
             WtReaders = new ObservableCollection<Friend>();
             WtConductors = new ObservableCollection<Friend>();
-            LoadLookups(congMembers);
+            LoadLookups();
         }
 
         protected override void AddModelObjectToDbContext()
@@ -27,22 +27,22 @@ namespace OpenKHS.ViewModels
             }
         }
 
-        protected override void LoadLookups(IList<Friend> congMembers)
+        protected override void LoadLookups()
         {
-            base.LoadLookups(congMembers);
+            base.LoadLookups();
 
-            congMembers.Where(f => f.PmChairman).ToList().ForEach(f => {
+            CongMembers.Where(f => f.PmChairman).ToList().ForEach(f => {
                 if (!Chairmen.Contains(f)) Chairmen.Add(f);
             });
-            congMembers.Where(f => f.WtReader).ToList().ForEach(f => {
+            CongMembers.Where(f => f.WtReader).ToList().ForEach(f => {
                 if (!WtReaders.Contains(f)) WtReaders.Add(f);
             });
-            congMembers.Where(f => f.WtConductor).ToList().ForEach(f => {
+            CongMembers.Where(f => f.WtConductor).ToList().ForEach(f => {
                 if (!WtConductors.Contains(f)) WtConductors.Add(f);
             });
             if (ModelObject != null && ModelObject.WtConductor == null)
             {
-                ModelObject.WtConductor = congMembers.Where(f => f.MainWtConductor).FirstOrDefault();
+                ModelObject.WtConductor = CongMembers.Where(f => f.MainWtConductor).FirstOrDefault();
             }
         }
 

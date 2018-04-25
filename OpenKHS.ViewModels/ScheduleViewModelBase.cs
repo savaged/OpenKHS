@@ -16,6 +16,8 @@ namespace OpenKHS.ViewModels
         public ScheduleViewModelBase(DatabaseContext dbContext, IList<Friend> congMembers) 
             : base(dbContext)
         {
+            CongMembers = congMembers;
+
             var weekStarting = WeekNumberAdapter.GetFirstDateOfWeekIso8601(DateTime.Now);
             Initialise(DbContext.Index(), GetDefaultSchedule(weekStarting));
 
@@ -28,6 +30,14 @@ namespace OpenKHS.ViewModels
             MessengerInstance.Register<CongregationChangedMessage>(this, OnCongregationChanged);
             PropertyChanged += OnPropertyChanged;
         }
+
+        public override void Cleanup()
+        {
+            PropertyChanged -= OnPropertyChanged;
+            base.Cleanup();
+        }
+
+        protected IList<Friend> CongMembers { get; private set; }
 
         protected T GetDefaultSchedule(DateTime weekStarting)
         {
@@ -43,27 +53,31 @@ namespace OpenKHS.ViewModels
             return defaultSchedule;
         }
 
-        public override void Cleanup()
+        protected override void New()
         {
-            PropertyChanged -= OnPropertyChanged;
-            base.Cleanup();
+            var @new = new T()
+            {
+                WeekStarting = DateTime.MinValue
+            };
+            Index.Add(@new);
+            SelectedItem = @new;
         }
-        
-        protected virtual void LoadLookups(IList<Friend> congMembers)
+
+        protected virtual void LoadLookups()
         {
-            congMembers.Where(f => f.Attendant).ToList().ForEach(f => {
+            CongMembers.Where(f => f.Attendant).ToList().ForEach(f => {
                 if (!Attendants.Contains(f)) Attendants.Add(f);
             });
-            congMembers.Where(f => f.Security).ToList().ForEach(f => {
+            CongMembers.Where(f => f.Security).ToList().ForEach(f => {
                 if (!Security.Contains(f)) Security.Add(f);
             });
-            congMembers.Where(f => f.SoundDesk).ToList().ForEach(f => {
+            CongMembers.Where(f => f.SoundDesk).ToList().ForEach(f => {
                 if (!Sound.Contains(f)) Sound.Add(f);
             });
-            congMembers.Where(f => f.Platform).ToList().ForEach(f => {
+            CongMembers.Where(f => f.Platform).ToList().ForEach(f => {
                 if (!Platform.Contains(f)) Platform.Add(f);
             });
-            congMembers.Where(f => f.RovingMic).ToList().ForEach(f => {
+            CongMembers.Where(f => f.RovingMic).ToList().ForEach(f => {
                 if (!RovingMic.Contains(f)) RovingMic.Add(f);
             });
         }
@@ -89,7 +103,6 @@ namespace OpenKHS.ViewModels
 
         #region Events
 
-
         private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(SelectedItem) && IsItemSelected)
@@ -113,12 +126,14 @@ namespace OpenKHS.ViewModels
                         ModelObject.WeekStarting = latestScheduleDate.AddDays(7);
                     }
                 }
+                LoadLookups();
             }
         }
 
         private void OnCongregationChanged(CongregationChangedMessage msg)
         {
-            LoadLookups(msg?.Members);
+            CongMembers = msg?.Members;
+            LoadLookups();
         }
 
         #endregion
