@@ -114,25 +114,24 @@ namespace OpenKHS.Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    AYttMBibleStudyId = table.Column<int>(nullable: true),
+                    AYttMPart1Id = table.Column<int>(nullable: true),
+                    AYttMPart2Id = table.Column<int>(nullable: true),
+                    AYttMSchoolTalkId = table.Column<int>(nullable: true),
                     AttendantId = table.Column<int>(nullable: true),
                     BibleReadingId = table.Column<int>(nullable: true),
-                    BibleStudyId = table.Column<int>(nullable: true),
                     CbsConductorId = table.Column<int>(nullable: true),
                     CbsReaderId = table.Column<int>(nullable: true),
                     ChairmanId = table.Column<int>(nullable: true),
                     ClosingPrayerId = table.Column<int>(nullable: true),
                     GemsId = table.Column<int>(nullable: true),
-                    InitialCallId = table.Column<int>(nullable: true),
                     LacPart1Id = table.Column<int>(nullable: true),
                     LacPart2Id = table.Column<int>(nullable: true),
                     LacPart3Id = table.Column<int>(nullable: true),
                     OpeningPrayerId = table.Column<int>(nullable: true),
                     PlatformId = table.Column<int>(nullable: true),
-                    PresentationsForMonthId = table.Column<int>(nullable: true),
-                    ReturnVisitId = table.Column<int>(nullable: true),
                     RovingMic1Id = table.Column<int>(nullable: true),
                     RovingMic2Id = table.Column<int>(nullable: true),
-                    SchoolTalkId = table.Column<int>(nullable: true),
                     SecurityId = table.Column<int>(nullable: true),
                     SoundDeskId = table.Column<int>(nullable: true),
                     TreasuresId = table.Column<int>(nullable: true),
@@ -141,6 +140,30 @@ namespace OpenKHS.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ClmmSchedules", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ClmmSchedules_MeetingPart_AYttMBibleStudyId",
+                        column: x => x.AYttMBibleStudyId,
+                        principalTable: "MeetingPart",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ClmmSchedules_MeetingPart_AYttMPart1Id",
+                        column: x => x.AYttMPart1Id,
+                        principalTable: "MeetingPart",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ClmmSchedules_MeetingPart_AYttMPart2Id",
+                        column: x => x.AYttMPart2Id,
+                        principalTable: "MeetingPart",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ClmmSchedules_MeetingPart_AYttMSchoolTalkId",
+                        column: x => x.AYttMSchoolTalkId,
+                        principalTable: "MeetingPart",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_ClmmSchedules_Friends_AttendantId",
                         column: x => x.AttendantId,
@@ -151,12 +174,6 @@ namespace OpenKHS.Data.Migrations
                         name: "FK_ClmmSchedules_Friends_BibleReadingId",
                         column: x => x.BibleReadingId,
                         principalTable: "Friends",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_ClmmSchedules_MeetingPart_BibleStudyId",
-                        column: x => x.BibleStudyId,
-                        principalTable: "MeetingPart",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -190,12 +207,6 @@ namespace OpenKHS.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_MeetingPart_InitialCallId",
-                        column: x => x.InitialCallId,
-                        principalTable: "MeetingPart",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
                         name: "FK_ClmmSchedules_MeetingPart_LacPart1Id",
                         column: x => x.LacPart1Id,
                         principalTable: "MeetingPart",
@@ -226,18 +237,6 @@ namespace OpenKHS.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Friends_PresentationsForMonthId",
-                        column: x => x.PresentationsForMonthId,
-                        principalTable: "Friends",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_ClmmSchedules_MeetingPart_ReturnVisitId",
-                        column: x => x.ReturnVisitId,
-                        principalTable: "MeetingPart",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
                         name: "FK_ClmmSchedules_Friends_RovingMic1Id",
                         column: x => x.RovingMic1Id,
                         principalTable: "Friends",
@@ -247,12 +246,6 @@ namespace OpenKHS.Data.Migrations
                         name: "FK_ClmmSchedules_Friends_RovingMic2Id",
                         column: x => x.RovingMic2Id,
                         principalTable: "Friends",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_ClmmSchedules_MeetingPart_SchoolTalkId",
-                        column: x => x.SchoolTalkId,
-                        principalTable: "MeetingPart",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -359,6 +352,26 @@ namespace OpenKHS.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_ClmmSchedules_AYttMBibleStudyId",
+                table: "ClmmSchedules",
+                column: "AYttMBibleStudyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClmmSchedules_AYttMPart1Id",
+                table: "ClmmSchedules",
+                column: "AYttMPart1Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClmmSchedules_AYttMPart2Id",
+                table: "ClmmSchedules",
+                column: "AYttMPart2Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClmmSchedules_AYttMSchoolTalkId",
+                table: "ClmmSchedules",
+                column: "AYttMSchoolTalkId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ClmmSchedules_AttendantId",
                 table: "ClmmSchedules",
                 column: "AttendantId");
@@ -367,11 +380,6 @@ namespace OpenKHS.Data.Migrations
                 name: "IX_ClmmSchedules_BibleReadingId",
                 table: "ClmmSchedules",
                 column: "BibleReadingId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ClmmSchedules_BibleStudyId",
-                table: "ClmmSchedules",
-                column: "BibleStudyId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ClmmSchedules_CbsConductorId",
@@ -399,11 +407,6 @@ namespace OpenKHS.Data.Migrations
                 column: "GemsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClmmSchedules_InitialCallId",
-                table: "ClmmSchedules",
-                column: "InitialCallId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ClmmSchedules_LacPart1Id",
                 table: "ClmmSchedules",
                 column: "LacPart1Id");
@@ -429,16 +432,6 @@ namespace OpenKHS.Data.Migrations
                 column: "PlatformId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClmmSchedules_PresentationsForMonthId",
-                table: "ClmmSchedules",
-                column: "PresentationsForMonthId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ClmmSchedules_ReturnVisitId",
-                table: "ClmmSchedules",
-                column: "ReturnVisitId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ClmmSchedules_RovingMic1Id",
                 table: "ClmmSchedules",
                 column: "RovingMic1Id");
@@ -447,11 +440,6 @@ namespace OpenKHS.Data.Migrations
                 name: "IX_ClmmSchedules_RovingMic2Id",
                 table: "ClmmSchedules",
                 column: "RovingMic2Id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ClmmSchedules_SchoolTalkId",
-                table: "ClmmSchedules",
-                column: "SchoolTalkId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ClmmSchedules_SecurityId",

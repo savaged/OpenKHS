@@ -12,7 +12,7 @@ using System;
 namespace OpenKHS.Data.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20180425092318_init")]
+    [Migration("20180425144417_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,11 +26,17 @@ namespace OpenKHS.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int?>("AYttMBibleStudyId");
+
+                    b.Property<int?>("AYttMPart1Id");
+
+                    b.Property<int?>("AYttMPart2Id");
+
+                    b.Property<int?>("AYttMSchoolTalkId");
+
                     b.Property<int?>("AttendantId");
 
                     b.Property<int?>("BibleReadingId");
-
-                    b.Property<int?>("BibleStudyId");
 
                     b.Property<int?>("CbsConductorId");
 
@@ -42,8 +48,6 @@ namespace OpenKHS.Data.Migrations
 
                     b.Property<int?>("GemsId");
 
-                    b.Property<int?>("InitialCallId");
-
                     b.Property<int?>("LacPart1Id");
 
                     b.Property<int?>("LacPart2Id");
@@ -54,15 +58,9 @@ namespace OpenKHS.Data.Migrations
 
                     b.Property<int?>("PlatformId");
 
-                    b.Property<int?>("PresentationsForMonthId");
-
-                    b.Property<int?>("ReturnVisitId");
-
                     b.Property<int?>("RovingMic1Id");
 
                     b.Property<int?>("RovingMic2Id");
-
-                    b.Property<int?>("SchoolTalkId");
 
                     b.Property<int?>("SecurityId");
 
@@ -74,11 +72,17 @@ namespace OpenKHS.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AYttMBibleStudyId");
+
+                    b.HasIndex("AYttMPart1Id");
+
+                    b.HasIndex("AYttMPart2Id");
+
+                    b.HasIndex("AYttMSchoolTalkId");
+
                     b.HasIndex("AttendantId");
 
                     b.HasIndex("BibleReadingId");
-
-                    b.HasIndex("BibleStudyId");
 
                     b.HasIndex("CbsConductorId");
 
@@ -90,8 +94,6 @@ namespace OpenKHS.Data.Migrations
 
                     b.HasIndex("GemsId");
 
-                    b.HasIndex("InitialCallId");
-
                     b.HasIndex("LacPart1Id");
 
                     b.HasIndex("LacPart2Id");
@@ -102,15 +104,9 @@ namespace OpenKHS.Data.Migrations
 
                     b.HasIndex("PlatformId");
 
-                    b.HasIndex("PresentationsForMonthId");
-
-                    b.HasIndex("ReturnVisitId");
-
                     b.HasIndex("RovingMic1Id");
 
                     b.HasIndex("RovingMic2Id");
-
-                    b.HasIndex("SchoolTalkId");
 
                     b.HasIndex("SecurityId");
 
@@ -333,6 +329,22 @@ namespace OpenKHS.Data.Migrations
 
             modelBuilder.Entity("OpenKHS.Models.ClmmSchedule", b =>
                 {
+                    b.HasOne("OpenKHS.Models.AssistedSchoolMeetingPart", "AYttMBibleStudy")
+                        .WithMany()
+                        .HasForeignKey("AYttMBibleStudyId");
+
+                    b.HasOne("OpenKHS.Models.AssistedSchoolMeetingPart", "AYttMPart1")
+                        .WithMany()
+                        .HasForeignKey("AYttMPart1Id");
+
+                    b.HasOne("OpenKHS.Models.AssistedSchoolMeetingPart", "AYttMPart2")
+                        .WithMany()
+                        .HasForeignKey("AYttMPart2Id");
+
+                    b.HasOne("OpenKHS.Models.SchoolMeetingPart", "AYttMSchoolTalk")
+                        .WithMany()
+                        .HasForeignKey("AYttMSchoolTalkId");
+
                     b.HasOne("OpenKHS.Models.Friend", "Attendant")
                         .WithMany()
                         .HasForeignKey("AttendantId");
@@ -340,10 +352,6 @@ namespace OpenKHS.Data.Migrations
                     b.HasOne("OpenKHS.Models.Friend", "BibleReading")
                         .WithMany()
                         .HasForeignKey("BibleReadingId");
-
-                    b.HasOne("OpenKHS.Models.AssistedSchoolMeetingPart", "BibleStudy")
-                        .WithMany()
-                        .HasForeignKey("BibleStudyId");
 
                     b.HasOne("OpenKHS.Models.Friend", "CbsConductor")
                         .WithMany()
@@ -365,10 +373,6 @@ namespace OpenKHS.Data.Migrations
                         .WithMany()
                         .HasForeignKey("GemsId");
 
-                    b.HasOne("OpenKHS.Models.AssistedSchoolMeetingPart", "InitialCall")
-                        .WithMany()
-                        .HasForeignKey("InitialCallId");
-
                     b.HasOne("OpenKHS.Models.MeetingPart", "LacPart1")
                         .WithMany()
                         .HasForeignKey("LacPart1Id");
@@ -389,14 +393,6 @@ namespace OpenKHS.Data.Migrations
                         .WithMany()
                         .HasForeignKey("PlatformId");
 
-                    b.HasOne("OpenKHS.Models.Friend", "PresentationsForMonth")
-                        .WithMany()
-                        .HasForeignKey("PresentationsForMonthId");
-
-                    b.HasOne("OpenKHS.Models.AssistedSchoolMeetingPart", "ReturnVisit")
-                        .WithMany()
-                        .HasForeignKey("ReturnVisitId");
-
                     b.HasOne("OpenKHS.Models.Friend", "RovingMic1")
                         .WithMany()
                         .HasForeignKey("RovingMic1Id");
@@ -404,10 +400,6 @@ namespace OpenKHS.Data.Migrations
                     b.HasOne("OpenKHS.Models.Friend", "RovingMic2")
                         .WithMany()
                         .HasForeignKey("RovingMic2Id");
-
-                    b.HasOne("OpenKHS.Models.SchoolMeetingPart", "SchoolTalk")
-                        .WithMany()
-                        .HasForeignKey("SchoolTalkId");
 
                     b.HasOne("OpenKHS.Models.Friend", "Security")
                         .WithMany()

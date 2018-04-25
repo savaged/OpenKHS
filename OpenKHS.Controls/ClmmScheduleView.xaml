@@ -7,6 +7,117 @@
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="600">
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <local:SchedulesView Grid.Column="0" DataContext="{Binding}"/>
+        <Grid Grid.Column="1" IsEnabled="{Binding IsItemSelected}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <local:ScheduleHeadingView Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Grid.Row="0" DataContext="{Binding}" />
+            <StackPanel Grid.Column="0" Grid.Row="1">
+                <local:MeetingView DataContext="{Binding}" />
+                <WrapPanel>
+                    <Label Width="140">Opening Prayer</Label>
+                    <ComboBox Width="160" ItemsSource="{Binding Prayers}"
+                              SelectedItem="{Binding SelectedItem.OpeningPrayer, Mode=TwoWay}"
+                              DisplayMemberPath="Name"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <Label Width="140">Closing Prayer</Label>
+                    <ComboBox Width="160" ItemsSource="{Binding Prayers}"
+                              SelectedItem="{Binding SelectedItem.ClosingPrayer, Mode=TwoWay}"
+                              DisplayMemberPath="Name"/>
+                </WrapPanel>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.Row="1" Margin="10">
+                <Label Content="Treasures From God's Word" FontWeight="Medium"/>
+                <WrapPanel>
+                    <Label Width="140">Treasures</Label>
+                    <ComboBox Width="160" ItemsSource="{Binding Treasures}"
+                              SelectedItem="{Binding SelectedItem.Treasures, Mode=TwoWay}"
+                              DisplayMemberPath="Name"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <Label Width="140">Gems</Label>
+                    <ComboBox Width="160" ItemsSource="{Binding Gems}"
+                              SelectedItem="{Binding SelectedItem.Gems, Mode=TwoWay}"
+                              DisplayMemberPath="Name"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <Label Width="140">Bible Reading</Label>
+                    <ComboBox Width="160" ItemsSource="{Binding BibleReaders}"
+                              SelectedItem="{Binding SelectedItem.BibleReading, Mode=TwoWay}"
+                              DisplayMemberPath="Name"/>
+                </WrapPanel>
+                
+                <Label Content="Apply Yourself to the Ministry" FontWeight="Medium" Margin="0,20,0,0"/>
+                <WrapPanel>
+                    <Label Width="140">Part 1</Label>
+                    <ComboBox Width="160" ItemsSource="{Binding AYttMParticipants}"
+                              SelectedItem="{Binding SelectedItem.AYttMPart1, Mode=TwoWay}"
+                              DisplayMemberPath="Name"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <Label Width="140">Part 2</Label>
+                    <ComboBox Width="160" ItemsSource="{Binding AYttMParticipants}"
+                              SelectedItem="{Binding SelectedItem.AYttMPart2, Mode=TwoWay}"
+                              DisplayMemberPath="Name"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <Label Width="140">Bible Study</Label>
+                    <ComboBox Width="160" ItemsSource="{Binding AYttMParticipants}"
+                              SelectedItem="{Binding SelectedItem.AYttMBibleStudy, Mode=TwoWay}"
+                              DisplayMemberPath="Name"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <Label Width="140">Talk</Label>
+                    <ComboBox Width="160" ItemsSource="{Binding AYttMParticipants}"
+                              SelectedItem="{Binding SelectedItem.AYttMSchoolTalk, Mode=TwoWay}"
+                              DisplayMemberPath="Name"/>
+                </WrapPanel>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Grid.Row="1" Margin="10">
+                <Label Content="Living As Christians" FontWeight="Medium"/>
+                <WrapPanel>
+                    <Label Width="140">Part 1</Label>
+                    <ComboBox Width="160" ItemsSource="{Binding LacParticipants}"
+                              SelectedItem="{Binding SelectedItem.LacPart1, Mode=TwoWay}"
+                              DisplayMemberPath="Name"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <Label Width="140">Part 2</Label>
+                    <ComboBox Width="160" ItemsSource="{Binding LacParticipants}"
+                              SelectedItem="{Binding SelectedItem.LacPart2, Mode=TwoWay}"
+                              DisplayMemberPath="Name"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <Label Width="140">Part 3</Label>
+                    <ComboBox Width="160" ItemsSource="{Binding LacParticipants}"
+                              SelectedItem="{Binding SelectedItem.LacPart3, Mode=TwoWay}"
+                              DisplayMemberPath="Name"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <Label Width="140">Book Study Conductor</Label>
+                    <ComboBox Width="160" ItemsSource="{Binding CbsConductors}"
+                              SelectedItem="{Binding SelectedItem.CbsConductor, Mode=TwoWay}"
+                              DisplayMemberPath="Name"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <Label Width="140">Book Study Reader</Label>
+                    <ComboBox Width="160" ItemsSource="{Binding CbsReaders}"
+                              SelectedItem="{Binding SelectedItem.CbsReader, Mode=TwoWay}"
+                              DisplayMemberPath="Name"/>
+                </WrapPanel>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

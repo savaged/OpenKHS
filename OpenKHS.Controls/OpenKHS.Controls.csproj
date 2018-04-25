@@ -61,6 +61,12 @@
     <Compile Include="CongregationView.xaml.cs">
       <DependentUpon>CongregationView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MeetingView.xaml.cs">
+      <DependentUpon>MeetingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ScheduleHeadingView.xaml.cs">
+      <DependentUpon>ScheduleHeadingView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SchedulesView.xaml.cs">
       <DependentUpon>SchedulesView.xaml</DependentUpon>
     </Compile>
@@ -81,6 +87,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="CongregationView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MeetingView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ScheduleHeadingView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

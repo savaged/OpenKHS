@@ -13,10 +13,9 @@ namespace OpenKHS.Models
         private Friend _Treasures;
         private Friend _Gems;
         private Friend _BibleReading;
-        private Friend _PresentationsForMonth;
-        private AssistedSchoolMeetingPart _InitialCall;
-        private AssistedSchoolMeetingPart _ReturnVisit;
-        private AssistedSchoolMeetingPart _BibleStudy;
+        private AssistedSchoolMeetingPart _AYttMPart1;
+        private AssistedSchoolMeetingPart _AYttMPart2;
+        private AssistedSchoolMeetingPart _AYttMBibleStudy;
         private SchoolMeetingPart _SchoolTalk;
         private MeetingPart _LacPart1;
         private MeetingPart _LacPart2;
@@ -51,31 +50,25 @@ namespace OpenKHS.Models
             set => Set(ref _BibleReading, value);
         }
 
-        public Friend PresentationsForMonth
+        public AssistedSchoolMeetingPart AYttMPart1
         {
-            get => _PresentationsForMonth;
-            set => Set(ref _PresentationsForMonth, value);
+            get => _AYttMPart1;
+            set => Set(ref _AYttMPart1, value);
         }
 
-        public AssistedSchoolMeetingPart InitialCall
+        public AssistedSchoolMeetingPart AYttMPart2
         {
-            get => _InitialCall;
-            set => Set(ref _InitialCall, value);
+            get => _AYttMPart2;
+            set => Set(ref _AYttMPart2, value);
         }
 
-        public AssistedSchoolMeetingPart ReturnVisit
+        public AssistedSchoolMeetingPart AYttMBibleStudy
         {
-            get => _ReturnVisit;
-            set => Set(ref _ReturnVisit, value);
+            get => _AYttMBibleStudy;
+            set => Set(ref _AYttMBibleStudy, value);
         }
 
-        public AssistedSchoolMeetingPart BibleStudy
-        {
-            get => _BibleStudy;
-            set => Set(ref _BibleStudy, value);
-        }
-
-        public SchoolMeetingPart SchoolTalk
+        public SchoolMeetingPart AYttMSchoolTalk
         {
             get => _SchoolTalk;
             set => Set(ref _SchoolTalk, value);

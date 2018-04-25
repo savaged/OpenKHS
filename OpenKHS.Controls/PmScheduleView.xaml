@@ -9,7 +9,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         <local:SchedulesView Grid.Column="0" DataContext="{Binding}"/>
         <Grid Grid.Column="1" IsEnabled="{Binding IsItemSelected}">
@@ -21,68 +21,21 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <WrapPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Margin="10">
-                <Label Width="100">Week Starting</Label>
-                <TextBox Width="160" Text="{Binding SelectedItem.WeekStarting, Mode=OneWay, StringFormat=yyyy-MM-dd}" 
-                         IsReadOnly="True" />
-            </WrapPanel>
-            <StackPanel Grid.Column="0" Grid.Row="1" Margin="10">
-                <WrapPanel>
-                    <Label Width="100">Attendant</Label>
-                    <ComboBox Width="160" ItemsSource="{Binding Attendants}"
-                              SelectedItem="{Binding SelectedItem.Attendant, Mode=TwoWay}"
-                              DisplayMemberPath="Name"/>
-                </WrapPanel>
-                <WrapPanel>
-                    <Label Width="100">Security</Label>
-                    <ComboBox Width="160" ItemsSource="{Binding Security}"
-                              SelectedItem="{Binding SelectedItem.Security, Mode=TwoWay}"
-                              DisplayMemberPath="Name"/>
-                </WrapPanel>
-                <WrapPanel>
-                    <Label Width="100">Sound Desk</Label>
-                    <ComboBox Width="160" ItemsSource="{Binding Sound}"
-                              SelectedItem="{Binding SelectedItem.SoundDesk, Mode=TwoWay}"
-                              DisplayMemberPath="Name"/>
-                </WrapPanel>
-                <WrapPanel>
-                    <Label Width="100">Platform</Label>
-                    <ComboBox Width="160" ItemsSource="{Binding Platform}"
-                              SelectedItem="{Binding SelectedItem.Platform, Mode=TwoWay}"
-                              DisplayMemberPath="Name"/>
-                </WrapPanel>
-                <WrapPanel>
-                    <Label Width="100">Roving Mic 1</Label>
-                    <ComboBox Width="160" ItemsSource="{Binding RovingMic}"
-                              SelectedItem="{Binding SelectedItem.RovingMic1, Mode=TwoWay}"
-                              DisplayMemberPath="Name"/>
-                </WrapPanel>
-                <WrapPanel>
-                    <Label Width="100">Roving Mic 2</Label>
-                    <ComboBox Width="160" ItemsSource="{Binding RovingMic}"
-                              SelectedItem="{Binding SelectedItem.RovingMic2, Mode=TwoWay}"
-                              DisplayMemberPath="Name"/>
-                </WrapPanel>
-            </StackPanel>
+            <local:ScheduleHeadingView Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Grid.Row="0" DataContext="{Binding}" />
+            <local:MeetingView Grid.Column="0" Grid.Row="1" DataContext="{Binding}" />
             <StackPanel Grid.Column="1" Grid.Row="1" Margin="10">
                 <WrapPanel>
-                    <Label Width="100">Chairman</Label>
-                    <ComboBox Width="160" ItemsSource="{Binding Chairmen}"
-                              SelectedItem="{Binding SelectedItem.Chairman, Mode=TwoWay}"
-                              DisplayMemberPath="Name"/>
-                </WrapPanel>
-                <WrapPanel>
-                    <Label Width="100">Public Talk</Label>
+                    <Label Width="140">Public Talk</Label>
                     <TextBox Width="160" Text="{Binding SelectedItem.PublicTalk}" />
                 </WrapPanel>
                 <WrapPanel>
-                    <Label Width="100">WT Conductor</Label>
+                    <Label Width="140">WT Conductor</Label>
                     <ComboBox Width="160" ItemsSource="{Binding WtConductors}"
                               SelectedItem="{Binding SelectedItem.WtConductor, Mode=TwoWay}"
                               DisplayMemberPath="Name"/>
                 </WrapPanel>
                 <WrapPanel>
-                    <Label Width="100">WT Reader</Label>
+                    <Label Width="140">WT Reader</Label>
                     <ComboBox Width="160" ItemsSource="{Binding WtReaders}"
                               SelectedItem="{Binding SelectedItem.WtReader, Mode=TwoWay}"
                               DisplayMemberPath="Name"/>
