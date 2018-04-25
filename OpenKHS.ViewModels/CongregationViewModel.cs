@@ -1,10 +1,9 @@
-﻿using OpenKHS.Models;
+﻿using System;
+using OpenKHS.Models;
 using OpenKHS.Data;
 using OpenKHS.ViewModels.Messages;
-using System.Collections.Generic;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
-using System;
 using OpenKHS.Models.Attributes;
 
 namespace OpenKHS.ViewModels

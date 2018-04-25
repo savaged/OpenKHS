@@ -13,7 +13,6 @@ namespace OpenKHS.Test.Unit
             var mvm = new MainViewModel(null, DbContext);
             Assert.IsNotNull(mvm.CongregationVM);
             var cvm = (CongregationViewModel)mvm.CongregationVM;
-            Assert.IsNotNull(cvm.ModelObject);
             Assert.IsNotNull(cvm.Index);
             Assert.AreEqual(0, cvm.Index.Count);
 
