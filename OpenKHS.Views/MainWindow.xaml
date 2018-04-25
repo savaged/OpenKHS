@@ -22,6 +22,12 @@
         <KeyBinding Command="{Binding ExitCmd}" Gesture="Alt+F4" />
     </mah:MetroWindow.InputBindings>
 
+    <mah:MetroWindow.RightWindowCommands>
+        <mah:WindowCommands>
+            <Button Content="&#128712;" Command="{Binding ShowAboutDialogCmd}"/>
+        </mah:WindowCommands>
+    </mah:MetroWindow.RightWindowCommands>
+
     <DockPanel>
         <Grid>
             <TabControl TabStripPlacement="Left" SelectedIndex="{Binding SelectedIndex}">
