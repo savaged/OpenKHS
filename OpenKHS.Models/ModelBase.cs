@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using OpenKHS.Models.Attributes;
 using OpenKHS.Interfaces;
+using GalaSoft.MvvmLight;
 
 namespace OpenKHS.Models
 {
-    public abstract class ModelBase : IModel
+    public abstract class ModelBase : ObservableObject, IModel
     {
         public int Id { get; set; }
 

@@ -30,11 +30,11 @@ namespace OpenKHS.ViewModels
             {
                 Index.Add(item);
             }
-            if (Index.Count == 0)
+            if (Index.Count == 0 && defaultFirstItem != null)
             {
                 Index = new ObservableCollection<T>
                 {
-                    defaultFirstItem != null ? defaultFirstItem : new T()
+                    defaultFirstItem
                 };
             }
             Initialise(data.FirstOrDefault());

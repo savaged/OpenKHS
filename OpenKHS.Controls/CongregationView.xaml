@@ -40,6 +40,11 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
+                    <Grid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Select 'all'" Command="{Binding TogglePrivilegesCmd}"/>
+                        </ContextMenu>
+                    </Grid.ContextMenu>
                     <StackPanel Grid.Column="0">
                         <CheckBox IsChecked="{Binding SelectedItem.ClmmChairman}">CLMM Chairman</CheckBox>
                         <CheckBox IsChecked="{Binding SelectedItem.ClmmPrayer}">CLMM Prayer</CheckBox>

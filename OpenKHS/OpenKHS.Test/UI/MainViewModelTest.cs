@@ -15,7 +15,7 @@ namespace OpenKHS.Test.Unit
             var cvm = (CongregationViewModel)mvm.CongregationVM;
             Assert.IsNotNull(cvm.ModelObject);
             Assert.IsNotNull(cvm.Index);
-            Assert.AreEqual(1, cvm.Index.Count);
+            Assert.AreEqual(0, cvm.Index.Count);
 
             var pmsvm = (PmScheduleViewModel)mvm.PmScheduleVM;
             Assert.IsNotNull(pmsvm.ModelObject);
