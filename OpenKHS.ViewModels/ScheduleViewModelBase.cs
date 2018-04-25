@@ -6,6 +6,7 @@ using OpenKHS.Interfaces;
 using OpenKHS.Models.Utils;
 using OpenKHS.Data;
 using OpenKHS.ViewModels.Messages;
+using System.Collections.ObjectModel;
 
 namespace OpenKHS.ViewModels
 {
@@ -17,7 +18,12 @@ namespace OpenKHS.ViewModels
         {
             var weekStarting = WeekNumberAdapter.GetFirstDateOfWeekIso8601(DateTime.Now);
             Initialise(DbContext.Index(), GetDefaultSchedule(weekStarting));
-            LoadLookups(congMembers);
+
+            Attendants = new ObservableCollection<Friend>();
+            Security = new ObservableCollection<Friend>();
+            Sound = new ObservableCollection<Friend>();
+            Platform = new ObservableCollection<Friend>();
+            RovingMic = new ObservableCollection<Friend>();
 
             MessengerInstance.Register<CongregationChangedMessage>(this, OnCongregationChanged);
             PropertyChanged += OnPropertyChanged;
@@ -33,12 +39,21 @@ namespace OpenKHS.ViewModels
         
         protected virtual void LoadLookups(IList<Friend> congMembers)
         {
-            // TODO change lookups to be ObservableCollection objects so they update on refresh
-            Attendants = congMembers.Where(f => f.Attendant).ToList();
-            Security = congMembers.Where(f => f.Security).ToList();
-            Sound = congMembers.Where(f => f.SoundDesk).ToList();
-            Platform = congMembers.Where(f => f.Platform).ToList();
-            RovingMic = congMembers.Where(f => f.RovingMic).ToList();
+            congMembers.Where(f => f.Attendant).ToList().ForEach(f => {
+                if (!Attendants.Contains(f)) Attendants.Add(f);
+            });
+            congMembers.Where(f => f.Security).ToList().ForEach(f => {
+                if (!Security.Contains(f)) Security.Add(f);
+            });
+            congMembers.Where(f => f.SoundDesk).ToList().ForEach(f => {
+                if (!Sound.Contains(f)) Sound.Add(f);
+            });
+            congMembers.Where(f => f.Platform).ToList().ForEach(f => {
+                if (!Platform.Contains(f)) Platform.Add(f);
+            });
+            congMembers.Where(f => f.RovingMic).ToList().ForEach(f => {
+                if (!RovingMic.Contains(f)) RovingMic.Add(f);
+            });
         }
 
         protected bool IsValidSchedule()
@@ -48,15 +63,15 @@ namespace OpenKHS.ViewModels
 
         #region Lookups
 
-        public IList<Friend> Attendants { get; private set; }
+        public ObservableCollection<Friend> Attendants { get; private set; }
 
-        public IList<Friend> Security { get; private set; }
+        public ObservableCollection<Friend> Security { get; private set; }
 
-        public IList<Friend> Sound { get; private set; }
+        public ObservableCollection<Friend> Sound { get; private set; }
 
-        public IList<Friend> Platform { get; private set; }
+        public ObservableCollection<Friend> Platform { get; private set; }
 
-        public IList<Friend> RovingMic { get; private set; }
+        public ObservableCollection<Friend> RovingMic { get; private set; }
 
         #endregion
 
@@ -81,7 +96,6 @@ namespace OpenKHS.ViewModels
         private void OnCongregationChanged(CongregationChangedMessage msg)
         {
             LoadLookups(msg?.Members);
-            // TODO change lookups to be ObservableCollection objects so they update on refresh
         }
 
         #endregion

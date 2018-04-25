@@ -28,7 +28,6 @@ namespace OpenKHS.Data
 
         public void Update(PmSchedule existing)
         {
-            ValidateUpdate(existing);
             DbContext.SaveChanges();
         }
 

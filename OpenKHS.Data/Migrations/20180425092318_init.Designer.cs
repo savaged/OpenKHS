@@ -12,7 +12,7 @@ using System;
 namespace OpenKHS.Data.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20180424144620_init")]
+    [Migration("20180425092318_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -118,6 +118,9 @@ namespace OpenKHS.Data.Migrations
 
                     b.HasIndex("TreasuresId");
 
+                    b.HasIndex("WeekStarting")
+                        .IsUnique();
+
                     b.ToTable("ClmmSchedules");
                 });
 
@@ -207,6 +210,9 @@ namespace OpenKHS.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("Friends");
                 });
 
@@ -275,6 +281,9 @@ namespace OpenKHS.Data.Migrations
                     b.HasIndex("SecurityId");
 
                     b.HasIndex("SoundDeskId");
+
+                    b.HasIndex("WeekStarting")
+                        .IsUnique();
 
                     b.HasIndex("WtConductorId");
 

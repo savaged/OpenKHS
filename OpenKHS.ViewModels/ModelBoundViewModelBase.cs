@@ -55,10 +55,7 @@ namespace OpenKHS.ViewModels
             {
                 throw new ArgumentNullException("Model object should be initialised prior to Save");
             }
-            if (!ModelObject.IsNew)
-            {
-                DbContext.Update(ModelObject);
-            }
+            DbContext.Update(ModelObject);
         }
     }
 }

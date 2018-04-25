@@ -19,14 +19,5 @@ namespace OpenKHS.Data
                 throw new ArgumentException("Trying to add an existing model object as new. Use Update instead.");
             }
         }
-
-        public void ValidateUpdate(IModel existing)
-        {
-            if (existing.IsNew)
-            {
-                throw new ArgumentException("Trying to save a new model object without it having been added." +
-                    " Use Store before Update.");
-            }
-        }
     }
 }

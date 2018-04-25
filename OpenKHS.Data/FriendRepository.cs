@@ -28,7 +28,6 @@ namespace OpenKHS.Data
 
         public void Update(Friend existing)
         {
-            ValidateUpdate(existing);
             DbContext.SaveChanges();
         }
 

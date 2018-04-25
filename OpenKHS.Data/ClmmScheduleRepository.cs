@@ -28,7 +28,6 @@ namespace OpenKHS.Data
 
         public void Update(ClmmSchedule existing)
         {
-            ValidateUpdate(existing);
             DbContext.SaveChanges();
         }
 

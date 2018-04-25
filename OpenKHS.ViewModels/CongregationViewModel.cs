@@ -19,11 +19,21 @@ namespace OpenKHS.ViewModels
             Initialise(DbContext.Index(), null);
             Index.CollectionChanged += IndexChanged;
             _togglePrivilegesCmd = new RelayCommand(OnTogglePrivileges, () => CanExecute);
+            PropertyChanged += OnPropertyChanged;
+        }
+
+        private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(ModelObject))
+            {
+                _previousTogglePrivilegesSetting = false;
+            }
         }
 
         public override void Cleanup()
         {
             Index.CollectionChanged -= IndexChanged;
+            PropertyChanged -= OnPropertyChanged;
             base.Cleanup();
         }
 
@@ -34,17 +44,42 @@ namespace OpenKHS.ViewModels
 
         protected override void AddModelObjectToDbContext()
         {
-            if (ModelObject != null && !string.IsNullOrEmpty(ModelObject.Name)) DbContext.Store(ModelObject);
+            if (ModelObject != null && !string.IsNullOrEmpty(ModelObject.Name))
+            {
+                DbContext.Store(ModelObject);
+            }
         }
 
         private void IndexChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            var members = new List<Friend>();
-            foreach (var member in Index)
+            var isChangeRelevant = false;
+            if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
             {
-                members.Add(member);
+                if (e.NewItems != null && e.NewItems.Count > 0)
+                {
+                    foreach (Friend newItem in e.NewItems)
+                    {
+                        if (!string.IsNullOrEmpty(newItem.Name))
+                        {
+                            isChangeRelevant = true;
+                            break;
+                        }
+                    }
+                }
             }
-            MessengerInstance.Send(new CongregationChangedMessage(members));
+            else if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
+            {
+                isChangeRelevant = true;
+            }
+            if (isChangeRelevant)
+            {
+                var members = new List<Friend>();
+                foreach (var member in Index)
+                {
+                    members.Add(member);
+                }
+                MessengerInstance.Send(new CongregationChangedMessage(members));
+            }
         }
 
         public ICommand TogglePrivilegesCmd => _togglePrivilegesCmd;
@@ -62,7 +97,8 @@ namespace OpenKHS.ViewModels
                 if (Attribute.IsDefined(p, typeof(PrivilegeAttribute)))
                 {
                     if (p.Name != nameof(ModelObject.ClmmMainHallOnly) &&
-                        p.Name != nameof(ModelObject.ClmmSecondSchoolOnly))
+                        p.Name != nameof(ModelObject.ClmmSecondSchoolOnly) &&
+                        p.Name != nameof(ModelObject.MainWtConductor))
                     {
                         p.SetValue(ModelObject, _previousTogglePrivilegesSetting);
                     }

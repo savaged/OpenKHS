@@ -469,6 +469,18 @@ namespace OpenKHS.Data.Migrations
                 column: "TreasuresId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ClmmSchedules_WeekStarting",
+                table: "ClmmSchedules",
+                column: "WeekStarting",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Friends_Name",
+                table: "Friends",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_MeetingPart_AssistantId",
                 table: "MeetingPart",
                 column: "AssistantId");
@@ -522,6 +534,12 @@ namespace OpenKHS.Data.Migrations
                 name: "IX_PmSchedules_SoundDeskId",
                 table: "PmSchedules",
                 column: "SoundDeskId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PmSchedules_WeekStarting",
+                table: "PmSchedules",
+                column: "WeekStarting",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_PmSchedules_WtConductorId",

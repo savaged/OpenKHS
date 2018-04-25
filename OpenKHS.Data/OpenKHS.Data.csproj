@@ -210,9 +210,9 @@
   <ItemGroup>
     <Compile Include="DatabaseContext.cs" />
     <Compile Include="ClmmScheduleRepository.cs" />
-    <Compile Include="Migrations\20180424144620_init.cs" />
-    <Compile Include="Migrations\20180424144620_init.designer.cs">
-      <DependentUpon>20180424144620_init.cs</DependentUpon>
+    <Compile Include="Migrations\20180425092318_init.cs" />
+    <Compile Include="Migrations\20180425092318_init.designer.cs">
+      <DependentUpon>20180425092318_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\DatabaseContextModelSnapshot.cs" />
     <Compile Include="PmScheduleRepository.cs" />

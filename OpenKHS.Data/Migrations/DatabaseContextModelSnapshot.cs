@@ -117,6 +117,9 @@ namespace OpenKHS.Data.Migrations
 
                     b.HasIndex("TreasuresId");
 
+                    b.HasIndex("WeekStarting")
+                        .IsUnique();
+
                     b.ToTable("ClmmSchedules");
                 });
 
@@ -206,6 +209,9 @@ namespace OpenKHS.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("Friends");
                 });
 
@@ -274,6 +280,9 @@ namespace OpenKHS.Data.Migrations
                     b.HasIndex("SecurityId");
 
                     b.HasIndex("SoundDeskId");
+
+                    b.HasIndex("WeekStarting")
+                        .IsUnique();
 
                     b.HasIndex("WtConductorId");
 

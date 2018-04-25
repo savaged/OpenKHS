@@ -16,6 +16,12 @@ namespace OpenKHS.ViewModels
             return DbContext.Index().SingleOrDefault(s => s.WeekStarting == weekStarting);
         }
 
-        protected override void AddModelObjectToDbContext() { if (IsValidSchedule()) DbContext.Store(ModelObject); }
+        protected override void AddModelObjectToDbContext()
+        {
+            if (IsValidSchedule())
+            {
+                DbContext.Store(ModelObject);
+            }
+        }
     }
 }
