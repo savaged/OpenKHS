@@ -25,14 +25,15 @@ namespace OpenKHS.ViewModels
 
         protected IModelRepository<T> DbContext { get; }
 
+        protected bool IsDirty { get; set; }
+
         protected virtual void Initialise(T data)
         {
             if (data == null)
             {
                 data = new T();
             }
-            ModelObject = data;
-            
+            ModelObject = data;            
         }
 
         public T ModelObject
@@ -41,21 +42,35 @@ namespace OpenKHS.ViewModels
             set
             {
                 Set(ref _modelObject, value);
-                if (_modelObject != null && _modelObject.IsNew)
+                IsDirty = false;
+                if (_modelObject != null)
                 {
-                    AddModelObjectToDbContext();
+                    if (_modelObject.IsNew)
+                    {
+                        AddModelObjectToDbContext();
+                    }
+                    _modelObject.PropertyChanged += OnModelObjectPropertyChanged;
                 }
             }
         }
+
         protected abstract void AddModelObjectToDbContext();
+
+        private void OnModelObjectPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            IsDirty = true;
+        }
 
         public virtual void Save()
         {
-            if (ModelObject == null)
+            if (ModelObject != null)
             {
-                throw new ArgumentNullException("Model object should be initialised prior to Save");
+                if (IsDirty)
+                {
+                    DbContext.Save();
+                    IsDirty = false;
+                }
             }
-            DbContext.Update(ModelObject);
         }
     }
 }

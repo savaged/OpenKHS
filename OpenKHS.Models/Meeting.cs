@@ -7,11 +7,6 @@ namespace OpenKHS.Models
     // TODO add validation to each property i.e. brother has privilege
     public abstract class Meeting : ModelBase, ISchedule
     {
-        public Meeting()
-        {
-            WeekStarting = WeekNumberAdapter.GetFirstDateOfWeekIso8601(DateTime.Now);
-        }
-
         public DateTime WeekStarting { get; set; }
 
         public Friend Chairman { get; set; }

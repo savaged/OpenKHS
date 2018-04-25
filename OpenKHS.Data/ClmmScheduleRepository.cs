@@ -26,15 +26,9 @@ namespace OpenKHS.Data
             DbContext.ClmmSchedules.Add(@new);
         }
 
-        public void Update(ClmmSchedule existing)
-        {
-            DbContext.SaveChanges();
-        }
-
         public void Delete(ClmmSchedule model)
         {
             DbContext.ClmmSchedules.Remove(model);
-            DbContext.SaveChanges();
         }
     }
 }

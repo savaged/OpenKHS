@@ -34,7 +34,7 @@ namespace OpenKHS.ViewModels
             {
                 Index.Add(defaultFirstItem);
             }
-            Initialise(data.FirstOrDefault());
+            SelectedItem = Index.FirstOrDefault();
         }
 
         public ObservableCollection<T> Index { get; set; }

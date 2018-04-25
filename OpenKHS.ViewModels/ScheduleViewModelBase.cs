@@ -29,7 +29,19 @@ namespace OpenKHS.ViewModels
             PropertyChanged += OnPropertyChanged;
         }
 
-        protected abstract T GetDefaultSchedule(DateTime weekStarting);
+        protected T GetDefaultSchedule(DateTime weekStarting)
+        {
+            var defaultSchedule = DbContext.Index().SingleOrDefault(s => s.WeekStarting == weekStarting);
+            if (defaultSchedule == null)
+            {
+                defaultSchedule = new T();
+            }
+            if (defaultSchedule.WeekStarting == DateTime.MinValue)
+            {
+                defaultSchedule.WeekStarting = WeekNumberAdapter.GetFirstDateOfWeekIso8601(DateTime.Now);
+            }
+            return defaultSchedule;
+        }
 
         public override void Cleanup()
         {
@@ -77,19 +89,30 @@ namespace OpenKHS.ViewModels
 
         #region Events
 
-        private void OnViewWeek(DateTime dateTime)
-        {
-            var weekStarting = WeekNumberAdapter.GetFirstDateOfWeekIso8601(dateTime);
-            var defaultSchedule = GetDefaultSchedule(weekStarting);
-            SelectedItem = defaultSchedule;
-        }
-
 
         private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(SelectedItem) && IsItemSelected)
             {
-                // TODO set-up new schedule?
+                if (ModelObject == null)
+                {
+                    throw new ArgumentNullException("Expected Selected Item and Model Object to be in sync!");
+                }
+                if (ModelObject.WeekStarting == DateTime.MinValue)
+                {
+                    if (Index != null && Index.Count == 0)
+                    {
+                        ModelObject.WeekStarting = WeekNumberAdapter.GetFirstDateOfWeekIso8601(DateTime.Now);
+                    }
+                    else
+                    {
+                        var latestScheduleDate = Index
+                            .OrderByDescending(s => s.WeekStarting)
+                            .Select(s => s.WeekStarting)
+                            .First();
+                        ModelObject.WeekStarting = latestScheduleDate.AddDays(7);
+                    }
+                }
             }
         }
 

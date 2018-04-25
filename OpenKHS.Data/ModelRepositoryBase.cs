@@ -19,5 +19,10 @@ namespace OpenKHS.Data
                 throw new ArgumentException("Trying to add an existing model object as new. Use Update instead.");
             }
         }
+
+        public void Save()
+        {
+            DbContext.SaveChanges();
+        }
     }
 }

@@ -8,6 +8,6 @@ namespace OpenKHS.Interfaces
         IList<T> Index();
         T Show(int id);
         void Store(T @new);
-        void Update(T existing);
+        void Save();
     }
 }

@@ -26,15 +26,9 @@ namespace OpenKHS.Data
             DbContext.PmSchedules.Add(@new);
         }
 
-        public void Update(PmSchedule existing)
-        {
-            DbContext.SaveChanges();
-        }
-
         public void Delete(PmSchedule model)
         {
             DbContext.PmSchedules.Remove(model);
-            DbContext.SaveChanges();
         }
     }
 }

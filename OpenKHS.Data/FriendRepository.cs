@@ -26,15 +26,9 @@ namespace OpenKHS.Data
             DbContext.Friends.Add(@new);
         }
 
-        public void Update(Friend existing)
-        {
-            DbContext.SaveChanges();
-        }
-
         public void Delete(Friend model)
         {
             DbContext.Friends.Remove(model);
-            DbContext.SaveChanges();
         }
     }
 }

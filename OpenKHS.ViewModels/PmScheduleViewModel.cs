@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using OpenKHS.Models;
 using OpenKHS.Data;
 using System.Collections.ObjectModel;
+using OpenKHS.Models.Utils;
 
 namespace OpenKHS.ViewModels
 {
@@ -16,11 +17,6 @@ namespace OpenKHS.ViewModels
             WtReaders = new ObservableCollection<Friend>();
             WtConductors = new ObservableCollection<Friend>();
             LoadLookups(congMembers);
-        }
-
-        protected override PmSchedule GetDefaultSchedule(DateTime weekStarting)
-        {
-            return DbContext.Index().SingleOrDefault(s => s.WeekStarting == weekStarting);
         }
 
         protected override void AddModelObjectToDbContext()
