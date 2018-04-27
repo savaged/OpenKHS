@@ -113,7 +113,6 @@
     <Compile Include="MainViewModel.cs" />
     <Compile Include="IndexBoundViewModelBase.cs" />
     <Compile Include="LocalViewModelBase.cs" />
-    <Compile Include="Messages\CongregationChangedMessage.cs" />
     <Compile Include="ScheduleViewModelBase.cs" />
     <Compile Include="PmScheduleViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -143,6 +142,8 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Messages\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

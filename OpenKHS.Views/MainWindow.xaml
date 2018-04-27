@@ -34,14 +34,14 @@
                 <TabItem Header="&#128100;" ToolTip="Congregation Members">
                     <ctrls:CongregationView x:Name="CongregationView"/>
                 </TabItem>
-                <TabItem Header="&#128116;" ToolTip="Public Talks">
-                    <ctrls:PublicTalksView x:Name="PublicTalksView"/>
+                <TabItem Header="&#128203;" ToolTip="Christian Life &amp; Ministry Meeting Schedule">
+                    <ctrls:ClmmScheduleView x:Name="ClmmScheduleView"/>
                 </TabItem>
                 <TabItem Header="&#128214;" ToolTip="Public Meeting Schedule">
                     <ctrls:PmScheduleView x:Name="PmScheduleView"/>
                 </TabItem>
-                <TabItem Header="&#128203;" ToolTip="Christian Life &amp; Ministry Meeting Schedule">
-                    <ctrls:ClmmScheduleView x:Name="ClmmScheduleView"/>
+                <TabItem Header="&#128116;" ToolTip="Public Talks">
+                    <ctrls:PublicTalksView x:Name="PublicTalksView"/>
                 </TabItem>
             </TabControl>
         </Grid>

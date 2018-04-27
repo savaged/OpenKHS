@@ -13,9 +13,9 @@ namespace OpenKHS.ViewModels
         public PmScheduleViewModel(DatabaseContext dbContext, IList<Friend> congMembers)
             : base(dbContext, congMembers)
         {
-            Chairmen = new ObservableCollection<Friend>();
-            WtReaders = new ObservableCollection<Friend>();
-            WtConductors = new ObservableCollection<Friend>();
+            Chairmen = new List<Friend>();
+            WtReaders = new List<Friend>();
+            WtConductors = new List<Friend>();
             LoadLookups();
         }
 
@@ -31,25 +31,31 @@ namespace OpenKHS.ViewModels
         {
             base.LoadLookups();
 
-            CongMembers.Where(f => f.PmChairman).ToList().ForEach(f => {
-                if (!Chairmen.Contains(f)) Chairmen.Add(f);
-            });
-            CongMembers.Where(f => f.WtReader).ToList().ForEach(f => {
-                if (!WtReaders.Contains(f)) WtReaders.Add(f);
-            });
-            CongMembers.Where(f => f.WtConductor).ToList().ForEach(f => {
-                if (!WtConductors.Contains(f)) WtConductors.Add(f);
-            });
+            Chairmen.Clear();
+            CongMembers.Where(f => f.PmChairman).ToList().ForEach(f => Chairmen.Add(f));
+            Chairmen = Chairmen.OrderBy(f => f.PmAssignmentTally).ToList();
+            RaisePropertyChanged(nameof(Chairmen));
+
+            WtReaders.Clear();
+            CongMembers.Where(f => f.WtReader).ToList().ForEach(f => WtReaders.Add(f));
+            WtReaders = WtReaders.OrderBy(f => f.PmAssignmentTally).ToList();
+            RaisePropertyChanged(nameof(WtReaders));
+
+            WtConductors.Clear();
+            CongMembers.Where(f => f.WtConductor).ToList().ForEach(f => WtConductors.Add(f));
+            WtConductors = WtConductors.OrderBy(f => f.PmAssignmentTally).ToList();
+            RaisePropertyChanged(nameof(WtConductors));
+
             if (ModelObject != null && ModelObject.WtConductor == null)
             {
                 ModelObject.WtConductor = CongMembers.Where(f => f.MainWtConductor).FirstOrDefault();
             }
         }
 
-        public ObservableCollection<Friend> Chairmen { get; private set; }
+        public List<Friend> Chairmen { get; private set; }
 
-        public ObservableCollection<Friend> WtReaders { get; private set; }
+        public List<Friend> WtReaders { get; private set; }
 
-        public ObservableCollection<Friend> WtConductors { get; private set; }
+        public List<Friend> WtConductors { get; private set; }
     }
 }

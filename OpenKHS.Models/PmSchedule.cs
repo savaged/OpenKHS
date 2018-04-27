@@ -22,13 +22,13 @@ namespace OpenKHS.Models
         public Friend WtConductor
         {
             get => _wtConductor;
-            set => Set(ref _wtConductor, Friend.Swap(ref _wtConductor, value));
+            set => Set(ref _wtConductor, Friend.Swap(ref _wtConductor, value, AssignmentContext.PublicMeeting));
         }
 
         public Friend WtReader
         {
             get => _wtReader;
-            set => Set(ref _wtReader, Friend.Swap(ref _wtReader, value));
+            set => Set(ref _wtReader, Friend.Swap(ref _wtReader, value, AssignmentContext.PublicMeeting));
         }
     }
 }

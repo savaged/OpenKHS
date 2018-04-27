@@ -9,7 +9,11 @@ namespace OpenKHS.Models
 {
     public class Friend : ModelBase, IModel
     {
-        private AssignmentTally _tally;
+        private AssignmentTally _meetingAssignmentTally;
+        private AssignmentTally _pmAssignmentTally;
+        private AssignmentTally _treasuresAssignmentTally;
+        private AssignmentTally _ayttmAssignmentTally;
+        private AssignmentTally _lacAssignmentTally;
         private string _name;
         private List<DateRange> _unavailablePeriods;
         private bool _ClmmChairman;
@@ -43,7 +47,7 @@ namespace OpenKHS.Models
 
         public Friend()
         {
-            _tally = new AssignmentTally();
+            _meetingAssignmentTally = new AssignmentTally();
             if (UnavailablePeriods == null)
             {
                 UnavailablePeriods = new List<DateRange>();
@@ -63,30 +67,101 @@ namespace OpenKHS.Models
             set => Set(ref _unavailablePeriods, value);
         }
 
-        public int AssignmentTally
+        public int MeetingAssignmentTally
         {
-            get => _tally;
+            get => _meetingAssignmentTally;
             set
             {
-                _tally = new AssignmentTally(value);
+                _meetingAssignmentTally = new AssignmentTally(value);
                 RaisePropertyChanged();
             }
         }
 
-        public static Friend Swap(ref Friend original, Friend replacement)
+        public int PmAssignmentTally
+        {
+            get => _pmAssignmentTally;
+            set
+            {
+                _pmAssignmentTally = new AssignmentTally(value);
+                RaisePropertyChanged();
+            }
+        }
+
+        public int TreasuresAssignmentTally
+        {
+            get => _treasuresAssignmentTally;
+            set
+            {
+                _treasuresAssignmentTally = new AssignmentTally(value);
+                RaisePropertyChanged();
+            }
+        }
+
+        public int AYttMAssignmentTally
+        {
+            get => _ayttmAssignmentTally;
+            set
+            {
+                _ayttmAssignmentTally = new AssignmentTally(value);
+                RaisePropertyChanged();
+            }
+        }
+
+        public int LacAssignmentTally
+        {
+            get => _lacAssignmentTally;
+            set
+            {
+                _lacAssignmentTally = new AssignmentTally(value);
+                RaisePropertyChanged();
+            }
+        }
+
+        public static Friend Swap(ref Friend original, Friend replacement, AssignmentContext context)
         {
             if (original != replacement)
             {
                 if (original != null)
                 {
-                    if (original.AssignmentTally > 0)
+                    switch (context)
                     {
-                        original.AssignmentTally--;
+                        case AssignmentContext.Common:
+                            if (original.MeetingAssignmentTally > 0) original.MeetingAssignmentTally--;
+                            break;
+                        case AssignmentContext.PublicMeeting:
+                            if (original.PmAssignmentTally > 0) original.PmAssignmentTally--;
+                            break;
+                        case AssignmentContext.Treasures:
+                            if (original.TreasuresAssignmentTally > 0) original.TreasuresAssignmentTally--;
+                            break;
+                        case AssignmentContext.ApplyYourselfToTheMinistry:
+                            if (original.AYttMAssignmentTally > 0) original.AYttMAssignmentTally--;
+                            break;
+                        case AssignmentContext.LivingAsChristians:
+                            if (original.LacAssignmentTally > 0) original.LacAssignmentTally--;
+                            break;
                     }
                 }
                 if (replacement != null)
                 {
-                    replacement.AssignmentTally++;
+                    switch (context)
+                    {
+                        case AssignmentContext.Common:
+                            replacement.MeetingAssignmentTally++;
+                            break;
+                        case AssignmentContext.PublicMeeting:
+                            replacement.PmAssignmentTally++;
+                            break;
+                        case AssignmentContext.Treasures:
+                            replacement.TreasuresAssignmentTally++;
+                            break;
+                        case AssignmentContext.ApplyYourselfToTheMinistry:
+                            replacement.AYttMAssignmentTally++;
+                            break;
+                        case AssignmentContext.LivingAsChristians:
+                            replacement.LacAssignmentTally++;
+                            break;
+                    }
                 }
             }
             return replacement;

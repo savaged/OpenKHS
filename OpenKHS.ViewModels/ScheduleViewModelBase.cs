@@ -5,7 +5,6 @@ using OpenKHS.Models;
 using OpenKHS.Interfaces;
 using OpenKHS.Models.Utils;
 using OpenKHS.Data;
-using OpenKHS.ViewModels.Messages;
 using System.Collections.ObjectModel;
 
 namespace OpenKHS.ViewModels
@@ -17,24 +16,28 @@ namespace OpenKHS.ViewModels
             : base(dbContext)
         {
             CongMembers = congMembers;
-            Attendants = new ObservableCollection<Friend>();
-            Security = new ObservableCollection<Friend>();
-            Sound = new ObservableCollection<Friend>();
-            Platform = new ObservableCollection<Friend>();
-            RovingMic = new ObservableCollection<Friend>();
+            Attendants = new List<Friend>();
+            Security = new List<Friend>();
+            Sound = new List<Friend>();
+            Platform = new List<Friend>();
+            RovingMic = new List<Friend>();
 
             var weekStarting = WeekNumberAdapter.GetFirstDateOfWeekIso8601(DateTime.Now);
             Initialise(DbContext.Index(), GetDefaultSchedule(weekStarting));
 
             PropertyChanged += OnPropertyChanged;
-            ModelObject.PropertyChanged += OnModelObjectPropertyChanged;
-            MessengerInstance.Register<CongregationChangedMessage>(this, OnCongregationChanged);
+            ModelObject.PropertyChanged += OnScheduleModelObjectPropertyChanged;
         }
 
         public override void Cleanup()
         {
             PropertyChanged -= OnPropertyChanged;
             base.Cleanup();
+        }
+
+        public void Load()
+        {
+            LoadLookups();
         }
 
         protected IList<Friend> CongMembers { get; private set; }
@@ -63,30 +66,36 @@ namespace OpenKHS.ViewModels
 
         protected virtual void LoadLookups()
         {
-            CongMembers.Where(f => f.Attendant).ToList().ForEach(f => {
-                if (!Attendants.Contains(f)) Attendants.Add(f);
-            });
-            Attendants = new ObservableCollection<Friend>(Attendants.OrderBy(f => f.AssignmentTally));
+            Attendants.Clear();
+            CongMembers.Where(f => f.Attendant).ToList().ForEach(f => Attendants.Add(f));
+            Attendants = Attendants.OrderBy(f => f.MeetingAssignmentTally).ToList();
+            RaisePropertyChanged(nameof(Attendants));
 
-            CongMembers.Where(f => f.Security).ToList().ForEach(f => {
-                if (!Security.Contains(f)) Security.Add(f);
-            });
-            Security = new ObservableCollection<Friend>(Security.OrderBy(f => f.AssignmentTally));
+            Security.Clear();
+            CongMembers.Where(f => f.Security).ToList().ForEach(f => Security.Add(f));
+            Security = Security.OrderBy(f => f.MeetingAssignmentTally).ToList();
+            RaisePropertyChanged(nameof(Security));
 
+            Sound.Clear();
             CongMembers.Where(f => f.SoundDesk).ToList().ForEach(f => {
                 if (!Sound.Contains(f)) Sound.Add(f);
             });
-            Sound = new ObservableCollection<Friend>(Sound.OrderBy(f => f.AssignmentTally));
+            Sound = Sound.OrderBy(f => f.MeetingAssignmentTally).ToList();
+            RaisePropertyChanged(nameof(Sound));
 
+            Platform.Clear();
             CongMembers.Where(f => f.Platform).ToList().ForEach(f => {
                 if (!Platform.Contains(f)) Platform.Add(f);
             });
-            Platform = new ObservableCollection<Friend>(Platform.OrderBy(f => f.AssignmentTally));
+            Platform = Platform.OrderBy(f => f.MeetingAssignmentTally).ToList();
+            RaisePropertyChanged(nameof(Platform));
 
+            RovingMic.Clear();
             CongMembers.Where(f => f.RovingMic).ToList().ForEach(f => {
                 if (!RovingMic.Contains(f)) RovingMic.Add(f);
             });
-            RovingMic = new ObservableCollection<Friend>(RovingMic.OrderBy(f => f.AssignmentTally));
+            RovingMic = RovingMic.OrderBy(f => f.MeetingAssignmentTally).ToList();
+            RaisePropertyChanged(nameof(RovingMic));
         }
 
         protected bool IsValidSchedule()
@@ -96,15 +105,15 @@ namespace OpenKHS.ViewModels
 
         #region Lookups
 
-        public ObservableCollection<Friend> Attendants { get; private set; }
+        public List<Friend> Attendants { get; private set; }
 
-        public ObservableCollection<Friend> Security { get; private set; }
+        public List<Friend> Security { get; private set; }
 
-        public ObservableCollection<Friend> Sound { get; private set; }
+        public List<Friend> Sound { get; private set; }
 
-        public ObservableCollection<Friend> Platform { get; private set; }
+        public List<Friend> Platform { get; private set; }
 
-        public ObservableCollection<Friend> RovingMic { get; private set; }
+        public List<Friend> RovingMic { get; private set; }
 
         #endregion
 
@@ -122,12 +131,11 @@ namespace OpenKHS.ViewModels
                 {
                     SetWeekStartingDate(ModelObject);
                 }
-                LoadLookups();
-                ModelObject.PropertyChanged += OnModelObjectPropertyChanged;
+                ModelObject.PropertyChanged += OnScheduleModelObjectPropertyChanged;
             }
         }
 
-        private void OnModelObjectPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void OnScheduleModelObjectPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             LoadLookups();
         }
@@ -146,12 +154,6 @@ namespace OpenKHS.ViewModels
                     .First();
                 schedule.WeekStarting = latestScheduleDate.AddDays(7);
             }
-        }
-
-        private void OnCongregationChanged(CongregationChangedMessage msg)
-        {
-            CongMembers = msg?.Members;
-            LoadLookups();
         }
 
         #endregion

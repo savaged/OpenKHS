@@ -53,7 +53,8 @@
     <Compile Include="IModelBoundViewModel.cs" />
     <Compile Include="IViewModel.cs" />
     <Compile Include="IViewState.cs" />
-    <Compile Include="Methods..cs" />
+    <Compile Include="AssignmentContext.cs" />
+    <Compile Include="Methods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

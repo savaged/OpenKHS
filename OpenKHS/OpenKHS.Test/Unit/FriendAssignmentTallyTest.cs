@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenKHS.Interfaces;
 using OpenKHS.Models;
 
 namespace OpenKHS.Test.Unit
@@ -11,18 +12,18 @@ namespace OpenKHS.Test.Unit
         public void TestFriendAssignmentTallyIncrementAndReset()
         {
             Friend friend = null;
-            friend = Friend.Swap(ref friend, new Friend());
-            Assert.AreEqual(1, friend.AssignmentTally);
+            friend = Friend.Swap(ref friend, new Friend(), AssignmentContext.Common);
+            Assert.AreEqual(1, friend.MeetingAssignmentTally);
 
             var replacement = new Friend();
-            Assert.AreEqual(0, replacement.AssignmentTally);
-            replacement = Friend.Swap(ref friend, replacement);
-            Assert.AreEqual(1, replacement.AssignmentTally);
-            Assert.AreEqual(0, friend.AssignmentTally);
+            Assert.AreEqual(0, replacement.MeetingAssignmentTally);
+            replacement = Friend.Swap(ref friend, replacement, AssignmentContext.Common);
+            Assert.AreEqual(1, replacement.MeetingAssignmentTally);
+            Assert.AreEqual(0, friend.MeetingAssignmentTally);
 
             replacement = null;
-            replacement = Friend.Swap(ref friend, replacement);
-            Assert.AreEqual(0, friend.AssignmentTally);
+            replacement = Friend.Swap(ref friend, replacement, AssignmentContext.Common);
+            Assert.AreEqual(0, friend.MeetingAssignmentTally);
         }
     }
 }

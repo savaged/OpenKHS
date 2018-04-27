@@ -31,7 +31,12 @@ namespace OpenKHS.ViewModels
         public int SelectedIndex
         {
             get => _selectedIndex;
-            set => Set(ref _selectedIndex, value);
+            set
+            {
+                Save();
+                Set(ref _selectedIndex, value);
+                Load();
+            }
         }
 
         #endregion
@@ -47,14 +52,6 @@ namespace OpenKHS.ViewModels
             _publicTalksViewModel = new PublicTalksViewModel(dbContext);
             _pmScheduleViewModel = new PmScheduleViewModel(dbContext, _congregationViewModel.Index);
             _clmmScheduleViewModel = new ClmmScheduleViewModel(dbContext, _congregationViewModel.Index);
-
-            PropertyChanged += OnPropertyChanged;
-        }
-
-        public override void Cleanup()
-        {
-            PropertyChanged -= OnPropertyChanged;
-            base.Cleanup();
         }
 
         #endregion
@@ -70,10 +67,34 @@ namespace OpenKHS.ViewModels
 
         private void Save()
         {
-            _congregationViewModel.Save();
-            _clmmScheduleViewModel.Save();
-            _pmScheduleViewModel.Save();
-            // TODO _publicTalksViewModel.Save();
+            switch (SelectedIndex)
+            {
+                case 0:
+                    _congregationViewModel.Save();
+                    break;
+                case 1:
+                    _clmmScheduleViewModel.Save();
+                    break;
+                case 2:
+                    _pmScheduleViewModel.Save();
+                    break;
+                case 3:
+                    // TODO _publicTalksViewModel.Save();
+                    break;
+            }
+        }
+
+        private void Load()
+        {
+            switch (SelectedIndex)
+            {
+                case 1:
+                    _clmmScheduleViewModel.Load();
+                    break;
+                case 2:
+                    _pmScheduleViewModel.Load();
+                    break;
+            }
         }
 
         #endregion
@@ -99,14 +120,6 @@ namespace OpenKHS.ViewModels
         #region Events
 
         public event EventHandler RequestClose;
-
-        private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(SelectedIndex))
-            {
-                Save();
-            }
-        }
 
         #endregion
     }

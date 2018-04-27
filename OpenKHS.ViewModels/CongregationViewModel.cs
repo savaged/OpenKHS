@@ -1,7 +1,6 @@
 ﻿using System;
 using OpenKHS.Models;
 using OpenKHS.Data;
-using OpenKHS.ViewModels.Messages;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using OpenKHS.Models.Attributes;
@@ -20,35 +19,9 @@ namespace OpenKHS.ViewModels
             PropertyChanged += OnPropertyChanged;
         }
 
-        private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(ModelObject))
-            {
-                _previousTogglePrivilegesSetting = false;
-
-                if (ModelObject != null)
-                {
-                    ModelObject.PropertyChanged += OnModelObjectPropertyChanged;
-                }
-            }
-        }
-
-        private void OnModelObjectPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (ModelObject != null && !string.IsNullOrEmpty(ModelObject.Name))
-            {
-                MessengerInstance.Send(new CongregationChangedMessage(Index));
-            }
-        }
-
         public override void Cleanup()
         {
             PropertyChanged -= OnPropertyChanged;
-
-            if (ModelObject != null)
-            {
-                ModelObject.PropertyChanged -= OnModelObjectPropertyChanged;
-            }
             base.Cleanup();
         }
 
@@ -86,6 +59,14 @@ namespace OpenKHS.ViewModels
                         p.SetValue(ModelObject, _previousTogglePrivilegesSetting);
                     }
                 }
+            }
+        }
+
+        private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(ModelObject))
+            {
+                _previousTogglePrivilegesSetting = false;
             }
         }
     }

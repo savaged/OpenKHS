@@ -79,16 +79,16 @@ namespace OpenKHS.Test.Integration
             {
                 var first = context.Friends.First();
                 id = first.Id;
-                tally = first.AssignmentTally;
+                tally = first.MeetingAssignmentTally;
                 // update
-                first.AssignmentTally++;
+                first.MeetingAssignmentTally++;
                 context.SaveChanges();
             }
             using (var context = new DatabaseContext(optionsBuilder.Options))
             {
                 // check updated
                 var updated = context.Friends.Single(f => f.Id == id);
-                Assert.AreNotEqual(tally, updated.AssignmentTally);
+                Assert.AreNotEqual(tally, updated.MeetingAssignmentTally);
             }
 
             using (var context = new DatabaseContext(optionsBuilder.Options))
