@@ -17,18 +17,18 @@ namespace OpenKHS.ViewModels
             : base(dbContext)
         {
             CongMembers = congMembers;
-
-            var weekStarting = WeekNumberAdapter.GetFirstDateOfWeekIso8601(DateTime.Now);
-            Initialise(DbContext.Index(), GetDefaultSchedule(weekStarting));
-
             Attendants = new ObservableCollection<Friend>();
             Security = new ObservableCollection<Friend>();
             Sound = new ObservableCollection<Friend>();
             Platform = new ObservableCollection<Friend>();
             RovingMic = new ObservableCollection<Friend>();
 
-            MessengerInstance.Register<CongregationChangedMessage>(this, OnCongregationChanged);
+            var weekStarting = WeekNumberAdapter.GetFirstDateOfWeekIso8601(DateTime.Now);
+            Initialise(DbContext.Index(), GetDefaultSchedule(weekStarting));
+
             PropertyChanged += OnPropertyChanged;
+            ModelObject.PropertyChanged += OnModelObjectPropertyChanged;
+            MessengerInstance.Register<CongregationChangedMessage>(this, OnCongregationChanged);
         }
 
         public override void Cleanup()
@@ -66,18 +66,27 @@ namespace OpenKHS.ViewModels
             CongMembers.Where(f => f.Attendant).ToList().ForEach(f => {
                 if (!Attendants.Contains(f)) Attendants.Add(f);
             });
+            Attendants = new ObservableCollection<Friend>(Attendants.OrderBy(f => f.AssignmentTally));
+
             CongMembers.Where(f => f.Security).ToList().ForEach(f => {
                 if (!Security.Contains(f)) Security.Add(f);
             });
+            Security = new ObservableCollection<Friend>(Security.OrderBy(f => f.AssignmentTally));
+
             CongMembers.Where(f => f.SoundDesk).ToList().ForEach(f => {
                 if (!Sound.Contains(f)) Sound.Add(f);
             });
+            Sound = new ObservableCollection<Friend>(Sound.OrderBy(f => f.AssignmentTally));
+
             CongMembers.Where(f => f.Platform).ToList().ForEach(f => {
                 if (!Platform.Contains(f)) Platform.Add(f);
             });
+            Platform = new ObservableCollection<Friend>(Platform.OrderBy(f => f.AssignmentTally));
+
             CongMembers.Where(f => f.RovingMic).ToList().ForEach(f => {
                 if (!RovingMic.Contains(f)) RovingMic.Add(f);
             });
+            RovingMic = new ObservableCollection<Friend>(RovingMic.OrderBy(f => f.AssignmentTally));
         }
 
         protected bool IsValidSchedule()
@@ -114,7 +123,13 @@ namespace OpenKHS.ViewModels
                     SetWeekStartingDate(ModelObject);
                 }
                 LoadLookups();
+                ModelObject.PropertyChanged += OnModelObjectPropertyChanged;
             }
+        }
+
+        private void OnModelObjectPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            LoadLookups();
         }
 
         private void SetWeekStartingDate(T schedule)
