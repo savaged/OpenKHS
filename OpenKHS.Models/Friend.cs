@@ -73,9 +73,23 @@ namespace OpenKHS.Models
             }
         }
 
-        public void IncrementTally()
+        public static Friend Swap(ref Friend original, Friend replacement)
         {
-            _tally++;
+            if (original != replacement)
+            {
+                if (original != null)
+                {
+                    if (original.AssignmentTally > 0)
+                    {
+                        original.AssignmentTally--;
+                    }
+                }
+                if (replacement != null)
+                {
+                    replacement.AssignmentTally++;
+                }
+            }
+            return replacement;
         }
 
         #region Privileges

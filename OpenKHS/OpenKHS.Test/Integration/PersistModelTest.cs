@@ -81,7 +81,7 @@ namespace OpenKHS.Test.Integration
                 id = first.Id;
                 tally = first.AssignmentTally;
                 // update
-                first.IncrementTally();
+                first.AssignmentTally++;
                 context.SaveChanges();
             }
             using (var context = new DatabaseContext(optionsBuilder.Options))

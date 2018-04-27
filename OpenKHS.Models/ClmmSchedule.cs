@@ -109,11 +109,5 @@ namespace OpenKHS.Models
             get => _ClosingPrayer;
             set => Set(ref _ClosingPrayer, value);
         }
-
-        public override void Publish()
-        {
-            // TODO increment tally for each assigned cong member
-            base.Publish();
-        }
     }
 }

@@ -171,6 +171,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Feature\FakeModelFactoryTest.cs" />
+    <Compile Include="Unit\FriendAssignmentTallyTest.cs" />
     <Compile Include="Unit\AssignmentTallyTest.cs" />
     <Compile Include="Integration\DbConfigTest.cs" />
     <Compile Include="DbContextTestBase.cs" />

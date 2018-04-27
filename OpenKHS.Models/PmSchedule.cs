@@ -22,20 +22,13 @@ namespace OpenKHS.Models
         public Friend WtConductor
         {
             get => _wtConductor;
-            set => Set(ref _wtConductor, value);
+            set => Set(ref _wtConductor, Friend.Swap(ref _wtConductor, value));
         }
 
         public Friend WtReader
         {
             get => _wtReader;
-            set => Set(ref _wtReader, value);
-        }
-
-        public override void Publish()
-        {
-            WtConductor.IncrementTally();
-            WtReader.IncrementTally();
-            base.Publish();
+            set => Set(ref _wtReader, Friend.Swap(ref _wtReader, value));
         }
     }
 }

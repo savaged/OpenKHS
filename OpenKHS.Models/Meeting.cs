@@ -25,54 +25,43 @@ namespace OpenKHS.Models
         public Friend Chairman
         {
             get => _chairman;
-            set => Set(ref _chairman, value);
+            set => Set(ref _chairman, Friend.Swap(ref _chairman, value));
         }
 
         public Friend Attendant
         {
             get => _attendant;
-            set => Set(ref _attendant, value);
+            set => Set(ref _attendant, Friend.Swap(ref _attendant, value));
         }
 
         public Friend Security
         {
             get => _security;
-            set => Set(ref _security, value);
+            set => Set(ref _security, Friend.Swap(ref _security, value));
         }
 
         public Friend SoundDesk
         {
             get => _soundDesk;
-            set => Set(ref _soundDesk, value);
+            set => Set(ref _soundDesk, Friend.Swap(ref _soundDesk, value));
         }
 
         public Friend Platform
         {
             get => _platform;
-            set => Set(ref _platform, value);
+            set => Set(ref _platform, Friend.Swap(ref _platform, value));
         }
 
         public Friend RovingMic1
         {
             get => _rovingMic1;
-            set => Set(ref _rovingMic1, value);
+            set => Set(ref _rovingMic1, Friend.Swap(ref _rovingMic1, value));
         }
 
         public Friend RovingMic2
         {
             get => _rovingMic2;
-            set => Set(ref _rovingMic2, value);
-        }
-
-        public virtual void Publish()
-        {
-            Chairman.IncrementTally();
-            Attendant.IncrementTally();
-            Security.IncrementTally();
-            SoundDesk.IncrementTally();
-            Platform.IncrementTally();
-            RovingMic1.IncrementTally();
-            RovingMic2.IncrementTally();
-        }      
+            set => Set(ref _rovingMic2, Friend.Swap(ref _rovingMic2, value));
+        }   
     }
 }
