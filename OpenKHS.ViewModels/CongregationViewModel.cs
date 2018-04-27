@@ -67,6 +67,10 @@ namespace OpenKHS.ViewModels
             if (e.PropertyName == nameof(ModelObject))
             {
                 _previousTogglePrivilegesSetting = false;
+                if (ModelObject != null && string.IsNullOrEmpty(ModelObject.Name))
+                {
+                    RaisePropertyChanged(nameof(IsItemSelected));
+                }
             }
         }
     }

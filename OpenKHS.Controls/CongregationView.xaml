@@ -21,9 +21,11 @@
                   x:Name="CongMembersGrid"
                   ItemsSource="{Binding Index}"
                   SelectedItem="{Binding SelectedItem}"
-                  AutoGenerateColumns="False">
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False">
             <DataGrid.ContextMenu>
                 <ContextMenu>
+                    <MenuItem Header="Add" Command="{Binding NewCmd}"/>
                     <MenuItem Header="Delete" Command="{Binding DeleteSelectedItemCmd}"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>

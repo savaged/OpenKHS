@@ -66,7 +66,9 @@ namespace OpenKHS.ViewModels
 
         protected virtual void New()
         {
-            Index.Add(new T());
+            var @new = new T();
+            Index.Add(@new);
+            SelectedItem = @new;
         }
 
         private void OnDeleteSelectedItem()
