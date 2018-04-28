@@ -31,8 +31,6 @@ namespace OpenKHS.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Ignore(typeof(AssignmentTally));
-
             modelBuilder.Entity<Friend>().HasIndex(f => f.Name).IsUnique();
             modelBuilder.Entity<PmSchedule>().HasIndex(s => s.WeekStarting).IsUnique();
             modelBuilder.Entity<ClmmSchedule>().HasIndex(s => s.WeekStarting).IsUnique();

@@ -10,7 +10,7 @@ namespace OpenKHS.Test.Unit
         [TestMethod]
         public void TestAssignmentTallyIncrementAndReset()
         {
-            var assignmentTally = new AssignmentTally();
+            var assignmentTally = 0;
             Assert.AreEqual(assignmentTally, 0);
             assignmentTally++;
             Assert.AreEqual(assignmentTally, 1);
@@ -18,23 +18,21 @@ namespace OpenKHS.Test.Unit
             Assert.IsTrue(assignmentTally == 1);
 
             Assert.AreEqual(assignmentTally, 1);
-            Assert.AreEqual(1, (int)assignmentTally);
+            Assert.AreEqual(1, assignmentTally);
 
             var another = assignmentTally;
             Assert.AreEqual(another, assignmentTally);
             Assert.IsTrue(assignmentTally == another);
-
-            Assert.AreEqual(assignmentTally.ToString(), "1");
         }
 
         [TestMethod]
         public void TestAssignmentTallyCast()
         {
-            var assignmentTally = new AssignmentTally();
+            var assignmentTally = 0;
             Assert.AreEqual(assignmentTally, 0);
             assignmentTally++;
-            Assert.AreEqual((int)assignmentTally, 1);
-            int i = (int)assignmentTally;
+            Assert.AreEqual(assignmentTally, 1);
+            int i = assignmentTally;
         }
     }
 }

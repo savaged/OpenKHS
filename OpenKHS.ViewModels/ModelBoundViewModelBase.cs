@@ -41,6 +41,10 @@ namespace OpenKHS.ViewModels
             get => _modelObject;
             set
             {
+                if (_modelObject != null && value == null)
+                {
+                    ModelObject.PropertyChanged -= OnModelObjectPropertyChanged;
+                }
                 Set(ref _modelObject, value);
                 IsDirty = false;
                 if (_modelObject != null)

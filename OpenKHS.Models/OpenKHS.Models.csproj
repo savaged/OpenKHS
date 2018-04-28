@@ -102,7 +102,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssignmentTally.cs" />
     <Compile Include="AssistedSchoolMeetingPart.cs" />
     <Compile Include="Attributes\HiddenAttribute.cs" />
     <Compile Include="CircuitOverseer.cs" />

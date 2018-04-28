@@ -22,7 +22,8 @@
                   ItemsSource="{Binding Index}"
                   SelectedItem="{Binding SelectedItem}"
                   AutoGenerateColumns="False"
-                  CanUserAddRows="False">
+                  CanUserAddRows="False"
+                  SelectionChanged="CongMembersGrid_SelectionChanged">
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Add" Command="{Binding NewCmd}"/>

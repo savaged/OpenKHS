@@ -13,17 +13,17 @@ namespace OpenKHS.Test.Unit
         {
             Friend friend = null;
             friend = Friend.Swap(ref friend, new Friend(), AssignmentContext.Common);
-            Assert.AreEqual(1, friend.MeetingAssignmentTally);
+            Assert.AreEqual((uint)1, friend.MeetingAssignmentTally);
 
             var replacement = new Friend();
-            Assert.AreEqual(0, replacement.MeetingAssignmentTally);
+            Assert.AreEqual((uint)0, replacement.MeetingAssignmentTally);
             replacement = Friend.Swap(ref friend, replacement, AssignmentContext.Common);
-            Assert.AreEqual(1, replacement.MeetingAssignmentTally);
-            Assert.AreEqual(0, friend.MeetingAssignmentTally);
+            Assert.AreEqual((uint)1, replacement.MeetingAssignmentTally);
+            Assert.AreEqual((uint)0, friend.MeetingAssignmentTally);
 
             replacement = null;
             replacement = Friend.Swap(ref friend, replacement, AssignmentContext.Common);
-            Assert.AreEqual(0, friend.MeetingAssignmentTally);
+            Assert.AreEqual((uint)0, friend.MeetingAssignmentTally);
         }
     }
 }

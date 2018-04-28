@@ -9,11 +9,11 @@ namespace OpenKHS.Models
 {
     public class Friend : ModelBase, IModel
     {
-        private AssignmentTally _meetingAssignmentTally;
-        private AssignmentTally _pmAssignmentTally;
-        private AssignmentTally _treasuresAssignmentTally;
-        private AssignmentTally _ayttmAssignmentTally;
-        private AssignmentTally _lacAssignmentTally;
+        private uint _meetingAssignmentTally;
+        private uint _pmAssignmentTally;
+        private uint _treasuresAssignmentTally;
+        private uint _ayttmAssignmentTally;
+        private uint _lacAssignmentTally;
         private string _name;
         private List<DateRange> _unavailablePeriods;
         private bool _ClmmChairman;
@@ -47,7 +47,8 @@ namespace OpenKHS.Models
 
         public Friend()
         {
-            _meetingAssignmentTally = new AssignmentTally();
+            // TODO set tallies to LCD of current friends
+            _meetingAssignmentTally = new uint();
             if (UnavailablePeriods == null)
             {
                 UnavailablePeriods = new List<DateRange>();
@@ -67,52 +68,52 @@ namespace OpenKHS.Models
             set => Set(ref _unavailablePeriods, value);
         }
 
-        public int MeetingAssignmentTally
+        public uint MeetingAssignmentTally
         {
             get => _meetingAssignmentTally;
             set
             {
-                _meetingAssignmentTally = new AssignmentTally(value);
+                _meetingAssignmentTally = value;
                 RaisePropertyChanged();
             }
         }
 
-        public int PmAssignmentTally
+        public uint PmAssignmentTally
         {
             get => _pmAssignmentTally;
             set
             {
-                _pmAssignmentTally = new AssignmentTally(value);
+                _pmAssignmentTally = value;
                 RaisePropertyChanged();
             }
         }
 
-        public int TreasuresAssignmentTally
+        public uint TreasuresAssignmentTally
         {
             get => _treasuresAssignmentTally;
             set
             {
-                _treasuresAssignmentTally = new AssignmentTally(value);
+                _treasuresAssignmentTally = value;
                 RaisePropertyChanged();
             }
         }
 
-        public int AYttMAssignmentTally
+        public uint AYttMAssignmentTally
         {
             get => _ayttmAssignmentTally;
             set
             {
-                _ayttmAssignmentTally = new AssignmentTally(value);
+                _ayttmAssignmentTally = value;
                 RaisePropertyChanged();
             }
         }
 
-        public int LacAssignmentTally
+        public uint LacAssignmentTally
         {
             get => _lacAssignmentTally;
             set
             {
-                _lacAssignmentTally = new AssignmentTally(value);
+                _lacAssignmentTally = value;
                 RaisePropertyChanged();
             }
         }

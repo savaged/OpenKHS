@@ -74,7 +74,7 @@ namespace OpenKHS.Test.Integration
                 var updated = context.Friends.Single(f => f.Id == id);
                 Assert.AreNotEqual(name, updated.Name);
             }
-            int tally;
+            uint tally;
             using (var context = new DatabaseContext(optionsBuilder.Options))
             {
                 var first = context.Friends.First();
