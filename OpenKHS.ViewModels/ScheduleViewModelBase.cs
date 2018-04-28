@@ -32,6 +32,10 @@ namespace OpenKHS.ViewModels
         public override void Cleanup()
         {
             PropertyChanged -= OnPropertyChanged;
+            if (ModelObject != null)
+            {
+                ModelObject.PropertyChanged -= OnScheduleModelObjectPropertyChanged;
+            }
             base.Cleanup();
         }
 

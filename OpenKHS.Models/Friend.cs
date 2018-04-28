@@ -7,8 +7,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OpenKHS.Models
 {
-    public class Friend : ModelBase, IModel
+    public class Friend : ModelBase, IFriend
     {
+        private bool _isPotentiallyOverloaded;
         private uint _meetingAssignmentTally;
         private uint _pmAssignmentTally;
         private uint _treasuresAssignmentTally;
@@ -48,7 +49,6 @@ namespace OpenKHS.Models
         public Friend()
         {
             // TODO set tallies to LCD of current friends
-            _meetingAssignmentTally = new uint();
             if (UnavailablePeriods == null)
             {
                 UnavailablePeriods = new List<DateRange>();
@@ -118,7 +118,8 @@ namespace OpenKHS.Models
             }
         }
 
-        public static Friend Swap(ref Friend original, Friend replacement, AssignmentContext context)
+        public static Friend Swap(
+            ref Friend original, Friend replacement, ISchedule schedule, AssignmentContext context)
         {
             if (original != replacement)
             {
@@ -163,9 +164,21 @@ namespace OpenKHS.Models
                             replacement.LacAssignmentTally++;
                             break;
                     }
+                    replacement.SetIsPotentiallyOverloaded(schedule);
                 }
             }
             return replacement;
+        }
+
+        public bool IsPotentiallyOverloaded
+        {
+            get => _isPotentiallyOverloaded;
+            private set => Set(ref _isPotentiallyOverloaded, value);
+        }
+
+        public void SetIsPotentiallyOverloaded(ISchedule schedule)
+        {
+            IsPotentiallyOverloaded = schedule.Participants.Contains(this);
         }
 
         #region Privileges
