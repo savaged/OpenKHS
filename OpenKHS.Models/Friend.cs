@@ -178,7 +178,9 @@ namespace OpenKHS.Models
 
         public void SetIsPotentiallyOverloaded(ISchedule schedule)
         {
-            IsPotentiallyOverloaded = schedule.Participants.Contains(this);
+            var matches = schedule.Participants.Where(f => f?.Name == Name);
+            var assignmentCount = matches.Count();
+            IsPotentiallyOverloaded = assignmentCount > 1;
         }
 
         #region Privileges

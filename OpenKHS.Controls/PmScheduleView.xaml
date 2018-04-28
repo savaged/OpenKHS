@@ -6,6 +6,9 @@
              xmlns:local="clr-namespace:OpenKHS.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="600">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -30,9 +33,11 @@
                 </WrapPanel>
                 <WrapPanel>
                     <Label Width="140">WT Conductor</Label>
-                    <ComboBox Width="160" ItemsSource="{Binding WtConductors}"
+                    <Border BorderBrush="Red" BorderThickness="1" Visibility="{Binding SelectedItem.IsPotentiallyOverloaded, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <ComboBox Width="160" ItemsSource="{Binding WtConductors}"
                               SelectedItem="{Binding SelectedItem.WtConductor, Mode=TwoWay}"
                               DisplayMemberPath="Name"/>
+                    </Border>
                 </WrapPanel>
                 <WrapPanel>
                     <Label Width="140">WT Reader</Label>
