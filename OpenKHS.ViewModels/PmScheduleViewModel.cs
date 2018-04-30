@@ -3,8 +3,6 @@ using System.Linq;
 using System.Collections.Generic;
 using OpenKHS.Models;
 using OpenKHS.Data;
-using System.Collections.ObjectModel;
-using OpenKHS.Models.Utils;
 
 namespace OpenKHS.ViewModels
 {
@@ -17,14 +15,6 @@ namespace OpenKHS.ViewModels
             WtReaders = new List<Friend>();
             WtConductors = new List<Friend>();
             LoadLookups();
-        }
-
-        protected override void AddModelObjectToDbContext()
-        {
-            if (IsValidSchedule())
-            {
-                DbContext.Store(ModelObject);
-            }
         }
 
         protected override void LoadLookups()
@@ -46,10 +36,21 @@ namespace OpenKHS.ViewModels
             WtConductors = WtConductors.OrderBy(f => f.PmAssignmentTally).ToList();
             RaisePropertyChanged(nameof(WtConductors));
 
+            SetDefaultWtConductor();
+        }
+
+        private void SetDefaultWtConductor()
+        {
             if (ModelObject != null && ModelObject.WtConductor == null)
             {
                 ModelObject.WtConductor = CongMembers.Where(f => f.MainWtConductor).FirstOrDefault();
             }
+        }
+
+        protected override void New()
+        {
+            base.New();
+            SetDefaultWtConductor();
         }
 
         public List<Friend> Chairmen { get; private set; }

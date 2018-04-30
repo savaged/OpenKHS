@@ -119,7 +119,7 @@ namespace OpenKHS.ViewModels
 
         #region Events
 
-        public event EventHandler RequestClose;
+        public event EventHandler RequestClose = delegate { };
 
         #endregion
     }

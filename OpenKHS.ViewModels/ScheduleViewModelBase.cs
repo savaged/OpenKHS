@@ -26,16 +26,13 @@ namespace OpenKHS.ViewModels
             Initialise(DbContext.Index(), GetDefaultSchedule(weekStarting));
 
             PropertyChanged += OnPropertyChanged;
-            ModelObject.PropertyChanged += OnScheduleModelObjectPropertyChanged;
+            ModelObjectPropertyChanged += OnScheduleModelObjectPropertyChanged;
         }
 
         public override void Cleanup()
         {
             PropertyChanged -= OnPropertyChanged;
-            if (ModelObject != null)
-            {
-                ModelObject.PropertyChanged -= OnScheduleModelObjectPropertyChanged;
-            }
+            ModelObjectPropertyChanged -= OnScheduleModelObjectPropertyChanged;            
             base.Cleanup();
         }
 
@@ -102,9 +99,33 @@ namespace OpenKHS.ViewModels
             RaisePropertyChanged(nameof(RovingMic));
         }
 
+        protected override void AddModelObjectToDbContext()
+        {
+            if (IsValidSchedule())
+            {
+                DbContext.Store(ModelObject);
+            }
+        }
+
         protected bool IsValidSchedule()
         {
             return ModelObject != null && ModelObject.WeekStarting > DateTime.MinValue;
+        }
+
+        private void SetWeekStartingDate(T schedule)
+        {
+            if (Index != null && Index.Count == 0)
+            {
+                schedule.WeekStarting = WeekNumberAdapter.GetFirstDateOfWeekIso8601(DateTime.Now);
+            }
+            else
+            {
+                var latestScheduleDate = Index
+                    .OrderByDescending(s => s.WeekStarting)
+                    .Select(s => s.WeekStarting)
+                    .First();
+                schedule.WeekStarting = latestScheduleDate.AddDays(7);
+            }
         }
 
         #region Lookups
@@ -135,29 +156,12 @@ namespace OpenKHS.ViewModels
                 {
                     SetWeekStartingDate(ModelObject);
                 }
-                ModelObject.PropertyChanged += OnScheduleModelObjectPropertyChanged;
             }
         }
 
         private void OnScheduleModelObjectPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             LoadLookups();
-        }
-
-        private void SetWeekStartingDate(T schedule)
-        {
-            if (Index != null && Index.Count == 0)
-            {
-                schedule.WeekStarting = WeekNumberAdapter.GetFirstDateOfWeekIso8601(DateTime.Now);
-            }
-            else
-            {
-                var latestScheduleDate = Index
-                    .OrderByDescending(s => s.WeekStarting)
-                    .Select(s => s.WeekStarting)
-                    .First();
-                schedule.WeekStarting = latestScheduleDate.AddDays(7);
-            }
         }
 
         #endregion

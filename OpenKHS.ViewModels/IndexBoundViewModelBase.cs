@@ -49,17 +49,9 @@ namespace OpenKHS.ViewModels
             get => ModelObject;
             set
             {
-                if (ModelObject != null && value == null)
-                {
-                    ModelObject.PropertyChanged -= OnModelObjectPropertyChanged;
-                }
                 ModelObject = value;
                 RaisePropertyChanged(nameof(SelectedItem));
                 RaisePropertyChanged(nameof(IsItemSelected));
-                if (ModelObject != null)
-                {                    
-                    ModelObject.PropertyChanged += OnModelObjectPropertyChanged;
-                }
             }
         }
 

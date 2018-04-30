@@ -3,6 +3,7 @@ using OpenKHS.Interfaces;
 using OpenKHS.Data;
 using System.Collections.Generic;
 using OpenKHS.Models;
+using System.ComponentModel;
 
 namespace OpenKHS.ViewModels
 {
@@ -43,7 +44,7 @@ namespace OpenKHS.ViewModels
             {
                 if (_modelObject != null && value == null)
                 {
-                    ModelObject.PropertyChanged -= OnModelObjectPropertyChanged;
+                    _modelObject.PropertyChanged -= OnModelObjectPropertyChanged;
                 }
                 Set(ref _modelObject, value);
                 IsDirty = false;
@@ -56,14 +57,17 @@ namespace OpenKHS.ViewModels
 
         protected abstract void AddModelObjectToDbContext();
 
-        private void OnModelObjectPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void OnModelObjectPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (ModelObject.IsNew)
             {
                 AddModelObjectToDbContext();
             }
             IsDirty = true;
+            ModelObjectPropertyChanged.Invoke(this, e);
         }
+
+        protected event PropertyChangedEventHandler ModelObjectPropertyChanged = delegate { };
 
         public virtual void Save()
         {
