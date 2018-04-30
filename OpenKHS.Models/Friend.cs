@@ -164,7 +164,6 @@ namespace OpenKHS.Models
                             replacement.LacAssignmentTally++;
                             break;
                     }
-                    replacement.SetIsPotentiallyOverloaded(schedule);
                 }
             }
             return replacement;
@@ -180,7 +179,7 @@ namespace OpenKHS.Models
         {
             var matches = schedule.Participants.Where(f => f?.Name == Name);
             var assignmentCount = matches.Count();
-            IsPotentiallyOverloaded = assignmentCount > 1;
+            IsPotentiallyOverloaded = assignmentCount > 0;
         }
 
         #region Privileges

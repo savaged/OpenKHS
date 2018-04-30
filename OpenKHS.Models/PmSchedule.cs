@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using OpenKHS.Interfaces;
 
 namespace OpenKHS.Models
@@ -29,6 +30,17 @@ namespace OpenKHS.Models
         {
             get => _wtReader;
             set => Set(ref _wtReader, Friend.Swap(ref _wtReader, value, this, AssignmentContext.PublicMeeting));
+        }
+
+        public override IList<IFriend> Participants
+        {
+            get
+            {
+                var participants = base.Participants;
+                participants.Add(WtConductor);
+                participants.Add(WtReader);
+                return participants;
+            }
         }
     }
 }
