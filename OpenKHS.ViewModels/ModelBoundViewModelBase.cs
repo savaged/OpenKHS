@@ -49,10 +49,6 @@ namespace OpenKHS.ViewModels
                 IsDirty = false;
                 if (_modelObject != null)
                 {
-                    if (_modelObject.IsNew)
-                    {
-                        AddModelObjectToDbContext();
-                    }
                     _modelObject.PropertyChanged += OnModelObjectPropertyChanged;
                 }
             }
@@ -62,6 +58,10 @@ namespace OpenKHS.ViewModels
 
         private void OnModelObjectPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+            if (ModelObject.IsNew)
+            {
+                AddModelObjectToDbContext();
+            }
             IsDirty = true;
         }
 
