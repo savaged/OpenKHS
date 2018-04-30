@@ -64,6 +64,9 @@
     <Compile Include="MeetingView.xaml.cs">
       <DependentUpon>MeetingView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PotentiallyOverloadedFlag.xaml.cs">
+      <DependentUpon>PotentiallyOverloadedFlag.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ScheduleHeadingView.xaml.cs">
       <DependentUpon>ScheduleHeadingView.xaml</DependentUpon>
     </Compile>
@@ -91,6 +94,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="MeetingView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PotentiallyOverloadedFlag.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

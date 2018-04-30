@@ -6,9 +6,6 @@
              xmlns:local="clr-namespace:OpenKHS.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="600">
-    <UserControl.Resources>
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -44,8 +41,7 @@
                     <ComboBox Width="160" ItemsSource="{Binding WtReaders}"
                               SelectedItem="{Binding SelectedItem.WtReader, Mode=TwoWay}"
                               DisplayMemberPath="Name"/>
-                    <Label Content="*" Foreground="Red" 
-                           Visibility="{Binding SelectedItem.WtReader.IsPotentiallyOverloaded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    <local:PotentiallyOverloadedFlag DataContext="{Binding SelectedItem.WtReader}"/>
                 </WrapPanel>
             </StackPanel>
         </Grid>
