@@ -26,43 +26,43 @@ namespace OpenKHS.Models
         public Friend Chairman
         {
             get => _chairman;
-            set => Set(ref _chairman, Friend.Swap(ref _chairman, value, this, AssignmentContext.Common));
+            set => Set(ref _chairman, Friend.Swap(ref _chairman, value, AssignmentContext.Common));
         }
 
         public Friend Attendant
         {
             get => _attendant;
-            set => Set(ref _attendant, Friend.Swap(ref _attendant, value, this, AssignmentContext.Common));
+            set => Set(ref _attendant, Friend.Swap(ref _attendant, value, AssignmentContext.Common));
         }
 
         public Friend Security
         {
             get => _security;
-            set => Set(ref _security, Friend.Swap(ref _security, value, this, AssignmentContext.Common));
+            set => Set(ref _security, Friend.Swap(ref _security, value, AssignmentContext.Common));
         }
 
         public Friend SoundDesk
         {
             get => _soundDesk;
-            set => Set(ref _soundDesk, Friend.Swap(ref _soundDesk, value, this, AssignmentContext.Common));
+            set => Set(ref _soundDesk, Friend.Swap(ref _soundDesk, value, AssignmentContext.Common));
         }
 
         public Friend Platform
         {
             get => _platform;
-            set => Set(ref _platform, Friend.Swap(ref _platform, value, this, AssignmentContext.Common));
+            set => Set(ref _platform, Friend.Swap(ref _platform, value, AssignmentContext.Common));
         }
 
         public Friend RovingMic1
         {
             get => _rovingMic1;
-            set => Set(ref _rovingMic1, Friend.Swap(ref _rovingMic1, value, this, AssignmentContext.Common));
+            set => Set(ref _rovingMic1, Friend.Swap(ref _rovingMic1, value, AssignmentContext.Common));
         }
 
         public Friend RovingMic2
         {
             get => _rovingMic2;
-            set => Set(ref _rovingMic2, Friend.Swap(ref _rovingMic2, value, this, AssignmentContext.Common));
+            set => Set(ref _rovingMic2, Friend.Swap(ref _rovingMic2, value, AssignmentContext.Common));
         }   
 
         public virtual IList<IFriend> Participants

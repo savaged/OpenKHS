@@ -37,7 +37,7 @@
                               SelectedItem="{Binding SelectedItem.WtConductor, Mode=TwoWay}"
                               DisplayMemberPath="Name"/>
                     <Label Content="*" Foreground="Red" 
-                           Visibility="{Binding SelectedItem.WtConductor.IsPotentiallyOverloaded, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                           Visibility="{Binding SelectedItem.WtConductor.IsPotentiallyOverloaded, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </WrapPanel>
                 <WrapPanel>
                     <Label Width="140">WT Reader</Label>

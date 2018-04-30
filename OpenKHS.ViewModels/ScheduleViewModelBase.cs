@@ -162,6 +162,10 @@ namespace OpenKHS.ViewModels
         private void OnScheduleModelObjectPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             LoadLookups();
+            foreach (var friend in ModelObject.Participants)
+            {
+                friend?.SetIsPotentiallyOverloaded(ModelObject);
+            }
         }
 
         #endregion

@@ -119,7 +119,7 @@ namespace OpenKHS.Models
         }
 
         public static Friend Swap(
-            ref Friend original, Friend replacement, ISchedule schedule, AssignmentContext context)
+            ref Friend original, Friend replacement, AssignmentContext context)
         {
             if (original != replacement)
             {
@@ -179,7 +179,7 @@ namespace OpenKHS.Models
         {
             var matches = schedule.Participants.Where(f => f?.Name == Name);
             var assignmentCount = matches.Count();
-            IsPotentiallyOverloaded = assignmentCount > 0;
+            IsPotentiallyOverloaded = assignmentCount > 1;
         }
 
         #region Privileges
