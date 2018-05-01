@@ -24,7 +24,7 @@ namespace OpenKHS.Test.Feature
             var meetingPart = new FakeModelFactory().MakeMeetingPart();
             Assert.IsNotNull(meetingPart);
             Assert.IsNotNull(meetingPart.Title);
-            Assert.IsNotNull(meetingPart.CongregationMember);
+            Assert.IsNotNull(meetingPart.Friend);
         }
 
         [TestMethod]
@@ -53,8 +53,8 @@ namespace OpenKHS.Test.Feature
             var publicTalk = new FakeModelFactory().MakePublicTalk();
             Assert.IsNotNull(publicTalk.TalkNumber);
             Assert.IsTrue(publicTalk.TalkNumber > 0);
-            Assert.IsNotNull(publicTalk.CongregationMember);
-            Assert.IsNotNull(publicTalk.CongregationMember.Name);
+            Assert.IsNotNull(publicTalk.Friend);
+            Assert.IsNotNull(publicTalk.Friend.Name);
         }
 
         [TestMethod]

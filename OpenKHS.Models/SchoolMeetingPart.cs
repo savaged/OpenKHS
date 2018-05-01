@@ -5,7 +5,7 @@ namespace OpenKHS.Models
     {
         public int CounselPoint { get; set; }
 
-        public CongregationMember Student { get => base.CongregationMember; private set { } }
+        public Friend Student { get => base.Friend; private set { } }
     }
 }
 

@@ -75,7 +75,7 @@ namespace OpenKHS.Seeder
             var fakeMeetingPart = new MeetingPart
             {
                 Title = new Faker().Random.Words(4),
-                CongregationMember = MakeCongregationMembers(1).First()
+                Friend = MakeCongregationMembers(1).First()
             };
             return fakeMeetingPart;
         }
@@ -115,7 +115,7 @@ namespace OpenKHS.Seeder
             var publicTalk = new PublicTalk
             {
                 TalkNumber = new Faker().Random.Number(1, 194),
-                CongregationMember = speaker
+                Friend = speaker
             };
             return publicTalk;
         }

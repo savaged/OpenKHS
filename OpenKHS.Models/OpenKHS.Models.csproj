@@ -111,6 +111,7 @@
     <Compile Include="ClmmSchedule.cs" />
     <Compile Include="Congregation.cs" />
     <Compile Include="Friend.cs" />
+    <Compile Include="CongregationMember.cs" />
     <Compile Include="Meeting.cs" />
     <Compile Include="MeetingPart.cs" />
     <Compile Include="ModelBase.cs" />
