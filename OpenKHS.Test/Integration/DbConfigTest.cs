@@ -12,9 +12,9 @@ namespace OpenKHS.Test.Integration
         [TestMethod]
         public void IntegrationTestDbConfig()
         {
-            var friend = new Friend();
+            var friend = new CongregationMember();
             Assert.AreEqual(0, friend.Id);
-            DbContext.Friends.Add(friend);
+            DbContext.CongregationMembers.Add(friend);
             var efDefaultId = friend.Id;
             Assert.AreNotEqual(0, efDefaultId);
             DbContext.SaveChanges();

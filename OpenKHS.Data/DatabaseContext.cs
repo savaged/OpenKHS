@@ -13,7 +13,7 @@ namespace OpenKHS.Data
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         { }
 
-        public DbSet<Friend> Friends { get; set; }
+        public DbSet<CongregationMember> CongregationMembers { get; set; }
         public DbSet<DateRange> UnavailablePeriods { get; set; }
         public DbSet<PmSchedule> PmSchedules { get; set; }
         public DbSet<ClmmSchedule> ClmmSchedules { get; set; }
@@ -32,7 +32,7 @@ namespace OpenKHS.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Friend>().HasIndex(f => f.Name).IsUnique();
+            modelBuilder.Entity<CongregationMember>().HasIndex(f => f.Name).IsUnique();
             modelBuilder.Entity<PmSchedule>().HasIndex(s => s.WeekStarting).IsUnique();
             modelBuilder.Entity<ClmmSchedule>().HasIndex(s => s.WeekStarting).IsUnique();
         }

@@ -1,7 +1,7 @@
 ﻿
 namespace OpenKHS.Interfaces
 {
-    public interface IFriend : IModel
+    public interface ICongregationMember : IModel
     {
         bool Attendant { get; set; }
         bool AwaySpeaker { get; set; }

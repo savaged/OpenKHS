@@ -8,11 +8,11 @@ namespace OpenKHS.Models
     {
         public Congregation()
         {
-            Members = new List<Friend>();
+            Members = new List<CongregationMember>();
             Id = 1; // only ever one
         }
 
-        public List<Friend> Members { get; set; }
+        public List<CongregationMember> Members { get; set; }
 
     }
 }

@@ -12,15 +12,15 @@ namespace OpenKHS.ViewModels
     public abstract class ScheduleViewModelBase<T> : IndexBoundViewModelBase<T>
         where T : ISchedule, new()
     {
-        public ScheduleViewModelBase(DatabaseContext dbContext, IList<Friend> congMembers) 
+        public ScheduleViewModelBase(DatabaseContext dbContext, IList<CongregationMember> congMembers) 
             : base(dbContext)
         {
             CongMembers = congMembers;
-            Attendants = new List<Friend>();
-            Security = new List<Friend>();
-            Sound = new List<Friend>();
-            Platform = new List<Friend>();
-            RovingMic = new List<Friend>();
+            Attendants = new List<CongregationMember>();
+            Security = new List<CongregationMember>();
+            Sound = new List<CongregationMember>();
+            Platform = new List<CongregationMember>();
+            RovingMic = new List<CongregationMember>();
 
             var weekStarting = WeekNumberAdapter.GetFirstDateOfWeekIso8601(DateTime.Now);
             Initialise(Repository.Index(), GetDefaultSchedule(weekStarting));
@@ -41,7 +41,7 @@ namespace OpenKHS.ViewModels
             LoadLookups();
         }
 
-        protected IList<Friend> CongMembers { get; private set; }
+        protected IList<CongregationMember> CongMembers { get; private set; }
 
         protected T GetDefaultSchedule(DateTime weekStarting)
         {
@@ -130,15 +130,15 @@ namespace OpenKHS.ViewModels
 
         #region Lookups
 
-        public List<Friend> Attendants { get; private set; }
+        public List<CongregationMember> Attendants { get; private set; }
 
-        public List<Friend> Security { get; private set; }
+        public List<CongregationMember> Security { get; private set; }
 
-        public List<Friend> Sound { get; private set; }
+        public List<CongregationMember> Sound { get; private set; }
 
-        public List<Friend> Platform { get; private set; }
+        public List<CongregationMember> Platform { get; private set; }
 
-        public List<Friend> RovingMic { get; private set; }
+        public List<CongregationMember> RovingMic { get; private set; }
 
         #endregion
 

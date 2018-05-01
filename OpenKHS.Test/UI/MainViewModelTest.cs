@@ -18,11 +18,11 @@ namespace OpenKHS.Test.Unit
 
             var pmsvm = (PmScheduleViewModel)mvm.PmScheduleVM;
             Assert.IsNotNull(pmsvm.ModelObject);
-            Assert.IsFalse(pmsvm.ModelObject.IsNew);
+            Assert.IsTrue(pmsvm.ModelObject.IsNew);
 
             var clmmsvm = (ClmmScheduleViewModel)mvm.ClmmScheduleVM;
             Assert.IsNotNull(clmmsvm.ModelObject);
-            Assert.IsFalse(clmmsvm.ModelObject.IsNew);
+            Assert.IsTrue(clmmsvm.ModelObject.IsNew);
         }
         
     }

@@ -75,7 +75,7 @@ namespace OpenKHS.Seeder
             var fakeMeetingPart = new MeetingPart
             {
                 Title = new Faker().Random.Words(4),
-                Friend = MakeFriends(1).First()
+                CongregationMember = MakeCongregationMembers(1).First()
             };
             return fakeMeetingPart;
         }
@@ -115,19 +115,19 @@ namespace OpenKHS.Seeder
             var publicTalk = new PublicTalk
             {
                 TalkNumber = new Faker().Random.Number(1, 194),
-                Friend = speaker
+                CongregationMember = speaker
             };
             return publicTalk;
         }
 
-        public Friend MakeCongMemberWithPrivileges(List<string> privileges)
+        public CongregationMember MakeCongMemberWithPrivileges(List<string> privileges)
         {
-            var list = MakeCongregationMembers(1, privileges);
+            var list = MakeCongregationMembersWithPrivildeges(1, privileges);
             var congMemberWithPrivileges = list.First();
             return congMemberWithPrivileges;
         }
 
-        public Friend MakeCongMemberWithAssignmentTally()
+        public CongregationMember MakeCongMemberWithAssignmentTally()
         {
             var list = MakeCongregationMembers(1);
             var congMember = list.First();
@@ -135,7 +135,7 @@ namespace OpenKHS.Seeder
             return congMember;
         }
 
-        public Friend MakeCongMemberWithUnavailablePeriods()
+        public CongregationMember MakeCongMemberWithUnavailablePeriods()
         {
             var list = MakeCongregationMembers(1);
             var congMember = list.First();
@@ -148,16 +148,16 @@ namespace OpenKHS.Seeder
 
         public List<VisitingSpeaker> MakeVisitingSpeakers(int count = 1)
         {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<Friend, VisitingSpeaker>());
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<CongregationMember, VisitingSpeaker>());
             var mapper = config.CreateMapper();
 
-            var fakeFriends = MakeFriends(count);
+            var fakeCongregationMembers = MakeCongregationMembers(count);
 
             var fakeVisitingSpeakers = new List<VisitingSpeaker>();
 
-            foreach (var fakeFriend in fakeFriends)
+            foreach (var fakeCongregationMember in fakeCongregationMembers)
             {
-                var visitingSpeaker = mapper.Map<VisitingSpeaker>(fakeFriend);
+                var visitingSpeaker = mapper.Map<VisitingSpeaker>(fakeCongregationMember);
                 visitingSpeaker.Congregation = "Another congregation";
                 fakeVisitingSpeakers.Add(visitingSpeaker);
             }
@@ -166,37 +166,37 @@ namespace OpenKHS.Seeder
 
         public CircuitOverseer MakeCircuitOverseer()
         {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<Friend, CircuitOverseer>());
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<CongregationMember, CircuitOverseer>());
             var mapper = config.CreateMapper();
-            var friend = MakeFriend();
+            var friend = MakeCongregationMember();
             var co = mapper.Map<CircuitOverseer>(friend);
             co.Wife = new Faker().Name.FullName();
             return co;
         }
 
-        public List<Friend> MakeCongregationMembers(int count = 1, List<string> privileges = null)
+        public List<CongregationMember> MakeCongregationMembersWithPrivildeges(int count = 1, List<string> privileges = null)
         {
-            var fakeFriends = MakeFriends(count);
+            var fakeCongregationMembers = MakeCongregationMembers(count);
 
-            var fakeCongregationMembers = new List<Friend>();
+            var list = new List<CongregationMember>();
 
-            foreach (var fakeFriend in fakeFriends)
+            foreach (var fakeCongregationMember in fakeCongregationMembers)
             {
-                Friend friendWithFakePrivileges;
+                CongregationMember friendWithFakePrivileges;
                 if (privileges is null)
                 {
-                    friendWithFakePrivileges = AddRandomPrivileges(fakeFriend);
+                    friendWithFakePrivileges = AddRandomPrivileges(fakeCongregationMember);
                 }
                 else
                 {
-                    friendWithFakePrivileges = AddPrivileges(fakeFriend, privileges);
+                    friendWithFakePrivileges = AddPrivileges(fakeCongregationMember, privileges);
                 }
-                fakeCongregationMembers.Add(friendWithFakePrivileges);
+                list.Add(friendWithFakePrivileges);
             }
-            return fakeCongregationMembers;
+            return list;
         }
 
-        public Friend AddPrivileges(Friend friend, List<string> privileges)
+        public CongregationMember AddPrivileges(CongregationMember friend, List<string> privileges)
         {
             foreach (var privilege in privileges)
             {
@@ -288,7 +288,7 @@ namespace OpenKHS.Seeder
             return friend;
         }
 
-        public Friend AddRandomPrivileges(Friend friend, bool male = false)
+        public CongregationMember AddRandomPrivileges(CongregationMember friend, bool male = false)
         {
             if (male)
             {
@@ -331,23 +331,23 @@ namespace OpenKHS.Seeder
             return b;
         }
 
-        public List<Friend> MakeFriends(int count = 1)
+        public List<CongregationMember> MakeCongregationMembers(int count = 1)
         {
-            var friends = new List<Friend>();
+            var friends = new List<CongregationMember>();
             while (count > 0)
             {
-                friends.Add(MakeFriend());
+                friends.Add(MakeCongregationMember());
                 count--;
             }
             return friends;
         }
         
 
-        private Friend MakeFriend()
+        private CongregationMember MakeCongregationMember()
         {
-            var fakeFriend = new Faker<Friend>()
+            var fakeCongregationMember = new Faker<CongregationMember>()
                 .RuleFor(p => p.Name, f => f.Name.FullName());
-            return fakeFriend.Generate();
+            return fakeCongregationMember.Generate();
         }
 
         #endregion

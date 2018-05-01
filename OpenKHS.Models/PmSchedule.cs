@@ -10,8 +10,8 @@ namespace OpenKHS.Models
     public class PmSchedule : Meeting
     {
         private PublicTalk _publicTalk;
-        private Friend _wtConductor;
-        private Friend _wtReader;
+        private CongregationMember _wtConductor;
+        private CongregationMember _wtReader;
 
         public PublicTalk PublicTalk
         {
@@ -20,19 +20,19 @@ namespace OpenKHS.Models
         }
 
         // TODO add validation to wtconductor and reader property i.e. brother has privilege
-        public Friend WtConductor
+        public CongregationMember WtConductor
         {
             get => _wtConductor;
-            set => Set(ref _wtConductor, Friend.Swap(ref _wtConductor, value, AssignmentContext.PublicMeeting));
+            set => Set(ref _wtConductor, CongregationMember.Swap(ref _wtConductor, value, AssignmentContext.PublicMeeting));
         }
 
-        public Friend WtReader
+        public CongregationMember WtReader
         {
             get => _wtReader;
-            set => Set(ref _wtReader, Friend.Swap(ref _wtReader, value, AssignmentContext.PublicMeeting));
+            set => Set(ref _wtReader, CongregationMember.Swap(ref _wtReader, value, AssignmentContext.PublicMeeting));
         }
 
-        public override IList<IFriend> Participants
+        public override IList<ICongregationMember> Participants
         {
             get
             {

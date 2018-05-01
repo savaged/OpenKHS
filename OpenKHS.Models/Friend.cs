@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OpenKHS.Models
 {
-    public class Friend : ModelBase, IFriend
+    public class CongregationMember : ModelBase, ICongregationMember
     {
         private bool _isPotentiallyOverloaded;
         private uint _meetingAssignmentTally;
@@ -46,7 +46,7 @@ namespace OpenKHS.Models
         private bool _WtConductor;
         private bool _MainWtConductor;
 
-        public Friend()
+        public CongregationMember()
         {
             // TODO set tallies to LCD of current friends
             if (UnavailablePeriods == null)
@@ -118,8 +118,8 @@ namespace OpenKHS.Models
             }
         }
 
-        public static Friend Swap(
-            ref Friend original, Friend replacement, AssignmentContext context)
+        public static CongregationMember Swap(
+            ref CongregationMember original, CongregationMember replacement, AssignmentContext context)
         {
             if (original != replacement)
             {

@@ -6,31 +6,31 @@ using OpenKHS.Interfaces;
 
 namespace OpenKHS.Data
 {
-    public class FriendRepository : ModelRepositoryBase, IModelRepository<Friend>
+    public class CongregationMemberRepository : ModelRepositoryBase, IModelRepository<CongregationMember>
     {
-        public FriendRepository(DatabaseContext dbContext) : base(dbContext) { }
+        public CongregationMemberRepository(DatabaseContext dbContext) : base(dbContext) { }
 
-        public IList<Friend> Index()
+        public IList<CongregationMember> Index()
         {
-            return DbContext.Friends.ToList();
+            return DbContext.CongregationMembers.ToList();
         }
 
-        public Friend Show(int id)
+        public CongregationMember Show(int id)
         {
-            return DbContext.Friends.Single(m => m.Id == id);
+            return DbContext.CongregationMembers.Single(m => m.Id == id);
         }
 
-        public void Store(Friend @new)
+        public void Store(CongregationMember @new)
         {
             ValidateStore(@new);
-            DbContext.Friends.Add(@new);
+            DbContext.CongregationMembers.Add(@new);
         }
 
-        public void Delete(Friend model)
+        public void Delete(CongregationMember model)
         {
             if (model != null)
             {
-                DbContext.Friends.Remove(model);
+                DbContext.CongregationMembers.Remove(model);
             }
         }
     }

@@ -12,12 +12,12 @@ namespace OpenKHS.ViewModels
     {
         private ICommand _addPublicTalkCmd;
 
-        public PmScheduleViewModel(DatabaseContext dbContext, IList<Friend> congMembers)
+        public PmScheduleViewModel(DatabaseContext dbContext, IList<CongregationMember> congMembers)
             : base(dbContext, congMembers)
         {
-            Chairmen = new List<Friend>();
-            WtReaders = new List<Friend>();
-            WtConductors = new List<Friend>();
+            Chairmen = new List<CongregationMember>();
+            WtReaders = new List<CongregationMember>();
+            WtConductors = new List<CongregationMember>();
             PublicTalks = new List<PublicTalk>();
             LoadLookups();
             _addPublicTalkCmd = new RelayCommand(OnAddPublicTalk, () => CanExecute);
@@ -62,11 +62,11 @@ namespace OpenKHS.ViewModels
             SetDefaultWtConductor();
         }
 
-        public List<Friend> Chairmen { get; private set; }
+        public List<CongregationMember> Chairmen { get; private set; }
 
-        public List<Friend> WtReaders { get; private set; }
+        public List<CongregationMember> WtReaders { get; private set; }
 
-        public List<Friend> WtConductors { get; private set; }
+        public List<CongregationMember> WtConductors { get; private set; }
 
         public List<PublicTalk> PublicTalks { get; private set; }
 

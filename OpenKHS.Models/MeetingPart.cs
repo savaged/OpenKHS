@@ -7,9 +7,9 @@ namespace OpenKHS.Models
     {
         public string Title { get; set; }
 
-        public virtual Friend Friend { get; set; }
+        public virtual CongregationMember CongregationMember { get; set; }
 
         [NotMapped]
-        public string DisplayName { get => Title + " " + Friend?.Name; }
+        public string DisplayName { get => Title + " " + CongregationMember?.Name; }
     }
 }

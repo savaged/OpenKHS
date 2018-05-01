@@ -9,10 +9,10 @@ namespace OpenKHS.Models
     /// </summary>
     public class ClmmSchedule : Meeting
     {
-        private Friend _OpeningPrayer;
-        private Friend _Treasures;
-        private Friend _Gems;
-        private Friend _BibleReading;
+        private CongregationMember _OpeningPrayer;
+        private CongregationMember _Treasures;
+        private CongregationMember _Gems;
+        private CongregationMember _BibleReading;
         private AssistedSchoolMeetingPart _AYttMPart1;
         private AssistedSchoolMeetingPart _AYttMPart2;
         private AssistedSchoolMeetingPart _AYttMBibleStudy;
@@ -20,31 +20,31 @@ namespace OpenKHS.Models
         private MeetingPart _LacPart1;
         private MeetingPart _LacPart2;
         private MeetingPart _LacPart3;
-        private Friend _CbsConductor;
-        private Friend _CbsReader;
-        private Friend _ClosingPrayer;
+        private CongregationMember _CbsConductor;
+        private CongregationMember _CbsReader;
+        private CongregationMember _ClosingPrayer;
 
         // TODO add validation to each property i.e. brother has privilege
 
-        public Friend OpeningPrayer
+        public CongregationMember OpeningPrayer
         {
             get => _OpeningPrayer;
             set => Set(ref _OpeningPrayer, value);
         }
 
-        public Friend Treasures
+        public CongregationMember Treasures
         {
             get => _Treasures;
             set => Set(ref _Treasures, value);
         }
 
-        public Friend Gems
+        public CongregationMember Gems
         {
             get => _Gems;
             set => Set(ref _Gems, value);
         }
 
-        public Friend BibleReading
+        public CongregationMember BibleReading
         {
             get => _BibleReading;
             set => Set(ref _BibleReading, value);
@@ -92,19 +92,19 @@ namespace OpenKHS.Models
             set => Set(ref _LacPart3, value);
         }
 
-        public Friend CbsConductor
+        public CongregationMember CbsConductor
         {
             get => _CbsConductor;
             set => Set(ref _CbsConductor, value);
         }
 
-        public Friend CbsReader
+        public CongregationMember CbsReader
         {
             get => _CbsReader;
             set => Set(ref _CbsReader, value);
         }
 
-        public Friend ClosingPrayer
+        public CongregationMember ClosingPrayer
         {
             get => _ClosingPrayer;
             set => Set(ref _ClosingPrayer, value);

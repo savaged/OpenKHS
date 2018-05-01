@@ -7,7 +7,7 @@ using OpenKHS.Models.Attributes;
 
 namespace OpenKHS.ViewModels
 {
-    public class CongregationViewModel : IndexBoundViewModelBase<Friend>
+    public class CongregationViewModel : IndexBoundViewModelBase<CongregationMember>
     {
         private ICommand _togglePrivilegesCmd;
         private bool _previousTogglePrivilegesSetting;

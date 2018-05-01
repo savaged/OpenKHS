@@ -8,7 +8,7 @@ namespace OpenKHS.ViewModels
 {
     public class ClmmScheduleViewModel : ScheduleViewModelBase<ClmmSchedule>
     {
-        public ClmmScheduleViewModel(DatabaseContext dbContext, IList<Friend> congMembers)
+        public ClmmScheduleViewModel(DatabaseContext dbContext, IList<CongregationMember> congMembers)
             : base(dbContext, congMembers) { }
 
         protected override void AddModelObjectToDbContext()

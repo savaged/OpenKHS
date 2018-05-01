@@ -8,6 +8,6 @@ namespace OpenKHS.Interfaces
     {
         DateTime WeekStarting { get; set; }
 
-        IList<IFriend> Participants { get; }
+        IList<ICongregationMember> Participants { get; }
     }
 }

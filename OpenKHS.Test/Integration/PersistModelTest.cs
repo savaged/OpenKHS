@@ -50,7 +50,7 @@ namespace OpenKHS.Test.Integration
                 // read
                 var retrievedCong = new Congregation
                 {
-                    Members = context.Friends.ToList()
+                    Members = context.CongregationMembers.ToList()
                 };
                 Assert.IsNotNull(retrievedCong);
                 Assert.IsNotNull(retrievedCong.Members);
@@ -61,7 +61,7 @@ namespace OpenKHS.Test.Integration
             int id;
             using (var context = new DatabaseContext(optionsBuilder.Options))
             {
-                var first = context.Friends.First();
+                var first = context.CongregationMembers.First();
                 id = first.Id;
                 name = first.Name;
                 // update
@@ -71,13 +71,13 @@ namespace OpenKHS.Test.Integration
             using (var context = new DatabaseContext(optionsBuilder.Options))
             {
                 // check updated
-                var updated = context.Friends.Single(f => f.Id == id);
+                var updated = context.CongregationMembers.Single(f => f.Id == id);
                 Assert.AreNotEqual(name, updated.Name);
             }
             uint tally;
             using (var context = new DatabaseContext(optionsBuilder.Options))
             {
-                var first = context.Friends.First();
+                var first = context.CongregationMembers.First();
                 id = first.Id;
                 tally = first.MeetingAssignmentTally;
                 // update
@@ -87,19 +87,19 @@ namespace OpenKHS.Test.Integration
             using (var context = new DatabaseContext(optionsBuilder.Options))
             {
                 // check updated
-                var updated = context.Friends.Single(f => f.Id == id);
+                var updated = context.CongregationMembers.Single(f => f.Id == id);
                 Assert.AreNotEqual(tally, updated.MeetingAssignmentTally);
             }
 
             using (var context = new DatabaseContext(optionsBuilder.Options))
             {
-                foreach (var friend in context.Friends)
+                foreach (var friend in context.CongregationMembers)
                 {
                     // delete
                     context.Remove(friend);
                     context.SaveChanges();
                 }
-                Assert.AreEqual(0, context.Friends.ToList().Count);
+                Assert.AreEqual(0, context.CongregationMembers.ToList().Count);
             }
 
             // TODO get Tally working (currently ingnored by context

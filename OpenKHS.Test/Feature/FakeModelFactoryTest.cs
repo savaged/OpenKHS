@@ -24,7 +24,7 @@ namespace OpenKHS.Test.Feature
             var meetingPart = new FakeModelFactory().MakeMeetingPart();
             Assert.IsNotNull(meetingPart);
             Assert.IsNotNull(meetingPart.Title);
-            Assert.IsNotNull(meetingPart.Friend);
+            Assert.IsNotNull(meetingPart.CongregationMember);
         }
 
         [TestMethod]
@@ -53,8 +53,8 @@ namespace OpenKHS.Test.Feature
             var publicTalk = new FakeModelFactory().MakePublicTalk();
             Assert.IsNotNull(publicTalk.TalkNumber);
             Assert.IsTrue(publicTalk.TalkNumber > 0);
-            Assert.IsNotNull(publicTalk.Friend);
-            Assert.IsNotNull(publicTalk.Friend.Name);
+            Assert.IsNotNull(publicTalk.CongregationMember);
+            Assert.IsNotNull(publicTalk.CongregationMember.Name);
         }
 
         [TestMethod]
@@ -62,7 +62,7 @@ namespace OpenKHS.Test.Feature
         {
             var privileges = new List<string> { "Attendant" };
             var congMemberWithPrivileges = new FakeModelFactory().MakeCongMemberWithPrivileges(privileges);
-            Assert.IsInstanceOfType(congMemberWithPrivileges, typeof(Friend));
+            Assert.IsInstanceOfType(congMemberWithPrivileges, typeof(CongregationMember));
             Assert.IsTrue(congMemberWithPrivileges.Attendant);
         }
 
@@ -87,9 +87,9 @@ namespace OpenKHS.Test.Feature
         }
 
         [TestMethod]
-        public void TestFakeFriendMaker()
+        public void TestFakeSmallCongregationMemberMaker()
         {
-            var friends = new FakeModelFactory().MakeFriends(40);
+            var friends = new FakeModelFactory().MakeCongregationMembers(40);
             Assert.AreEqual(40, friends.Count);
             Assert.AreNotEqual(friends.First().Name, friends.Last().Name);
         }
@@ -114,22 +114,22 @@ namespace OpenKHS.Test.Feature
         public void TestFakePrivilegesMaker()
         {
             var factory = new FakeModelFactory();
-            var friend = factory.MakeFriends(1).First();
+            var friend = factory.MakeCongregationMembers(1).First();
             var friendWithRandomPrivileges = factory.AddRandomPrivileges(friend, false);
             Assert.IsNotNull(friendWithRandomPrivileges);
-            Assert.IsInstanceOfType(friendWithRandomPrivileges, typeof(Friend));
+            Assert.IsInstanceOfType(friendWithRandomPrivileges, typeof(CongregationMember));
             Assert.IsTrue(friendWithRandomPrivileges.CountPrivileges() > 0);
             
             friendWithRandomPrivileges = factory.AddPrivileges(friend, new List<string>{"WtReader"});
             Assert.IsNotNull(friendWithRandomPrivileges);
-            Assert.IsInstanceOfType(friendWithRandomPrivileges, typeof(Friend));
+            Assert.IsInstanceOfType(friendWithRandomPrivileges, typeof(CongregationMember));
             Assert.IsTrue(friendWithRandomPrivileges.CountPrivileges() > 0);
         }
 
         [TestMethod]
         public void TestFakeCongregationMemberMaker()
         {
-            var congMembers = new FakeModelFactory().MakeCongregationMembers(80);
+            var congMembers = new FakeModelFactory().MakeCongregationMembersWithPrivildeges(80);
             Assert.AreEqual(80, congMembers.Count);
             Assert.IsTrue(congMembers.First().CountPrivileges() > 0);
         }

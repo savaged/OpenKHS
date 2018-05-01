@@ -4,6 +4,6 @@ namespace OpenKHS.Models
 {
     public class CircuitVisitMeetingPart : MeetingPart
     {
-        public Friend CircuitOverseer { get => base.Friend; private set { } }
+        public CongregationMember CircuitOverseer { get => base.CongregationMember; private set { } }
     }
 }

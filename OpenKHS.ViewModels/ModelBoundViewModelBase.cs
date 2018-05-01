@@ -17,7 +17,7 @@ namespace OpenKHS.ViewModels
         {
             repos = new Dictionary<Type, object>
             {
-                { typeof(Friend), new FriendRepository(dbContext) },
+                { typeof(CongregationMember), new CongregationMemberRepository(dbContext) },
                 { typeof(PmSchedule), new PmScheduleRepository(dbContext) },
                 { typeof(ClmmSchedule), new ClmmScheduleRepository(dbContext) },
                 { typeof(PublicTalk), new PublicTalkRepository(dbContext) }

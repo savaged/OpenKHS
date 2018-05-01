@@ -15,7 +15,7 @@ namespace OpenKHS.Controls
         {
             if (DataContext != null)
             {
-                var friend = (IFriend)DataContext;
+                var friend = (ICongregationMember)DataContext;
                 if (friend.IsPotentiallyOverloaded)
                 {
                     TxtFlag.Visibility = Visibility.Visible;

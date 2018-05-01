@@ -6,23 +6,23 @@ using OpenKHS.Models;
 namespace OpenKHS.Test.Unit
 {
     [TestClass]
-    public class FriendAssignmentTallyTest : TestBase
+    public class CongregationMemberAssignmentTallyTest : TestBase
     {
         [TestMethod]
-        public void TestFriendAssignmentTallyIncrementAndReset()
+        public void TestCongregationMemberAssignmentTallyIncrementAndReset()
         {
-            Friend friend = null;
-            friend = Friend.Swap(ref friend, new Friend(), AssignmentContext.Common);
+            CongregationMember friend = null;
+            friend = CongregationMember.Swap(ref friend, new CongregationMember(), AssignmentContext.Common);
             Assert.AreEqual((uint)1, friend.MeetingAssignmentTally);
 
-            var replacement = new Friend();
+            var replacement = new CongregationMember();
             Assert.AreEqual((uint)0, replacement.MeetingAssignmentTally);
-            replacement = Friend.Swap(ref friend, replacement, AssignmentContext.Common);
+            replacement = CongregationMember.Swap(ref friend, replacement, AssignmentContext.Common);
             Assert.AreEqual((uint)1, replacement.MeetingAssignmentTally);
             Assert.AreEqual((uint)0, friend.MeetingAssignmentTally);
 
             replacement = null;
-            replacement = Friend.Swap(ref friend, replacement, AssignmentContext.Common);
+            replacement = CongregationMember.Swap(ref friend, replacement, AssignmentContext.Common);
             Assert.AreEqual((uint)0, friend.MeetingAssignmentTally);
         }
     }
