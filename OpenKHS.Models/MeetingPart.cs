@@ -1,4 +1,5 @@
 ﻿using OpenKHS.Interfaces;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OpenKHS.Models
 {
@@ -7,5 +8,8 @@ namespace OpenKHS.Models
         public string Title { get; set; }
 
         public virtual Friend Friend { get; set; }
+
+        [NotMapped]
+        public string DisplayName { get => Title + " " + Friend?.Name; }
     }
 }

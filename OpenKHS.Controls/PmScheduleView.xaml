@@ -28,13 +28,7 @@
                     <Label Width="140">Public Talk</Label>
                     <ComboBox Width="160" ItemsSource="{Binding PublicTalks}"
                               SelectedItem="{Binding SelectedItem.PublicTalk, Mode=TwoWay}"
-                              DisplayMemberPath="Name">
-                        <ComboBox.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem Header="Add" Command="{Binding AddPublicTalkCmd}"/>
-                            </ContextMenu>
-                        </ComboBox.ContextMenu>
-                    </ComboBox>
+                              DisplayMemberPath="DisplayName"/>
                 </WrapPanel>
                 <WrapPanel>
                     <Label Width="140">WT Conductor</Label>
