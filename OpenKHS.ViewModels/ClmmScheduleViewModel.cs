@@ -15,7 +15,7 @@ namespace OpenKHS.ViewModels
         {
             if (IsValidSchedule())
             {
-                DbContext.Store(ModelObject);
+                Repository.Store(ModelObject);
             }
         }
     }

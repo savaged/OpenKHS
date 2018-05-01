@@ -23,7 +23,7 @@ namespace OpenKHS.ViewModels
             RovingMic = new List<Friend>();
 
             var weekStarting = WeekNumberAdapter.GetFirstDateOfWeekIso8601(DateTime.Now);
-            Initialise(DbContext.Index(), GetDefaultSchedule(weekStarting));
+            Initialise(Repository.Index(), GetDefaultSchedule(weekStarting));
 
             PropertyChanged += OnPropertyChanged;
             ModelObjectPropertyChanged += OnScheduleModelObjectPropertyChanged;
@@ -45,7 +45,7 @@ namespace OpenKHS.ViewModels
 
         protected T GetDefaultSchedule(DateTime weekStarting)
         {
-            var defaultSchedule = DbContext.Index().SingleOrDefault(s => s.WeekStarting == weekStarting);
+            var defaultSchedule = Repository.Index().SingleOrDefault(s => s.WeekStarting == weekStarting);
             if (defaultSchedule == null)
             {
                 defaultSchedule = new T();
@@ -103,7 +103,7 @@ namespace OpenKHS.ViewModels
         {
             if (IsValidSchedule())
             {
-                DbContext.Store(ModelObject);
+                Repository.Store(ModelObject);
             }
         }
 

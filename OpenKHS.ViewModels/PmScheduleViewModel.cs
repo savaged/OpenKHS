@@ -3,18 +3,24 @@ using System.Linq;
 using System.Collections.Generic;
 using OpenKHS.Models;
 using OpenKHS.Data;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.CommandWpf;
 
 namespace OpenKHS.ViewModels
 {
     public class PmScheduleViewModel : ScheduleViewModelBase<PmSchedule>
     {
+        private ICommand _addPublicTalkCmd;
+
         public PmScheduleViewModel(DatabaseContext dbContext, IList<Friend> congMembers)
             : base(dbContext, congMembers)
         {
             Chairmen = new List<Friend>();
             WtReaders = new List<Friend>();
             WtConductors = new List<Friend>();
+            PublicTalks = new List<PublicTalk>();
             LoadLookups();
+            _addPublicTalkCmd = new RelayCommand(OnAddPublicTalk, () => CanExecute);
         }
 
         protected override void LoadLookups()
@@ -35,6 +41,9 @@ namespace OpenKHS.ViewModels
             CongMembers.Where(f => f.WtConductor).ToList().ForEach(f => WtConductors.Add(f));
             WtConductors = WtConductors.OrderBy(f => f.PmAssignmentTally).ToList();
             RaisePropertyChanged(nameof(WtConductors));
+
+            PublicTalks.Clear();
+            GetRelatedRepository<PublicTalk>().Index().ToList().ForEach(p => PublicTalks.Add(p));
 
             SetDefaultWtConductor();
         }
@@ -58,5 +67,15 @@ namespace OpenKHS.ViewModels
         public List<Friend> WtReaders { get; private set; }
 
         public List<Friend> WtConductors { get; private set; }
+
+        public List<PublicTalk> PublicTalks { get; private set; }
+
+        public ICommand AddPublicTalkCmd => _addPublicTalkCmd;
+
+        private void OnAddPublicTalk()
+        {
+            throw new NotImplementedException();
+            // TODO open dialog
+        }
     }
 }

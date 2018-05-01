@@ -19,12 +19,18 @@ namespace OpenKHS.ViewModels
             {
                 { typeof(Friend), new FriendRepository(dbContext) },
                 { typeof(PmSchedule), new PmScheduleRepository(dbContext) },
-                { typeof(ClmmSchedule), new ClmmScheduleRepository(dbContext) }
+                { typeof(ClmmSchedule), new ClmmScheduleRepository(dbContext) },
+                { typeof(PublicTalk), new PublicTalkRepository(dbContext) }
             };
-            DbContext = (IModelRepository<T>)repos[typeof(T)];
+            Repository = (IModelRepository<T>)repos[typeof(T)];
         }
 
-        protected IModelRepository<T> DbContext { get; }
+        protected IModelRepository<T> Repository { get; }
+
+        protected IModelRepository<R> GetRelatedRepository<R>() where R : IModel, new()
+        {
+            return (IModelRepository<R>)repos[typeof(R)];
+        }
 
         protected bool IsDirty { get; set; }
 
@@ -75,7 +81,7 @@ namespace OpenKHS.ViewModels
             {
                 if (IsDirty)
                 {
-                    DbContext.Save();
+                    Repository.Save();
                     IsDirty = false;
                 }
             }

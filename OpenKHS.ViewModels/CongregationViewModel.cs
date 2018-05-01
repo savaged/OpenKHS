@@ -14,7 +14,7 @@ namespace OpenKHS.ViewModels
 
         public CongregationViewModel(DatabaseContext dbContext) : base(dbContext)
         {
-            Initialise(DbContext.Index(), null);
+            Initialise(Repository.Index(), null);
             _togglePrivilegesCmd = new RelayCommand(OnTogglePrivileges, () => CanExecute);
             PropertyChanged += OnPropertyChanged;
             ModelObjectPropertyChanged += OnModelObjectPropertyChanged;
@@ -36,7 +36,7 @@ namespace OpenKHS.ViewModels
         {
             if (ModelObject != null && !string.IsNullOrEmpty(ModelObject.Name))
             {
-                DbContext.Store(ModelObject);
+                Repository.Store(ModelObject);
             }
         }
 

@@ -26,7 +26,15 @@
             <StackPanel Grid.Column="1" Grid.Row="1" Margin="10">
                 <WrapPanel>
                     <Label Width="140">Public Talk</Label>
-                    <TextBox Width="160" Text="{Binding SelectedItem.PublicTalk}" />
+                    <ComboBox Width="160" ItemsSource="{Binding PublicTalks}"
+                              SelectedItem="{Binding SelectedItem.PublicTalk, Mode=TwoWay}"
+                              DisplayMemberPath="Name">
+                        <ComboBox.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Add" Command="{Binding AddPublicTalkCmd}"/>
+                            </ContextMenu>
+                        </ComboBox.ContextMenu>
+                    </ComboBox>
                 </WrapPanel>
                 <WrapPanel>
                     <Label Width="140">WT Conductor</Label>

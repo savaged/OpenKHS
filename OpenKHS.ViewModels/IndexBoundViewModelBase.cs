@@ -83,7 +83,7 @@ namespace OpenKHS.ViewModels
                 throw new ArgumentNullException("Expected to have the selected item set!");
             }
             Index.Remove(SelectedItem);
-            DbContext.Delete(SelectedItem);
+            Repository.Delete(SelectedItem);
         }
     }
 }

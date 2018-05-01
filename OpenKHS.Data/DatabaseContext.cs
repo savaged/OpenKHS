@@ -17,6 +17,7 @@ namespace OpenKHS.Data
         public DbSet<DateRange> UnavailablePeriods { get; set; }
         public DbSet<PmSchedule> PmSchedules { get; set; }
         public DbSet<ClmmSchedule> ClmmSchedules { get; set; }
+        public DbSet<PublicTalk> PublicTalks { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
