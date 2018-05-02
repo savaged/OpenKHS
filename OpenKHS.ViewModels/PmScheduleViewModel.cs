@@ -3,15 +3,11 @@ using System.Linq;
 using System.Collections.Generic;
 using OpenKHS.Models;
 using OpenKHS.Data;
-using System.Windows.Input;
-using GalaSoft.MvvmLight.CommandWpf;
 
 namespace OpenKHS.ViewModels
 {
     public class PmScheduleViewModel : ScheduleViewModelBase<PmSchedule>
     {
-        private ICommand _addPublicTalkCmd;
-
         public PmScheduleViewModel(DatabaseContext dbContext, IList<CongregationMember> congMembers)
             : base(dbContext, congMembers)
         {
@@ -20,7 +16,6 @@ namespace OpenKHS.ViewModels
             WtConductors = new List<CongregationMember>();
             PublicTalks = new List<PublicTalk>();
             LoadLookups();
-            _addPublicTalkCmd = new RelayCommand(OnAddPublicTalk, () => CanExecute);
         }
 
         protected override void LoadLookups()
@@ -69,13 +64,5 @@ namespace OpenKHS.ViewModels
         public List<CongregationMember> WtConductors { get; private set; }
 
         public List<PublicTalk> PublicTalks { get; private set; }
-
-        public ICommand AddPublicTalkCmd => _addPublicTalkCmd;
-
-        private void OnAddPublicTalk()
-        {
-            throw new NotImplementedException();
-            // TODO open dialog
-        }
     }
 }
