@@ -11,10 +11,8 @@ Feel free to have a look at the code by cloning this repository using:
 * Sorry, I've not had time to do anything for ages but still aim to make this happen
 
 ## TO DO List ##
-* Switch to ORM for data persistance using Entity Framework Core and SqlLite
-    * Re-work base view models to handle both single model object binding and indexed
+* Review use of service locator for view models
 * UWP version using https://github.com/Microsoft/WindowsTemplateStudio
-* Work on Metro version for older Windows clients
 * Android version
 * iOS version
 * Functional Requirement: Add cleaning schedule

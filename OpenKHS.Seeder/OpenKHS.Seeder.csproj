@@ -77,10 +77,6 @@
       <Project>{f8a01958-c187-4ca8-b255-f942e7d22bff}</Project>
       <Name>OpenKHS.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\OpenKHS\OpenKHS\OpenKHS.csproj">
-      <Project>{8f9b2503-dca1-4b62-9888-7094063a1172}</Project>
-      <Name>OpenKHS</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

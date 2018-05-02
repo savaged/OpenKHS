@@ -213,10 +213,6 @@
       <Project>{e3c5cbc7-94a4-4e71-b493-71a6193b43b4}</Project>
       <Name>OpenKHS.ViewModels</Name>
     </ProjectReference>
-    <ProjectReference Include="..\OpenKHS\OpenKHS\OpenKHS.csproj">
-      <Project>{8f9b2503-dca1-4b62-9888-7094063a1172}</Project>
-      <Name>OpenKHS</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
