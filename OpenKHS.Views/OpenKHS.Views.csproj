@@ -53,9 +53,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PublicSpeakerDialog.xaml.cs">
-      <DependentUpon>PublicSpeakerDialog.xaml</DependentUpon>
-    </Compile>
     <Compile Include="AboutDialog.xaml.cs">
       <DependentUpon>AboutDialog.xaml</DependentUpon>
     </Compile>
@@ -87,10 +84,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="PublicSpeakerDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="AboutDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

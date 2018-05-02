@@ -7,6 +7,54 @@
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="600">
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid Grid.Column="0"
+                  Margin="10"
+                  x:Name="SpeakersGrid"
+                  ItemsSource="{Binding Index}"
+                  SelectedItem="{Binding SelectedItem}"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  SelectionChanged="OnIndexSelectionChanged">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Add" Command="{Binding NewCmd}"/>
+                    <MenuItem Header="Delete" Command="{Binding DeleteSelectedItemCmd}"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="1*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Column="1" IsEnabled="{Binding IsItemSelected}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Margin="10">
+                <WrapPanel>
+                    <Label Width="140">Title</Label>
+                    <TextBox Width="160" IsReadOnly="True"
+                             Text="{Binding SelectedItem.Title}"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <Label Width="140">Speaker</Label>
+                    <ComboBox Width="160" ItemsSource="{Binding Congregations}"
+                              SelectedItem="{Binding SelectedItem.Congregation, Mode=TwoWay}"
+                              DisplayMemberPath="Name"
+                              IsEditable="True"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <Label Width="140">Public Talk</Label>
+                    <ComboBox Width="160" ItemsSource="{Binding PublicTalks}"
+                              SelectedItem="{Binding SelectedItem.PublicTalk, Mode=TwoWay}"
+                              DisplayMemberPath="Name"/>
+                </WrapPanel>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

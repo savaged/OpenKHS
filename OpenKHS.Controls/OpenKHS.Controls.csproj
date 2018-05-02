@@ -83,6 +83,7 @@
     <Compile Include="SpinnerCogs.xaml.cs">
       <DependentUpon>SpinnerCogs.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControlExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="ClmmScheduleView.xaml">

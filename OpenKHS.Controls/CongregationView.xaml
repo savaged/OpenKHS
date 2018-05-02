@@ -23,7 +23,7 @@
                   SelectedItem="{Binding SelectedItem}"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
-                  SelectionChanged="CongMembersGrid_SelectionChanged">
+                  SelectionChanged="OnIndexSelectionChanged">
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Add" Command="{Binding NewCmd}"/>

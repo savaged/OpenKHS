@@ -35,6 +35,8 @@ namespace OpenKHS.Data
             modelBuilder.Entity<CongregationMember>().HasIndex(f => f.Name).IsUnique();
             modelBuilder.Entity<PmSchedule>().HasIndex(s => s.WeekStarting).IsUnique();
             modelBuilder.Entity<ClmmSchedule>().HasIndex(s => s.WeekStarting).IsUnique();
+
+            // TODO seed public talk outlines
         }
     }
 }
