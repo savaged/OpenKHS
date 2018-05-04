@@ -8,7 +8,7 @@ namespace OpenKHS.Data
     {
         static ApplicationData()
         {
-            ResourceLocation = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            ResourceLocation = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             ResourceLocation += "\\";
             if (!Directory.Exists(ResourceLocation + "OpenKHS"))
             {
