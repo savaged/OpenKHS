@@ -49,7 +49,7 @@ namespace OpenKHS.ViewModels
 
             _congregationViewModel = new CongregationViewModel(dbContext);
             // TODO figure out how talks should work
-            _publicTalksViewModel = new PublicTalksViewModel(dbContext);
+            _publicTalksViewModel = new PublicTalksViewModel();
             _pmScheduleViewModel = new PmScheduleViewModel(dbContext, _congregationViewModel.Index);
             _clmmScheduleViewModel = new ClmmScheduleViewModel(dbContext, _congregationViewModel.Index);
         }
