@@ -12,7 +12,7 @@ namespace OpenKHS.Test.Integration
         public void IntegrationTestPublicTalkOutlineRW()
         {
             var repo = new PublicTalkOutlineRepository();
-            var file = repo.ResourceLocation;
+            var file = repo.ResourceLocation + "Test.json";
 
             if (File.Exists(file)) File.Delete(file);
 
