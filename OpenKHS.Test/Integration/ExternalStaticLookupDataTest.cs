@@ -11,9 +11,9 @@ namespace OpenKHS.Test.Integration
         [TestMethod]
         public void IntegrationTestPublicTalkOutlineRW()
         {
-            var repo = new PublicTalkOutlineRepository();
-            var file = repo.ResourceLocation + "Test.json";
-
+            var file = ApplicationData.ResourceLocation + "TestOutlines.json";
+            var repo = new PublicTalkOutlineRepository(file);
+            
             if (File.Exists(file)) File.Delete(file);
 
             var index = repo.Index();

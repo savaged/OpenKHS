@@ -18,6 +18,10 @@ namespace OpenKHS.Data
         {
             ResourceLocation = ApplicationData.ResourceLocation + "PublicTalkOutlines.json";            
         }
+        public PublicTalkOutlineRepository(string resourceLocation)
+        {
+            ResourceLocation = resourceLocation;
+        }
 
         public IList<PublicTalkOutline> Index()
         {
