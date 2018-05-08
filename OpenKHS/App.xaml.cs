@@ -6,6 +6,7 @@ using System.ComponentModel;
 using Ninject;
 using OpenKHS.Interfaces;
 using OpenKHS.Data;
+using System.IO;
 
 namespace OpenKHS
 {
@@ -24,6 +25,8 @@ namespace OpenKHS
 
             Log.Info("Initialising application structure");
 
+            EnsureAppData();
+
             var iocKernel = new StandardKernel(new IocBindings());
             iocKernel.Load(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -39,6 +42,18 @@ namespace OpenKHS
 
             Log.Info("Showing main window");
             _mainWindow.Show();
+        }
+
+        static void EnsureAppData()
+        {
+            var Location = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            Location += "\\";
+            if (!Directory.Exists(Location + "OpenKHS"))
+            {
+                Directory.CreateDirectory(Location + "OpenKHS");
+            }
+            Location += "OpenKHS\\";
+            Log.Info(Location + " ready");
         }
 
         static void UnhandledExceptionOccured(object sender, UnhandledExceptionEventArgs args)

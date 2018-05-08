@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 
 namespace OpenKHS.Data
@@ -9,12 +8,7 @@ namespace OpenKHS.Data
         static ApplicationData()
         {
             ResourceLocation = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            ResourceLocation += "\\";
-            if (!Directory.Exists(ResourceLocation + "OpenKHS"))
-            {
-                Directory.CreateDirectory(ResourceLocation + "OpenKHS");
-            }
-            ResourceLocation += "OpenKHS\\";
+            ResourceLocation += "\\OpenKHS\\";
         }
 
         public static readonly bool IsRunningFromTest = 
