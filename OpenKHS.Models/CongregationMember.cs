@@ -54,6 +54,12 @@ namespace OpenKHS.Models
             }
         }
 
+        public override string Congregation
+        {
+            get => "Local";
+            set => throw new NotSupportedException();
+        }
+
         public List<DateRange> UnavailablePeriods
         {
             get => _unavailablePeriods;

@@ -16,5 +16,7 @@ namespace OpenKHS.Models
             get => _name;
             set => Set(ref _name, value);
         }
+
+        public virtual string Congregation { get; set; }
     }
 }
