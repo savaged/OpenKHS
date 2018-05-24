@@ -1,0 +1,1 @@
+The PublicTalkOutlines.json file should be installed in %APPDATA%\OpenKHS\

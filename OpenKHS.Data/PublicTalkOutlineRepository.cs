@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using OpenKHS.Models;
 using System.Collections.Generic;
 using OpenKHS.Interfaces;
+using System.Threading.Tasks;
 
 namespace OpenKHS.Data
 {
@@ -27,17 +28,23 @@ namespace OpenKHS.Data
         {
             if (_index == null)
             {
-                if (File.Exists(ResourceLocation))
-                {
-                    var json = File.ReadAllText(ResourceLocation);
-                    _index = JsonConvert.DeserializeObject<List<PublicTalkOutline>>(json);
-                }
-                else
-                {
-                    _index = new List<PublicTalkOutline>();
-                }
+                LoadResource();
             }
             return _index;
+        }
+
+        private void LoadResource()
+        {
+            // TODO make this async
+            if (File.Exists(ResourceLocation))
+            {
+                var json = File.ReadAllText(ResourceLocation);
+                _index = JsonConvert.DeserializeObject<List<PublicTalkOutline>>(json);
+            }
+            else
+            {
+                _index = new List<PublicTalkOutline>();
+            }
         }
 
         public PublicTalkOutline Show(int id)

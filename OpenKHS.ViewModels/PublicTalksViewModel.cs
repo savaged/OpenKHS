@@ -22,7 +22,7 @@ namespace OpenKHS.ViewModels
 
         protected void LoadLookups()
         {
-            if (PublicTalkOutlines != null)
+            if (_outlinesRepo != null && PublicTalkOutlines == null)
             {
                 PublicTalkOutlines = _outlinesRepo.Index();
                 // TODO load Congregations = 

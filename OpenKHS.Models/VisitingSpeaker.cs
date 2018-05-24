@@ -5,6 +5,6 @@ namespace OpenKHS.Models
 {
     public class VisitingSpeaker : PmSpeaker
     {
-        public string Congregation { get; set; }
+        public new string Congregation { get; set; }
     }
 }
