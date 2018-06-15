@@ -10,9 +10,17 @@ namespace OpenKHS.Models
 {
     public abstract class ModelBase : ObservableObject, IModel
     {
+        private string _name;
+
         public int Id { get; set; }
 
         public bool IsNew => Id < 1;
+
+        public virtual string Name
+        {
+            get => _name;
+            set => Set(ref _name, value);
+        }
 
         public bool IsDirty { get; private set; }
 

@@ -13,14 +13,14 @@
         </Grid.ColumnDefinitions>
         <DataGrid Grid.Column="0"
                   Margin="10"
-                  x:Name="SpeakersGrid"
-                  ItemsSource="{Binding PublicTalkOutlines}"
-                  SelectedItem="{Binding SelectedPublicTalkOutline}"
+                  x:Name="PublicTalksGrid"
+                  ItemsSource="{Binding Index}"
+                  SelectedItem="{Binding SelectedItem}"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
                   SelectionChanged="OnIndexSelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="1*"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="1*"/>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -31,21 +31,24 @@
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" Margin="10">
                 <WrapPanel>
-                    <Label Width="140">Title</Label>
-                    <TextBox Width="160" IsReadOnly="True"
-                             Text="{Binding SelectedItem.Title}"/>
+                    <Label Width="140">Congregation</Label>
+                    <ComboBox Width="160" 
+                              IsEditable="True"
+                              ItemsSource="{Binding Congregations}"
+                              Text="{Binding Congregations.NewItem, UpdateSourceTrigger=LostFocus}"
+                              SelectedItem="{Binding Congregations.SelectedItem}"
+                              DisplayMemberPath="Name"/>
                 </WrapPanel>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Margin="10">
                 <WrapPanel>
                     <Label Width="140">Speaker</Label>
-                    <ComboBox Width="160" ItemsSource="{Binding Congregations}"
-                              SelectedItem="{Binding SelectedItem.Congregation, Mode=TwoWay}"
-                              DisplayMemberPath="Name"
-                              IsEditable="True"/>
-                </WrapPanel>
-                <WrapPanel>
-                    <Label Width="140">Public Talk</Label>
-                    <ComboBox Width="160" ItemsSource="{Binding PublicTalks}"
-                              SelectedItem="{Binding SelectedItem.PublicTalk, Mode=TwoWay}"
+                    <ComboBox Width="160" 
+                              IsEnabled="{Binding Congregations.IsItemSelected}"
+                              IsEditable="True"
+                              ItemsSource="{Binding Speakers}"
+                              Text="{Binding Speakers.NewItem, UpdateSourceTrigger=LostFocus}"
+                              SelectedItem="{Binding Speakers.SelectedItem}"
                               DisplayMemberPath="Name"/>
                 </WrapPanel>
             </StackPanel>

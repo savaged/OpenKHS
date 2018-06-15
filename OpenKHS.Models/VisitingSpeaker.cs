@@ -1,10 +1,10 @@
 ﻿
-using System;
-
 namespace OpenKHS.Models
 {
-    public class VisitingSpeaker : PmSpeaker
+    /// <summary>
+    /// Public Meeting Speaker from another congregation
+    /// </summary>
+    public class VisitingSpeaker : PmSpeaker 
     {
-        public new string Congregation { get; set; }
     }
 }

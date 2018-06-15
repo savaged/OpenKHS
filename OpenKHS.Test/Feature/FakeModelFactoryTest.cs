@@ -23,7 +23,7 @@ namespace OpenKHS.Test.Feature
         {
             var meetingPart = new FakeModelFactory().MakeMeetingPart();
             Assert.IsNotNull(meetingPart);
-            Assert.IsNotNull(meetingPart.Title);
+            Assert.IsNotNull(meetingPart.Name);
             Assert.IsNotNull(meetingPart.Friend);
         }
 
@@ -32,7 +32,7 @@ namespace OpenKHS.Test.Feature
         {
             var schoolMeetingPart = new FakeModelFactory().MakeSchoolPart(true);
             Assert.IsNotNull(schoolMeetingPart);
-            Assert.IsNotNull(schoolMeetingPart.Title);
+            Assert.IsNotNull(schoolMeetingPart.Name);
             Assert.IsNotNull(schoolMeetingPart.Student);
             Assert.IsNotNull(schoolMeetingPart.CounselPoint);
             Assert.IsTrue(schoolMeetingPart.CounselPoint > 0 && schoolMeetingPart.CounselPoint < 195);
@@ -62,7 +62,7 @@ namespace OpenKHS.Test.Feature
         {
             var privileges = new List<string> { "Attendant" };
             var congMemberWithPrivileges = new FakeModelFactory().MakeCongMemberWithPrivileges(privileges);
-            Assert.IsInstanceOfType(congMemberWithPrivileges, typeof(CongregationMember));
+            Assert.IsInstanceOfType(congMemberWithPrivileges, typeof(LocalCongregationMember));
             Assert.IsTrue(congMemberWithPrivileges.Attendant);
         }
 
@@ -117,12 +117,12 @@ namespace OpenKHS.Test.Feature
             var friend = factory.MakeCongregationMembers(1).First();
             var friendWithRandomPrivileges = factory.AddRandomPrivileges(friend, false);
             Assert.IsNotNull(friendWithRandomPrivileges);
-            Assert.IsInstanceOfType(friendWithRandomPrivileges, typeof(CongregationMember));
+            Assert.IsInstanceOfType(friendWithRandomPrivileges, typeof(LocalCongregationMember));
             Assert.IsTrue(friendWithRandomPrivileges.CountPrivileges() > 0);
             
             friendWithRandomPrivileges = factory.AddPrivileges(friend, new List<string>{"WtReader"});
             Assert.IsNotNull(friendWithRandomPrivileges);
-            Assert.IsInstanceOfType(friendWithRandomPrivileges, typeof(CongregationMember));
+            Assert.IsInstanceOfType(friendWithRandomPrivileges, typeof(LocalCongregationMember));
             Assert.IsTrue(friendWithRandomPrivileges.CountPrivileges() > 0);
         }
 

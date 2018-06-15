@@ -6,15 +6,13 @@ namespace OpenKHS.Models
 {
     public class Friend : ModelBase, IFriend
     {
-        private string _name;
-
         public Friend() { }
 
         [Required]
-        public string Name
+        public override string Name
         {
-            get => _name;
-            set => Set(ref _name, value);
+            get => base.Name;
+            set => base.Name = value;
         }
 
         public virtual string Congregation { get; set; }

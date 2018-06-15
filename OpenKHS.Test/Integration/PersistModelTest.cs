@@ -48,10 +48,8 @@ namespace OpenKHS.Test.Integration
             using (var context = new DatabaseContext(optionsBuilder.Options))
             {
                 // read
-                var retrievedCong = new Congregation
-                {
-                    Members = context.CongregationMembers.ToList()
-                };
+                var retrievedCong = new LocalCongregation(context.LocalCongregationMembers.ToList());
+                
                 Assert.IsNotNull(retrievedCong);
                 Assert.IsNotNull(retrievedCong.Members);
                 Assert.AreEqual(homeCong.Members.Count, retrievedCong.Members.Count);
@@ -61,7 +59,7 @@ namespace OpenKHS.Test.Integration
             int id;
             using (var context = new DatabaseContext(optionsBuilder.Options))
             {
-                var first = context.CongregationMembers.First();
+                var first = context.LocalCongregationMembers.First();
                 id = first.Id;
                 name = first.Name;
                 // update
@@ -71,13 +69,13 @@ namespace OpenKHS.Test.Integration
             using (var context = new DatabaseContext(optionsBuilder.Options))
             {
                 // check updated
-                var updated = context.CongregationMembers.Single(f => f.Id == id);
+                var updated = context.LocalCongregationMembers.Single(f => f.Id == id);
                 Assert.AreNotEqual(name, updated.Name);
             }
             uint tally;
             using (var context = new DatabaseContext(optionsBuilder.Options))
             {
-                var first = context.CongregationMembers.First();
+                var first = context.LocalCongregationMembers.First();
                 id = first.Id;
                 tally = first.MeetingAssignmentTally;
                 // update
@@ -87,19 +85,19 @@ namespace OpenKHS.Test.Integration
             using (var context = new DatabaseContext(optionsBuilder.Options))
             {
                 // check updated
-                var updated = context.CongregationMembers.Single(f => f.Id == id);
+                var updated = context.LocalCongregationMembers.Single(f => f.Id == id);
                 Assert.AreNotEqual(tally, updated.MeetingAssignmentTally);
             }
 
             using (var context = new DatabaseContext(optionsBuilder.Options))
             {
-                foreach (var friend in context.CongregationMembers)
+                foreach (var friend in context.LocalCongregationMembers)
                 {
                     // delete
                     context.Remove(friend);
                     context.SaveChanges();
                 }
-                Assert.AreEqual(0, context.CongregationMembers.ToList().Count);
+                Assert.AreEqual(0, context.LocalCongregationMembers.ToList().Count);
             }
 
             // TODO get Tally working (currently ingnored by context

@@ -6,6 +6,7 @@ using OpenKHS.Interfaces;
 using OpenKHS.Data;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
+using System.ComponentModel;
 
 namespace OpenKHS.ViewModels
 {
@@ -19,7 +20,7 @@ namespace OpenKHS.ViewModels
             DeleteSelectedItemCmd = new RelayCommand(OnDeleteSelectedItem, () => CanExecute);
         }
 
-        protected void Initialise(IList<T> data, T defaultFirstItem)
+        protected virtual void Initialise(IList<T> data, T defaultFirstItem)
         {
             if (Index.Count > 0)
             {
@@ -53,7 +54,7 @@ namespace OpenKHS.ViewModels
             }
         }
 
-        private void OnModelObjectPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void OnModelObjectPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             RaisePropertyChanged(nameof(IsItemSelected));
         }

@@ -7,9 +7,9 @@ namespace OpenKHS.Models
     {
         public PublicTalkOutline PublicTalkOutline { get; set; }
 
-        public override string Title
+        public override string Name
         {
-            get => PublicTalkOutline?.Title;
+            get => PublicTalkOutline.Name;
             set => throw new NotSupportedException();
         }
     }

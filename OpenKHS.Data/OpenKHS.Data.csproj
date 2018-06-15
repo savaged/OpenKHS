@@ -208,6 +208,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NeighbouringCongregationRepository.cs" />
+    <Compile Include="VisitingSpeakerRepository.cs" />
     <Compile Include="DatabaseContext.cs" />
     <Compile Include="ClmmScheduleRepository.cs" />
     <Compile Include="PublicTalkOutlineRepository.cs" />
@@ -221,7 +223,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="ApplicationData.cs" />
-    <Compile Include="FriendRepository.cs" />
+    <Compile Include="LocalCongregationMemberRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OpenKHS.Interfaces\OpenKHS.Interfaces.csproj">

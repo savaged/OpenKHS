@@ -109,13 +109,16 @@
     <Compile Include="CircuitVisitMeetingPart.cs" />
     <Compile Include="CircuitVisitPmSchedule.cs" />
     <Compile Include="ClmmSchedule.cs" />
+    <Compile Include="NeighbouringCongregation.cs" />
     <Compile Include="Congregation.cs" />
+    <Compile Include="LocalCongregation.cs" />
     <Compile Include="Friend.cs" />
-    <Compile Include="CongregationMember.cs" />
+    <Compile Include="LocalCongregationMember.cs" />
     <Compile Include="Meeting.cs" />
     <Compile Include="MeetingPart.cs" />
     <Compile Include="ModelBase.cs" />
     <Compile Include="PmSchedule.cs" />
+    <Compile Include="VisitingSpeaker.cs" />
     <Compile Include="PublicTalkOutline.cs" />
     <Compile Include="PmSpeaker.cs" />
     <Compile Include="Attributes\PrivilegeAttribute.cs" />
@@ -123,7 +126,6 @@
     <Compile Include="PublicTalk.cs" />
     <Compile Include="SchoolMeetingPart.cs" />
     <Compile Include="Utils\WeekNumberAdapter.cs" />
-    <Compile Include="VisitingSpeaker.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OpenKHS.Interfaces\OpenKHS.Interfaces.csproj">

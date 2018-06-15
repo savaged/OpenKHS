@@ -7,15 +7,14 @@ using OpenKHS.Models.Attributes;
 
 namespace OpenKHS.ViewModels
 {
-    public class CongregationViewModel : IndexBoundViewModelBase<CongregationMember>
+    public class CongregationViewModel : IndexBoundViewModelBase<LocalCongregationMember>
     {
-        private ICommand _togglePrivilegesCmd;
         private bool _previousTogglePrivilegesSetting;
 
         public CongregationViewModel(DatabaseContext dbContext) : base(dbContext)
         {
             Initialise(Repository.Index(), null);
-            _togglePrivilegesCmd = new RelayCommand(OnTogglePrivileges, () => CanExecute);
+            TogglePrivilegesCmd = new RelayCommand(OnTogglePrivileges, () => CanExecute);
             PropertyChanged += OnPropertyChanged;
             ModelObjectPropertyChanged += OnModelObjectPropertyChanged;
         }        
@@ -40,7 +39,7 @@ namespace OpenKHS.ViewModels
             }
         }
 
-        public ICommand TogglePrivilegesCmd => _togglePrivilegesCmd;
+        public ICommand TogglePrivilegesCmd { get; }
 
         private void OnTogglePrivileges()
         {

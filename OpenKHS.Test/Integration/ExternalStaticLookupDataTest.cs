@@ -25,7 +25,7 @@ namespace OpenKHS.Test.Integration
                 var pto = new PublicTalkOutline()
                 {
                     Id = i,
-                    Title = $"Title {i}"
+                    Name = $"Title {i}"
                 };
                 repo.Store(pto);
             }
@@ -34,7 +34,7 @@ namespace OpenKHS.Test.Integration
             Assert.AreEqual(10, repo.Index().Count);
 
             var sample = repo.Show(7);
-            Assert.AreEqual("Title 7", sample.Title);
+            Assert.AreEqual("Title 7", sample.Name);
 
             File.Delete(file);
         }

@@ -18,7 +18,7 @@ namespace OpenKHS.Seeder
 
         #region Main API / Helper methods
 
-        public static Congregation MakeFakeCongregation()
+        public static LocalCongregation MakeFakeCongregation()
         {
             var self = new FakeModelFactory();
             return self.MakeCongregation();
@@ -28,12 +28,9 @@ namespace OpenKHS.Seeder
 
         #region Behind the scenes-ish (can be used)
 
-        public Congregation MakeCongregation(int members = 80)
+        public LocalCongregation MakeCongregation(int members = 80)
         {
-            var homeCong = new Congregation
-            {
-                Members = MakeCongregationMembers(members)
-            };
+            var homeCong = new LocalCongregation(MakeCongregationMembers(members));
             return homeCong;
         }
 
@@ -74,7 +71,7 @@ namespace OpenKHS.Seeder
         {
             var fakeMeetingPart = new MeetingPart
             {
-                Title = new Faker().Random.Words(4),
+                Name = new Faker().Random.Words(4),
                 Friend = MakeCongregationMembers(1).First()
             };
             return fakeMeetingPart;
@@ -120,14 +117,14 @@ namespace OpenKHS.Seeder
             return publicTalk;
         }
 
-        public CongregationMember MakeCongMemberWithPrivileges(List<string> privileges)
+        public LocalCongregationMember MakeCongMemberWithPrivileges(List<string> privileges)
         {
             var list = MakeCongregationMembersWithPrivildeges(1, privileges);
             var congMemberWithPrivileges = list.First();
             return congMemberWithPrivileges;
         }
 
-        public CongregationMember MakeCongMemberWithAssignmentTally()
+        public LocalCongregationMember MakeCongMemberWithAssignmentTally()
         {
             var list = MakeCongregationMembers(1);
             var congMember = list.First();
@@ -135,7 +132,7 @@ namespace OpenKHS.Seeder
             return congMember;
         }
 
-        public CongregationMember MakeCongMemberWithUnavailablePeriods()
+        public LocalCongregationMember MakeCongMemberWithUnavailablePeriods()
         {
             var list = MakeCongregationMembers(1);
             var congMember = list.First();
@@ -148,7 +145,7 @@ namespace OpenKHS.Seeder
 
         public List<VisitingSpeaker> MakeVisitingSpeakers(int count = 1)
         {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<CongregationMember, VisitingSpeaker>());
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<LocalCongregationMember, VisitingSpeaker>());
             var mapper = config.CreateMapper();
 
             var fakeCongregationMembers = MakeCongregationMembers(count);
@@ -166,7 +163,7 @@ namespace OpenKHS.Seeder
 
         public CircuitOverseer MakeCircuitOverseer()
         {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<CongregationMember, CircuitOverseer>());
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<LocalCongregationMember, CircuitOverseer>());
             var mapper = config.CreateMapper();
             var friend = MakeCongregationMember();
             var co = mapper.Map<CircuitOverseer>(friend);
@@ -174,15 +171,15 @@ namespace OpenKHS.Seeder
             return co;
         }
 
-        public List<CongregationMember> MakeCongregationMembersWithPrivildeges(int count = 1, List<string> privileges = null)
+        public List<LocalCongregationMember> MakeCongregationMembersWithPrivildeges(int count = 1, List<string> privileges = null)
         {
             var fakeCongregationMembers = MakeCongregationMembers(count);
 
-            var list = new List<CongregationMember>();
+            var list = new List<LocalCongregationMember>();
 
             foreach (var fakeCongregationMember in fakeCongregationMembers)
             {
-                CongregationMember friendWithFakePrivileges;
+                LocalCongregationMember friendWithFakePrivileges;
                 if (privileges is null)
                 {
                     friendWithFakePrivileges = AddRandomPrivileges(fakeCongregationMember);
@@ -196,7 +193,7 @@ namespace OpenKHS.Seeder
             return list;
         }
 
-        public CongregationMember AddPrivileges(CongregationMember friend, List<string> privileges)
+        public LocalCongregationMember AddPrivileges(LocalCongregationMember friend, List<string> privileges)
         {
             foreach (var privilege in privileges)
             {
@@ -288,7 +285,7 @@ namespace OpenKHS.Seeder
             return friend;
         }
 
-        public CongregationMember AddRandomPrivileges(CongregationMember friend, bool male = false)
+        public LocalCongregationMember AddRandomPrivileges(LocalCongregationMember friend, bool male = false)
         {
             if (male)
             {
@@ -331,9 +328,9 @@ namespace OpenKHS.Seeder
             return b;
         }
 
-        public List<CongregationMember> MakeCongregationMembers(int count = 1)
+        public List<LocalCongregationMember> MakeCongregationMembers(int count = 1)
         {
-            var friends = new List<CongregationMember>();
+            var friends = new List<LocalCongregationMember>();
             while (count > 0)
             {
                 friends.Add(MakeCongregationMember());
@@ -343,9 +340,9 @@ namespace OpenKHS.Seeder
         }
         
 
-        private CongregationMember MakeCongregationMember()
+        private LocalCongregationMember MakeCongregationMember()
         {
-            var fakeCongregationMember = new Faker<CongregationMember>()
+            var fakeCongregationMember = new Faker<LocalCongregationMember>()
                 .RuleFor(p => p.Name, f => f.Name.FullName());
             return fakeCongregationMember.Generate();
         }

@@ -9,13 +9,13 @@ namespace OpenKHS.Models
     public abstract class Meeting : ModelBase, ISchedule
     {
         private DateTime _weekStarting;
-        private CongregationMember _chairman;
-        private CongregationMember _attendant;
-        private CongregationMember _security;
-        private CongregationMember _soundDesk;
-        private CongregationMember _platform;
-        private CongregationMember _rovingMic1;
-        private CongregationMember _rovingMic2;
+        private LocalCongregationMember _chairman;
+        private LocalCongregationMember _attendant;
+        private LocalCongregationMember _security;
+        private LocalCongregationMember _soundDesk;
+        private LocalCongregationMember _platform;
+        private LocalCongregationMember _rovingMic1;
+        private LocalCongregationMember _rovingMic2;
 
         public DateTime WeekStarting
         {
@@ -23,46 +23,46 @@ namespace OpenKHS.Models
             set => Set(ref _weekStarting, value);
         }
 
-        public CongregationMember Chairman
+        public LocalCongregationMember Chairman
         {
             get => _chairman;
-            set => Set(ref _chairman, CongregationMember.Swap(ref _chairman, value, AssignmentContext.Common));
+            set => Set(ref _chairman, LocalCongregationMember.Swap(ref _chairman, value, AssignmentContext.Common));
         }
 
-        public CongregationMember Attendant
+        public LocalCongregationMember Attendant
         {
             get => _attendant;
-            set => Set(ref _attendant, CongregationMember.Swap(ref _attendant, value, AssignmentContext.Common));
+            set => Set(ref _attendant, LocalCongregationMember.Swap(ref _attendant, value, AssignmentContext.Common));
         }
 
-        public CongregationMember Security
+        public LocalCongregationMember Security
         {
             get => _security;
-            set => Set(ref _security, CongregationMember.Swap(ref _security, value, AssignmentContext.Common));
+            set => Set(ref _security, LocalCongregationMember.Swap(ref _security, value, AssignmentContext.Common));
         }
 
-        public CongregationMember SoundDesk
+        public LocalCongregationMember SoundDesk
         {
             get => _soundDesk;
-            set => Set(ref _soundDesk, CongregationMember.Swap(ref _soundDesk, value, AssignmentContext.Common));
+            set => Set(ref _soundDesk, LocalCongregationMember.Swap(ref _soundDesk, value, AssignmentContext.Common));
         }
 
-        public CongregationMember Platform
+        public LocalCongregationMember Platform
         {
             get => _platform;
-            set => Set(ref _platform, CongregationMember.Swap(ref _platform, value, AssignmentContext.Common));
+            set => Set(ref _platform, LocalCongregationMember.Swap(ref _platform, value, AssignmentContext.Common));
         }
 
-        public CongregationMember RovingMic1
+        public LocalCongregationMember RovingMic1
         {
             get => _rovingMic1;
-            set => Set(ref _rovingMic1, CongregationMember.Swap(ref _rovingMic1, value, AssignmentContext.Common));
+            set => Set(ref _rovingMic1, LocalCongregationMember.Swap(ref _rovingMic1, value, AssignmentContext.Common));
         }
 
-        public CongregationMember RovingMic2
+        public LocalCongregationMember RovingMic2
         {
             get => _rovingMic2;
-            set => Set(ref _rovingMic2, CongregationMember.Swap(ref _rovingMic2, value, AssignmentContext.Common));
+            set => Set(ref _rovingMic2, LocalCongregationMember.Swap(ref _rovingMic2, value, AssignmentContext.Common));
         }   
 
         public virtual IList<ICongregationMember> Participants

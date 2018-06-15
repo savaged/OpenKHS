@@ -11,25 +11,27 @@ namespace OpenKHS.ViewModels
         where T : IModel, new()
     {
         private T _modelObject;
-        private IDictionary<Type, object> repos;
+        protected readonly IDictionary<Type, object> Repositories;
 
         public ModelBoundViewModelBase(DatabaseContext dbContext)
         {
-            repos = new Dictionary<Type, object>
+            Repositories = new Dictionary<Type, object>
             {
-                { typeof(CongregationMember), new CongregationMemberRepository(dbContext) },
+                { typeof(LocalCongregationMember), new LocalCongregationMemberRepository(dbContext) },
                 { typeof(PmSchedule), new PmScheduleRepository(dbContext) },
                 { typeof(ClmmSchedule), new ClmmScheduleRepository(dbContext) },
-                { typeof(PublicTalk), new PublicTalkRepository(dbContext) }
+                { typeof(PublicTalk), new PublicTalkRepository(dbContext) },
+                { typeof(VisitingSpeaker), new VisitingSpeakerRepository(dbContext) },
+                { typeof(Congregation), new NeighbouringCongregationRepository(dbContext) }
             };
-            Repository = (IModelRepository<T>)repos[typeof(T)];
+            Repository = (IModelRepository<T>)Repositories[typeof(T)];
         }
 
         protected IModelRepository<T> Repository { get; }
 
         protected IModelRepository<R> GetRelatedRepository<R>() where R : IModel, new()
         {
-            return (IModelRepository<R>)repos[typeof(R)];
+            return (IModelRepository<R>)Repositories[typeof(R)];
         }
 
         protected bool IsDirty { get; set; }

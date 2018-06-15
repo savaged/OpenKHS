@@ -15,8 +15,8 @@ namespace OpenKHS.Test.Feature
         [TestMethod]
         public void TestPmScheduleLoadFirstTime()
         {
-            IList<CongregationMember> congMembers;
-            congMembers = DbContext.CongregationMembers.ToList();
+            IList<LocalCongregationMember> congMembers;
+            congMembers = DbContext.LocalCongregationMembers.ToList();
             var vm = new PmScheduleViewModel(DbContext, congMembers);
 
             // Default empty schedule for new week

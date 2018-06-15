@@ -9,10 +9,10 @@ namespace OpenKHS.Models
     /// </summary>
     public class ClmmSchedule : Meeting
     {
-        private CongregationMember _OpeningPrayer;
-        private CongregationMember _Treasures;
-        private CongregationMember _Gems;
-        private CongregationMember _BibleReading;
+        private LocalCongregationMember _OpeningPrayer;
+        private LocalCongregationMember _Treasures;
+        private LocalCongregationMember _Gems;
+        private LocalCongregationMember _BibleReading;
         private AssistedSchoolMeetingPart _AYttMPart1;
         private AssistedSchoolMeetingPart _AYttMPart2;
         private AssistedSchoolMeetingPart _AYttMBibleStudy;
@@ -20,31 +20,31 @@ namespace OpenKHS.Models
         private MeetingPart _LacPart1;
         private MeetingPart _LacPart2;
         private MeetingPart _LacPart3;
-        private CongregationMember _CbsConductor;
-        private CongregationMember _CbsReader;
-        private CongregationMember _ClosingPrayer;
+        private LocalCongregationMember _CbsConductor;
+        private LocalCongregationMember _CbsReader;
+        private LocalCongregationMember _ClosingPrayer;
 
         // TODO add validation to each property i.e. brother has privilege
 
-        public CongregationMember OpeningPrayer
+        public LocalCongregationMember OpeningPrayer
         {
             get => _OpeningPrayer;
             set => Set(ref _OpeningPrayer, value);
         }
 
-        public CongregationMember Treasures
+        public LocalCongregationMember Treasures
         {
             get => _Treasures;
             set => Set(ref _Treasures, value);
         }
 
-        public CongregationMember Gems
+        public LocalCongregationMember Gems
         {
             get => _Gems;
             set => Set(ref _Gems, value);
         }
 
-        public CongregationMember BibleReading
+        public LocalCongregationMember BibleReading
         {
             get => _BibleReading;
             set => Set(ref _BibleReading, value);
@@ -92,19 +92,19 @@ namespace OpenKHS.Models
             set => Set(ref _LacPart3, value);
         }
 
-        public CongregationMember CbsConductor
+        public LocalCongregationMember CbsConductor
         {
             get => _CbsConductor;
             set => Set(ref _CbsConductor, value);
         }
 
-        public CongregationMember CbsReader
+        public LocalCongregationMember CbsReader
         {
             get => _CbsReader;
             set => Set(ref _CbsReader, value);
         }
 
-        public CongregationMember ClosingPrayer
+        public LocalCongregationMember ClosingPrayer
         {
             get => _ClosingPrayer;
             set => Set(ref _ClosingPrayer, value);

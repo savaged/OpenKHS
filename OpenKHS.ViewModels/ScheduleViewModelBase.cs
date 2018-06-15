@@ -12,15 +12,15 @@ namespace OpenKHS.ViewModels
     public abstract class ScheduleViewModelBase<T> : IndexBoundViewModelBase<T>
         where T : ISchedule, new()
     {
-        public ScheduleViewModelBase(DatabaseContext dbContext, IList<CongregationMember> congMembers) 
+        public ScheduleViewModelBase(DatabaseContext dbContext, IList<LocalCongregationMember> congMembers) 
             : base(dbContext)
         {
             CongMembers = congMembers;
-            Attendants = new List<CongregationMember>();
-            Security = new List<CongregationMember>();
-            Sound = new List<CongregationMember>();
-            Platform = new List<CongregationMember>();
-            RovingMic = new List<CongregationMember>();
+            Attendants = new List<LocalCongregationMember>();
+            Security = new List<LocalCongregationMember>();
+            Sound = new List<LocalCongregationMember>();
+            Platform = new List<LocalCongregationMember>();
+            RovingMic = new List<LocalCongregationMember>();
 
             var weekStarting = WeekNumberAdapter.GetFirstDateOfWeekIso8601(DateTime.Now);
             Initialise(Repository.Index(), GetDefaultSchedule(weekStarting));
@@ -41,7 +41,7 @@ namespace OpenKHS.ViewModels
             LoadLookups();
         }
 
-        protected IList<CongregationMember> CongMembers { get; private set; }
+        protected IList<LocalCongregationMember> CongMembers { get; private set; }
 
         protected T GetDefaultSchedule(DateTime weekStarting)
         {
@@ -130,15 +130,15 @@ namespace OpenKHS.ViewModels
 
         #region Lookups
 
-        public List<CongregationMember> Attendants { get; private set; }
+        public List<LocalCongregationMember> Attendants { get; private set; }
 
-        public List<CongregationMember> Security { get; private set; }
+        public List<LocalCongregationMember> Security { get; private set; }
 
-        public List<CongregationMember> Sound { get; private set; }
+        public List<LocalCongregationMember> Sound { get; private set; }
 
-        public List<CongregationMember> Platform { get; private set; }
+        public List<LocalCongregationMember> Platform { get; private set; }
 
-        public List<CongregationMember> RovingMic { get; private set; }
+        public List<LocalCongregationMember> RovingMic { get; private set; }
 
         #endregion
 
