@@ -11,14 +11,21 @@ namespace OpenKHS.ViewModels
     public class PublicTalksViewModel : IndexBoundViewModelBase<PublicTalk>
     {
         private NeighbouringCongregationRepository _neighbouringCongRepo;
+        private LocalCongregation _localCong;
 
         public PublicTalksViewModel(DatabaseContext dbContext) : base(dbContext)
         {
+            var localCongMemberRepo = 
+                Repositories[typeof(LocalCongregationMember)] as LocalCongregationMemberRepository;
+            _localCong = new LocalCongregation(localCongMemberRepo.Index());
+
             _neighbouringCongRepo = Repositories[typeof(Congregation)] as NeighbouringCongregationRepository;
             Initialise(Repository.Index(), null);
+
             Congregations = new UserInputLookup<Congregation>();
             Congregations.PropertyChanged += Congregations_PropertyChanged;
             LoadLookups();
+
             Speakers = new UserInputLookup<PmSpeaker>();
             Speakers.PropertyChanged += Speakers_PropertyChanged;
         }
@@ -53,10 +60,8 @@ namespace OpenKHS.ViewModels
 
         private void LoadCongregations()
         {
-            var memberRepo = Repositories[typeof(LocalCongregationMember)] as LocalCongregationMemberRepository;
-            var localCongregation = new LocalCongregation(memberRepo.Index());
             Congregations.Clear();
-            Congregations.Add(localCongregation);
+            Congregations.Add(_localCong);
 
             var neighbouringCongs = _neighbouringCongRepo.Index().OrderBy(c => c.Name);
             foreach (var c in neighbouringCongs)
@@ -72,6 +77,7 @@ namespace OpenKHS.ViewModels
                 if (Congregations.SelectedItem.IsLocal)
                 {
                     // TODO load local speakers
+                    
                 }
                 else
                 {
