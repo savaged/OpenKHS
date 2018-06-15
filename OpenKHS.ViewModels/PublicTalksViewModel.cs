@@ -48,7 +48,7 @@ namespace OpenKHS.ViewModels
             {
                 Set(ref _selectedPublicTalkOutline, value);
                 var match = Index.Where(
-                    p => p.PublicTalkOutline.Id == SelectedPublicTalkOutline.Id).Last();
+                    p => p.PublicTalkOutline.Id == SelectedPublicTalkOutline.Id).LastOrDefault();
                 if (match == null)
                 {
                     New();
@@ -58,6 +58,16 @@ namespace OpenKHS.ViewModels
                     SelectedItem = match;
                 }
             }
+        }
+
+        protected override void New()
+        {
+            var @new = new PublicTalk
+            {
+                PublicTalkOutline = SelectedPublicTalkOutline
+            };
+            Index.Add(@new);
+            SelectedItem = @new;
         }
     }
 }
