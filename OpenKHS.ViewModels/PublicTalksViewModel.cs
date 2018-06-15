@@ -16,16 +16,17 @@ namespace OpenKHS.ViewModels
         {
             _neighbouringCongRepo = Repositories[typeof(Congregation)] as NeighbouringCongregationRepository;
             Initialise(Repository.Index(), null);
-            PropertyChanged += OnPropertyChanged;
             Congregations = new UserInputLookup<Congregation>();
             Congregations.PropertyChanged += Congregations_PropertyChanged;
             LoadLookups();
+            Speakers = new UserInputLookup<PmSpeaker>();
+            Speakers.PropertyChanged += Speakers_PropertyChanged;
         }
 
         public override void Cleanup()
         {
-            PropertyChanged -= OnPropertyChanged;
             Congregations.PropertyChanged -= Congregations_PropertyChanged;
+            Speakers.PropertyChanged -= Speakers_PropertyChanged;
             base.Cleanup();
         }
 
@@ -66,7 +67,17 @@ namespace OpenKHS.ViewModels
 
         private void LoadSpeakers()
         {
-            // TODO load Repositories[typeof(VisitingSpeaker)] if not local else local.pmspeakers
+            if (Congregations.SelectedItem != null)
+            {
+                if (Congregations.SelectedItem.IsLocal)
+                {
+                    // TODO load local speakers
+                }
+                else
+                {
+                    // TODO load speakers for neighbouring cong
+                }
+            }
         }
 
         protected override void AddModelObjectToDbContext()
@@ -96,14 +107,6 @@ namespace OpenKHS.ViewModels
         }
         public bool IsSpeakerSelected => SelectedSpeaker != null;
 
-        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(SelectedItem) && IsSpeakerSelected)
-            {
-                LoadSpeakers();
-            }
-        }
-
         private void Congregations_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(Congregations.NewItem))
@@ -115,8 +118,13 @@ namespace OpenKHS.ViewModels
             }
             else if (e.PropertyName == nameof(Congregations.SelectedItem))
             {
-                // TODO load speakers for selected cong
+                LoadSpeakers();
             }
+        }
+
+        private void Speakers_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            // TODO code this
         }
     }
 }

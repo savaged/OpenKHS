@@ -7,6 +7,7 @@ namespace OpenKHS.Models
     {
         public NeighbouringCongregation()
         {
+            IsLocal = false;
             Speakers = new List<PmSpeaker>();
         }
 

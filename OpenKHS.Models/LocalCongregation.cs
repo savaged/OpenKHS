@@ -7,6 +7,7 @@ namespace OpenKHS.Models
     {
         public LocalCongregation(IList<LocalCongregationMember> members)
         {
+            IsLocal = true;
             Name = "Local";
             Id = 1; // only ever one
 
