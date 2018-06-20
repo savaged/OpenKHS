@@ -76,8 +76,17 @@ namespace OpenKHS.ViewModels
             {
                 if (Congregations.SelectedItem.IsLocal)
                 {
-                    // TODO load local speakers
-                    
+                    var localSpeakers = _localCong.Members.Where(m => m.PublicSpeaker).ToList();
+                    foreach (var congMember in localSpeakers)
+                    {
+                        var speaker = new PmSpeaker
+                        {
+                            Id = congMember.Id,
+                            Name = congMember.Name,
+                            Congregation = congMember.Congregation
+                        };
+                        Speakers.Add(speaker);
+                    }
                 }
                 else
                 {
