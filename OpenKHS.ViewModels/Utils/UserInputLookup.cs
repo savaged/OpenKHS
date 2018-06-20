@@ -50,7 +50,11 @@ namespace OpenKHS.ViewModels.Utils
             {
                 if (!Contains(value))
                 {
-                    base.Add(value);
+                    var matched = Find(o => o.Name == value.Name);
+                    if (matched == null)
+                    {
+                        base.Add(value);
+                    }
                 }
             }
         }
