@@ -11,7 +11,7 @@ Feel free to have a look at the code by cloning this repository using:
 * Sorry, I've not had time to do anything for ages but still aim to make this happen. Just dusted this off and found there's much to do
 
 ## TO DO List ##
-* SHOW-STOPPER: Re-work all models to have foreign key Ids ("{class name}Id") for EF
+* SHOW-STOPPER: Re-work all models to have relation IDs for EF to work
 * Review use of service locator for view models
 * UWP version using https://github.com/Microsoft/WindowsTemplateStudio
 * Android version

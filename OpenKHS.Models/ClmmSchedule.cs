@@ -9,7 +9,6 @@ namespace OpenKHS.Models
     /// </summary>
     public class ClmmSchedule : Meeting
     {
-        private LocalCongregationMember _OpeningPrayer;
         private LocalCongregationMember _Treasures;
         private LocalCongregationMember _Gems;
         private LocalCongregationMember _BibleReading;
@@ -25,12 +24,6 @@ namespace OpenKHS.Models
         private LocalCongregationMember _ClosingPrayer;
 
         // TODO add validation to each property i.e. brother has privilege
-
-        public LocalCongregationMember OpeningPrayer
-        {
-            get => _OpeningPrayer;
-            set => Set(ref _OpeningPrayer, value);
-        }
 
         public LocalCongregationMember Treasures
         {

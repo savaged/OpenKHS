@@ -11,6 +11,7 @@ namespace OpenKHS.Models
         private DateTime _weekStarting;
         private LocalCongregationMember _chairman;
         private LocalCongregationMember _attendant;
+        private LocalCongregationMember _openingPrayer;
         private LocalCongregationMember _security;
         private LocalCongregationMember _soundDesk;
         private LocalCongregationMember _platform;
@@ -21,6 +22,12 @@ namespace OpenKHS.Models
         {
             get => _weekStarting;
             set => Set(ref _weekStarting, value);
+        }
+
+        public LocalCongregationMember OpeningPrayer
+        {
+            get => _openingPrayer;
+            set => Set(ref _openingPrayer, value);
         }
 
         public LocalCongregationMember Chairman
