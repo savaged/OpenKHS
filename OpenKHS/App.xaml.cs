@@ -28,6 +28,7 @@ namespace OpenKHS
             EnsureAppData();
 
             var iocKernel = new StandardKernel(new IocBindings());
+            iocKernel.Settings.AllowNullInjection = true;
             iocKernel.Load(AppDomain.CurrentDomain.GetAssemblies());
 
             Log.Info("Initialising local database");

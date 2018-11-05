@@ -1,8 +1,9 @@
 ﻿using System;
-using OpenKHS.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace OpenKHS.Models
 {
+    [Owned]
     public class PublicTalk : MeetingPart
     {
         public PublicTalkOutline PublicTalkOutline { get; set; }

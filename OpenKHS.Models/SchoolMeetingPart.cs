@@ -1,6 +1,8 @@
-﻿
+﻿using Microsoft.EntityFrameworkCore;
+
 namespace OpenKHS.Models
 {
+    [Owned]
     public class SchoolMeetingPart : MeetingPart
     {
         public int CounselPoint { get; set; }

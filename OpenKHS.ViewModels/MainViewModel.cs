@@ -15,7 +15,7 @@ namespace OpenKHS.ViewModels
 
         private int _selectedIndex;
         private CongregationViewModel _congregationViewModel;
-        private PublicTalksViewModel _publicTalksViewModel;
+        private readonly PublicTalksViewModel _publicTalksViewModel;
         private PmScheduleViewModel _pmScheduleViewModel;
         private ClmmScheduleViewModel _clmmScheduleViewModel;
 

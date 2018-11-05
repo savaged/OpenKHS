@@ -3,11 +3,11 @@ using System.Linq;
 using System.Collections.Generic;
 using OpenKHS.Models.Attributes;
 using OpenKHS.Interfaces;
-using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 
 namespace OpenKHS.Models
 {
+    [Owned]
     public class LocalCongregationMember : Friend, ICongregationMember
     {
         private bool _isPotentiallyOverloaded;
