@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MvvmDialogs, Version=5.2.1.0, Culture=neutral, PublicKeyToken=3d3b9708589bc73e, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmDialogs.5.2.1\lib\net45\MvvmDialogs.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -60,10 +63,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\mvvm-dialogs\MvvmDialogs.csproj">
-      <Project>{6ee68bdd-0567-408e-b40b-74afaf273302}</Project>
-      <Name>MvvmDialogs</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

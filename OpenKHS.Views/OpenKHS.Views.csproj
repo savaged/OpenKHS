@@ -33,8 +33,11 @@
     <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\ControlzEx.dll</HintPath>
     </Reference>
-    <Reference Include="MahApps.Metro, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MahApps.Metro.1.6.2\lib\net46\MahApps.Metro.dll</HintPath>
+    <Reference Include="MahApps.Metro, Version=1.6.5.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.6.5\lib\net46\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmDialogs, Version=5.2.1.0, Culture=neutral, PublicKeyToken=3d3b9708589bc73e, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmDialogs.5.2.1\lib\net45\MvvmDialogs.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -62,10 +65,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\mvvm-dialogs\MvvmDialogs.csproj">
-      <Project>{6ee68bdd-0567-408e-b40b-74afaf273302}</Project>
-      <Name>MvvmDialogs</Name>
-    </ProjectReference>
     <ProjectReference Include="..\OpenKHS.Controls\OpenKHS.Controls.csproj">
       <Project>{4d46bcd7-6633-4e68-9be2-2d1b2facdd29}</Project>
       <Name>OpenKHS.Controls</Name>
