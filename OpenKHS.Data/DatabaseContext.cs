@@ -34,14 +34,16 @@ namespace OpenKHS.Data
 
         protected override void OnModelCreating(ModelBuilder mb)
         {
-            mb.Entity<LocalCongregationMember>().HasIndex(f => f.Name).IsUnique();
+            mb.Entity<LocalCongregationMember>()
+                .HasIndex(f => f.Name).IsUnique();
+
+            mb.Entity<VisitingSpeaker>()
+                .HasIndex(f => f.Name).IsUnique();
 
             mb.Entity<PmSchedule>()
-                .HasBaseType<Meeting>()
                 .HasIndex(s => s.WeekStarting).IsUnique();
 
             mb.Entity<ClmmSchedule>()
-                .HasBaseType<Meeting>()
                 .HasIndex(s => s.WeekStarting).IsUnique();
 
             // TODO seed public talk outlines

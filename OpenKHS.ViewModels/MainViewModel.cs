@@ -19,7 +19,7 @@ namespace OpenKHS.ViewModels
         private PmScheduleViewModel _pmScheduleViewModel;
         private ClmmScheduleViewModel _clmmScheduleViewModel;
 
-        protected static readonly ILog Log = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        protected static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public IDialogService DialogService { get; }
 

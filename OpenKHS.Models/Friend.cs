@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OpenKHS.Models
 {
-    public class Friend : ModelBase, IFriend
+    public abstract class Friend : ModelBase, IFriend
     {
         public Friend() { }
 
