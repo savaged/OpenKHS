@@ -38,26 +38,26 @@
                               DisplayMemberPath="Name"/>
                 </WrapPanel>
             </StackPanel>
-            <StackPanel Grid.Column="1" Grid.Row="1" Margin="10">
+            <StackPanel Grid.Column="1" Grid.Row="1" Margin="10,-5,10,10">
                 <Label Content="Treasures From God's Word" FontWeight="Medium"/>
-                <StackPanel>
+                <StackPanel Margin="0,0,0,10">
                     <WrapPanel>
                         <Label Width="140">Treasures</Label>
                         <ComboBox Width="160" ItemsSource="{Binding TreasuresConductors}"
                               SelectedItem="{Binding SelectedItem.TreasuresConductor, Mode=TwoWay}"
                               DisplayMemberPath="Name"/>
                     </WrapPanel>
-                    <TextBox Width="160" HorizontalAlignment="Left"
+                    <TextBox Width="300" HorizontalAlignment="Left"
                              Text="{Binding SelectedItem.Treasures, Mode=TwoWay}"/>
                 </StackPanel>
-                <StackPanel>
+                <StackPanel Margin="0,0,0,10">
                     <WrapPanel>
                         <Label Width="140">Gems</Label>
                         <ComboBox Width="160" ItemsSource="{Binding GemsConductors}"
                               SelectedItem="{Binding SelectedItem.GemsConductor, Mode=TwoWay}"
                               DisplayMemberPath="Name"/>
                     </WrapPanel>
-                    <TextBox Width="160" Text="{Binding SelectedItem.Gems, Mode=TwoWay}"/>
+                    <TextBox Width="300" Text="{Binding SelectedItem.Gems, Mode=TwoWay}"/>
                 </StackPanel>
                 <StackPanel>
                     <WrapPanel>
@@ -66,36 +66,36 @@
                               SelectedItem="{Binding SelectedItem.BibleReader, Mode=TwoWay}"
                               DisplayMemberPath="Name"/>
                     </WrapPanel>
-                    <TextBox Width="160" Text="{Binding SelectedItem.BibleReading, Mode=TwoWay}"/>
+                    <TextBox Width="300" Text="{Binding SelectedItem.BibleReading, Mode=TwoWay}"/>
                 </StackPanel>
 
                 <Label Content="Apply Yourself to the Ministry" FontWeight="Medium" Margin="0,20,0,0"/>
-                <StackPanel>
+                <StackPanel Margin="0,0,0,10">
                     <WrapPanel>
                         <Label Width="140">Part 1</Label>
                         <ComboBox Width="160" ItemsSource="{Binding AYttMStudents}"
                               SelectedItem="{Binding SelectedItem.AYttMPart1Student, Mode=TwoWay}"
                               DisplayMemberPath="Name"/>
                     </WrapPanel>
-                    <TextBox Width="160" Text="{Binding SelectedItem.AYttMPart1, Mode=TwoWay}"/>
+                    <TextBox Width="300" Text="{Binding SelectedItem.AYttMPart1, Mode=TwoWay}"/>
                 </StackPanel>
-                <StackPanel>
+                <StackPanel Margin="0,0,0,10">
                     <WrapPanel>
                         <Label Width="140">Part 2</Label>
                         <ComboBox Width="160" ItemsSource="{Binding AYttMStudents}"
                               SelectedItem="{Binding SelectedItem.AYttMPart2Student, Mode=TwoWay}"
                               DisplayMemberPath="Name"/>
                     </WrapPanel>
-                    <TextBox Width="160" Text="{Binding SelectedItem.AYttMPart2, Mode=TwoWay}"/>
+                    <TextBox Width="300" Text="{Binding SelectedItem.AYttMPart2, Mode=TwoWay}"/>
                 </StackPanel>
-                <StackPanel>
+                <StackPanel Margin="0,0,0,10">
                     <WrapPanel>
                         <Label Width="140">Bible Study</Label>
                         <ComboBox Width="160" ItemsSource="{Binding AYttMStudents}"
                               SelectedItem="{Binding SelectedItem.AYttMBibleStudyStudent, Mode=TwoWay}"
                               DisplayMemberPath="Name"/>
                     </WrapPanel>
-                    <TextBox Width="160" Text="{Binding SelectedItem.AYttMBibleStudy, Mode=TwoWay}"/>
+                    <TextBox Width="300" Text="{Binding SelectedItem.AYttMBibleStudy, Mode=TwoWay}"/>
                 </StackPanel>
                 <StackPanel>
                     <WrapPanel>
@@ -104,37 +104,37 @@
                               SelectedItem="{Binding SelectedItem.AYttMSchoolTalkStudent, Mode=TwoWay}"
                               DisplayMemberPath="Name"/>
                     </WrapPanel>
-                    <TextBox Width="160" Text="{Binding SelectedItem.AYttMSchoolTalk, Mode=TwoWay}"/>
+                    <TextBox Width="300" Text="{Binding SelectedItem.AYttMSchoolTalk, Mode=TwoWay}"/>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Grid.Column="2" Grid.Row="1" Margin="10">
+            <StackPanel Grid.Column="2" Grid.Row="1" Margin="10,-5,10,10">
                 <Label Content="Living As Christians" FontWeight="Medium"/>
-                <StackPanel>
+                <StackPanel Margin="0,0,0,10">
                     <WrapPanel>
                         <Label Width="140">Part 1</Label>
                         <ComboBox Width="160" ItemsSource="{Binding LacConductors}"
                               SelectedItem="{Binding SelectedItem.LacPart1Conductor, Mode=TwoWay}"
                               DisplayMemberPath="Name"/>
                     </WrapPanel>
-                    <TextBox Width="160" Text="{Binding SelectedItem.LacPart1, Mode=TwoWay}"/>
+                    <TextBox Width="300" Text="{Binding SelectedItem.LacPart1, Mode=TwoWay}"/>
                 </StackPanel>
-                <StackPanel>
+                <StackPanel Margin="0,0,0,10">
                     <WrapPanel>
                         <Label Width="140">Part 2</Label>
                         <ComboBox Width="160" ItemsSource="{Binding LacConductors}"
                               SelectedItem="{Binding SelectedItem.LacPart2Conductor, Mode=TwoWay}"
                               DisplayMemberPath="Name"/>
                     </WrapPanel>
-                    <TextBox Width="160" Text="{Binding SelectedItem.LacPart2, Mode=TwoWay}"/>
+                    <TextBox Width="300" Text="{Binding SelectedItem.LacPart2, Mode=TwoWay}"/>
                 </StackPanel>
-                <StackPanel>
+                <StackPanel Margin="0,0,0,10">
                     <WrapPanel>
                         <Label Width="140">Part 3</Label>
                         <ComboBox Width="160" ItemsSource="{Binding LacConductors}"
                               SelectedItem="{Binding SelectedItem.LacPart3Conductor, Mode=TwoWay}"
                               DisplayMemberPath="Name"/>
                     </WrapPanel>
-                    <TextBox Width="160" Text="{Binding SelectedItem.LacPart3, Mode=TwoWay}"/>
+                    <TextBox Width="300" Text="{Binding SelectedItem.LacPart3, Mode=TwoWay}"/>
                 </StackPanel>
                 <WrapPanel>
                     <Label Width="140">Book Study Conductor</Label>

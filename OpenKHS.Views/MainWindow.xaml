@@ -8,7 +8,7 @@
                 xmlns:local="clr-namespace:OpenKHS.Views"
                 xmlns:ctrls="clr-namespace:OpenKHS.Controls;assembly=OpenKHS.Controls"
                 mc:Ignorable="d"
-                Title="Open KHS" Height="600" Width="900"
+                Title="Open KHS" Height="750" Width="1200"
                 WindowState="Normal" 
                 WindowStartupLocation="CenterScreen"
                 Closing="Window_Closing"
