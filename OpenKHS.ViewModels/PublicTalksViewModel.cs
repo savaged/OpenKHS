@@ -16,10 +16,12 @@ namespace OpenKHS.ViewModels
         public PublicTalksViewModel(DatabaseContext dbContext) : base(dbContext)
         {
             var localCongMemberRepo = 
-                Repositories[typeof(LocalCongregationMember)] as LocalCongregationMemberRepository;
+                Repositories[typeof(LocalCongregationMember)] 
+                as LocalCongregationMemberRepository;
             _localCong = new LocalCongregation(localCongMemberRepo.Index());
 
-            _neighbouringCongRepo = Repositories[typeof(Congregation)] as NeighbouringCongregationRepository;
+            _neighbouringCongRepo = Repositories[typeof(Congregation)] 
+                as NeighbouringCongregationRepository;
             Initialise(Repository.Index(), null);
 
             Congregations = new UserInputLookup<Congregation>();

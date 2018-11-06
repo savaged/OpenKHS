@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OpenKHS.Interfaces;
+using System;
+using System.Collections.Generic;
 
 namespace OpenKHS.Models
 {
@@ -49,13 +51,13 @@ namespace OpenKHS.Models
         public LocalCongregationMember TreasuresConductor
         {
             get => _TreasuresConductor;
-            set => Set(ref _TreasuresConductor, value);
+            set => Set(ref _TreasuresConductor, LocalCongregationMember.Swap(ref _TreasuresConductor, value, AssignmentContext.Treasures));
         }
 
         public string Gems
         {
             get => _Gems;
-            set => Set(ref _Gems, value);
+            set => Set(ref _Gems, value); // TODO apply swap
         }
 
         public LocalCongregationMember GemsConductor
@@ -227,6 +229,25 @@ namespace OpenKHS.Models
         {
             get => _ClosingPrayer;
             set => Set(ref _ClosingPrayer, value);
+        }
+
+        public override IList<ICongregationMember> Participants
+        {
+            get
+            {
+                var participants = base.Participants;
+                participants.Add(TreasuresConductor);
+                participants.Add(GemsConductor);
+                participants.Add(BibleReader);
+                participants.Add(AYttMPart1Student);
+                participants.Add(AYttMPart2Student);
+                participants.Add(AYttMBibleStudyStudent);
+                participants.Add(AYttMSchoolTalkStudent);
+                participants.Add(LacPart1Conductor);
+                participants.Add(LacPart2Conductor);
+                participants.Add(LacPart3Conductor);
+                return participants;
+            }
         }
     }
 }

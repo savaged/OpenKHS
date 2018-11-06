@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.ComponentModel;
 using OpenKHS.Models;
 using OpenKHS.Interfaces;
 using OpenKHS.Models.Utils;
@@ -146,13 +147,14 @@ namespace OpenKHS.ViewModels
 
         #region Events
 
-        private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(SelectedItem) && IsItemSelected)
             {
                 if (ModelObject == null)
                 {
-                    throw new ArgumentNullException("Expected Selected Item and Model Object to be in sync!");
+                    throw new ArgumentNullException(
+                        "Expected Selected Item and Model Object to be in sync!");
                 }
                 if (ModelObject.WeekStarting == DateTime.MinValue)
                 {
@@ -161,7 +163,7 @@ namespace OpenKHS.ViewModels
             }
         }
 
-        private void OnScheduleModelObjectPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void OnScheduleModelObjectPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             LoadLookups();
             foreach (var friend in ModelObject.Participants)
