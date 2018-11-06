@@ -51,6 +51,7 @@
     <Compile Include="IMainView.cs" />
     <Compile Include="IMainViewModel.cs" />
     <Compile Include="IManagedView.cs" />
+    <Compile Include="IMeetingPart.cs" />
     <Compile Include="IModel.cs" />
     <Compile Include="IModelRepository.cs" />
     <Compile Include="ISchedule.cs" />

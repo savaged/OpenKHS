@@ -4,14 +4,15 @@ using Microsoft.EntityFrameworkCore;
 namespace OpenKHS.Models
 {
     [Owned]
-    public class PublicTalk : MeetingPart
+    public class PublicTalk : ModelBase
     {
+        public PmSpeaker Speaker { get; set; }
+
         public PublicTalkOutline PublicTalkOutline { get; set; }
 
-        public override string Name
+        public string Title
         {
             get => PublicTalkOutline.Name;
-            set => throw new NotSupportedException();
         }
     }
 }

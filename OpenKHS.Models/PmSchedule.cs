@@ -26,6 +26,9 @@ namespace OpenKHS.Models
             set => Set(ref _wtConductor, LocalCongregationMember.Swap(ref _wtConductor, value, AssignmentContext.PublicMeeting));
         }
 
+        /// <summary>
+        /// Watchtower reader
+        /// </summary>
         public LocalCongregationMember WtReader
         {
             get => _wtReader;

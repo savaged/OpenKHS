@@ -19,42 +19,13 @@ namespace OpenKHS.Test.Feature
         }
 
         [TestMethod]
-        public void TestFakeMeetingPartMaker()
-        {
-            var meetingPart = new FakeModelFactory().MakeMeetingPart();
-            Assert.IsNotNull(meetingPart);
-            Assert.IsNotNull(meetingPart.Name);
-            Assert.IsNotNull(meetingPart.Friend);
-        }
-
-        [TestMethod]
-        public void TestFakeSchoolMeetingPartMaker()
-        {
-            var schoolMeetingPart = new FakeModelFactory().MakeSchoolPart(true);
-            Assert.IsNotNull(schoolMeetingPart);
-            Assert.IsNotNull(schoolMeetingPart.Name);
-            Assert.IsNotNull(schoolMeetingPart.Student);
-            Assert.IsNotNull(schoolMeetingPart.CounselPoint);
-            Assert.IsTrue(schoolMeetingPart.CounselPoint > 0 && schoolMeetingPart.CounselPoint < 195);
-        }
-
-        [TestMethod]
-        public void TestFakeAssistedSchoolMeetingPartMaker()
-        {
-            var assistedMeetingPart = new FakeModelFactory().MakeAssistedSchoolPart(false);
-            Assert.IsNotNull(assistedMeetingPart);
-            Assert.IsNotNull(assistedMeetingPart.Student);
-            Assert.IsNotNull(assistedMeetingPart.Assistant);
-        }
-
-        [TestMethod]
         public void TestFakePublicTalkMaker()
         {
             var publicTalk = new FakeModelFactory().MakePublicTalk();
             Assert.IsNotNull(publicTalk.Id);
             Assert.IsTrue(publicTalk.Id > 0);
-            Assert.IsNotNull(publicTalk.Friend);
-            Assert.IsNotNull(publicTalk.Friend.Name);
+            Assert.IsNotNull(publicTalk.Speaker);
+            Assert.IsNotNull(publicTalk.Speaker.Name);
         }
 
         [TestMethod]

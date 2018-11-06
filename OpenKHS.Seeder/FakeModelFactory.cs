@@ -34,85 +34,13 @@ namespace OpenKHS.Seeder
             return homeCong;
         }
 
-        public AssistedSchoolMeetingPart MakeAssistedSchoolPart(bool male)
-        {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<SchoolMeetingPart, AssistedSchoolMeetingPart>());
-            var mapper = config.CreateMapper();
-
-            var schoolMeetingPart = MakeSchoolPart(male);
-
-            var fakeAssistedSchoolPart = mapper.Map<AssistedSchoolMeetingPart>(schoolMeetingPart);
-
-            var privileges = new List<string>
-            {
-                "ClmmSchoolAssistant",
-                "ClmmSchoolInitialCall",
-                "ClmmSchoolReturnVisit",
-                "ClmmSchoolBibleStudy"
-            };
-            fakeAssistedSchoolPart.Assistant = MakeCongMemberWithPrivileges(privileges);
-            
-            return fakeAssistedSchoolPart;
-        }
-
-        public SchoolMeetingPart MakeSchoolPart(bool male)
-        {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<MeetingPart, SchoolMeetingPart>());
-            var mapper = config.CreateMapper();
-
-            var fakeSchoolMeetingPart = mapper.Map<SchoolMeetingPart>(MakeMeetingPart());
-
-            fakeSchoolMeetingPart.CounselPoint = new Faker().Random.Number(1, 53);
-
-            return fakeSchoolMeetingPart;
-        }
-
-        public MeetingPart MakeMeetingPart()
-        {
-            var fakeMeetingPart = new MeetingPart
-            {
-                Name = new Faker().Random.Words(4),
-                Friend = MakeCongregationMembers(1).First()
-            };
-            return fakeMeetingPart;
-        }
-
-        /*
-         public Meeting MakeMeeting()
-        {
-            var privileges = new Privileges { Attendant = true, Security = true };
-            var fakeAttendant = MakeCongMemberWithPrivileges(privileges);
-            var fakeSecurityBro = MakeCongMemberWithPrivileges(privileges);
-
-            privileges = new Privileges { Platform = true };
-            var fakePlatformBro = MakeCongMemberWithPrivileges(privileges);
-
-            privileges = new Privileges { RovingMic = true, SoundDesk = true };
-            var fakeRovingMic1Bro = MakeCongMemberWithPrivileges(privileges);
-            var fakeRovingMic2Bro = MakeCongMemberWithPrivileges(privileges);
-
-            var fakeMeeting = new Meeting
-            {
-                Attendant = fakeAttendant,
-                Security = fakeSecurityBro,
-                Platform = fakePlatformBro,
-                RovingMic1 = fakeRovingMic1Bro,
-                RovingMic2 = fakeRovingMic2Bro,
-                SoundDesk = fakeRovingMic1Bro,
-                
-                Week = new Faker().Random.Number(1, 52)
-            };
-            return fakeMeeting;
-        }
-        */
-
         public PublicTalk MakePublicTalk()
         {
             var speaker = MakeVisitingSpeakers(1).First();
             var publicTalk = new PublicTalk
             {
                 Id = new Faker().Random.Number(1, 194),
-                Friend = speaker
+                Speaker = speaker
             };
             return publicTalk;
         }

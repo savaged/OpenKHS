@@ -24,12 +24,17 @@
             <local:ScheduleHeadingView Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Grid.Row="0" DataContext="{Binding}" />
             <local:MeetingView Grid.Column="0" Grid.Row="1" DataContext="{Binding}" />
             <StackPanel Grid.Column="1" Grid.Row="1" Margin="10">
-                <WrapPanel>
-                    <Label Width="140">Public Talk</Label>
-                    <ComboBox Width="160" ItemsSource="{Binding PublicTalks}"
+                <StackPanel Margin="0,0,0,10">
+                    <WrapPanel>
+                        <Label Width="140">Public Talk</Label>
+                        <ComboBox Width="160" ItemsSource="{Binding PublicTalks}"
                               SelectedItem="{Binding SelectedItem.PublicTalk, Mode=TwoWay}"
-                              DisplayMemberPath="DisplayName"/>
-                </WrapPanel>
+                              DisplayMemberPath="Title"/>
+                    </WrapPanel>
+                    <TextBox Width="300" HorizontalAlignment="Left" 
+                             IsReadOnly="True" 
+                             Text="{Binding SelectedItem.PublicTalk.Speaker.Name, Mode=OneWay}"/>
+                </StackPanel>
                 <WrapPanel>
                     <Label Width="140">WT Conductor</Label>
                     <ComboBox Width="160" ItemsSource="{Binding WtConductors}"

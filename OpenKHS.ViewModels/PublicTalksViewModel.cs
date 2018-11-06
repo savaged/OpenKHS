@@ -109,14 +109,14 @@ namespace OpenKHS.ViewModels
 
         public PmSpeaker SelectedSpeaker
         {
-            get => SelectedItem?.Friend as PmSpeaker;
+            get => SelectedItem?.Speaker as PmSpeaker;
             set
             {
                 if (SelectedItem == null)
                 {
                     throw new ArgumentNullException("Expected to have a SelectedItem!");
                 }
-                SelectedItem.Friend = value;
+                SelectedItem.Speaker = value;
                 RaisePropertyChanged(nameof(IsSpeakerSelected));
             }
         }

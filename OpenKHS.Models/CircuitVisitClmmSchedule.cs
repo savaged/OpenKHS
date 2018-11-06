@@ -4,8 +4,8 @@ namespace OpenKHS.Models
 {
     public class CircuitVisitClmmSchedule : ClmmSchedule
     {
-        public CircuitVisitMeetingPart CircuitVisitOpeningTalk { get; set; }
+        public string CircuitVisitOpeningTalk { get; set; }
 
-        public CircuitVisitMeetingPart CircuitVisitClosingTalk { get; set; }
+        public string CircuitVisitClosingTalk { get; set; }
     }
 }
