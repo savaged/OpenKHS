@@ -2,6 +2,6 @@
 {
     public interface IMainView : IManagedView
     {
-        void Show();
+        void Show();        
     }
 }

@@ -7,8 +7,6 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:local="clr-namespace:OpenKHS.Views"
                 xmlns:ctrls="clr-namespace:OpenKHS.Controls;assembly=OpenKHS.Controls"
-                xmlns:md="clr-namespace:MvvmDialogs;assembly=MvvmDialogs"
-                md:DialogServiceViews.IsRegistered="True"
                 mc:Ignorable="d"
                 Title="Open KHS" Height="600" Width="900"
                 WindowState="Normal" 

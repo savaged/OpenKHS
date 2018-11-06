@@ -1,7 +1,6 @@
 ﻿using System;
 using log4net;
 using System.Reflection;
-using MvvmDialogs;
 using GalaSoft.MvvmLight.CommandWpf;
 using System.Windows.Input;
 using OpenKHS.Interfaces;
@@ -19,9 +18,8 @@ namespace OpenKHS.ViewModels
         private PmScheduleViewModel _pmScheduleViewModel;
         private ClmmScheduleViewModel _clmmScheduleViewModel;
 
-        protected static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-
-        public IDialogService DialogService { get; }
+        protected static readonly ILog Log = 
+            LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public IViewModel CongregationVM { get => _congregationViewModel; }
         public IViewModel PublicTalksVM { get => _publicTalksViewModel; } 
@@ -43,10 +41,8 @@ namespace OpenKHS.ViewModels
 
         #region Constructors
 
-        public MainViewModel(IDialogService dialogService, DatabaseContext dbContext)
+        public MainViewModel(DatabaseContext dbContext)
         {
-            DialogService = dialogService;
-
             _congregationViewModel = new CongregationViewModel(dbContext);
             // TODO figure out how talks should work
             _publicTalksViewModel = new PublicTalksViewModel(dbContext);
@@ -106,8 +102,14 @@ namespace OpenKHS.ViewModels
 
         private void OnShowAboutDialog()
         {
-            var dialog = new AboutDialogViewModel();
-            DialogService.Show(this, dialog);
+            var about = $"OpenKHS{Environment.NewLine}{Environment.NewLine}" +
+                        $"Created by David Savage{Environment.NewLine}" +
+                        $"Email: david@savaged.info{Environment.NewLine}" +
+                        $"Website: https://github.com/savaged/OpenKHS {Environment.NewLine}" +
+                        $"{Environment.NewLine}\"You received free, give free.\" (Mt 10:8b){Environment.NewLine}" +
+                        $"{Environment.NewLine}OpenKHS v" +
+                        $"{Assembly.GetExecutingAssembly().GetName().Version.ToString()}";
+            MessengerInstance.Send(new UserFeedbackMessage(this, about, "About", UserFeedbackTypes.Information));
         }
 
         private void OnExitApp()

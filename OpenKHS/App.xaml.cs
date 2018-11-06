@@ -49,9 +49,9 @@ namespace OpenKHS
         {
             var Location = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             Location += "\\";
-            if (!Directory.Exists(Location + "OpenKHS"))
+            if (!Directory.Exists($"{Location}OpenKHS"))
             {
-                Directory.CreateDirectory(Location + "OpenKHS");
+                Directory.CreateDirectory($"{Location}OpenKHS");
             }
             Location += "OpenKHS\\";
             Log.Info(Location + " ready");
@@ -64,15 +64,15 @@ namespace OpenKHS
                                                     + "\\OpenKHS\\log.txt";
 
             // Show a message before closing application
-            var dialogService = new MvvmDialogs.DialogService();
-            dialogService.ShowMessageBox((INotifyPropertyChanged)(_mainWindow.DataContext),
+            MessageBox.Show(
                 "Oops, something went wrong and the application must close. Please find a " +
-                "report on the issue at: " + path + Environment.NewLine +
+                $"report on the issue at: {path}{Environment.NewLine}" +
                 "If the problem persist, please contact david@savaged.info.",
                 "Unhandled Error",
-                MessageBoxButton.OK);
+                MessageBoxButton.OK,
+                MessageBoxImage.Error);
 
-            Exception e = (Exception)args.ExceptionObject;
+            var e = (Exception)args.ExceptionObject;
             Log.Fatal("Application has crashed", e);
         }
 

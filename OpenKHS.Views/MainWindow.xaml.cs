@@ -1,7 +1,7 @@
-﻿
-using OpenKHS.Interfaces;
+﻿using Ninject;
 using System;
 using System.Windows;
+using OpenKHS.Interfaces;
 
 namespace OpenKHS.Views
 {
@@ -15,6 +15,9 @@ namespace OpenKHS.Views
             InitializeComponent();
             SourceInitialized += Window_SourceInitialized;
         }
+
+        [Inject]
+        public MessageBoxService MessageBoxService { get; set; }
 
         private void Window_SourceInitialized(object sender, EventArgs e)
         {

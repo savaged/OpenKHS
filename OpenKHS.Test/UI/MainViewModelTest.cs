@@ -10,7 +10,7 @@ namespace OpenKHS.Test.Unit
         public void TestLoadNewCong()
         {
             // TODO tests for each section/main model object
-            var mvm = new MainViewModel(null, DbContext);
+            var mvm = new MainViewModel(DbContext);
             Assert.IsNotNull(mvm.CongregationVM);
             var cvm = (CongregationViewModel)mvm.CongregationVM;
             Assert.IsNotNull(cvm.Index);
