@@ -11,7 +11,6 @@ namespace OpenKHS.ViewModels
         public PmScheduleViewModel(DatabaseContext dbContext, IList<LocalCongregationMember> congMembers)
             : base(dbContext, congMembers)
         {
-            Chairmen = new List<LocalCongregationMember>();
             WtReaders = new List<LocalCongregationMember>();
             WtConductors = new List<LocalCongregationMember>();
             PublicTalks = new List<PublicTalk>();
@@ -56,8 +55,6 @@ namespace OpenKHS.ViewModels
             base.New();
             SetDefaultWtConductor();
         }
-
-        public List<LocalCongregationMember> Chairmen { get; private set; }
 
         public List<LocalCongregationMember> WtReaders { get; private set; }
 

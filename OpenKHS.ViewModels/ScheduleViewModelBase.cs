@@ -5,7 +5,6 @@ using OpenKHS.Models;
 using OpenKHS.Interfaces;
 using OpenKHS.Models.Utils;
 using OpenKHS.Data;
-using System.Collections.ObjectModel;
 
 namespace OpenKHS.ViewModels
 {
@@ -21,6 +20,7 @@ namespace OpenKHS.ViewModels
             Sound = new List<LocalCongregationMember>();
             Platform = new List<LocalCongregationMember>();
             RovingMic = new List<LocalCongregationMember>();
+            Chairmen = new List<LocalCongregationMember>();
 
             var weekStarting = WeekNumberAdapter.GetFirstDateOfWeekIso8601(DateTime.Now);
             Initialise(Repository.Index(), GetDefaultSchedule(weekStarting));
@@ -139,6 +139,8 @@ namespace OpenKHS.ViewModels
         public List<LocalCongregationMember> Platform { get; private set; }
 
         public List<LocalCongregationMember> RovingMic { get; private set; }
+
+        public List<LocalCongregationMember> Chairmen { get; protected set; }
 
         #endregion
 

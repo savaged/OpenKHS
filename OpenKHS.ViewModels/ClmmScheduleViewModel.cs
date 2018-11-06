@@ -9,7 +9,9 @@ namespace OpenKHS.ViewModels
     public class ClmmScheduleViewModel : ScheduleViewModelBase<ClmmSchedule>
     {
         public ClmmScheduleViewModel(DatabaseContext dbContext, IList<LocalCongregationMember> congMembers)
-            : base(dbContext, congMembers) { }
+            : base(dbContext, congMembers)
+        {
+        }
 
         protected override void AddModelObjectToDbContext()
         {
@@ -17,6 +19,16 @@ namespace OpenKHS.ViewModels
             {
                 Repository.Store(ModelObject);
             }
+        }
+
+        protected override void LoadLookups()
+        {
+            base.LoadLookups();
+
+            CongMembers.Where(f => f.ClmmChairman).ToList()
+                .ForEach(f => Chairmen.Add(f));
+            Chairmen = Chairmen.OrderBy(f => f.MeetingAssignmentTally).ToList();
+            RaisePropertyChanged(nameof(Chairmen));
         }
     }
 }
