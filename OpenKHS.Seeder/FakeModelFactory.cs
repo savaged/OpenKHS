@@ -155,7 +155,7 @@ namespace OpenKHS.Seeder
                         friend.ClmmMainHallOnly = true;
                         break;
                     case "ClmmPrayer":
-                        friend.ClmmPrayer = true;
+                        friend.Prayer = true;
                         break;
                     case "ClmmSchoolAssistant":
                         friend.ClmmSchoolAssistant = true;
@@ -217,7 +217,7 @@ namespace OpenKHS.Seeder
         {
             if (male)
             {
-                friend.ClmmPrayer = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
+                friend.Prayer = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
                 friend.ClmmLacParts = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
                 friend.Platform = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
                 friend.Attendant = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();

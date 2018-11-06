@@ -19,7 +19,7 @@ namespace OpenKHS.Models
         private List<DateRange> _unavailablePeriods;
         private bool _ClmmChairman;
         private bool _ClmmSecondSchoolCounselor;
-        private bool _ClmmPrayer;
+        private bool _Prayer;
         private bool _ClmmTreasures;
         private bool _ClmmGems;
         private bool _ClmmBibleReading;
@@ -198,13 +198,6 @@ namespace OpenKHS.Models
         }
 
         [Privilege]
-        public bool ClmmPrayer
-        {
-            get => _ClmmPrayer;
-            set => Set(ref _ClmmPrayer, value);
-        }
-
-        [Privilege]
         public bool ClmmTreasures
         {
             get => _ClmmTreasures;
@@ -321,6 +314,13 @@ namespace OpenKHS.Models
         {
             get => _PmChairman;
             set => Set(ref _PmChairman, value);
+        }
+
+        [Privilege]
+        public bool Prayer
+        {
+            get => _Prayer;
+            set => Set(ref _Prayer, value);
         }
 
         [Privilege]

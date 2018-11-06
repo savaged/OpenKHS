@@ -13,7 +13,7 @@ namespace OpenKHS.Interfaces
         bool ClmmGems { get; set; }
         bool ClmmLacParts { get; set; }
         bool ClmmMainHallOnly { get; set; }
-        bool ClmmPrayer { get; set; }
+        bool Prayer { get; set; }
         bool ClmmSchoolAssistant { get; set; }
         bool ClmmSchoolBibleStudy { get; set; }
         bool ClmmSchoolInitialCall { get; set; }

@@ -11,7 +11,6 @@ namespace OpenKHS.Models
     {
         private string _Treasures;
         private LocalCongregationMember _TreasuresConductor;
-        private string _Gems;
         private LocalCongregationMember _GemsConductor;
         private string _BibleReading;
         private LocalCongregationMember _BibleReader;
@@ -52,12 +51,6 @@ namespace OpenKHS.Models
         {
             get => _TreasuresConductor;
             set => Set(ref _TreasuresConductor, LocalCongregationMember.Swap(ref _TreasuresConductor, value, AssignmentContext.Treasures));
-        }
-
-        public string Gems
-        {
-            get => _Gems;
-            set => Set(ref _Gems, value); // TODO apply swap
         }
 
         public LocalCongregationMember GemsConductor
