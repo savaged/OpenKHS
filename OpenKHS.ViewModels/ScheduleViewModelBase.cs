@@ -6,6 +6,8 @@ using OpenKHS.Models;
 using OpenKHS.Interfaces;
 using OpenKHS.Models.Utils;
 using OpenKHS.Data;
+using GalaSoft.MvvmLight.CommandWpf;
+using System.Windows;
 
 namespace OpenKHS.ViewModels
 {
@@ -26,6 +28,8 @@ namespace OpenKHS.ViewModels
             var weekStarting = WeekNumberAdapter.GetFirstDateOfWeekIso8601(DateTime.Now);
             Initialise(Repository.Index(), GetDefaultSchedule(weekStarting));
 
+            CopyToClipboardCmd = new RelayCommand(OnCopyToClipboard, () => CanCopyToClipboard);
+
             PropertyChanged += OnPropertyChanged;
             ModelObjectPropertyChanged += OnScheduleModelObjectPropertyChanged;
         }
@@ -41,6 +45,8 @@ namespace OpenKHS.ViewModels
         {
             LoadLookups();
         }
+
+        public RelayCommand CopyToClipboardCmd { get; }
 
         protected IList<LocalCongregationMember> CongMembers { get; private set; }
 
@@ -171,6 +177,13 @@ namespace OpenKHS.ViewModels
                 friend?.SetIsPotentiallyOverloaded(ModelObject);
             }
         }
+
+        private void OnCopyToClipboard()
+        {
+            // TODO format the output of model object
+            Clipboard.SetText(ModelObject.ToString());
+        }
+        public bool CanCopyToClipboard => ModelObject != null;
 
         #endregion
     }

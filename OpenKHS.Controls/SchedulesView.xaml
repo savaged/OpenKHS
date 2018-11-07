@@ -17,6 +17,7 @@
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Add" Command="{Binding NewCmd}"/>
+                    <MenuItem Header="Copy" Command="{Binding CopyToClipboardCmd}"/>
                     <MenuItem Header="Delete" Command="{Binding DeleteSelectedItemCmd}"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
