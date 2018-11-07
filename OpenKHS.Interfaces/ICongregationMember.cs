@@ -17,7 +17,6 @@ namespace OpenKHS.Interfaces
         bool ClmmSchoolAssistant { get; set; }
         bool ClmmSchoolBibleStudy { get; set; }
         bool ClmmSchoolInitialCall { get; set; }
-        bool ClmmSchoolMonthPresentations { get; set; }
         bool ClmmSchoolReturnVisit { get; set; }
         bool ClmmSchoolTalk { get; set; }
         bool ClmmSecondSchoolCounselor { get; set; }

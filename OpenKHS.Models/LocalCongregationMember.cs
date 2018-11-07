@@ -23,7 +23,6 @@ namespace OpenKHS.Models
         private bool _ClmmTreasures;
         private bool _ClmmGems;
         private bool _ClmmBibleReading;
-        private bool _ClmmSchoolMonthPresentations;
         private bool _ClmmSchoolInitialCall;
         private bool _ClmmSchoolReturnVisit;
         private bool _ClmmSchoolBibleStudy;
@@ -216,13 +215,6 @@ namespace OpenKHS.Models
         {
             get => _ClmmBibleReading;
             set => Set(ref _ClmmBibleReading, value);
-        }
-
-        [Privilege]
-        public bool ClmmSchoolMonthPresentations
-        {
-            get => _ClmmSchoolMonthPresentations;
-            set => Set(ref _ClmmSchoolMonthPresentations, value);
         }
 
         [Privilege]

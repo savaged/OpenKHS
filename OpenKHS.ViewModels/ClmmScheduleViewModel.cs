@@ -8,7 +8,8 @@ namespace OpenKHS.ViewModels
 {
     public class ClmmScheduleViewModel : ScheduleViewModelBase<ClmmSchedule>
     {
-        public ClmmScheduleViewModel(DatabaseContext dbContext, IList<LocalCongregationMember> congMembers)
+        public ClmmScheduleViewModel(
+            DatabaseContext dbContext, IList<LocalCongregationMember> congMembers)
             : base(dbContext, congMembers)
         {
             TreasuresConductors = new List<LocalCongregationMember>();
@@ -21,6 +22,14 @@ namespace OpenKHS.ViewModels
         public List<LocalCongregationMember> GemsConductors { get; private set; }
 
         public List<LocalCongregationMember> Prayers { get; private set; }
+
+        public List<LocalCongregationMember> BibleReaders { get; private set; }
+
+        public List<LocalCongregationMember> AYttMPart1Students { get; private set; }
+
+        public List<LocalCongregationMember> AYttMPart2Students { get; private set; }
+
+        public List<LocalCongregationMember> AYttMBibleStudyStudents { get; private set; }
 
         protected override void AddModelObjectToDbContext()
         {

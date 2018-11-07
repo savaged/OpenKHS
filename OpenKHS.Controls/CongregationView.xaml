@@ -52,7 +52,6 @@
                         <CheckBox IsChecked="{Binding SelectedItem.ClmmTreasures}">CLMM Treasures</CheckBox>
                         <CheckBox IsChecked="{Binding SelectedItem.ClmmGems}">CLMM Gems</CheckBox>
                         <CheckBox IsChecked="{Binding SelectedItem.ClmmBibleReading}">CLMM Bible Reading</CheckBox>
-                        <CheckBox IsChecked="{Binding SelectedItem.ClmmSchoolMonthPresentations}">Ministry Video Presentations</CheckBox>
                         <CheckBox IsChecked="{Binding SelectedItem.ClmmSchoolInitialCall}">Initial Call</CheckBox>
                         <CheckBox IsChecked="{Binding SelectedItem.ClmmSchoolReturnVisit}">Return Visit</CheckBox>
                         <CheckBox IsChecked="{Binding SelectedItem.ClmmSchoolBibleStudy}">Bible Study Demonstration</CheckBox>

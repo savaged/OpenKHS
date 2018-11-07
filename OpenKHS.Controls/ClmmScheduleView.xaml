@@ -72,9 +72,17 @@
                 <Label Content="Apply Yourself to the Ministry" FontWeight="Medium" Margin="0,20,0,0"/>
                 <StackPanel Margin="0,0,0,10">
                     <WrapPanel>
-                        <Label Width="140">Part 1</Label>
-                        <ComboBox Width="160" ItemsSource="{Binding AYttMStudents}"
+                        <Label Width="140">Part 1 Student</Label>
+                        <ComboBox Width="160" 
+                              ItemsSource="{Binding AYttMPart1Students}"
                               SelectedItem="{Binding SelectedItem.AYttMPart1Student, Mode=TwoWay}"
+                              DisplayMemberPath="Name"/>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <Label Width="140">Part 1 Assistant</Label>
+                        <ComboBox Width="160" 
+                              ItemsSource="{Binding AYttMAssistants}"
+                              SelectedItem="{Binding SelectedItem.AYttMPart1Asst, Mode=TwoWay}"
                               DisplayMemberPath="Name"/>
                     </WrapPanel>
                     <TextBox Width="300" HorizontalAlignment="Left"
@@ -82,9 +90,17 @@
                 </StackPanel>
                 <StackPanel Margin="0,0,0,10">
                     <WrapPanel>
-                        <Label Width="140">Part 2</Label>
-                        <ComboBox Width="160" ItemsSource="{Binding AYttMStudents}"
+                        <Label Width="140">Part 2 Student</Label>
+                        <ComboBox Width="160" 
+                              ItemsSource="{Binding AYttMPart2Students}"
                               SelectedItem="{Binding SelectedItem.AYttMPart2Student, Mode=TwoWay}"
+                              DisplayMemberPath="Name"/>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <Label Width="140">Part 2 Assistant</Label>
+                        <ComboBox Width="160" 
+                              ItemsSource="{Binding AYttMAssistants}"
+                              SelectedItem="{Binding SelectedItem.AYttMPart2Asst, Mode=TwoWay}"
                               DisplayMemberPath="Name"/>
                     </WrapPanel>
                     <TextBox Width="300" HorizontalAlignment="Left"
@@ -92,9 +108,17 @@
                 </StackPanel>
                 <StackPanel Margin="0,0,0,10">
                     <WrapPanel>
-                        <Label Width="140">Bible Study</Label>
-                        <ComboBox Width="160" ItemsSource="{Binding AYttMStudents}"
+                        <Label Width="140">Bible Study Student</Label>
+                        <ComboBox Width="160" 
+                              ItemsSource="{Binding AYttMBibleStudyStudents}"
                               SelectedItem="{Binding SelectedItem.AYttMBibleStudyStudent, Mode=TwoWay}"
+                              DisplayMemberPath="Name"/>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <Label Width="140">Bible Study Assistant</Label>
+                        <ComboBox Width="160" 
+                              ItemsSource="{Binding AYttMAssistants}"
+                              SelectedItem="{Binding SelectedItem.AYttMBibleStudyAsst, Mode=TwoWay}"
                               DisplayMemberPath="Name"/>
                     </WrapPanel>
                     <TextBox Width="300" HorizontalAlignment="Left"
@@ -102,7 +126,7 @@
                 </StackPanel>
                 <StackPanel>
                     <WrapPanel>
-                        <Label Width="140">Talk</Label>
+                        <Label Width="140">Talk Student</Label>
                         <ComboBox Width="160" ItemsSource="{Binding AYttMStudents}"
                               SelectedItem="{Binding SelectedItem.AYttMSchoolTalkStudent, Mode=TwoWay}"
                               DisplayMemberPath="Name"/>
@@ -143,18 +167,22 @@
                     <TextBox Width="300" HorizontalAlignment="Left"
                              Text="{Binding SelectedItem.LacPart3, Mode=TwoWay}"/>
                 </StackPanel>
-                <WrapPanel>
-                    <Label Width="140">Book Study Conductor</Label>
-                    <ComboBox Width="160" ItemsSource="{Binding CbsConductors}"
+                <StackPanel>
+                    <WrapPanel>
+                        <Label Width="140">Book Study Conductor</Label>
+                        <ComboBox Width="160" ItemsSource="{Binding CbsConductors}"
                               SelectedItem="{Binding SelectedItem.CbsConductor, Mode=TwoWay}"
                               DisplayMemberPath="Name"/>
-                </WrapPanel>
-                <WrapPanel>
-                    <Label Width="140">Book Study Reader</Label>
-                    <ComboBox Width="160" ItemsSource="{Binding CbsReaders}"
+                    </WrapPanel>
+                    <WrapPanel>
+                        <Label Width="140">Book Study Reader</Label>
+                        <ComboBox Width="160" ItemsSource="{Binding CbsReaders}"
                               SelectedItem="{Binding SelectedItem.CbsReader, Mode=TwoWay}"
                               DisplayMemberPath="Name"/>
-                </WrapPanel>
+                    </WrapPanel>
+                    <TextBox Width="300" HorizontalAlignment="Left"
+                             Text="{Binding SelectedItem.Cbs, Mode=TwoWay}"/>
+                </StackPanel>
             </StackPanel>
         </Grid>
     </Grid>

@@ -2,7 +2,6 @@
 using System;
 using System.Reflection;
 using System.Windows;
-using System.ComponentModel;
 using Ninject;
 using OpenKHS.Interfaces;
 using OpenKHS.Data;

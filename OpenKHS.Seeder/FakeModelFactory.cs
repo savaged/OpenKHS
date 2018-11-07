@@ -166,9 +166,6 @@ namespace OpenKHS.Seeder
                     case "ClmmSchoolInitialCall":
                         friend.ClmmSchoolInitialCall = true;
                         break;
-                    case "ClmmSchoolMonthPresentations":
-                        friend.ClmmSchoolMonthPresentations = true;
-                        break;
                     case "ClmmSchoolReturnVisit":
                         friend.ClmmSchoolReturnVisit = true;
                         break;
@@ -231,7 +228,6 @@ namespace OpenKHS.Seeder
                 friend.ClmmSchoolReturnVisit = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
                 friend.ClmmSchoolTalk = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
                 friend.ClmmCbsReader = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
-                friend.ClmmSchoolMonthPresentations = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
                 friend.ClmmGems = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
                 friend.WtReader = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
                 friend.AwaySpeaker = TheBogusRandomBoolWontWorkSoIveCreatedMyOwn();
