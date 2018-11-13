@@ -48,7 +48,6 @@
                     </Grid.ContextMenu>
                     <StackPanel Grid.Column="0">
                         <CheckBox IsChecked="{Binding SelectedItem.ClmmChairman}">CLMM Chairman</CheckBox>
-                        <CheckBox IsChecked="{Binding SelectedItem.ClmmPrayer}">CLMM Prayer</CheckBox>
                         <CheckBox IsChecked="{Binding SelectedItem.ClmmTreasures}">CLMM Treasures</CheckBox>
                         <CheckBox IsChecked="{Binding SelectedItem.ClmmGems}">CLMM Gems</CheckBox>
                         <CheckBox IsChecked="{Binding SelectedItem.ClmmBibleReading}">CLMM Bible Reading</CheckBox>
@@ -71,6 +70,7 @@
                         <CheckBox IsChecked="{Binding SelectedItem.WtConductor}">WT Conductor</CheckBox>
                         <CheckBox IsChecked="{Binding SelectedItem.MainWtConductor}">Main WT Conductor</CheckBox>
                         <Separator/>
+                        <CheckBox IsChecked="{Binding SelectedItem.Prayer}">Prayers</CheckBox>
                         <CheckBox IsChecked="{Binding SelectedItem.Attendant}">Attendant</CheckBox>
                         <CheckBox IsChecked="{Binding SelectedItem.Security}">Security</CheckBox>
                         <CheckBox IsChecked="{Binding SelectedItem.SoundDesk}">Sound Desk</CheckBox>

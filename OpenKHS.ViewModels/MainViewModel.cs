@@ -75,7 +75,7 @@ namespace OpenKHS.ViewModels
                     _pmScheduleViewModel.Save();
                     break;
                 case 3:
-                    // TODO _publicTalksViewModel.Save();
+                    _publicTalksViewModel.Save();
                     break;
             }
         }
@@ -89,6 +89,9 @@ namespace OpenKHS.ViewModels
                     break;
                 case 2:
                     _pmScheduleViewModel.Load();
+                    break;
+                case 3:
+                    _publicTalksViewModel.Load();
                     break;
             }
         }

@@ -29,11 +29,11 @@
                         <Label Width="140">Public Talk</Label>
                         <ComboBox Width="160" ItemsSource="{Binding PublicTalks}"
                               SelectedItem="{Binding SelectedItem.PublicTalk, Mode=TwoWay}"
-                              DisplayMemberPath="Title"/>
+                              DisplayMemberPath="Name"/>
                     </WrapPanel>
                     <TextBox Width="300" HorizontalAlignment="Left" 
                              IsReadOnly="True" 
-                             Text="{Binding SelectedItem.PublicTalk.Speaker.Name, Mode=OneWay}"/>
+                             Text="{Binding SelectedSpeaker.Name, Mode=OneWay}"/>
                 </StackPanel>
                 <WrapPanel>
                     <Label Width="140">WT Conductor</Label>

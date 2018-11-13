@@ -37,7 +37,8 @@ namespace OpenKHS.ViewModels
             RaisePropertyChanged(nameof(WtConductors));
 
             PublicTalks.Clear();
-            GetRelatedRepository<PublicTalk>().Index().ToList().ForEach(p => PublicTalks.Add(p));
+            GetRelatedRepository<PublicTalk>().Index().ToList()
+                .ForEach(p => PublicTalks.Add(p));
 
             SetDefaultWtConductor();
         }

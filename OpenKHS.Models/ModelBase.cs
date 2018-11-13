@@ -5,6 +5,7 @@ using System.ComponentModel;
 using OpenKHS.Models.Attributes;
 using OpenKHS.Interfaces;
 using GalaSoft.MvvmLight;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OpenKHS.Models
 {
@@ -14,6 +15,7 @@ namespace OpenKHS.Models
 
         public int Id { get; set; }
 
+        [NotMapped]
         public bool IsNew => Id < 1;
 
         public virtual string Name
@@ -22,6 +24,7 @@ namespace OpenKHS.Models
             set => Set(ref _name, value);
         }
 
+        [NotMapped]
         public bool IsDirty { get; private set; }
 
         public override string ToString()
