@@ -16,18 +16,15 @@ namespace OpenKHS.Models
         private LocalCongregationMember _BibleReader;
         private string _AYttMPart1;
         private LocalCongregationMember _AYttMPart1Student;
-        private int _AYttMPart1Counsel;
         private LocalCongregationMember _AYttMPart1Asst;
         private string _AYttMPart2;
         private LocalCongregationMember _AYttMPart2Student;
-        private int _AYttMPart2Counsel;
         private LocalCongregationMember _AYttMPart2Asst;
         private string _AYttMBibleStudy;
         private LocalCongregationMember _AYttMBibleStudyStudent;
-        private int _AYttMBibleStudyCounsel;
         private LocalCongregationMember _AYttMBibleStudyAsst;
-        private string _AYttMSchoolTalk;
-        private LocalCongregationMember _SchoolTalkStudent;
+        private string _AYttMTalk;
+        private LocalCongregationMember _AYttMTalkStudent;
         private string _LacPart1;
         private LocalCongregationMember _LacPart1Conductor;
         private string _LacPart2;
@@ -86,12 +83,6 @@ namespace OpenKHS.Models
             set => Set(ref _AYttMPart1Student, value);
         }
 
-        public int AYttMPart1Counsel
-        {
-            get => _AYttMPart1Counsel;
-            set => Set(ref _AYttMPart1Counsel, value);
-        }
-
         public LocalCongregationMember AYttMPart1Asst
         {
             get => _AYttMPart1Asst;
@@ -108,12 +99,6 @@ namespace OpenKHS.Models
         {
             get => _AYttMPart2Student;
             set => Set(ref _AYttMPart2Student, value);
-        }
-
-        public int AYttMPart2Counsel
-        {
-            get => _AYttMPart2Counsel;
-            set => Set(ref _AYttMPart2Counsel, value);
         }
 
         public LocalCongregationMember AYttMPart2Asst
@@ -140,22 +125,16 @@ namespace OpenKHS.Models
             set => Set(ref _AYttMBibleStudyAsst, value);
         }
 
-        public int AYttMBibleStudyCounsel
+        public string AYttMTalk
         {
-            get => _AYttMBibleStudyCounsel;
-            set => Set(ref _AYttMBibleStudyCounsel, value);
+            get => _AYttMTalk;
+            set => Set(ref _AYttMTalk, value);
         }
 
-        public string AYttMSchoolTalk
+        public LocalCongregationMember AYttMTalkStudent
         {
-            get => _AYttMSchoolTalk;
-            set => Set(ref _AYttMSchoolTalk, value);
-        }
-
-        public LocalCongregationMember AYttMSchoolTalkStudent
-        {
-            get => _SchoolTalkStudent;
-            set => Set(ref _SchoolTalkStudent, value);
+            get => _AYttMTalkStudent;
+            set => Set(ref _AYttMTalkStudent, value);
         }
 
         /// <summary>
@@ -235,7 +214,7 @@ namespace OpenKHS.Models
                 participants.Add(AYttMPart1Student);
                 participants.Add(AYttMPart2Student);
                 participants.Add(AYttMBibleStudyStudent);
-                participants.Add(AYttMSchoolTalkStudent);
+                participants.Add(AYttMTalkStudent);
                 participants.Add(LacPart1Conductor);
                 participants.Add(LacPart2Conductor);
                 participants.Add(LacPart3Conductor);

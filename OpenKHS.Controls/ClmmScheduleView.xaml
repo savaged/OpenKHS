@@ -127,12 +127,12 @@
                 <StackPanel>
                     <WrapPanel>
                         <Label Width="140">Talk Student</Label>
-                        <ComboBox Width="160" ItemsSource="{Binding AYttMStudents}"
-                              SelectedItem="{Binding SelectedItem.AYttMSchoolTalkStudent, Mode=TwoWay}"
+                        <ComboBox Width="160" ItemsSource="{Binding AYttMTalkStudents}"
+                              SelectedItem="{Binding SelectedItem.AYttMTalkStudent, Mode=TwoWay}"
                               DisplayMemberPath="Name"/>
                     </WrapPanel>
                     <TextBox Width="300" HorizontalAlignment="Left"
-                             Text="{Binding SelectedItem.AYttMSchoolTalk, Mode=TwoWay}"/>
+                             Text="{Binding SelectedItem.AYttMTalk, Mode=TwoWay}"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Grid.Column="2" Grid.Row="1" Margin="0,-5,0,0">
