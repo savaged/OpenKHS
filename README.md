@@ -11,6 +11,7 @@ Feel free to have a look at the code by cloning this repository using:
 * Sorry, I've not had time to do anything for ages but still aim to make this happen. Just dusted this off and found there's much to do
 
 ## TO DO List ##
+* Revert to simple 'Save' buttons per tab because 'auto saving' leads to complex code
 * Assignment selection by list ordered by assignment tally
 * Publish method increments all assignees tally
 * Adding new cong member resets everyones tally to lowest tally

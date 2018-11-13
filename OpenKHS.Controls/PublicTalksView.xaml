@@ -48,7 +48,7 @@
                               IsEditable="True"
                               ItemsSource="{Binding Speakers}"
                               Text="{Binding Speakers.NewItem, UpdateSourceTrigger=LostFocus}"
-                              SelectedItem="{Binding Speakers.SelectedItem}"
+                              SelectedItem="{Binding SelectedItem.Speaker}"
                               DisplayMemberPath="Name"/>
                 </WrapPanel>
             </StackPanel>

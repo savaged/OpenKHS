@@ -29,7 +29,6 @@ namespace OpenKHS.ViewModels
             LoadLookups();
 
             Speakers = new UserInputLookup<PmSpeaker>();
-            Speakers.PropertyChanged += Speakers_PropertyChanged;
 
             PropertyChanged += OnPropertyChanged;
         }
@@ -37,14 +36,8 @@ namespace OpenKHS.ViewModels
         public override void Cleanup()
         {
             Congregations.PropertyChanged -= Congregations_PropertyChanged;
-            Speakers.PropertyChanged -= Speakers_PropertyChanged;
             PropertyChanged -= OnPropertyChanged;
             base.Cleanup();
-        }
-
-        public void Load()
-        {
-            LoadLookups();
         }
 
         protected override void Initialise(IList<PublicTalk> data, PublicTalk defaultFirstItem)
@@ -66,6 +59,7 @@ namespace OpenKHS.ViewModels
             {
                 LoadCongregations();
             }
+            LoadSpeakers();
         }
 
         private void LoadCongregations()
@@ -122,33 +116,7 @@ namespace OpenKHS.ViewModels
 
         public UserInputLookup<PmSpeaker> Speakers { get; private set; }
 
-        public PmSpeaker SelectedSpeaker
-        {
-            get => SelectedItem?.Speaker as PmSpeaker;
-            set
-            {
-                if (SelectedItem == null)
-                {
-                    throw new ArgumentNullException("Expected to have a SelectedItem!");
-                }
-                SelectedItem.Speaker = value;
-                RaisePropertyChanged();
-                RaisePropertyChanged(nameof(IsSpeakerSelected));
-            }
-        }
-        public bool IsSpeakerSelected => SelectedSpeaker != null;
-
-        private void Speakers_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (SelectedItem is null)
-            {
-                throw new ArgumentNullException("Expected to have a SelectedItem!");
-            }
-            if (Speakers.Count > 0)
-            {
-                SelectedSpeaker = Speakers.SelectedItem;
-            }
-        }
+        public bool IsSpeakerSelected => SelectedItem?.Speaker != null;
 
         private void Congregations_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -179,7 +147,7 @@ namespace OpenKHS.ViewModels
                 {
                     Save();
                 }
-                Load();
+                LoadLookups();
             }
         }
     }
