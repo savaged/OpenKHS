@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenKHS.Seeder", "OpenKHS.Seeder\OpenKHS.Seeder.csproj", "{A5809CBC-B65D-4D6C-9B40-BE00F7389E29}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenKHS.Interfaces", "OpenKHS.Interfaces\OpenKHS.Interfaces.csproj", "{2A2760A3-B447-42AA-8001-37BBE92582DA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenKHS.Data", "OpenKHS.Data\OpenKHS.Data.csproj", "{15669D09-EB1E-4F56-A8F4-C6E71183A6E1}"
@@ -36,10 +34,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A5809CBC-B65D-4D6C-9B40-BE00F7389E29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A5809CBC-B65D-4D6C-9B40-BE00F7389E29}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A5809CBC-B65D-4D6C-9B40-BE00F7389E29}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A5809CBC-B65D-4D6C-9B40-BE00F7389E29}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2A2760A3-B447-42AA-8001-37BBE92582DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2A2760A3-B447-42AA-8001-37BBE92582DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A2760A3-B447-42AA-8001-37BBE92582DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
