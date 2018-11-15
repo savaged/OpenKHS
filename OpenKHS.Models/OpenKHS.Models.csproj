@@ -140,6 +140,7 @@
     <Compile Include="Meeting.cs" />
     <Compile Include="ModelBase.cs" />
     <Compile Include="PmSchedule.cs" />
+    <Compile Include="LocalSpeaker.cs" />
     <Compile Include="VisitingSpeaker.cs" />
     <Compile Include="PublicTalkOutline.cs" />
     <Compile Include="PmSpeaker.cs" />

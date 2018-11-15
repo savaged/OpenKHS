@@ -7,12 +7,19 @@ namespace OpenKHS.Models
     [Owned]
     public class PublicTalk : ModelBase
     {
-        private PmSpeaker _speaker;
+        private LocalSpeaker _localSpeaker;
+        private VisitingSpeaker _visitingSpeaker;
 
-        public PmSpeaker Speaker
+        public LocalSpeaker LocalSpeaker
         {
-            get => _speaker;
-            set => Set(ref _speaker, value);
+            get => _localSpeaker;
+            set => Set(ref _localSpeaker, value);
+        }
+
+        public VisitingSpeaker VisitingSpeaker
+        {
+            get => _visitingSpeaker;
+            set => Set(ref _visitingSpeaker, value);
         }
 
         [NotMapped]

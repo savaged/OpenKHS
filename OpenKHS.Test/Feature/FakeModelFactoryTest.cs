@@ -24,8 +24,8 @@ namespace OpenKHS.Test.Feature
             var publicTalk = new FakeModelFactory().MakePublicTalk();
             Assert.IsNotNull(publicTalk.Id);
             Assert.IsTrue(publicTalk.Id > 0);
-            Assert.IsNotNull(publicTalk.Speaker);
-            Assert.IsNotNull(publicTalk.Speaker.Name);
+            Assert.IsNotNull(publicTalk.VisitingSpeaker);
+            Assert.IsNotNull(publicTalk.VisitingSpeaker.Name);
         }
 
         [TestMethod]

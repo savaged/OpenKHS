@@ -22,14 +22,15 @@ namespace OpenKHS.ViewModels
 
             _neighbouringCongRepo = Repositories[typeof(Congregation)] 
                 as NeighbouringCongregationRepository;
-            Initialise(Repository.Index(), null);
+            
+            LocalSpeakers = new UserInputLookup<LocalSpeaker>();
 
             Congregations = new UserInputLookup<Congregation>();
-            Congregations.PropertyChanged += Congregations_PropertyChanged;
+            
+            Initialise(Repository.Index(), null);
             LoadLookups();
 
-            Speakers = new UserInputLookup<PmSpeaker>();
-
+            Congregations.PropertyChanged += Congregations_PropertyChanged;
             PropertyChanged += OnPropertyChanged;
         }
 
@@ -59,7 +60,6 @@ namespace OpenKHS.ViewModels
             {
                 LoadCongregations();
             }
-            LoadSpeakers();
         }
 
         private void LoadCongregations()
@@ -76,31 +76,26 @@ namespace OpenKHS.ViewModels
 
         private void LoadSpeakers()
         {
-            if (!(Congregations.SelectedItem is null))
+            LocalSpeakers.Clear();
+            if (Congregations.SelectedItem.IsLocal)
             {
-                Speakers.Clear();
-                if (Congregations.SelectedItem.IsLocal)
+                var localSpeakers = _localCong.Members
+                    .Where(m => m.PublicSpeaker).ToList();
+
+                foreach (var congMember in localSpeakers)
                 {
-                    var localSpeakers = _localCong.Members.Where(m => m.PublicSpeaker).ToList();
-                    foreach (var congMember in localSpeakers)
+                    var speaker = new LocalSpeaker
                     {
-                        var speaker = new PmSpeaker
-                        {
-                            Id = congMember.Id,
-                            Name = congMember.Name,
-                            Congregation = congMember.Congregation
-                        };
-                        Speakers.Add(speaker);
-                    }
-                }
-                else
-                {
-                    // TODO load speakers for neighbouring cong
+                        Id = congMember.Id,
+                        Name = congMember.Name,
+                        Congregation = congMember.Congregation
+                    };
+                    LocalSpeakers.Add(speaker);
                 }
             }
             else
             {
-                Speakers?.Clear();
+                // TODO load speakers for neighbouring cong
             }
         }
 
@@ -114,9 +109,10 @@ namespace OpenKHS.ViewModels
 
         public UserInputLookup<Congregation> Congregations { get; private set; }
 
-        public UserInputLookup<PmSpeaker> Speakers { get; private set; }
+        public UserInputLookup<LocalSpeaker> LocalSpeakers { get; private set; }
 
-        public bool IsSpeakerSelected => SelectedItem?.Speaker != null;
+        public bool IsSpeakerSelected => SelectedItem?.LocalSpeaker != null ||
+            SelectedItem?.VisitingSpeaker != null;
 
         private void Congregations_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
