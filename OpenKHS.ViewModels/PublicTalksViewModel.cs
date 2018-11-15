@@ -5,6 +5,7 @@ using OpenKHS.Models;
 using System.Collections.Generic;
 using System.ComponentModel;
 using OpenKHS.ViewModels.Utils;
+using System.Collections.ObjectModel;
 
 namespace OpenKHS.ViewModels
 {
@@ -23,10 +24,11 @@ namespace OpenKHS.ViewModels
             _neighbouringCongRepo = Repositories[typeof(Congregation)] 
                 as NeighbouringCongregationRepository;
             
-            LocalSpeakers = new UserInputLookup<LocalSpeaker>();
+            LocalSpeakers = new ObservableCollection<LocalSpeaker>();
 
             Congregations = new UserInputLookup<Congregation>();
-            
+            VisitingSpeakers = new UserInputLookup<VisitingSpeaker>();
+
             Initialise(Repository.Index(), null);
             LoadLookups();
 
@@ -60,43 +62,41 @@ namespace OpenKHS.ViewModels
             {
                 LoadCongregations();
             }
+            LoadLocalSpeakers();
         }
 
         private void LoadCongregations()
         {
             Congregations.Clear();
-            Congregations.Add(_localCong);
 
-            var neighbouringCongs = _neighbouringCongRepo.Index().OrderBy(c => c.Name);
+            var neighbouringCongs = _neighbouringCongRepo.Index()
+                .OrderBy(c => c.Name);
             foreach (var c in neighbouringCongs)
             {
                 Congregations.Add(c);
             }
         }
 
-        private void LoadSpeakers()
+        private void LoadLocalSpeakers()
         {
             LocalSpeakers.Clear();
-            if (Congregations.SelectedItem.IsLocal)
-            {
-                var localSpeakers = _localCong.Members
+            var localSpeakers = _localCong.Members
                     .Where(m => m.PublicSpeaker).ToList();
 
-                foreach (var congMember in localSpeakers)
-                {
-                    var speaker = new LocalSpeaker
-                    {
-                        Id = congMember.Id,
-                        Name = congMember.Name,
-                        Congregation = congMember.Congregation
-                    };
-                    LocalSpeakers.Add(speaker);
-                }
-            }
-            else
+            foreach (var congMember in localSpeakers)
             {
-                // TODO load speakers for neighbouring cong
+                var speaker = new LocalSpeaker
+                {
+                    Id = congMember.Id,
+                    Name = congMember.Name
+                };
+                LocalSpeakers.Add(speaker);
             }
+        }
+
+        private void LoadVisitingSpeakers()
+        {
+            // TODO load visiting speakers
         }
 
         protected override void AddModelObjectToDbContext()
@@ -107,9 +107,11 @@ namespace OpenKHS.ViewModels
             }
         }
 
+        public ObservableCollection<LocalSpeaker> LocalSpeakers { get; private set; }
+
         public UserInputLookup<Congregation> Congregations { get; private set; }
 
-        public UserInputLookup<LocalSpeaker> LocalSpeakers { get; private set; }
+        public UserInputLookup<VisitingSpeaker> VisitingSpeakers { get; private set; }
 
         public bool IsSpeakerSelected => SelectedItem?.LocalSpeaker != null ||
             SelectedItem?.VisitingSpeaker != null;
@@ -126,7 +128,7 @@ namespace OpenKHS.ViewModels
             else if (e.PropertyName == nameof(Congregations.SelectedItem)
                 && Congregations.Count > 0)
             {
-                LoadSpeakers();
+                LoadVisitingSpeakers();
             }
         }
 

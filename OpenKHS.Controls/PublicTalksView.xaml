@@ -30,34 +30,41 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition />
             </Grid.RowDefinitions>
-            <WrapPanel Grid.Column="1" Grid.Row="0" Margin="10">
+            <WrapPanel Grid.Column="0" Grid.Row="0" Margin="50,50,0,0">
                 <Label Width="140">Local Speaker</Label>
                 <ComboBox Width="160" 
                         IsEditable="False"
                         ItemsSource="{Binding LocalSpeakers}"
-                        SelectedItem="{Binding SelectedItem.Speaker}"
+                        SelectedItem="{Binding SelectedItem.LocalSpeaker}"
                         DisplayMemberPath="Name"/>
             </WrapPanel>
-            <WrapPanel Grid.Column="0" Grid.Row="1" Margin="10">
-                <Label Width="140">Congregation</Label>
-                <ComboBox Width="160" 
+            <Separator Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" 
+                       Margin="50,0,50,0"/>
+            <WrapPanel Grid.Column="0" Grid.Row="2" Margin="50,20,0,0">
+                <Label Width="140">
+                    <TextBlock TextWrapping="Wrap">
+                        Neighbouring Congregation
+                    </TextBlock>
+                </Label>
+                <ComboBox Width="160" Height="25"
                         IsEditable="True"
                         ItemsSource="{Binding Congregations}"
                         Text="{Binding Congregations.NewItem, UpdateSourceTrigger=LostFocus}"
                         SelectedItem="{Binding Congregations.SelectedItem}"
                         DisplayMemberPath="Name"/>
             </WrapPanel>
-            <WrapPanel Grid.Column="1" Grid.Row="1" Margin="10">
-                <Label Width="140">Speaker</Label>
+            <WrapPanel Grid.Column="1" Grid.Row="2" Margin="0,27,0,0">
+                <Label Width="140">Visiting Speaker</Label>
                 <ComboBox Width="160" 
                         IsEnabled="{Binding Congregations.IsItemSelected}"
                         IsEditable="True"
                         ItemsSource="{Binding VisitingSpeakers}"
                         Text="{Binding Speakers.NewItem, UpdateSourceTrigger=LostFocus}"
-                        SelectedItem="{Binding SelectedItem.Speaker}"
+                        SelectedItem="{Binding SelectedItem.VisitingSpeaker}"
                         DisplayMemberPath="Name"/>
             </WrapPanel>
         </Grid>
