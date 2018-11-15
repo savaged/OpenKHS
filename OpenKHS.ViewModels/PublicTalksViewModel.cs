@@ -33,13 +33,11 @@ namespace OpenKHS.ViewModels
             LoadLookups();
 
             Congregations.PropertyChanged += Congregations_PropertyChanged;
-            PropertyChanged += OnPropertyChanged;
         }
 
         public override void Cleanup()
         {
             Congregations.PropertyChanged -= Congregations_PropertyChanged;
-            PropertyChanged -= OnPropertyChanged;
             base.Cleanup();
         }
 
@@ -113,9 +111,6 @@ namespace OpenKHS.ViewModels
 
         public UserInputLookup<VisitingSpeaker> VisitingSpeakers { get; private set; }
 
-        public bool IsSpeakerSelected => SelectedItem?.LocalSpeaker != null ||
-            SelectedItem?.VisitingSpeaker != null;
-
         private void Congregations_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(Congregations.NewItem))
@@ -129,23 +124,6 @@ namespace OpenKHS.ViewModels
                 && Congregations.Count > 0)
             {
                 LoadVisitingSpeakers();
-            }
-        }
-
-        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(SelectedItem) && IsItemSelected)
-            {
-                if (ModelObject == null)
-                {
-                    throw new ArgumentNullException(
-                        "Expected Selected Item and Model Object to be in sync!");
-                }
-                if (IsSpeakerSelected)
-                {
-                    Save();
-                }
-                LoadLookups();
             }
         }
     }

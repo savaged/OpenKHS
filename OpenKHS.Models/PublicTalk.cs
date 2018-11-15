@@ -22,6 +22,15 @@ namespace OpenKHS.Models
             set => Set(ref _visitingSpeaker, value);
         }
 
+        public bool IsSpeakerSelected
+        {
+            get
+            {
+                var value = !(LocalSpeaker is null) || !(VisitingSpeaker is null);
+                return value;
+            }
+        }
+
         [NotMapped]
         public PublicTalkOutline PublicTalkOutline { get; set; }
 
