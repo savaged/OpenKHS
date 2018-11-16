@@ -69,7 +69,8 @@ namespace OpenKHS.ViewModels
 
         protected abstract void AddModelObjectToDbContext();
 
-        private void OnModelObjectPropertyChanged(object sender, PropertyChangedEventArgs e)
+        protected virtual void OnModelObjectPropertyChanged(
+            object sender, PropertyChangedEventArgs e)
         {
             if (ModelObject.IsNew)
             {

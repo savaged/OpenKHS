@@ -32,12 +32,12 @@ namespace OpenKHS.ViewModels
             Initialise(Repository.Index(), null);
             LoadLookups();
 
-            Congregations.PropertyChanged += Congregations_PropertyChanged;
+            Congregations.PropertyChanged += OnCongregationsPropertyChanged;
         }
 
         public override void Cleanup()
         {
-            Congregations.PropertyChanged -= Congregations_PropertyChanged;
+            Congregations.PropertyChanged -= OnCongregationsPropertyChanged;
             base.Cleanup();
         }
 
@@ -48,7 +48,7 @@ namespace OpenKHS.ViewModels
                 var outlines = new PublicTalkOutlineRepository().Index();
                 foreach (var o in outlines)
                 {
-                    data.Add(new PublicTalk { Id = o.Id, PublicTalkOutline = o });
+                    data.Add(new PublicTalk { PublicTalkOutline = o });
                 }
             }
             base.Initialise(data, defaultFirstItem);
@@ -99,10 +99,7 @@ namespace OpenKHS.ViewModels
 
         protected override void AddModelObjectToDbContext()
         {
-            if (ModelObject != null && !string.IsNullOrEmpty(ModelObject.Name))
-            {
-                Repository.Store(ModelObject);
-            }
+            Repository.Store(ModelObject);
         }
 
         public ObservableCollection<LocalSpeaker> LocalSpeakers { get; private set; }
@@ -111,7 +108,7 @@ namespace OpenKHS.ViewModels
 
         public UserInputLookup<VisitingSpeaker> VisitingSpeakers { get; private set; }
 
-        private void Congregations_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void OnCongregationsPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(Congregations.NewItem))
             {
@@ -124,6 +121,19 @@ namespace OpenKHS.ViewModels
                 && Congregations.Count > 0)
             {
                 LoadVisitingSpeakers();
+            }
+        }
+
+        protected override void OnModelObjectPropertyChanged(
+            object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(SelectedItem.LocalSpeaker):
+                case nameof(SelectedItem.VisitingSpeaker):
+                    AddModelObjectToDbContext();
+                    IsDirty = true;
+                    break;
             }
         }
     }

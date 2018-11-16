@@ -20,7 +20,9 @@ namespace OpenKHS.Data
         {
             if (!@new.IsNew)
             {
-                throw new ArgumentException("Trying to add an existing model object as new. Use Update instead.");
+                throw new ArgumentException(
+                    "Trying to add an existing model object as new. " +
+                    "Use Update instead.");
             }
         }
 

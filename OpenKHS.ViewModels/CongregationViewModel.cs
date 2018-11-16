@@ -16,13 +16,11 @@ namespace OpenKHS.ViewModels
             Initialise(Repository.Index(), null);
             TogglePrivilegesCmd = new RelayCommand(OnTogglePrivileges, () => CanExecute);
             PropertyChanged += OnPropertyChanged;
-            ModelObjectPropertyChanged += OnModelObjectPropertyChanged;
         }        
 
         public override void Cleanup()
         {
             PropertyChanged -= OnPropertyChanged;
-            ModelObjectPropertyChanged -= OnModelObjectPropertyChanged;
             base.Cleanup();
         }
 
@@ -71,8 +69,11 @@ namespace OpenKHS.ViewModels
             }
         }
 
-        private void OnModelObjectPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        protected override void OnModelObjectPropertyChanged(
+            object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+            base.OnModelObjectPropertyChanged(sender, e);
+
             if (!string.IsNullOrEmpty(ModelObject.Name))
             {
                 RaisePropertyChanged(nameof(IsItemSelected));

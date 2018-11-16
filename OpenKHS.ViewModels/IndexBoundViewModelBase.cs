@@ -54,8 +54,11 @@ namespace OpenKHS.ViewModels
             }
         }
 
-        private void OnModelObjectPropertyChanged(object sender, PropertyChangedEventArgs e)
+        protected override void OnModelObjectPropertyChanged(
+            object sender, PropertyChangedEventArgs e)
         {
+            base.OnModelObjectPropertyChanged(sender, e);
+
             RaisePropertyChanged(nameof(IsItemSelected));
         }
 

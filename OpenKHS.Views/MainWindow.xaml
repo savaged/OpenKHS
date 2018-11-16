@@ -30,16 +30,20 @@
         <Grid>
             <TabControl TabStripPlacement="Left" SelectedIndex="{Binding SelectedIndex}">
                 <TabItem Header="&#128100;" ToolTip="Congregation Members">
-                    <ctrls:CongregationView x:Name="CongregationView"/>
+                    <ctrls:CongregationView x:Name="CongregationView" 
+                                            DataContext="CongregationVM"/>
                 </TabItem>
                 <TabItem Header="&#128203;" ToolTip="Christian Life &amp; Ministry Meeting Schedule">
-                    <ctrls:ClmmScheduleView x:Name="ClmmScheduleView"/>
+                    <ctrls:ClmmScheduleView x:Name="ClmmScheduleView"
+                                            DataContext="ClmmScheduleVM"/>
                 </TabItem>
                 <TabItem Header="&#128214;" ToolTip="Public Meeting Schedule">
-                    <ctrls:PmScheduleView x:Name="PmScheduleView"/>
+                    <ctrls:PmScheduleView x:Name="PmScheduleView"
+                                          DataContext="PmScheduleVM"/>
                 </TabItem>
                 <TabItem Header="&#128116;" ToolTip="Public Talks">
-                    <ctrls:PublicTalksView x:Name="PublicTalksView"/>
+                    <ctrls:PublicTalksView x:Name="PublicTalksView"
+                                           DataContext="PublicTalksVM"/>
                 </TabItem>
             </TabControl>
         </Grid>
