@@ -16,14 +16,14 @@ namespace OpenKHS.ViewModels
 
         public PublicTalksViewModel(DatabaseContext dbContext) : base(dbContext)
         {
-            var localCongMemberRepo = 
-                Repositories[typeof(LocalCongregationMember)] 
+            var localCongMemberRepo =
+                Repositories[typeof(LocalCongregationMember)]
                 as LocalCongregationMemberRepository;
             _localCong = new LocalCongregation(localCongMemberRepo.Index());
 
-            _neighbouringCongRepo = Repositories[typeof(Congregation)] 
+            _neighbouringCongRepo = Repositories[typeof(Congregation)]
                 as NeighbouringCongregationRepository;
-            
+
             LocalSpeakers = new ObservableCollection<LocalSpeaker>();
 
             Congregations = new UserInputLookup<Congregation>();
@@ -41,12 +41,19 @@ namespace OpenKHS.ViewModels
             base.Cleanup();
         }
 
-        protected override void Initialise(IList<PublicTalk> data, PublicTalk defaultFirstItem)
+        public void Load()
         {
-            if (data == null || data.Count == 0)
+            LoadLookups();
+        }
+
+        protected override void Initialise(
+            IList<PublicTalk> data, PublicTalk defaultFirstItem)
+        {
+            var existing = data.Select(p => p.PublicTalkOutline?.Id).ToArray();
+            var outlines = new PublicTalkOutlineRepository().Index();
+            foreach (var o in outlines)
             {
-                var outlines = new PublicTalkOutlineRepository().Index();
-                foreach (var o in outlines)
+                if (!existing.Contains(o.Id))
                 {
                     data.Add(new PublicTalk { PublicTalkOutline = o });
                 }
@@ -99,7 +106,10 @@ namespace OpenKHS.ViewModels
 
         protected override void AddModelObjectToDbContext()
         {
-            Repository.Store(ModelObject);
+            if (ModelObject.IsNew)
+            {
+                Repository.Store(ModelObject);
+            }
         }
 
         public ObservableCollection<LocalSpeaker> LocalSpeakers { get; private set; }

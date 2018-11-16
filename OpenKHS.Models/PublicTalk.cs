@@ -31,11 +31,6 @@ namespace OpenKHS.Models
             }
         }
 
-        [NotMapped]
         public PublicTalkOutline PublicTalkOutline { get; set; }
-
-        public override string Name => PublicTalkOutline?.Name;
-
-        public int? PublicTalkId => PublicTalkOutline?.Id;
     }
 }

@@ -20,7 +20,9 @@
                   CanUserAddRows="False"
                   SelectionChanged="OnIndexSelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="1*"/>
+                <DataGridTextColumn Header="Name" 
+                                    Width="1*"
+                                    Binding="{Binding PublicTalkOutline.Name}" />
             </DataGrid.Columns>
         </DataGrid>
 

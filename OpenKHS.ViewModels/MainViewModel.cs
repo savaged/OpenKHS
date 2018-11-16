@@ -90,6 +90,9 @@ namespace OpenKHS.ViewModels
                 case 2:
                     _pmScheduleViewModel.Load();
                     break;
+                case 3:
+                    _publicTalksViewModel.Load();
+                    break;
             }
         }
 
