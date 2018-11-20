@@ -51,21 +51,6 @@ namespace OpenKHS.ViewModels
             _isLoading = false;
         }
 
-        protected override void Initialise(
-            IList<PublicTalk> data, PublicTalk defaultFirstItem)
-        {
-            var existing = data.Select(p => p.OutlineId).ToArray();
-            var outlines = new PublicTalkOutlineRepository().Index();
-            foreach (var o in outlines)
-            {
-                if (!existing.Contains(o.Id))
-                {
-                    data.Add(new PublicTalk { OutlineId = o.Id, Name = o.Name });
-                }
-            }
-            base.Initialise(data, defaultFirstItem);
-        }
-
         protected void LoadLookups()
         {
             if (Congregations.Count == 0)

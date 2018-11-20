@@ -9,7 +9,6 @@ namespace OpenKHS.Models
     {
         private LocalCongregationMember _localSpeaker;
         private VisitingSpeaker _visitingSpeaker;
-        private int _outlineId;
 
         public LocalCongregationMember LocalSpeaker
         {
@@ -30,12 +29,6 @@ namespace OpenKHS.Models
                 var value = !(LocalSpeaker is null) || !(VisitingSpeaker is null);
                 return value;
             }
-        }
-
-        public int OutlineId
-        {
-            get => _outlineId;
-            set => Set(ref _outlineId, value);
         }
     }
 }

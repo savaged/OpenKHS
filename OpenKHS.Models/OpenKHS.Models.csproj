@@ -141,7 +141,6 @@
     <Compile Include="ModelBase.cs" />
     <Compile Include="PmSchedule.cs" />
     <Compile Include="VisitingSpeaker.cs" />
-    <Compile Include="PublicTalkOutline.cs" />
     <Compile Include="PmSpeaker.cs" />
     <Compile Include="Attributes\PrivilegeAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

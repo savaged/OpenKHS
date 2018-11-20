@@ -39,9 +39,9 @@ namespace OpenKHS.Seeder
             var speaker = MakeVisitingSpeakers(1).First();
             var publicTalk = new PublicTalk
             {
-                Id = new Faker().Random.Number(1, 100),
+                Id = new Faker().Random.Number(1, 194),
                 VisitingSpeaker = speaker,
-                PublicTalkOutline = new PublicTalkOutline { Name = "Fake Talk"}
+                Name = "Fake Talk"
             };
             return publicTalk;
         }

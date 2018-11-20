@@ -241,7 +241,6 @@
     <Compile Include="VisitingSpeakerRepository.cs" />
     <Compile Include="DatabaseContext.cs" />
     <Compile Include="ClmmScheduleRepository.cs" />
-    <Compile Include="PublicTalkOutlineRepository.cs" />
     <Compile Include="PublicTalkRepository.cs" />
     <Compile Include="PmScheduleRepository.cs" />
     <Compile Include="ModelRepositoryBase.cs" />
