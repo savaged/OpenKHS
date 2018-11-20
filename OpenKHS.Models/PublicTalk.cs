@@ -7,10 +7,11 @@ namespace OpenKHS.Models
     [Owned]
     public class PublicTalk : ModelBase
     {
-        private LocalSpeaker _localSpeaker;
+        private LocalCongregationMember _localSpeaker;
         private VisitingSpeaker _visitingSpeaker;
+        private int _outlineId;
 
-        public LocalSpeaker LocalSpeaker
+        public LocalCongregationMember LocalSpeaker
         {
             get => _localSpeaker;
             set => Set(ref _localSpeaker, value);
@@ -31,6 +32,10 @@ namespace OpenKHS.Models
             }
         }
 
-        public PublicTalkOutline PublicTalkOutline { get; set; }
+        public int OutlineId
+        {
+            get => _outlineId;
+            set => Set(ref _outlineId, value);
+        }
     }
 }

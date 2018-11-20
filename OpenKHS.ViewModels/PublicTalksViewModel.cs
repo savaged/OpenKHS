@@ -13,9 +13,11 @@ namespace OpenKHS.ViewModels
     {
         private NeighbouringCongregationRepository _neighbouringCongRepo;
         private LocalCongregation _localCong;
+        private bool _isLoading;
 
         public PublicTalksViewModel(DatabaseContext dbContext) : base(dbContext)
         {
+            _isLoading = true;
             var localCongMemberRepo =
                 Repositories[typeof(LocalCongregationMember)]
                 as LocalCongregationMemberRepository;
@@ -24,7 +26,7 @@ namespace OpenKHS.ViewModels
             _neighbouringCongRepo = Repositories[typeof(Congregation)]
                 as NeighbouringCongregationRepository;
 
-            LocalSpeakers = new ObservableCollection<LocalSpeaker>();
+            LocalSpeakers = new ObservableCollection<LocalCongregationMember>();
 
             Congregations = new UserInputLookup<Congregation>();
             VisitingSpeakers = new UserInputLookup<VisitingSpeaker>();
@@ -33,6 +35,7 @@ namespace OpenKHS.ViewModels
             LoadLookups();
 
             Congregations.PropertyChanged += OnCongregationsPropertyChanged;
+            _isLoading = false;
         }
 
         public override void Cleanup()
@@ -43,19 +46,21 @@ namespace OpenKHS.ViewModels
 
         public void Load()
         {
+            _isLoading = true;
             LoadLookups();
+            _isLoading = false;
         }
 
         protected override void Initialise(
             IList<PublicTalk> data, PublicTalk defaultFirstItem)
         {
-            var existing = data.Select(p => p.PublicTalkOutline?.Id).ToArray();
+            var existing = data.Select(p => p.OutlineId).ToArray();
             var outlines = new PublicTalkOutlineRepository().Index();
             foreach (var o in outlines)
             {
                 if (!existing.Contains(o.Id))
                 {
-                    data.Add(new PublicTalk { PublicTalkOutline = o });
+                    data.Add(new PublicTalk { OutlineId = o.Id, Name = o.Name });
                 }
             }
             base.Initialise(data, defaultFirstItem);
@@ -90,12 +95,7 @@ namespace OpenKHS.ViewModels
 
             foreach (var congMember in localSpeakers)
             {
-                var speaker = new LocalSpeaker
-                {
-                    Id = congMember.Id,
-                    Name = congMember.Name
-                };
-                LocalSpeakers.Add(speaker);
+                LocalSpeakers.Add(congMember);
             }
         }
 
@@ -110,9 +110,13 @@ namespace OpenKHS.ViewModels
             {
                 Repository.Store(ModelObject);
             }
+            else
+            {
+                Repository.Save();
+            }
         }
 
-        public ObservableCollection<LocalSpeaker> LocalSpeakers { get; private set; }
+        public ObservableCollection<LocalCongregationMember> LocalSpeakers { get; private set; }
 
         public UserInputLookup<Congregation> Congregations { get; private set; }
 
@@ -141,8 +145,11 @@ namespace OpenKHS.ViewModels
             {
                 case nameof(SelectedItem.LocalSpeaker):
                 case nameof(SelectedItem.VisitingSpeaker):
-                    AddModelObjectToDbContext();
-                    IsDirty = true;
+                    if (!_isLoading)
+                    {
+                        AddModelObjectToDbContext();
+                        IsDirty = true;
+                    }
                     break;
             }
         }

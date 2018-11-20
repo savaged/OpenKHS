@@ -22,7 +22,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" 
                                     Width="1*"
-                                    Binding="{Binding PublicTalkOutline.Name}" />
+                                    Binding="{Binding Name}" />
             </DataGrid.Columns>
         </DataGrid>
 
