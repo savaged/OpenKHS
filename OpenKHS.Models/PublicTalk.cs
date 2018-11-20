@@ -1,16 +1,15 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
 
 namespace OpenKHS.Models
 {
-    [Owned]
     public class PublicTalk : ModelBase
     {
         private LocalCongregationMember _localSpeaker;
         private VisitingSpeaker _visitingSpeaker;
 
-        public LocalCongregationMember LocalSpeaker
+        public int? LocalSpeakerId { get; set; }
+
+        public virtual LocalCongregationMember LocalSpeaker
         {
             get => _localSpeaker;
             set => Set(ref _localSpeaker, value);

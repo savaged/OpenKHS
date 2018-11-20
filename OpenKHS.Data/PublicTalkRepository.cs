@@ -1,18 +1,23 @@
 ﻿using System;
-using OpenKHS.Models;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using OpenKHS.Interfaces;
+using OpenKHS.Models;
 
 namespace OpenKHS.Data
 {
-    public class PublicTalkRepository : ModelRepositoryBase, IModelRepository<PublicTalk>
+    public class PublicTalkRepository 
+        : ModelRepositoryBase, IModelRepository<PublicTalk>
     {
-        public PublicTalkRepository(DatabaseContext dbContext) : base(dbContext) { }
+        public PublicTalkRepository(DatabaseContext dbContext) 
+            : base(dbContext) { }
 
         public IList<PublicTalk> Index()
         {
-            return DbContext.PublicTalks.ToList();
+            var data = DbContext.PublicTalks
+                .Include(p => p.LocalSpeaker).ToList();
+            return data;
         }
 
         public PublicTalk Show(int id)

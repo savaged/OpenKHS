@@ -12,17 +12,15 @@ namespace OpenKHS.ViewModels
     public class PublicTalksViewModel : IndexBoundViewModelBase<PublicTalk>
     {
         private NeighbouringCongregationRepository _neighbouringCongRepo;
-        private LocalCongregation _localCong;
+        private LocalCongregationMemberRepository _localCongMemberRepo;
         private bool _isLoading;
 
         public PublicTalksViewModel(DatabaseContext dbContext) : base(dbContext)
         {
-            _isLoading = true;
-            var localCongMemberRepo =
+            _localCongMemberRepo =
                 Repositories[typeof(LocalCongregationMember)]
                 as LocalCongregationMemberRepository;
-            _localCong = new LocalCongregation(localCongMemberRepo.Index());
-
+            
             _neighbouringCongRepo = Repositories[typeof(Congregation)]
                 as NeighbouringCongregationRepository;
 
@@ -31,11 +29,9 @@ namespace OpenKHS.ViewModels
             Congregations = new UserInputLookup<Congregation>();
             VisitingSpeakers = new UserInputLookup<VisitingSpeaker>();
 
-            Initialise(Repository.Index(), null);
-            LoadLookups();
+            Load();
 
             Congregations.PropertyChanged += OnCongregationsPropertyChanged;
-            _isLoading = false;
         }
 
         public override void Cleanup()
@@ -48,6 +44,7 @@ namespace OpenKHS.ViewModels
         {
             _isLoading = true;
             LoadLookups();
+            Initialise(Repository.Index(), null);
             _isLoading = false;
         }
 
@@ -75,7 +72,8 @@ namespace OpenKHS.ViewModels
         private void LoadLocalSpeakers()
         {
             LocalSpeakers.Clear();
-            var localSpeakers = _localCong.Members
+            var localCong = new LocalCongregation(_localCongMemberRepo.Index());
+            var localSpeakers = localCong.Members
                     .Where(m => m.PublicSpeaker).ToList();
 
             foreach (var congMember in localSpeakers)
@@ -91,14 +89,7 @@ namespace OpenKHS.ViewModels
 
         protected override void AddModelObjectToDbContext()
         {
-            if (ModelObject.IsNew)
-            {
-                Repository.Store(ModelObject);
-            }
-            else
-            {
-                Repository.Save();
-            }
+            IsDirty = true;
         }
 
         public ObservableCollection<LocalCongregationMember> LocalSpeakers { get; private set; }
@@ -133,7 +124,7 @@ namespace OpenKHS.ViewModels
                     if (!_isLoading)
                     {
                         AddModelObjectToDbContext();
-                        IsDirty = true;
+                        Repository.Save();
                     }
                     break;
             }
