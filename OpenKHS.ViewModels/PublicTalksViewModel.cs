@@ -122,7 +122,7 @@ namespace OpenKHS.ViewModels
                     if (!_isLoading)
                     {
                         AddModelObjectToDbContext();
-                        Repository.Save();
+                        Save();
                     }
                     break;
             }
