@@ -46,6 +46,8 @@ namespace OpenKHS.Data
             mb.Entity<ClmmSchedule>()
                 .HasIndex(s => s.WeekStarting).IsUnique();
 
+            mb.Entity<PublicTalk>().HasOne(p => p.LocalSpeaker);
+
             SeedPublicTalks(mb);
         }
 

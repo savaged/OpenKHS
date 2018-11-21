@@ -29,8 +29,6 @@ namespace OpenKHS.ViewModels
             Congregations = new UserInputLookup<Congregation>();
             VisitingSpeakers = new UserInputLookup<VisitingSpeaker>();
 
-            Load();
-
             Congregations.PropertyChanged += OnCongregationsPropertyChanged;
         }
 
