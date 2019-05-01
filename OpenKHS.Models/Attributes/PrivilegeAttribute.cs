@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace OpenKHS.Models.Attributes
 {
     [AttributeUsage(AttributeTargets.Property)]

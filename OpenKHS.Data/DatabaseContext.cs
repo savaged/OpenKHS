@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using OpenKHS.Models;
-using SQLitePCL;
 
 namespace OpenKHS.Data
 {
@@ -28,11 +27,11 @@ namespace OpenKHS.Data
             {
                 var databaseFilePath = "OpenKHS.db";
                 databaseFilePath = ApplicationData.ResourceLocation + databaseFilePath;
-                optionsBuilder
-                    .UseSqlite($"Data source={databaseFilePath}")
-                    .ConfigureWarnings(w => w.Throw(CoreEventId.IncludeIgnoredWarning));
+                //optionsBuilder
+                //    .UseSqlite($"Data source={databaseFilePath}")
+                //    .ConfigureWarnings(w => w.Throw(CoreEventId.IncludeIgnoredWarning));
             }
-            Batteries.Init();
+            //Batteries.Init();
         }
 
         protected override void OnModelCreating(ModelBuilder mb)

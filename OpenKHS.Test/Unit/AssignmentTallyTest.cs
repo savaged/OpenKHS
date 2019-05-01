@@ -5,7 +5,7 @@ using OpenKHS.Models;
 namespace OpenKHS.Test.Unit
 {
     [TestClass]
-    public class AssignmentTallyTest : TestBase
+    public class AssignmentTallyTest
     {
         [TestMethod]
         public void TestAssignmentTallyIncrementAndReset()

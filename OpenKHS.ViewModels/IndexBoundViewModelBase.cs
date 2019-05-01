@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 using OpenKHS.Interfaces;
 using OpenKHS.Data;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using System.ComponentModel;
 
 namespace OpenKHS.ViewModels

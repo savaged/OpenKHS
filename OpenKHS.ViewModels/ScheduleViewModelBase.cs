@@ -6,8 +6,9 @@ using OpenKHS.Models;
 using OpenKHS.Interfaces;
 using OpenKHS.Models.Utils;
 using OpenKHS.Data;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using System.Windows;
+using Windows.ApplicationModel.DataTransfer;
 
 namespace OpenKHS.ViewModels
 {
@@ -181,7 +182,9 @@ namespace OpenKHS.ViewModels
         private void OnCopyToClipboard()
         {
             // TODO format the output of model object
-            Clipboard.SetText(ModelObject.ToString());
+            var data = new DataPackage();
+            data.SetText(ModelObject.ToString());
+            Clipboard.SetContent(data);
         }
         public bool CanCopyToClipboard => ModelObject != null;
 

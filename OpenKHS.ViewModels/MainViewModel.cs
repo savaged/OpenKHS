@@ -1,7 +1,7 @@
 ﻿using System;
 using log4net;
 using System.Reflection;
-using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Command;
 using System.Windows.Input;
 using OpenKHS.Interfaces;
 using OpenKHS.Data;

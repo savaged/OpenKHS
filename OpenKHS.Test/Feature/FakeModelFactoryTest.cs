@@ -8,7 +8,7 @@ using System.Reflection;
 namespace OpenKHS.Test.Feature
 {
     [TestClass]
-    public class FakeModelFactoryTest : TestBase
+    public class FakeModelFactoryTest
     {
         [TestMethod]
         public void TestFakeHomeCongregationMaker()

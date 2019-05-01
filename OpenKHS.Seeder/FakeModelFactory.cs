@@ -246,7 +246,7 @@ namespace OpenKHS.Seeder
         private bool TheBogusRandomBoolWontWorkSoIveCreatedMyOwn()
         {
             bool b = false;
-            string binString = Convert.ToString(Randomizer.Seed.Next(2), 2); 
+            string binString = Convert.ToString(Randomizer.Seed.Next(2), 2);
             string c = binString[binString.Length - 1].ToString();
             int i = Int32.Parse(c);
             b = 0 != i;
@@ -263,7 +263,7 @@ namespace OpenKHS.Seeder
             }
             return friends;
         }
-        
+
 
         private LocalCongregationMember MakeCongregationMember()
         {
