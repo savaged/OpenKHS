@@ -1,14 +1,10 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight;
+using Microsoft.Toolkit.Uwp.UI.Controls;
+using OpenKHS.Universal.Core.Models;
+using OpenKHS.Universal.Core.Services;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-
-using GalaSoft.MvvmLight;
-
-using Microsoft.Toolkit.Uwp.UI.Controls;
-
-using OpenKHS.Universal.Core.Models;
-using OpenKHS.Universal.Core.Services;
 
 namespace OpenKHS.Universal.ViewModels
 {
@@ -22,7 +18,7 @@ namespace OpenKHS.Universal.ViewModels
             set { Set(ref _selected, value); }
         }
 
-        public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
+        public ObservableCollection<SampleOrder> Index { get; private set; } = new ObservableCollection<SampleOrder>();
 
         public TalksViewModel()
         {
@@ -30,18 +26,18 @@ namespace OpenKHS.Universal.ViewModels
 
         public async Task LoadDataAsync(MasterDetailsViewState viewState)
         {
-            SampleItems.Clear();
+            Index.Clear();
 
             var data = await SampleDataService.GetSampleModelDataAsync();
 
             foreach (var item in data)
             {
-                SampleItems.Add(item);
+                Index.Add(item);
             }
 
             if (viewState == MasterDetailsViewState.Both)
             {
-                Selected = SampleItems.First();
+                Selected = Index.First();
             }
         }
     }

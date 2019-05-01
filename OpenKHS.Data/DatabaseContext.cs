@@ -34,7 +34,6 @@ namespace OpenKHS.Data
                     .UseSqlite($"Data source={databaseFilePath}")
                     .ConfigureWarnings(w => w.Throw(CoreEventId.IncludeIgnoredWarning));
             }
-            //Batteries.Init();
         }
 
         protected override void OnModelCreating(ModelBuilder mb)

@@ -11,7 +11,7 @@ namespace OpenKHS.Universal.Core.Services
     // TODO WTS: Delete this file once your app is using real data.
     public static class SampleDataService
     {
-        private static IEnumerable<SampleOrder> AllOrders()
+        private static IEnumerable<SampleOrder> Index()
         {
             // The following is order summary data
             var data = new ObservableCollection<SampleOrder>
@@ -126,7 +126,7 @@ namespace OpenKHS.Universal.Core.Services
         {
             await Task.CompletedTask;
 
-            return AllOrders();
+            return Index();
         }
     }
 }
