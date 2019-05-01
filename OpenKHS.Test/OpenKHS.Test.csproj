@@ -221,7 +221,6 @@
     <Compile Include="Unit\AssignmentTallyTest.cs" />
     <Compile Include="Integration\DbConfigTest.cs" />
     <Compile Include="DbContextTestBase.cs" />
-    <Compile Include="UI\MainViewModelTest.cs" />
     <Compile Include="Feature\PmScheduleLoadFirstTimeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestBase.cs" />
