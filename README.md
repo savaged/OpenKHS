@@ -18,6 +18,5 @@ Feel free to have a look at the code by cloning this repository using:
 * Functional Requirement: Add 'second school' 
 * Functional Requirement: Add cleaning schedule
 * Create db migration method for schema changes in the future
-* UWP version using https://github.com/Microsoft/WindowsTemplateStudio
 * Android version
 * iOS version
