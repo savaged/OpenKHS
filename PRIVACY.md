@@ -1,5 +1,5 @@
 # Privacy Policy
-Effective date: April 25, 2019
+Effective date: April 30, 2019
 OpenKHS ("us", "we", or "our") operates the mobile application (the "Service").
 
 This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data. Our Privacy Policy for My Site is created with the help of the Free Privacy Policy website.
