@@ -18,7 +18,6 @@ namespace OpenKHS.Universal.ViewModels
         {
             SimpleIoc.Default.Register(() => new NavigationServiceEx());
             SimpleIoc.Default.Register<ShellViewModel>();
-            Register<MainViewModel, MainPage>();
             Register<CongregationViewModel, CongregationPage>();
             Register<CLMMViewModel, CLMMPage>();
             Register<PublicViewModel, PublicPage>();
@@ -35,8 +34,6 @@ namespace OpenKHS.Universal.ViewModels
         public CLMMViewModel CLMMViewModel => SimpleIoc.Default.GetInstance<CLMMViewModel>();
 
         public CongregationViewModel CongregationViewModel => SimpleIoc.Default.GetInstance<CongregationViewModel>();
-
-        public MainViewModel MainViewModel => SimpleIoc.Default.GetInstance<MainViewModel>();
 
         public ShellViewModel ShellViewModel => SimpleIoc.Default.GetInstance<ShellViewModel>();
 

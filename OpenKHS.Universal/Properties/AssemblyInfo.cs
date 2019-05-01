@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("OpenKHS.Universal")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("OpenKHS")]
+[assembly: AssemblyDescription("Free open source KHS (Kingdom Hall Scheduling) application.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("OpenKHS.Universal")]
+[assembly: AssemblyCompany("savaged")]
+[assembly: AssemblyProduct("OpenKHS")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

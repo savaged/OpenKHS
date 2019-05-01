@@ -136,7 +136,6 @@
     <Compile Include="Services\ThemeSelectorService.cs" />
     <Compile Include="ViewModels\CLMMViewModel.cs" />
     <Compile Include="ViewModels\CongregationViewModel.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\PublicViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
@@ -153,9 +152,6 @@
     </Compile>
     <Compile Include="Views\CongregationPage.xaml.cs">
       <DependentUpon>CongregationPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PublicDetailControl.xaml.cs">
       <DependentUpon>PublicDetailControl.xaml</DependentUpon>
@@ -275,10 +271,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\CongregationPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
