@@ -3,14 +3,15 @@ using System.Linq;
 using System.Collections.Generic;
 using OpenKHS.Models;
 using OpenKHS.Data;
+using OpenKHS.Interfaces;
 
 namespace OpenKHS.ViewModels
 {
     public class ClmmScheduleViewModel : ScheduleViewModelBase<ClmmSchedule>
     {
         public ClmmScheduleViewModel(
-            DatabaseContext dbContext, IList<LocalCongregationMember> congMembers)
-            : base(dbContext, congMembers)
+            IRepositoryLookup repositoryLookup, IList<LocalCongregationMember> congMembers)
+            : base(repositoryLookup, congMembers)
         {
             TreasuresConductors = new List<LocalCongregationMember>();
             GemsConductors = new List<LocalCongregationMember>();

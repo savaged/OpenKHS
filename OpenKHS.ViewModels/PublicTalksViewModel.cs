@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using OpenKHS.ViewModels.Utils;
 using System.Collections.ObjectModel;
+using OpenKHS.Interfaces;
 
 namespace OpenKHS.ViewModels
 {
@@ -15,13 +16,13 @@ namespace OpenKHS.ViewModels
         private LocalCongregationMemberRepository _localCongMemberRepo;
         private bool _isLoading;
 
-        public PublicTalksViewModel(DatabaseContext dbContext) : base(dbContext)
+        public PublicTalksViewModel(IRepositoryLookup repositoryLookup) : base(repositoryLookup)
         {
             _localCongMemberRepo =
-                Repositories[typeof(LocalCongregationMember)]
+                repositoryLookup.Repositories[typeof(LocalCongregationMember)]
                 as LocalCongregationMemberRepository;
             
-            _neighbouringCongRepo = Repositories[typeof(Congregation)]
+            _neighbouringCongRepo = repositoryLookup.Repositories[typeof(Congregation)]
                 as NeighbouringCongregationRepository;
 
             LocalSpeakers = new ObservableCollection<LocalCongregationMember>();

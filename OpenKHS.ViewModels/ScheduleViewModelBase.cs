@@ -14,8 +14,8 @@ namespace OpenKHS.ViewModels
     public abstract class ScheduleViewModelBase<T> : IndexBoundViewModelBase<T>
         where T : ISchedule, new()
     {
-        public ScheduleViewModelBase(DatabaseContext dbContext, IList<LocalCongregationMember> congMembers) 
-            : base(dbContext)
+        public ScheduleViewModelBase(IRepositoryLookup repositoryLookup, IList<LocalCongregationMember> congMembers) 
+            : base(repositoryLookup)
         {
             CongMembers = congMembers;
             Attendants = new List<LocalCongregationMember>();

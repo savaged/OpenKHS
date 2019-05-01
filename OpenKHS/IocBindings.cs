@@ -1,8 +1,9 @@
 ﻿using Ninject.Modules;
-using OpenKHS.ViewModels;
-using OpenKHS.Interfaces;
-using OpenKHS.Views;
 using OpenKHS.Data;
+using OpenKHS.Interfaces;
+using OpenKHS.ViewModels;
+using OpenKHS.ViewModels.Utils;
+using OpenKHS.Views;
 
 namespace OpenKHS
 {
@@ -15,9 +16,10 @@ namespace OpenKHS
         public override void Load()
         {
             Bind<MessageBoxService>().ToSelf().InSingletonScope();
-            Bind<IMainView>().To<MainWindow>();
-            Bind<IMainViewModel>().To<MainViewModel>();
             Bind<DatabaseContext>().ToSelf().InSingletonScope();
+            Bind<IRepositoryLookup>().To<RepositoryLookup>();
+            Bind<IMainViewModel>().To<MainViewModel>();
+            Bind<IMainView>().To<MainWindow>();
         }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using OpenKHS.Interfaces;
-using OpenKHS.Data;
-using System.Collections.Generic;
-using OpenKHS.Models;
+﻿using OpenKHS.Interfaces;
 using System.ComponentModel;
 
 namespace OpenKHS.ViewModels
@@ -11,27 +7,19 @@ namespace OpenKHS.ViewModels
         where T : IModel, new()
     {
         private T _modelObject;
-        protected readonly IDictionary<Type, object> Repositories;
+        protected readonly IRepositoryLookup RepositoryLookup;
 
-        public ModelBoundViewModelBase(DatabaseContext dbContext)
+        public ModelBoundViewModelBase(IRepositoryLookup repositoryLookup)
         {
-            Repositories = new Dictionary<Type, object>
-            {
-                { typeof(LocalCongregationMember), new LocalCongregationMemberRepository(dbContext) },
-                { typeof(PmSchedule), new PmScheduleRepository(dbContext) },
-                { typeof(ClmmSchedule), new ClmmScheduleRepository(dbContext) },
-                { typeof(PublicTalk), new PublicTalkRepository(dbContext) },
-                { typeof(VisitingSpeaker), new VisitingSpeakerRepository(dbContext) },
-                { typeof(Congregation), new NeighbouringCongregationRepository(dbContext) }
-            };
-            Repository = (IModelRepository<T>)Repositories[typeof(T)];
+            RepositoryLookup = repositoryLookup;
+            Repository = (IModelRepository<T>)repositoryLookup?.Repositories[typeof(T)];
         }
 
         protected IModelRepository<T> Repository { get; }
 
         protected IModelRepository<R> GetRelatedRepository<R>() where R : IModel, new()
         {
-            return (IModelRepository<R>)Repositories[typeof(R)];
+            return RepositoryLookup.GetRelatedRepository<R>();
         }
 
         protected bool IsDirty { get; set; }

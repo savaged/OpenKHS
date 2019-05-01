@@ -3,13 +3,14 @@ using System.Linq;
 using System.Collections.Generic;
 using OpenKHS.Models;
 using OpenKHS.Data;
+using OpenKHS.Interfaces;
 
 namespace OpenKHS.ViewModels
 {
     public class PmScheduleViewModel : ScheduleViewModelBase<PmSchedule>
     {
-        public PmScheduleViewModel(DatabaseContext dbContext, IList<LocalCongregationMember> congMembers)
-            : base(dbContext, congMembers)
+        public PmScheduleViewModel(IRepositoryLookup repositoryLookup, IList<LocalCongregationMember> congMembers)
+            : base(repositoryLookup, congMembers)
         {
             WtReaders = new List<LocalCongregationMember>();
             WtConductors = new List<LocalCongregationMember>();

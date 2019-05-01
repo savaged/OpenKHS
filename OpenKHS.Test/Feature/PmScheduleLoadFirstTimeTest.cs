@@ -6,6 +6,7 @@ using OpenKHS.Data;
 using OpenKHS.Models;
 using OpenKHS.ViewModels;
 using OpenKHS.Models.Utils;
+using OpenKHS.ViewModels.Utils;
 
 namespace OpenKHS.Test.Feature
 {
@@ -17,7 +18,8 @@ namespace OpenKHS.Test.Feature
         {
             IList<LocalCongregationMember> congMembers;
             congMembers = DbContext.LocalCongregationMembers.ToList();
-            var vm = new PmScheduleViewModel(DbContext, congMembers);
+            var repositoryLookup = new RepositoryLookup(DbContext);
+            var vm = new PmScheduleViewModel(repositoryLookup, congMembers);
 
             // Default empty schedule for new week
             Assert.IsNotNull(vm.ModelObject);

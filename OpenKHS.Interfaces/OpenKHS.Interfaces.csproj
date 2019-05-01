@@ -66,6 +66,7 @@
     <Compile Include="IMeetingPart.cs" />
     <Compile Include="IModel.cs" />
     <Compile Include="IModelRepository.cs" />
+    <Compile Include="IRepositoryLookup.cs" />
     <Compile Include="ISchedule.cs" />
     <Compile Include="IViewManager.cs" />
     <Compile Include="IModelBoundViewModel.cs" />

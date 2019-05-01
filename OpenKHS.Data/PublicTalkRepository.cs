@@ -10,14 +10,18 @@ namespace OpenKHS.Data
     public class PublicTalkRepository 
         : ModelRepositoryBase, IModelRepository<PublicTalk>
     {
+        private readonly IList<PublicTalk> _index;
+
         public PublicTalkRepository(DatabaseContext dbContext) 
-            : base(dbContext) { }
+            : base(dbContext)
+        {
+            _index = DbContext.PublicTalks
+                .Include(p => p.LocalSpeaker).ToList();
+        }
 
         public IList<PublicTalk> Index()
         {
-            var data = DbContext.PublicTalks
-                .Include(p => p.LocalSpeaker).ToList();
-            return data;
+            return _index;
         }
 
         public PublicTalk Show(int id)

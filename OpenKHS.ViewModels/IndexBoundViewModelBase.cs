@@ -1,19 +1,18 @@
-﻿using System;
-using System.Linq;
+﻿using GalaSoft.MvvmLight.CommandWpf;
+using OpenKHS.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using OpenKHS.Interfaces;
-using OpenKHS.Data;
-using System.Windows.Input;
-using GalaSoft.MvvmLight.CommandWpf;
 using System.ComponentModel;
+using System.Linq;
+using System.Windows.Input;
 
 namespace OpenKHS.ViewModels
 {
     public abstract class IndexBoundViewModelBase<T> : ModelBoundViewModelBase<T>, IIndexBoundViewModel<T> 
         where T : IModel, new()
     {
-        public IndexBoundViewModelBase(DatabaseContext dbContext) : base(dbContext)
+        public IndexBoundViewModelBase(IRepositoryLookup repositoryLookup) : base(repositoryLookup)
         {
             Index = new ObservableCollection<T>();
             NewCmd = new RelayCommand(OnNew, () => GlobalViewState.IsNotBusy);
