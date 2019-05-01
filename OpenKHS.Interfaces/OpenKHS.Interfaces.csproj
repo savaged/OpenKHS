@@ -60,7 +60,6 @@
     <Compile Include="ICongregationMember.cs" />
     <Compile Include="IIndexBoundViewModel.cs" />
     <Compile Include="IJsonEncode.cs" />
-    <Compile Include="IMainView.cs" />
     <Compile Include="IMainViewModel.cs" />
     <Compile Include="IManagedView.cs" />
     <Compile Include="IMeetingPart.cs" />
