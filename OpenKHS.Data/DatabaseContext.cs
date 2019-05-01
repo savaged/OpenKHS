@@ -5,6 +5,9 @@ using OpenKHS.Models;
 
 namespace OpenKHS.Data
 {
+    /// <summary>
+    /// NOTE: https://docs.microsoft.com/en-us/ef/core/get-started/uwp/getting-started
+    /// </summary>
     public class DatabaseContext : DbContext
     {
         public DatabaseContext()
@@ -27,9 +30,9 @@ namespace OpenKHS.Data
             {
                 var databaseFilePath = "OpenKHS.db";
                 databaseFilePath = ApplicationData.ResourceLocation + databaseFilePath;
-                //optionsBuilder
-                //    .UseSqlite($"Data source={databaseFilePath}")
-                //    .ConfigureWarnings(w => w.Throw(CoreEventId.IncludeIgnoredWarning));
+                optionsBuilder
+                    .UseSqlite($"Data source={databaseFilePath}")
+                    .ConfigureWarnings(w => w.Throw(CoreEventId.IncludeIgnoredWarning));
             }
             //Batteries.Init();
         }
