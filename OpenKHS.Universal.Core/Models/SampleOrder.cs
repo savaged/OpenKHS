@@ -7,23 +7,15 @@ namespace OpenKHS.Universal.Core.Models
     // It is the model class we use to display data on pages like Grid, Chart, and Master Detail.
     public class SampleOrder
     {
-        public long OrderId { get; set; }
+        public long Id { get; set; }
 
-        public DateTime OrderDate { get; set; }
+        public DateTime WeekStarting { get; set; }
 
-        public string Company { get; set; }
-
-        public string ShipTo { get; set; }
-
-        public double OrderTotal { get; set; }
-
-        public string Status { get; set; }
-
-        public char Symbol { get; set; }
+        public string Name { get; set; }
 
         public override string ToString()
         {
-            return $"{Company} {Status}";
+            return $"{Id} {Name}";
         }
     }
 }
