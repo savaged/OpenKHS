@@ -1,9 +1,9 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Command;
+using OpenKHS.Interfaces;
 using OpenKHS.Models;
-using OpenKHS.Data;
-using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
 using OpenKHS.Models.Attributes;
+using System;
+using System.Windows.Input;
 
 namespace OpenKHS.ViewModels
 {
@@ -11,7 +11,8 @@ namespace OpenKHS.ViewModels
     {
         private bool _previousTogglePrivilegesSetting;
 
-        public CongregationViewModel(DatabaseContext dbContext) : base(dbContext)
+        public CongregationViewModel(IRepositoryLookup repositoryLookup)
+            : base(repositoryLookup)
         {
             Initialise(Repository.Index(), null);
             TogglePrivilegesCmd = new RelayCommand(OnTogglePrivileges, () => CanExecute);

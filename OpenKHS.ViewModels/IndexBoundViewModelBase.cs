@@ -13,7 +13,8 @@ namespace OpenKHS.ViewModels
     public abstract class IndexBoundViewModelBase<T> : ModelBoundViewModelBase<T>, IIndexBoundViewModel<T> 
         where T : IModel, new()
     {
-        public IndexBoundViewModelBase(DatabaseContext dbContext) : base(dbContext)
+        public IndexBoundViewModelBase(IRepositoryLookup repositoryLookup) 
+            : base(repositoryLookup)
         {
             Index = new ObservableCollection<T>();
             NewCmd = new RelayCommand(OnNew, () => GlobalViewState.IsNotBusy);

@@ -1,10 +1,9 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Command;
 using log4net;
-using System.Reflection;
-using GalaSoft.MvvmLight.Command;
-using System.Windows.Input;
 using OpenKHS.Interfaces;
-using OpenKHS.Data;
+using System;
+using System.Reflection;
+using System.Windows.Input;
 
 namespace OpenKHS.ViewModels
 {
@@ -41,13 +40,13 @@ namespace OpenKHS.ViewModels
 
         #region Constructors
 
-        public MainViewModel(DatabaseContext dbContext)
+        public MainViewModel(IRepositoryLookup repositoryLookup)
         {
-            _congregationViewModel = new CongregationViewModel(dbContext);
+            _congregationViewModel = new CongregationViewModel(repositoryLookup);
             // TODO figure out how talks should work
-            _publicTalksViewModel = new PublicTalksViewModel(dbContext);
-            _pmScheduleViewModel = new PmScheduleViewModel(dbContext, _congregationViewModel.Index);
-            _clmmScheduleViewModel = new ClmmScheduleViewModel(dbContext, _congregationViewModel.Index);
+            _publicTalksViewModel = new PublicTalksViewModel(repositoryLookup);
+            _pmScheduleViewModel = new PmScheduleViewModel(repositoryLookup, _congregationViewModel.Index);
+            _clmmScheduleViewModel = new ClmmScheduleViewModel(repositoryLookup, _congregationViewModel.Index);
         }
 
         #endregion

@@ -1,7 +1,5 @@
-﻿using System;
-
-using OpenKHS.Universal.Services;
-
+﻿using OpenKHS.Universal.Services;
+using System;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 

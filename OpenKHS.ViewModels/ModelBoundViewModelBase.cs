@@ -1,8 +1,6 @@
-﻿using System;
-using OpenKHS.Interfaces;
-using OpenKHS.Data;
+﻿using OpenKHS.Interfaces;
+using System;
 using System.Collections.Generic;
-using OpenKHS.Models;
 using System.ComponentModel;
 
 namespace OpenKHS.ViewModels
@@ -13,18 +11,9 @@ namespace OpenKHS.ViewModels
         private T _modelObject;
         protected readonly IDictionary<Type, object> Repositories;
 
-        public ModelBoundViewModelBase(DatabaseContext dbContext)
+        public ModelBoundViewModelBase(IRepositoryLookup repositoryLookup)
         {
-            Repositories = new Dictionary<Type, object>
-            {
-                { typeof(LocalCongregationMember), new LocalCongregationMemberRepository(dbContext) },
-                { typeof(PmSchedule), new PmScheduleRepository(dbContext) },
-                { typeof(ClmmSchedule), new ClmmScheduleRepository(dbContext) },
-                { typeof(PublicTalk), new PublicTalkRepository(dbContext) },
-                { typeof(VisitingSpeaker), new VisitingSpeakerRepository(dbContext) },
-                { typeof(Congregation), new NeighbouringCongregationRepository(dbContext) }
-            };
-            Repository = (IModelRepository<T>)Repositories[typeof(T)];
+            Repository = (IModelRepository<T>)repositoryLookup.Repositories[typeof(T)];
         }
 
         protected IModelRepository<T> Repository { get; }

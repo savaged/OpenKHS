@@ -1,13 +1,11 @@
-﻿using System;
-using System.Linq;
+﻿using GalaSoft.MvvmLight.Command;
+using OpenKHS.Interfaces;
+using OpenKHS.Models;
+using OpenKHS.Models.Utils;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using OpenKHS.Models;
-using OpenKHS.Interfaces;
-using OpenKHS.Models.Utils;
-using OpenKHS.Data;
-using GalaSoft.MvvmLight.Command;
-using System.Windows;
+using System.Linq;
 using Windows.ApplicationModel.DataTransfer;
 
 namespace OpenKHS.ViewModels
@@ -15,8 +13,8 @@ namespace OpenKHS.ViewModels
     public abstract class ScheduleViewModelBase<T> : IndexBoundViewModelBase<T>
         where T : ISchedule, new()
     {
-        public ScheduleViewModelBase(DatabaseContext dbContext, IList<LocalCongregationMember> congMembers) 
-            : base(dbContext)
+        public ScheduleViewModelBase(IRepositoryLookup repositoryLookup, IList<LocalCongregationMember> congMembers) 
+            : base(repositoryLookup)
         {
             CongMembers = congMembers;
             Attendants = new List<LocalCongregationMember>();

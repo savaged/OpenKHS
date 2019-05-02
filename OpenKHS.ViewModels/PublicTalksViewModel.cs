@@ -1,11 +1,10 @@
-﻿using System;
-using System.Linq;
-using OpenKHS.Data;
+﻿using OpenKHS.Data;
+using OpenKHS.Interfaces;
 using OpenKHS.Models;
-using System.Collections.Generic;
-using System.ComponentModel;
 using OpenKHS.ViewModels.Utils;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
 
 namespace OpenKHS.ViewModels
 {
@@ -15,7 +14,8 @@ namespace OpenKHS.ViewModels
         private LocalCongregationMemberRepository _localCongMemberRepo;
         private bool _isLoading;
 
-        public PublicTalksViewModel(DatabaseContext dbContext) : base(dbContext)
+        public PublicTalksViewModel(IRepositoryLookup repositoryLookup)
+            : base(repositoryLookup)
         {
             _localCongMemberRepo =
                 Repositories[typeof(LocalCongregationMember)]
