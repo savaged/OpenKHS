@@ -53,7 +53,7 @@ namespace OpenKHS.ViewModels
         {
             if (IsValidSchedule())
             {
-                Repository.Store(ModelObject);
+                Repository.Store(Selected);
             }
         }
 

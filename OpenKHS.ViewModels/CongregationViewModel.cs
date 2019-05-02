@@ -32,9 +32,9 @@ namespace OpenKHS.ViewModels
 
         protected override void AddModelObjectToDbContext()
         {
-            if (ModelObject != null && !string.IsNullOrEmpty(ModelObject.Name))
+            if (Selected != null && !string.IsNullOrEmpty(Selected.Name))
             {
-                Repository.Store(ModelObject);
+                Repository.Store(Selected);
             }
         }
 
@@ -42,21 +42,21 @@ namespace OpenKHS.ViewModels
 
         private void OnTogglePrivileges()
         {
-            if (ModelObject == null)
+            if (Selected == null)
             {
                 throw new ArgumentNullException("Always expected the Model to be set here.");
             }
             _previousTogglePrivilegesSetting = !_previousTogglePrivilegesSetting;
 
-            foreach (var p in ModelObject.GetType().GetProperties())
+            foreach (var p in Selected.GetType().GetProperties())
             {
                 if (Attribute.IsDefined(p, typeof(PrivilegeAttribute)))
                 {
-                    if (p.Name != nameof(ModelObject.ClmmMainHallOnly) &&
-                        p.Name != nameof(ModelObject.ClmmSecondSchoolOnly) &&
-                        p.Name != nameof(ModelObject.MainWtConductor))
+                    if (p.Name != nameof(Selected.ClmmMainHallOnly) &&
+                        p.Name != nameof(Selected.ClmmSecondSchoolOnly) &&
+                        p.Name != nameof(Selected.MainWtConductor))
                     {
-                        p.SetValue(ModelObject, _previousTogglePrivilegesSetting);
+                        p.SetValue(Selected, _previousTogglePrivilegesSetting);
                     }
                 }
             }
@@ -64,7 +64,7 @@ namespace OpenKHS.ViewModels
 
         private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(ModelObject))
+            if (e.PropertyName == nameof(Selected))
             {
                 _previousTogglePrivilegesSetting = false;
             }
@@ -75,7 +75,7 @@ namespace OpenKHS.ViewModels
         {
             base.OnModelObjectPropertyChanged(sender, e);
 
-            if (!string.IsNullOrEmpty(ModelObject.Name))
+            if (!string.IsNullOrEmpty(Selected.Name))
             {
                 RaisePropertyChanged(nameof(IsItemSelected));
             }

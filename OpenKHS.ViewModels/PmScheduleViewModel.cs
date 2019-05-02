@@ -44,9 +44,9 @@ namespace OpenKHS.ViewModels
 
         private void SetDefaultWtConductor()
         {
-            if (ModelObject != null && ModelObject.WtConductor == null)
+            if (Selected != null && Selected.WtConductor == null)
             {
-                ModelObject.WtConductor = CongMembers.Where(f => f.MainWtConductor).FirstOrDefault();
+                Selected.WtConductor = CongMembers.Where(f => f.MainWtConductor).FirstOrDefault();
             }
         }
 

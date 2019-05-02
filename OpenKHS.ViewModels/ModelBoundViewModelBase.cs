@@ -8,7 +8,7 @@ namespace OpenKHS.ViewModels
     public abstract class ModelBoundViewModelBase<T> : LocalViewModelBase, IModelBoundViewModel<T> 
         where T : IModel, new()
     {
-        private T _modelObject;
+        private T _selected;
         protected readonly IDictionary<Type, object> Repositories;
 
         public ModelBoundViewModelBase(IRepositoryLookup repositoryLookup)
@@ -31,27 +31,27 @@ namespace OpenKHS.ViewModels
             {
                 data = new T();
             }
-            ModelObject = data;            
+            Selected = data;            
         }
 
-        public T ModelObject
+        public T Selected
         {
-            get => _modelObject;
+            get => _selected;
             set
             {
-                if (_modelObject != null)
+                if (_selected != null)
                 {
                     if (value == null)
                     {
-                        _modelObject.PropertyChanged -= OnModelObjectPropertyChanged;
+                        _selected.PropertyChanged -= OnModelObjectPropertyChanged;
                     }
                     Save();
                 }
-                Set(ref _modelObject, value);
+                Set(ref _selected, value);
                 IsDirty = false;
-                if (_modelObject != null)
+                if (_selected != null)
                 {
-                    _modelObject.PropertyChanged += OnModelObjectPropertyChanged;
+                    _selected.PropertyChanged += OnModelObjectPropertyChanged;
                 }
             }
         }
@@ -61,7 +61,7 @@ namespace OpenKHS.ViewModels
         protected virtual void OnModelObjectPropertyChanged(
             object sender, PropertyChangedEventArgs e)
         {
-            if (ModelObject.IsNew)
+            if (Selected.IsNew)
             {
                 AddModelObjectToDbContext();
             }
@@ -73,7 +73,7 @@ namespace OpenKHS.ViewModels
 
         public virtual void Save()
         {
-            if (ModelObject != null)
+            if (Selected != null)
             {
                 if (IsDirty)
                 {

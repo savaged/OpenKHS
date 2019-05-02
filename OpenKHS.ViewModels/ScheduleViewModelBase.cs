@@ -109,13 +109,13 @@ namespace OpenKHS.ViewModels
         {
             if (IsValidSchedule())
             {
-                Repository.Store(ModelObject);
+                Repository.Store(Selected);
             }
         }
 
         protected bool IsValidSchedule()
         {
-            return ModelObject != null && ModelObject.WeekStarting > DateTime.MinValue;
+            return Selected != null && Selected.WeekStarting > DateTime.MinValue;
         }
 
         private void SetWeekStartingDate(T schedule)
@@ -156,14 +156,14 @@ namespace OpenKHS.ViewModels
         {
             if (e.PropertyName == nameof(SelectedItem) && IsItemSelected)
             {
-                if (ModelObject == null)
+                if (Selected == null)
                 {
                     throw new ArgumentNullException(
                         "Expected Selected Item and Model Object to be in sync!");
                 }
-                if (ModelObject.WeekStarting == DateTime.MinValue)
+                if (Selected.WeekStarting == DateTime.MinValue)
                 {
-                    SetWeekStartingDate(ModelObject);
+                    SetWeekStartingDate(Selected);
                 }
             }
         }
@@ -171,9 +171,9 @@ namespace OpenKHS.ViewModels
         private void OnScheduleModelObjectPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             LoadLookups();
-            foreach (var friend in ModelObject.Participants)
+            foreach (var friend in Selected.Participants)
             {
-                friend?.SetIsPotentiallyOverloaded(ModelObject);
+                friend?.SetIsPotentiallyOverloaded(Selected);
             }
         }
 
@@ -181,10 +181,10 @@ namespace OpenKHS.ViewModels
         {
             // TODO format the output of model object
             var data = new DataPackage();
-            data.SetText(ModelObject.ToString());
+            data.SetText(Selected.ToString());
             Clipboard.SetContent(data);
         }
-        public bool CanCopyToClipboard => ModelObject != null;
+        public bool CanCopyToClipboard => Selected != null;
 
         #endregion
     }

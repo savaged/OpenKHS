@@ -46,10 +46,10 @@ namespace OpenKHS.ViewModels
 
         public T SelectedItem
         {
-            get => ModelObject;
+            get => Selected;
             set
             {
-                ModelObject = value;
+                Selected = value;
                 RaisePropertyChanged(nameof(SelectedItem));
                 RaisePropertyChanged(nameof(IsItemSelected));
             }
