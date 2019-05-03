@@ -1,9 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Threading.Tasks;
 
-using Newtonsoft.Json;
-
-namespace OpenKHS.Universal.Core.Helpers
+namespace OpenKHS.Common
 {
     public static class Json
     {

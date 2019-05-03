@@ -313,6 +313,14 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OpenKHS.Common\OpenKHS.Common.csproj">
+      <Project>{f861b151-df69-4a5b-9127-247642e7bdb3}</Project>
+      <Name>OpenKHS.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenKHS.Data\OpenKHS.Data.csproj">
+      <Project>{82FA82D2-8367-40C2-992E-EC2AEA88233B}</Project>
+      <Name>OpenKHS.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OpenKHS.Interfaces\OpenKHS.Interfaces.csproj">
       <Project>{3695D1E5-6BC0-471B-A096-F773E1C25694}</Project>
       <Name>OpenKHS.Interfaces</Name>
@@ -320,10 +328,6 @@
     <ProjectReference Include="..\OpenKHS.Models\OpenKHS.Models.csproj">
       <Project>{21dca6ca-b55a-4b2b-888f-324b8094414b}</Project>
       <Name>OpenKHS.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OpenKHS.Universal.Core\OpenKHS.Universal.Core.csproj">
-      <Project>{01f6483d-36d8-442f-a591-cf7536295c9c}</Project>
-      <Name>OpenKHS.Universal.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\OpenKHS.ViewModels\OpenKHS.ViewModels.csproj">
       <Project>{380297e3-b520-4d50-815c-d52ca2cbc4ac}</Project>

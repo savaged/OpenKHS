@@ -1,4 +1,5 @@
 ﻿using System;
+using GalaSoft.MvvmLight.Ioc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using OpenKHS.Models;
@@ -10,10 +11,11 @@ namespace OpenKHS.Data
     /// </summary>
     public class DatabaseContext : DbContext
     {
-        public DatabaseContext()
-        { }
-
-        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
+        [PreferredConstructor]
+        public DatabaseContext() { }
+        
+        public DatabaseContext(DbContextOptions<DatabaseContext> options) 
+            : base(options)
         { }
 
         public DbSet<LocalCongregationMember> LocalCongregationMembers { get; set; }

@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\OpenKHS.Common\OpenKHS.Common.csproj" />
     <ProjectReference Include="..\OpenKHS.Data\OpenKHS.Data.csproj" />
     <ProjectReference Include="..\OpenKHS.Interfaces\OpenKHS.Interfaces.csproj" />
     <ProjectReference Include="..\OpenKHS.Models\OpenKHS.Models.csproj" />

@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Ioc;
+using OpenKHS.Data;
 using OpenKHS.Interfaces;
 using OpenKHS.Universal.Services;
 using OpenKHS.Universal.Views;
@@ -27,6 +28,8 @@ namespace OpenKHS.Universal.ViewModels
 
             #endregion
 
+            SimpleIoc.Default
+                .Register<DatabaseContext>();
             SimpleIoc.Default
                 .Register<IRepositoryLookup, RepositoryLookup>();
 

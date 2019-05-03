@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\OpenKHS.Common\OpenKHS.Common.csproj" />
     <ProjectReference Include="..\OpenKHS.Interfaces\OpenKHS.Interfaces.csproj" />
   </ItemGroup>
 
