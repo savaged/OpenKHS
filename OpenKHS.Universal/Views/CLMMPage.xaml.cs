@@ -1,7 +1,5 @@
-﻿using System;
-
+﻿using Microsoft.Toolkit.Uwp.UI.Controls;
 using OpenKHS.Universal.ViewModels;
-
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -23,7 +21,8 @@ namespace OpenKHS.Universal.Views
 
         private async void CLMMPage_Loaded(object sender, RoutedEventArgs e)
         {
-            await ViewModel.LoadDataAsync(MasterDetailsViewControl.ViewState);
+            await ViewModel.LoadDataAsync(
+                MasterDetailsViewControl.ViewState == MasterDetailsViewState.Both);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)

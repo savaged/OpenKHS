@@ -1,5 +1,4 @@
 ﻿using GalaSoft.MvvmLight;
-using Microsoft.Toolkit.Uwp.UI.Controls;
 using OpenKHS.Universal.Core.Models;
 using OpenKHS.Universal.Core.Services;
 using System.Collections.ObjectModel;
@@ -25,7 +24,7 @@ namespace OpenKHS.Universal.ViewModels
 
         public ObservableCollection<SampleOrder> Index { get; set; }
 
-        public async Task LoadDataAsync(MasterDetailsViewState viewState)
+        public async Task LoadDataAsync(bool selectFirstItemByDefault)
         {
             Index.Clear();
 
@@ -36,7 +35,7 @@ namespace OpenKHS.Universal.ViewModels
                 Index.Add(item);
             }
 
-            if (viewState == MasterDetailsViewState.Both)
+            if (selectFirstItemByDefault)
             {
                 Selected = Index.First();
             }
