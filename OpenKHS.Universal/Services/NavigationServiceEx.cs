@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using OpenKHS.Universal.Helpers;
-
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
@@ -67,7 +65,9 @@ namespace OpenKHS.Universal.Services
             {
                 if (!_pages.TryGetValue(pageKey, out page))
                 {
-                    throw new ArgumentException(string.Format("ExceptionNavigationServiceExPageNotFound".GetLocalized(), pageKey), nameof(pageKey));
+                    throw new ArgumentException(
+                        string.Format(
+                            "ExceptionNavigationServiceExPageNotFound".GetLocalized(), pageKey), nameof(pageKey));
                 }
             }
 
@@ -93,12 +93,14 @@ namespace OpenKHS.Universal.Services
             {
                 if (_pages.ContainsKey(key))
                 {
-                    throw new ArgumentException(string.Format("ExceptionNavigationServiceExKeyIsInNavigationService".GetLocalized(), key));
+                    throw new ArgumentException(
+                        string.Format("ExceptionNavigationServiceExKeyIsInNavigationService".GetLocalized(), key));
                 }
 
                 if (_pages.Any(p => p.Value == pageType))
                 {
-                    throw new ArgumentException(string.Format("ExceptionNavigationServiceExTypeAlreadyConfigured".GetLocalized(), _pages.First(p => p.Value == pageType).Key));
+                    throw new ArgumentException(
+                        string.Format("ExceptionNavigationServiceExTypeAlreadyConfigured".GetLocalized(), _pages.First(p => p.Value == pageType).Key));
                 }
 
                 _pages.Add(key, pageType);

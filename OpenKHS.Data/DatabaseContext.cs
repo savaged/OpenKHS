@@ -1,10 +1,5 @@
-﻿using System;
-
-using GalaSoft.MvvmLight.Ioc;
-
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-
 using OpenKHS.Models;
 
 namespace OpenKHS.Data
@@ -14,10 +9,30 @@ namespace OpenKHS.Data
     /// </summary>
     public class DatabaseContext : DbContext
     {
-        [PreferredConstructor]
-        public DatabaseContext() { }
+        private static DatabaseContext _default;
+
+        public static DatabaseContext GetDefault()
+        {
+            var instance = _default ?? 
+                (_default = new DatabaseContext());
+            return instance;
+        }
+
+        /// <summary>
+        /// Just for testing
+        /// </summary>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        public static DatabaseContext GetDefault(
+            DbContextOptions<DatabaseContext> options)
+        {
+            _default = new DatabaseContext(options);
+            return _default;
+        }
+
+        private DatabaseContext() { }
         
-        public DatabaseContext(DbContextOptions<DatabaseContext> options) 
+        private DatabaseContext(DbContextOptions<DatabaseContext> options) 
             : base(options)
         { }
 

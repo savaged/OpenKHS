@@ -9,8 +9,8 @@ namespace OpenKHS.ViewModels
     public class ClmmScheduleViewModel : ScheduleViewModelBase<ClmmSchedule>
     {
         public ClmmScheduleViewModel(
-            IRepositoryLookup repositoryLookup, IList<LocalCongregationMember> congMembers)
-            : base(repositoryLookup, congMembers)
+            IList<LocalCongregationMember> congMembers)
+            : base(congMembers)
         {
             TreasuresConductors = new List<LocalCongregationMember>();
             GemsConductors = new List<LocalCongregationMember>();

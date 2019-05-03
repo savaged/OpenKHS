@@ -1,16 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-
 using OpenKHS.Data;
 using OpenKHS.Interfaces;
 using OpenKHS.Models;
 
 namespace OpenKHS.ViewModels.Utils
 {
-    public class RepositoryLookup : IRepositoryLookup
+    public class RepositoryLookup
     {
-        public RepositoryLookup(DatabaseContext dbContext)
+        private static RepositoryLookup _default;
+
+        public static RepositoryLookup Default =>
+            _default ?? (_default = new RepositoryLookup());
+
+        private RepositoryLookup()
         {
+            var dbContext = DatabaseContext.GetDefault();
+
             Repositories = new Dictionary<Type, object>
             {
                 { typeof(LocalCongregationMember), new LocalCongregationMemberRepository(dbContext) },
@@ -25,7 +31,8 @@ namespace OpenKHS.ViewModels.Utils
 
         public IDictionary<Type, object> Repositories { get; }
 
-        public IModelRepository<T> GetRelatedRepository<T>() where T : IModel, new()
+        public IModelRepository<T> GetRelatedRepository<T>() 
+            where T : IModel, new()
         {
             return (IModelRepository<T>)Repositories[typeof(T)];
         }

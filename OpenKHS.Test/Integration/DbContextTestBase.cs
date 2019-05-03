@@ -23,7 +23,7 @@ namespace OpenKHS.Test.Integration
                 .UseSqlite($"Data source={databaseFilePath}")
                 .ConfigureWarnings(w => w.Throw(CoreEventId.IncludeIgnoredWarning));
 
-            DbContext = new DatabaseContext(optionsBuilder.Options);
+            DbContext = DatabaseContext.GetDefault(optionsBuilder.Options);
 
             DbContext.Database.EnsureCreated();
         }

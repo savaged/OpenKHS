@@ -13,8 +13,8 @@ namespace OpenKHS.ViewModels
     {
         private bool _previousTogglePrivilegesSetting;
 
-        public CongViewModel(IRepositoryLookup repositoryLookup)
-            : base(repositoryLookup)
+        public CongViewModel()
+            : base()
         {
             Initialise(Repository.Index(), null);
             TogglePrivilegesCmd = new RelayCommand(OnTogglePrivileges, () => CanExecute);

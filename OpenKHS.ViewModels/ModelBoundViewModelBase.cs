@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 
 using OpenKHS.Interfaces;
+using OpenKHS.ViewModels.Utils;
 
 namespace OpenKHS.ViewModels
 {
@@ -10,18 +11,18 @@ namespace OpenKHS.ViewModels
         where T : IModel, new()
     {
         private T _selected;
-        protected readonly IDictionary<Type, object> Repositories;
 
-        public ModelBoundViewModelBase(IRepositoryLookup repositoryLookup)
+        public ModelBoundViewModelBase()
         {
-            Repository = (IModelRepository<T>)repositoryLookup.Repositories[typeof(T)];
         }
 
         protected IModelRepository<T> Repository { get; }
 
-        protected IModelRepository<R> GetRelatedRepository<R>() where R : IModel, new()
+        protected IModelRepository<R> GetRelatedRepository<R>() 
+            where R : IModel, new()
         {
-            return (IModelRepository<R>)Repositories[typeof(R)];
+            var value = RepositoryLookup.Default.GetRelatedRepository<R>();
+            return value;
         }
 
         protected bool IsDirty { get; set; }

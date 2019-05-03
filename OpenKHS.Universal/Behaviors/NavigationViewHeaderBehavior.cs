@@ -20,7 +20,12 @@ namespace OpenKHS.Universal.Behaviors
             set { SetValue(DefaultHeaderProperty, value); }
         }
 
-        public static readonly DependencyProperty DefaultHeaderProperty = DependencyProperty.Register("DefaultHeader", typeof(object), typeof(NavigationViewHeaderBehavior), new PropertyMetadata(null, (d, e) => _current.UpdateHeader()));
+        public static readonly DependencyProperty DefaultHeaderProperty = 
+            DependencyProperty.Register(
+                "DefaultHeader", 
+                typeof(object), 
+                typeof(NavigationViewHeaderBehavior), 
+                new PropertyMetadata(null, (d, e) => _current.UpdateHeader()));
 
         public static NavigationViewHeaderMode GetHeaderMode(Page item)
         {
@@ -33,7 +38,12 @@ namespace OpenKHS.Universal.Behaviors
         }
 
         public static readonly DependencyProperty HeaderModeProperty =
-            DependencyProperty.RegisterAttached("HeaderMode", typeof(bool), typeof(NavigationViewHeaderBehavior), new PropertyMetadata(NavigationViewHeaderMode.Always, (d, e) => _current.UpdateHeader()));
+            DependencyProperty.RegisterAttached(
+                "HeaderMode", 
+                typeof(bool), 
+                typeof(NavigationViewHeaderBehavior), 
+                new PropertyMetadata(
+                    NavigationViewHeaderMode.Always, (d, e) => _current.UpdateHeader()));
 
         public static object GetHeaderContext(Page item)
         {
@@ -46,7 +56,11 @@ namespace OpenKHS.Universal.Behaviors
         }
 
         public static readonly DependencyProperty HeaderContextProperty =
-            DependencyProperty.RegisterAttached("HeaderContext", typeof(object), typeof(NavigationViewHeaderBehavior), new PropertyMetadata(null, (d, e) => _current.UpdateHeader()));
+            DependencyProperty.RegisterAttached(
+                "HeaderContext", 
+                typeof(object), 
+                typeof(NavigationViewHeaderBehavior), 
+                new PropertyMetadata(null, (d, e) => _current.UpdateHeader()));
 
         public static DataTemplate GetHeaderTemplate(Page item)
         {
@@ -59,7 +73,11 @@ namespace OpenKHS.Universal.Behaviors
         }
 
         public static readonly DependencyProperty HeaderTemplateProperty =
-            DependencyProperty.RegisterAttached("HeaderTemplate", typeof(DataTemplate), typeof(NavigationViewHeaderBehavior), new PropertyMetadata(null, (d, e) => _current.UpdateHeaderTemplate()));
+            DependencyProperty.RegisterAttached(
+                "HeaderTemplate", 
+                typeof(DataTemplate), 
+                typeof(NavigationViewHeaderBehavior), 
+                new PropertyMetadata(null, (d, e) => _current.UpdateHeaderTemplate()));
 
         protected override void OnAttached()
         {
@@ -125,7 +143,8 @@ namespace OpenKHS.Universal.Behaviors
             if (_currentPage != null)
             {
                 var headerTemplate = GetHeaderTemplate(_currentPage);
-                AssociatedObject.HeaderTemplate = headerTemplate ?? DefaultHeaderTemplate;
+                AssociatedObject.HeaderTemplate = headerTemplate ??
+                    DefaultHeaderTemplate;
             }
         }
     }

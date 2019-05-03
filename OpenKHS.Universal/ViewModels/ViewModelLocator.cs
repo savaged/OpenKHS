@@ -25,7 +25,6 @@ namespace OpenKHS.Universal.ViewModels
                 () => new NavigationServiceEx());
             SimpleIoc.Default.Register<ShellViewModel>();
 
-            Register<HomeViewModel, HomePage>();
             Register<SettingsViewModel, SettingsPage>();
 
             #endregion
@@ -34,10 +33,11 @@ namespace OpenKHS.Universal.ViewModels
             //SimpleIoc.Default
             //    .Register<IRepositoryLookup, RepositoryLookup>();
 
-            //Register<CongregationViewModel, CongregationPage>();
-            //Register<CLMMViewModel, CLMMPage>();
-            //Register<PublicViewModel, PublicPage>();
-            //Register<TalksViewModel, TalksPage>();            
+            Register<HomeViewModel, HomePage>();
+            Register<CongregationViewModel, CongregationPage>();
+            Register<CLMMViewModel, CLMMPage>();
+            Register<PublicViewModel, PublicPage>();
+            Register<TalksViewModel, TalksPage>();
         }
 
         public HomeViewModel HomeViewModel =>
@@ -53,18 +53,18 @@ namespace OpenKHS.Universal.ViewModels
             SimpleIoc.Default.GetInstance<NavigationServiceEx>();
 
 
+        public TalksViewModel TalksViewModel =>
+            SimpleIoc.Default.GetInstance<TalksViewModel>();
 
-        //public TalksViewModel TalksViewModel => 
-        //    SimpleIoc.Default.GetInstance<TalksViewModel>();
+        public PublicViewModel PublicViewModel =>
+            SimpleIoc.Default.GetInstance<PublicViewModel>();
 
-        //public PublicViewModel PublicViewModel => 
-        //    SimpleIoc.Default.GetInstance<PublicViewModel>();
+        public CLMMViewModel CLMMViewModel =>
+            SimpleIoc.Default.GetInstance<CLMMViewModel>();
 
-        //public CLMMViewModel CLMMViewModel => 
-        //    SimpleIoc.Default.GetInstance<CLMMViewModel>();
+        public CongregationViewModel CongregationViewModel =>
+            SimpleIoc.Default.GetInstance<CongregationViewModel>();
 
-        //public CongregationViewModel CongregationViewModel => 
-        //    SimpleIoc.Default.GetInstance<CongregationViewModel>();
 
         public void Register<VM, V>()
             where VM : class
