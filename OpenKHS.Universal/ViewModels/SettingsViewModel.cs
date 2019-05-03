@@ -1,22 +1,24 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Windows.Input;
-
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-
 using OpenKHS.Universal.Helpers;
 using OpenKHS.Universal.Services;
-
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Windows.ApplicationModel;
 using Windows.UI.Xaml;
 
 namespace OpenKHS.Universal.ViewModels
 {
-    // TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
+    // TODO WTS: Add other settings as necessary. For help see 
+    // https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
     public class SettingsViewModel : ViewModelBase
     {
-        private ElementTheme _elementTheme = ThemeSelectorService.Theme;
+        private ElementTheme _elementTheme;
+
+        public SettingsViewModel()
+        {
+            _elementTheme = ThemeSelectorService.Theme;
+        }
 
         public ElementTheme ElementTheme
         {
@@ -52,10 +54,6 @@ namespace OpenKHS.Universal.ViewModels
 
                 return _switchThemeCommand;
             }
-        }
-
-        public SettingsViewModel()
-        {
         }
 
         public async Task InitializeAsync()

@@ -12,17 +12,18 @@ namespace OpenKHS.Universal.ViewModels
     {
         private SampleOrder _selected;
 
+        public PublicViewModel()
+        {
+            Index = new ObservableCollection<SampleOrder>();
+        }
+
         public SampleOrder Selected
         {
             get { return _selected; }
             set { Set(ref _selected, value); }
         }
 
-        public ObservableCollection<SampleOrder> Index { get; private set; } = new ObservableCollection<SampleOrder>();
-
-        public PublicViewModel()
-        {
-        }
+        public ObservableCollection<SampleOrder> Index { get; set; }
 
         public async Task LoadDataAsync(MasterDetailsViewState viewState)
         {
