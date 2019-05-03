@@ -1,11 +1,14 @@
-﻿using GalaSoft.MvvmLight.Command;
-using OpenKHS.Interfaces;
-using OpenKHS.Models;
-using OpenKHS.Models.Utils;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+
+using GalaSoft.MvvmLight.Command;
+
+using OpenKHS.Interfaces;
+using OpenKHS.Models;
+using OpenKHS.Models.Utils;
+
 using Windows.ApplicationModel.DataTransfer;
 
 namespace OpenKHS.ViewModels
@@ -68,7 +71,7 @@ namespace OpenKHS.ViewModels
             var @new = new T();
             SetWeekStartingDate(@new);
             Index.Add(@new);
-            SelectedItem = @new;
+            Selected = @new;
         }
 
         protected virtual void LoadLookups()
@@ -154,7 +157,7 @@ namespace OpenKHS.ViewModels
 
         private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(SelectedItem) && IsItemSelected)
+            if (e.PropertyName == nameof(Selected) && IsItemSelected)
             {
                 if (Selected == null)
                 {

@@ -1,11 +1,14 @@
 ﻿using System;
-using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.ComponentModel;
-using OpenKHS.Models.Attributes;
-using OpenKHS.Interfaces;
-using GalaSoft.MvvmLight;
 using System.ComponentModel.DataAnnotations.Schema;
+
+using GalaSoft.MvvmLight;
+
+using Newtonsoft.Json;
+
+using OpenKHS.Interfaces;
+using OpenKHS.Models.Attributes;
 
 namespace OpenKHS.Models
 {

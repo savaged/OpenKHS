@@ -1,6 +1,7 @@
 ﻿using System;
-using OpenKHS.Interfaces;
 using System.ComponentModel.DataAnnotations;
+
+using OpenKHS.Interfaces;
 
 namespace OpenKHS.Models
 {

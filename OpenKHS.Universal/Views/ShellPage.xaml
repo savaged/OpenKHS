@@ -25,18 +25,21 @@
         IsSettingsVisible="True"
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
         <winui:NavigationView.MenuItems>
-           <winui:NavigationViewItem x:Uid="Shell_Congregation" helpers:NavHelper.NavigateTo="OpenKHS.Universal.ViewModels.CongregationViewModel">
+            <winui:NavigationViewItem x:Uid="Shell_Home" Icon="Home" helpers:NavHelper.NavigateTo="OpenKHS.Universal.ViewModels.HomeViewModel" />
+            <!--
+            <winui:NavigationViewItem x:Uid="Shell_Congregation" helpers:NavHelper.NavigateTo="OpenKHS.ViewModels.CongregationViewModel">
                 <winui:NavigationViewItem.Icon>
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE902;"/>
                 </winui:NavigationViewItem.Icon>
             </winui:NavigationViewItem>
-            <winui:NavigationViewItem x:Uid="Shell_CLMM" helpers:NavHelper.NavigateTo="OpenKHS.Universal.ViewModels.CLMMViewModel">
+            <winui:NavigationViewItem x:Uid="Shell_CLMM" helpers:NavHelper.NavigateTo="OpenKHS.ViewModels.CLMMViewModel">
                 <winui:NavigationViewItem.Icon>
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE7BE;"/>
                 </winui:NavigationViewItem.Icon>
             </winui:NavigationViewItem>
-            <winui:NavigationViewItem x:Uid="Shell_Public" Icon="People" helpers:NavHelper.NavigateTo="OpenKHS.Universal.ViewModels.PublicViewModel" />
-            <winui:NavigationViewItem x:Uid="Shell_Talks" Icon="Manage" helpers:NavHelper.NavigateTo="OpenKHS.Universal.ViewModels.TalksViewModel" />
+            <winui:NavigationViewItem x:Uid="Shell_Public" Icon="People" helpers:NavHelper.NavigateTo="OpenKHS.ViewModels.PublicViewModel" />
+            <winui:NavigationViewItem x:Uid="Shell_Talks" Icon="Manage" helpers:NavHelper.NavigateTo="OpenKHS.ViewModels.TalksViewModel" />
+            -->
         </winui:NavigationView.MenuItems>
         <i:Interaction.Behaviors>
             <behaviors:NavigationViewHeaderBehavior

@@ -3,6 +3,7 @@ using OpenKHS.Data;
 using OpenKHS.Interfaces;
 using OpenKHS.Universal.Services;
 using OpenKHS.Universal.Views;
+using OpenKHS.ViewModels;
 using OpenKHS.ViewModels.Utils;
 using Windows.UI.Xaml.Data;
 
@@ -24,40 +25,46 @@ namespace OpenKHS.Universal.ViewModels
                 () => new NavigationServiceEx());
             SimpleIoc.Default.Register<ShellViewModel>();
 
+            Register<HomeViewModel, HomePage>();
             Register<SettingsViewModel, SettingsPage>();
 
             #endregion
 
-            SimpleIoc.Default.Register<DatabaseContext>();
-            SimpleIoc.Default
-                .Register<IRepositoryLookup, RepositoryLookup>();
+            //SimpleIoc.Default.Register<DatabaseContext>();
+            //SimpleIoc.Default
+            //    .Register<IRepositoryLookup, RepositoryLookup>();
 
-            Register<CongregationViewModel, CongregationPage>();
-            Register<CLMMViewModel, CLMMPage>();
-            Register<PublicViewModel, PublicPage>();
-            Register<TalksViewModel, TalksPage>();            
+            //Register<CongregationViewModel, CongregationPage>();
+            //Register<CLMMViewModel, CLMMPage>();
+            //Register<PublicViewModel, PublicPage>();
+            //Register<TalksViewModel, TalksPage>();            
         }
+
+        public HomeViewModel HomeViewModel =>
+            SimpleIoc.Default.GetInstance<HomeViewModel>();
 
         public SettingsViewModel SettingsViewModel => 
             SimpleIoc.Default.GetInstance<SettingsViewModel>();
 
-        public TalksViewModel TalksViewModel => 
-            SimpleIoc.Default.GetInstance<TalksViewModel>();
-
-        public PublicViewModel PublicViewModel => 
-            SimpleIoc.Default.GetInstance<PublicViewModel>();
-
-        public CLMMViewModel CLMMViewModel => 
-            SimpleIoc.Default.GetInstance<CLMMViewModel>();
-
-        public CongregationViewModel CongregationViewModel => 
-            SimpleIoc.Default.GetInstance<CongregationViewModel>();
-
-        public ShellViewModel ShellViewModel => 
+        public ShellViewModel ShellViewModel =>
             SimpleIoc.Default.GetInstance<ShellViewModel>();
 
-        public NavigationServiceEx NavigationService => 
+        public NavigationServiceEx NavigationService =>
             SimpleIoc.Default.GetInstance<NavigationServiceEx>();
+
+
+
+        //public TalksViewModel TalksViewModel => 
+        //    SimpleIoc.Default.GetInstance<TalksViewModel>();
+
+        //public PublicViewModel PublicViewModel => 
+        //    SimpleIoc.Default.GetInstance<PublicViewModel>();
+
+        //public CLMMViewModel CLMMViewModel => 
+        //    SimpleIoc.Default.GetInstance<CLMMViewModel>();
+
+        //public CongregationViewModel CongregationViewModel => 
+        //    SimpleIoc.Default.GetInstance<CongregationViewModel>();
 
         public void Register<VM, V>()
             where VM : class

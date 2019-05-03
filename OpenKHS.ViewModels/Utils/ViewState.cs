@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+
 using OpenKHS.Interfaces;
 
 namespace OpenKHS.ViewModels.Utils

@@ -1,10 +1,11 @@
 ﻿using Microsoft.Toolkit.Uwp.UI.Controls;
 using OpenKHS.Universal.ViewModels;
+using OpenKHS.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-namespace OpenKHS.Universal.Views
+namespace OpenKHS.Views
 {
     public sealed partial class CLMMPage : Page
     {

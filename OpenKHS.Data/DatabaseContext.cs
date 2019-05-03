@@ -1,7 +1,10 @@
 ﻿using System;
+
 using GalaSoft.MvvmLight.Ioc;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+
 using OpenKHS.Models;
 
 namespace OpenKHS.Data

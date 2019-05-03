@@ -1,10 +1,13 @@
-﻿using AutoMapper;
-using Bogus;
-using OpenKHS.Interfaces;
-using OpenKHS.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
+using AutoMapper;
+
+using Bogus;
+
+using OpenKHS.Interfaces;
+using OpenKHS.Models;
 
 namespace OpenKHS.Seeder
 {

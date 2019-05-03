@@ -1,7 +1,8 @@
-﻿using OpenKHS.Interfaces;
-using OpenKHS.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+
+using OpenKHS.Interfaces;
+using OpenKHS.Models;
 
 namespace OpenKHS.ViewModels
 {

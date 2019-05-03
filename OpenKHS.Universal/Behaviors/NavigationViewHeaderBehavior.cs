@@ -1,11 +1,8 @@
 ﻿using Microsoft.Xaml.Interactivity;
-
 using OpenKHS.Universal.ViewModels;
-
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-
 using WinUI = Microsoft.UI.Xaml.Controls;
 
 namespace OpenKHS.Universal.Behaviors

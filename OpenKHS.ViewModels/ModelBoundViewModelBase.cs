@@ -1,7 +1,8 @@
-﻿using OpenKHS.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+
+using OpenKHS.Interfaces;
 
 namespace OpenKHS.ViewModels
 {
@@ -34,7 +35,7 @@ namespace OpenKHS.ViewModels
             Selected = data;            
         }
 
-        public T Selected
+        public virtual T Selected
         {
             get => _selected;
             set

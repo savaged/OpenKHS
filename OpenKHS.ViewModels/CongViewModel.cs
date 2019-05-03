@@ -1,9 +1,11 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using System;
+using System.Windows.Input;
+
+using GalaSoft.MvvmLight.Command;
+
 using OpenKHS.Interfaces;
 using OpenKHS.Models;
 using OpenKHS.Models.Attributes;
-using System;
-using System.Windows.Input;
 
 namespace OpenKHS.ViewModels
 {
@@ -27,7 +29,7 @@ namespace OpenKHS.ViewModels
 
         public override bool IsItemSelected
         {
-            get => base.IsItemSelected && !string.IsNullOrEmpty(SelectedItem.Name);
+            get => base.IsItemSelected && !string.IsNullOrEmpty(Selected.Name);
         }
 
         protected override void AddModelObjectToDbContext()
@@ -64,7 +66,7 @@ namespace OpenKHS.ViewModels
 
         private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(Selected))
+            if (e.PropertyName == nameof(ModelBoundViewModelBase<LocalCongregationMember>.Selected))
             {
                 _previousTogglePrivilegesSetting = false;
             }

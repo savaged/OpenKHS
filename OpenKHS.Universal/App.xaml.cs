@@ -1,4 +1,5 @@
 ﻿using OpenKHS.Universal.Services;
+using OpenKHS.Universal.ViewModels;
 using System;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -37,7 +38,7 @@ namespace OpenKHS.Universal
 
         private ActivationService CreateActivationService()
         {
-            return new ActivationService(this, typeof(ViewModels.CongregationViewModel), new Lazy<UIElement>(CreateShell));
+            return new ActivationService(this, typeof(HomeViewModel), new Lazy<UIElement>(CreateShell));
         }
 
         private UIElement CreateShell()

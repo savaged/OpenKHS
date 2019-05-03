@@ -1,12 +1,14 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using OpenKHS.Interfaces;
-using OpenKHS.Data;
-using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
 using System.ComponentModel;
+using System.Linq;
+using System.Windows.Input;
+
+using GalaSoft.MvvmLight.Command;
+
+using OpenKHS.Data;
+using OpenKHS.Interfaces;
 
 namespace OpenKHS.ViewModels
 {
@@ -35,7 +37,7 @@ namespace OpenKHS.ViewModels
             {
                 Index.Add(defaultFirstItem);
             }
-            SelectedItem = Index.FirstOrDefault();
+            Selected = Index.FirstOrDefault();
         }
 
         public ObservableCollection<T> Index { get; set; }
@@ -44,13 +46,12 @@ namespace OpenKHS.ViewModels
 
         public ICommand DeleteSelectedItemCmd { get; }
 
-        public T SelectedItem
+        public override T Selected
         {
-            get => Selected;
+            get => base.Selected;
             set
             {
-                Selected = value;
-                RaisePropertyChanged(nameof(SelectedItem));
+                base.Selected = value;
                 RaisePropertyChanged(nameof(IsItemSelected));
             }
         }
@@ -63,7 +64,7 @@ namespace OpenKHS.ViewModels
             RaisePropertyChanged(nameof(IsItemSelected));
         }
 
-        public virtual bool IsItemSelected => SelectedItem != null;
+        public virtual bool IsItemSelected => Selected != null;
 
         public override bool CanExecute => GlobalViewState.IsNotBusy && IsItemSelected;
 
@@ -76,17 +77,17 @@ namespace OpenKHS.ViewModels
         {
             var @new = new T();
             Index.Add(@new);
-            SelectedItem = @new;
+            Selected = @new;
         }
 
         private void OnDeleteSelectedItem()
         {
-            if (SelectedItem == null)
+            if (Selected == null)
             {
                 throw new ArgumentNullException("Expected to have the selected item set!");
             }
-            Index.Remove(SelectedItem);
-            Repository.Delete(SelectedItem);
+            Index.Remove(Selected);
+            Repository.Delete(Selected);
         }
     }
 }

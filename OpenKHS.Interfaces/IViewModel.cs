@@ -1,5 +1,4 @@
-﻿
-namespace OpenKHS.Interfaces
+﻿namespace OpenKHS.Interfaces
 {
     public interface IViewModel
     {

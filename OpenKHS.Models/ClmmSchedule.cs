@@ -1,6 +1,7 @@
-﻿using OpenKHS.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
+
+using OpenKHS.Interfaces;
 
 namespace OpenKHS.Models
 {

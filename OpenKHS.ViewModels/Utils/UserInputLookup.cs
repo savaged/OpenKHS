@@ -1,8 +1,9 @@
 ﻿using System;
-using OpenKHS.Interfaces;
-using System.ComponentModel;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
+
+using OpenKHS.Interfaces;
 
 namespace OpenKHS.ViewModels.Utils
 {

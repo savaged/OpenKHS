@@ -7,6 +7,5 @@ namespace OpenKHS.Interfaces
     {
         ObservableCollection<T> Index { get; set; }
         bool IsItemSelected { get; }
-        T SelectedItem { get; set; }
     }
 }

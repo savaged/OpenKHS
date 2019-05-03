@@ -1,5 +1,4 @@
-﻿
-namespace OpenKHS.Models
+﻿namespace OpenKHS.Models
 {
     /// <summary>
     /// Public Meeting Speaker

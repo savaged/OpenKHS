@@ -1,21 +1,23 @@
-﻿using GalaSoft.MvvmLight;
-using OpenKHS.Interfaces;
-using OpenKHS.Models;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OpenKHS.Universal.ViewModels
+using GalaSoft.MvvmLight;
+
+using OpenKHS.Interfaces;
+using OpenKHS.Models;
+
+namespace OpenKHS.ViewModels
 {
     public class PublicViewModel : ViewModelBase
     {
-        private readonly IModelRepository<SampleModel> _repository;
+        private readonly IRepositoryLookup _repositoryLookup;
         private SampleModel _selected;
 
         public PublicViewModel(
             IRepositoryLookup repositoryLookup)
         {
-            _repository = repositoryLookup.GetRelatedRepository<SampleModel>();
+            _repositoryLookup = repositoryLookup;
             Index = new ObservableCollection<SampleModel>();
         }
 
@@ -31,7 +33,9 @@ namespace OpenKHS.Universal.ViewModels
         {
             Index.Clear();
 
-            var data = await Task.Run(() => _repository.Index());
+            var repository = _repositoryLookup.GetRelatedRepository<SampleModel>();
+
+            var data = await Task.Run(() => repository.Index());
 
             foreach (var item in data)
             {
