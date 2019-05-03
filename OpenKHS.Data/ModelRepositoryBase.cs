@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Reflection;
-using log4net;
 using OpenKHS.Interfaces;
 
 namespace OpenKHS.Data
 {
     public class ModelRepositoryBase
     {
-        private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-
         protected readonly DatabaseContext DbContext;        
 
         public ModelRepositoryBase(DatabaseContext dbContext)
@@ -29,7 +25,7 @@ namespace OpenKHS.Data
         public void Save()
         {
             var count = DbContext.SaveChanges();
-            Log.Debug($"Saved {count} model objects.");
+            //Log.Debug($"Saved {count} model objects.");
         }
     }
 }
