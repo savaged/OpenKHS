@@ -9,13 +9,13 @@ namespace OpenKHS.Universal.Views
 {
     public sealed partial class TalksDetailControl : UserControl
     {
-        public SampleOrder MasterMenuItem
+        public SampleModel MasterMenuItem
         {
-            get { return GetValue(MasterMenuItemProperty) as SampleOrder; }
+            get { return GetValue(MasterMenuItemProperty) as SampleModel; }
             set { SetValue(MasterMenuItemProperty, value); }
         }
 
-        public static readonly DependencyProperty MasterMenuItemProperty = DependencyProperty.Register("MasterMenuItem", typeof(SampleOrder), typeof(TalksDetailControl), new PropertyMetadata(null, OnMasterMenuItemPropertyChanged));
+        public static readonly DependencyProperty MasterMenuItemProperty = DependencyProperty.Register("MasterMenuItem", typeof(SampleModel), typeof(TalksDetailControl), new PropertyMetadata(null, OnMasterMenuItemPropertyChanged));
 
         public TalksDetailControl()
         {

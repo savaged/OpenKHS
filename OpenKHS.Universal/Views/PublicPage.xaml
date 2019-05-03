@@ -17,7 +17,7 @@
         </TransitionCollection>
     </Page.Transitions>
     <Page.Resources>
-        <DataTemplate x:Key="ItemTemplate" x:DataType="model:SampleOrder">
+        <DataTemplate x:Key="ItemTemplate" x:DataType="model:SampleModel">
             <Grid Height="60">
                 <StackPanel Margin="{StaticResource SmallLeftMargin}" VerticalAlignment="Center">
                     <TextBlock Text="{x:Bind Name}" Style="{ThemeResource ListTitleStyle}"/>

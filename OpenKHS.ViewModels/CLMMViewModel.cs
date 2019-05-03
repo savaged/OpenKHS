@@ -9,20 +9,20 @@ namespace OpenKHS.Universal.ViewModels
 {
     public class CLMMViewModel : ViewModelBase
     {
-        private SampleOrder _selected;
+        private SampleModel _selected;
 
         public CLMMViewModel()
         {
-            Index = new ObservableCollection<SampleOrder>();
+            Index = new ObservableCollection<SampleModel>();
         }
 
-        public SampleOrder Selected
+        public SampleModel Selected
         {
             get { return _selected; }
             set { Set(ref _selected, value); }
         }
 
-        public ObservableCollection<SampleOrder> Index { get; }
+        public ObservableCollection<SampleModel> Index { get; }
 
         public async Task LoadDataAsync(bool selectFirstItemByDefault)
         {

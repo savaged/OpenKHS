@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-
+﻿using OpenKHS.Interfaces;
 using OpenKHS.Universal.Core.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace OpenKHS.Universal.Core.Services
+namespace OpenKHS.Data
 {
-    // This class holds sample data used by some generated pages to show how they can be used.
-    // TODO WTS: Delete this file once your app is using real data.
-    public static class SampleDataService
+    public class SampleModelRepository 
+        : ModelRepositoryBase, IModelRepository<SampleModel>
     {
-        private static IEnumerable<SampleModel> Index()
+        private readonly IList<SampleModel> _data;
+
+        public SampleModelRepository(DatabaseContext dbContext) 
+            : base(dbContext)
         {
-            // The following is order summary data
-            var data = new ObservableCollection<SampleModel>
+            _data = new List<SampleModel>
             {
                 new SampleModel
                 {
@@ -77,16 +77,29 @@ namespace OpenKHS.Universal.Core.Services
                     Name = "Name K"
                 },
             };
-
-            return data;
         }
 
-        // TODO WTS: Remove this once your MasterDetail pages are displaying real data.
-        public static async Task<IEnumerable<SampleModel>> GetSampleModelDataAsync()
+        public IList<SampleModel> Index()
         {
-            await Task.CompletedTask;
+            return _data;
+        }
 
-            return Index();
+        public SampleModel Show(int id)
+        {
+            return _data.Single(m => m.Id == id);
+        }
+
+        public void Store(SampleModel @new)
+        {
+            _data.Add(@new);
+        }
+
+        public void Delete(SampleModel model)
+        {
+            if (model != null)
+            {
+                _data.Remove(model);
+            }
         }
     }
 }
