@@ -28,8 +28,7 @@ namespace OpenKHS.Universal.ViewModels
 
             #endregion
 
-            SimpleIoc.Default
-                .Register<DatabaseContext>();
+            SimpleIoc.Default.Register<DatabaseContext>();
             SimpleIoc.Default
                 .Register<IRepositoryLookup, RepositoryLookup>();
 

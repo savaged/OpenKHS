@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
 
-namespace OpenKHS.Interfaces
+namespace OpenKHS.Common
 {
     public class UserFeedbackMessage : MessageBase
     {
