@@ -1,6 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Ioc;
+using OpenKHS.Interfaces;
 using OpenKHS.Universal.Services;
 using OpenKHS.Universal.Views;
+using OpenKHS.ViewModels.Utils;
 using Windows.UI.Xaml.Data;
 
 namespace OpenKHS.Universal.ViewModels
@@ -15,14 +17,23 @@ namespace OpenKHS.Universal.ViewModels
 
         private ViewModelLocator()
         {
+            #region UWP specific bindings
+
             SimpleIoc.Default.Register(
                 () => new NavigationServiceEx());
             SimpleIoc.Default.Register<ShellViewModel>();
+
+            Register<SettingsViewModel, SettingsPage>();
+
+            #endregion
+
+            SimpleIoc.Default
+                .Register<IRepositoryLookup, RepositoryLookup>();
+
             Register<CongregationViewModel, CongregationPage>();
             Register<CLMMViewModel, CLMMPage>();
             Register<PublicViewModel, PublicPage>();
-            Register<TalksViewModel, TalksPage>();
-            Register<SettingsViewModel, SettingsPage>();
+            Register<TalksViewModel, TalksPage>();            
         }
 
         public SettingsViewModel SettingsViewModel => 

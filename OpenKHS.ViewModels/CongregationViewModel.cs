@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
+using OpenKHS.Interfaces;
 using OpenKHS.Universal.Core.Models;
-using OpenKHS.Universal.Core.Services;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,10 +9,13 @@ namespace OpenKHS.Universal.ViewModels
 {
     public class CongregationViewModel : ViewModelBase
     {
+        private readonly IModelRepository<SampleModel> _repository;
         private SampleModel _selected;
 
-        public CongregationViewModel()
+        public CongregationViewModel(
+            IRepositoryLookup repositoryLookup)
         {
+            _repository = repositoryLookup.GetRelatedRepository<SampleModel>();
             Index = new ObservableCollection<SampleModel>();
         }
 
@@ -28,7 +31,7 @@ namespace OpenKHS.Universal.ViewModels
         {
             Index.Clear();
 
-            var data = await SampleDataService.GetSampleModelDataAsync();
+            var data = await Task.Run(() => _repository.Index());
 
             foreach (var item in data)
             {

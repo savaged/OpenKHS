@@ -8,11 +8,7 @@ namespace OpenKHS.Universal.Core.Models
     // It is the model class we use to display data on pages like Grid, Chart, and Master Detail.
     public class SampleModel : ModelBase
     {
-        public int Id { get; set; }
-
         public DateTime WeekStarting { get; set; }
-
-        public string Name { get; set; }
 
         public override string ToString()
         {

@@ -313,6 +313,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OpenKHS.Interfaces\OpenKHS.Interfaces.csproj">
+      <Project>{3695D1E5-6BC0-471B-A096-F773E1C25694}</Project>
+      <Name>OpenKHS.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OpenKHS.Models\OpenKHS.Models.csproj">
       <Project>{21dca6ca-b55a-4b2b-888f-324b8094414b}</Project>
       <Name>OpenKHS.Models</Name>
