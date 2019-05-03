@@ -1,4 +1,4 @@
-﻿using OpenKHS.Universal.Core.Models;
+﻿using OpenKHS.Models;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 

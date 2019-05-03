@@ -1,5 +1,5 @@
 ﻿using OpenKHS.Interfaces;
-using OpenKHS.Universal.Core.Models;
+using OpenKHS.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
-    xmlns:model="using:OpenKHS.Universal.Core.Models"
+    xmlns:model="using:OpenKHS.Models"
     xmlns:views="using:OpenKHS.Universal.Views"
     xmlns:behaviors="using:OpenKHS.Universal.Behaviors"
     behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
