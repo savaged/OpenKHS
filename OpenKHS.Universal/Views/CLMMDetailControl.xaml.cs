@@ -1,7 +1,5 @@
 ﻿using System;
-
 using OpenKHS.Universal.Core.Models;
-
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 

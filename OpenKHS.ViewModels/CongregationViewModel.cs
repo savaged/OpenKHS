@@ -1,83 +1,43 @@
-﻿using GalaSoft.MvvmLight.Command;
-using OpenKHS.Interfaces;
-using OpenKHS.Models;
-using OpenKHS.Models.Attributes;
-using System;
-using System.Windows.Input;
+﻿using GalaSoft.MvvmLight;
+using OpenKHS.Universal.Core.Models;
+using OpenKHS.Universal.Core.Services;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace OpenKHS.ViewModels
+namespace OpenKHS.Universal.ViewModels
 {
-    public class CongregationViewModel : IndexBoundViewModelBase<LocalCongregationMember>
+    public class CongregationViewModel : ViewModelBase
     {
-        private bool _previousTogglePrivilegesSetting;
+        private SampleOrder _selected;
 
-        public CongregationViewModel(IRepositoryLookup repositoryLookup)
-            : base(repositoryLookup)
+        public CongregationViewModel()
         {
-            Initialise(Repository.Index(), null);
-            TogglePrivilegesCmd = new RelayCommand(OnTogglePrivileges, () => CanExecute);
-            PropertyChanged += OnPropertyChanged;
-        }        
-
-        public override void Cleanup()
-        {
-            PropertyChanged -= OnPropertyChanged;
-            base.Cleanup();
+            Index = new ObservableCollection<SampleOrder>();
         }
 
-        public override bool IsItemSelected
+        public SampleOrder Selected
         {
-            get => base.IsItemSelected && !string.IsNullOrEmpty(SelectedItem.Name);
+            get { return _selected; }
+            set { Set(ref _selected, value); }
         }
 
-        protected override void AddModelObjectToDbContext()
+        public ObservableCollection<SampleOrder> Index { get; set; }
+
+        public async Task LoadDataAsync(bool selectFirstItemByDefault)
         {
-            if (Selected != null && !string.IsNullOrEmpty(Selected.Name))
+            Index.Clear();
+
+            var data = await SampleDataService.GetSampleModelDataAsync();
+
+            foreach (var item in data)
             {
-                Repository.Store(Selected);
+                Index.Add(item);
             }
-        }
 
-        public ICommand TogglePrivilegesCmd { get; }
-
-        private void OnTogglePrivileges()
-        {
-            if (Selected == null)
+            if (selectFirstItemByDefault)
             {
-                throw new ArgumentNullException("Always expected the Model to be set here.");
-            }
-            _previousTogglePrivilegesSetting = !_previousTogglePrivilegesSetting;
-
-            foreach (var p in Selected.GetType().GetProperties())
-            {
-                if (Attribute.IsDefined(p, typeof(PrivilegeAttribute)))
-                {
-                    if (p.Name != nameof(Selected.ClmmMainHallOnly) &&
-                        p.Name != nameof(Selected.ClmmSecondSchoolOnly) &&
-                        p.Name != nameof(Selected.MainWtConductor))
-                    {
-                        p.SetValue(Selected, _previousTogglePrivilegesSetting);
-                    }
-                }
-            }
-        }
-
-        private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(Selected))
-            {
-                _previousTogglePrivilegesSetting = false;
-            }
-        }
-
-        protected override void OnModelObjectPropertyChanged(
-            object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            base.OnModelObjectPropertyChanged(sender, e);
-
-            if (!string.IsNullOrEmpty(Selected.Name))
-            {
-                RaisePropertyChanged(nameof(IsItemSelected));
+                Selected = Index.First();
             }
         }
     }

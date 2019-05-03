@@ -134,12 +134,8 @@
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Services\NavigationServiceEx.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
-    <Compile Include="ViewModels\CLMMViewModel.cs" />
-    <Compile Include="ViewModels\CongregationViewModel.cs" />
-    <Compile Include="ViewModels\PublicViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
-    <Compile Include="ViewModels\TalksViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\CLMMDetailControl.xaml.cs">
       <DependentUpon>CLMMDetailControl.xaml</DependentUpon>
@@ -317,9 +313,17 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OpenKHS.Models\OpenKHS.Models.csproj">
+      <Project>{21dca6ca-b55a-4b2b-888f-324b8094414b}</Project>
+      <Name>OpenKHS.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OpenKHS.Universal.Core\OpenKHS.Universal.Core.csproj">
       <Project>{01f6483d-36d8-442f-a591-cf7536295c9c}</Project>
       <Name>OpenKHS.Universal.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenKHS.ViewModels\OpenKHS.ViewModels.csproj">
+      <Project>{380297e3-b520-4d50-815c-d52ca2cbc4ac}</Project>
+      <Name>OpenKHS.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
