@@ -16,7 +16,7 @@ Feel free to have a look at the code by cloning this repo27 Jan 20sitory using:
 * Functional Requirement: Adding new cong member resets everyones tally to lowest tally
 * Functional Requirement: Add 'second school' 
 * Functional Requirement: Add cleaning schedule
-* Persistence layer
+* Persistence layer - ORM for data persistance using Entity Framework Core and SqlLite 
 * WPF version
 * UWP version using https://github.com/Microsoft/WindowsTemplateStudio
 * Android version
