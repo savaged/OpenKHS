@@ -1,8 +1,7 @@
-﻿
 using System;
 using System.Collections.Generic;
 
-namespace OpenKHS.Interfaces
+namespace OpenKHS.Models
 {
     public interface ISchedule : IModel
     {

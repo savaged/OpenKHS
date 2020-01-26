@@ -2,12 +2,9 @@
 using System.Linq;
 using System.Collections.Generic;
 using OpenKHS.Models.Attributes;
-using OpenKHS.Interfaces;
-using Microsoft.EntityFrameworkCore;
 
 namespace OpenKHS.Models
 {
-    [Owned]
     public class LocalCongregationMember : Friend, ICongregationMember
     {
         private bool _isPotentiallyOverloaded;
@@ -388,7 +385,6 @@ namespace OpenKHS.Models
 
     }
 
-    [Owned]
     public class DateRange : ModelBase
     {
         public DateRange()

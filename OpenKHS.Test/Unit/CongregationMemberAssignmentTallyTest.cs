@@ -1,12 +1,10 @@
-﻿
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenKHS.Interfaces;
 using OpenKHS.Models;
 
 namespace OpenKHS.Test.Unit
 {
     [TestClass]
-    public class CongregationMemberAssignmentTallyTest : TestBase
+    public class CongregationMemberAssignmentTallyTest 
     {
         [TestMethod]
         public void TestCongregationMemberAssignmentTallyIncrementAndReset()

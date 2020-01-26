@@ -1,10 +1,9 @@
 ﻿using System;
-using OpenKHS.Interfaces;
 using System.ComponentModel.DataAnnotations;
 
 namespace OpenKHS.Models
 {
-    public abstract class Friend : ModelBase, IFriend
+    public abstract class Friend : ModelBase
     {
         public Friend() { }
 

@@ -1,5 +1,4 @@
-﻿
-namespace OpenKHS.Interfaces
+namespace OpenKHS.Models
 {
     public interface IFriend : IModel
     {

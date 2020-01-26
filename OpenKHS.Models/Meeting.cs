@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using OpenKHS.Interfaces;
+
 
 namespace OpenKHS.Models
 {
     // TODO add validation to each property i.e. brother has privilege
-    public abstract class Meeting : ModelBase, ISchedule
+    public abstract class Meeting : ModelBase
     {
         private DateTime _weekStarting;
         private LocalCongregationMember _chairman;

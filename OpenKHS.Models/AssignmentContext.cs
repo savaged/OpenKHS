@@ -1,5 +1,5 @@
-﻿
-namespace OpenKHS.Interfaces
+
+namespace OpenKHS.Models
 {
     public enum AssignmentContext
     {

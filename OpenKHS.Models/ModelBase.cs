@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.ComponentModel;
 using OpenKHS.Models.Attributes;
-using OpenKHS.Interfaces;
+
 using GalaSoft.MvvmLight;
 using System.ComponentModel.DataAnnotations.Schema;
 
