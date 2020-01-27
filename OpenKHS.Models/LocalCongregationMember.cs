@@ -7,12 +7,6 @@ namespace OpenKHS.Models
 {
     public class LocalCongregationMember : Friend, ICongregationMember
     {
-        private bool _isPotentiallyOverloaded;
-        private uint _meetingAssignmentTally;
-        private uint _pmAssignmentTally;
-        private uint _treasuresAssignmentTally;
-        private uint _ayttmAssignmentTally;
-        private uint _lacAssignmentTally;
         private List<DateRange> _unavailablePeriods;
         private bool _ClmmChairman;
         private bool _ClmmSecondSchoolCounselor;
@@ -61,120 +55,6 @@ namespace OpenKHS.Models
         {
             get => _unavailablePeriods;
             set => Set(ref _unavailablePeriods, value);
-        }
-
-        public uint MeetingAssignmentTally
-        {
-            get => _meetingAssignmentTally;
-            set
-            {
-                _meetingAssignmentTally = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        public uint PmAssignmentTally
-        {
-            get => _pmAssignmentTally;
-            set
-            {
-                _pmAssignmentTally = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        public uint TreasuresAssignmentTally
-        {
-            get => _treasuresAssignmentTally;
-            set
-            {
-                _treasuresAssignmentTally = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        public uint AYttMAssignmentTally
-        {
-            get => _ayttmAssignmentTally;
-            set
-            {
-                _ayttmAssignmentTally = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        public uint LacAssignmentTally
-        {
-            get => _lacAssignmentTally;
-            set
-            {
-                _lacAssignmentTally = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        public static LocalCongregationMember Swap(
-            ref LocalCongregationMember original, LocalCongregationMember replacement, AssignmentContext context)
-        {
-            if (original != replacement)
-            {
-                if (original != null)
-                {
-                    switch (context)
-                    {
-                        case AssignmentContext.Common:
-                            if (original.MeetingAssignmentTally > 0) original.MeetingAssignmentTally--;
-                            break;
-                        case AssignmentContext.PublicMeeting:
-                            if (original.PmAssignmentTally > 0) original.PmAssignmentTally--;
-                            break;
-                        case AssignmentContext.Treasures:
-                            if (original.TreasuresAssignmentTally > 0) original.TreasuresAssignmentTally--;
-                            break;
-                        case AssignmentContext.ApplyYourselfToTheMinistry:
-                            if (original.AYttMAssignmentTally > 0) original.AYttMAssignmentTally--;
-                            break;
-                        case AssignmentContext.LivingAsChristians:
-                            if (original.LacAssignmentTally > 0) original.LacAssignmentTally--;
-                            break;
-                    }
-                }
-                if (replacement != null)
-                {
-                    switch (context)
-                    {
-                        case AssignmentContext.Common:
-                            replacement.MeetingAssignmentTally++;
-                            break;
-                        case AssignmentContext.PublicMeeting:
-                            replacement.PmAssignmentTally++;
-                            break;
-                        case AssignmentContext.Treasures:
-                            replacement.TreasuresAssignmentTally++;
-                            break;
-                        case AssignmentContext.ApplyYourselfToTheMinistry:
-                            replacement.AYttMAssignmentTally++;
-                            break;
-                        case AssignmentContext.LivingAsChristians:
-                            replacement.LacAssignmentTally++;
-                            break;
-                    }
-                }
-            }
-            return replacement;
-        }
-
-        public bool IsPotentiallyOverloaded
-        {
-            get => _isPotentiallyOverloaded;
-            private set => Set(ref _isPotentiallyOverloaded, value);
-        }
-
-        public void SetIsPotentiallyOverloaded(ISchedule schedule)
-        {
-            var matches = schedule.Participants.Where(f => f?.Name == Name);
-            var assignmentCount = matches.Count();
-            IsPotentiallyOverloaded = assignmentCount > 1;
         }
 
         #region Privileges

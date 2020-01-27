@@ -27,11 +27,6 @@ namespace OpenKHS.Models
         [NotMapped]
         public bool IsDirty { get; private set; }
 
-        public override string ToString()
-        {
-            return JsonEncode();
-        }
-
         public string JsonEncode()
         {
             return JsonConvert.SerializeObject(this);
