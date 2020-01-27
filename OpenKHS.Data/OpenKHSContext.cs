@@ -14,5 +14,11 @@ namespace OpenKHS.Data
             // TODO inject the connection string
             optionsBuilder.UseSqlite("Data Source=OpenKHS.db;");
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<AssignmentType>().ToTable("AssignmentTypes");
+            modelBuilder.Entity<LocalCongregationMember>().ToTable("LocalCongregationMembers");
+        }
     }
 }

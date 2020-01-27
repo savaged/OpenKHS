@@ -4,27 +4,27 @@ namespace OpenKHS.Models
 {
     public class Assignment : ModelBase
     {
-        private CongregationMember _assignee;
-        private DateTime _due;
+        private LocalCongregationMember _assignee;
+        private DateTime _dueWeekStarting;
         private AssignmentType _type;
 
         public Assignment()
         {
-            _due = DateTime.MinValue;
+            _dueWeekStarting = DateTime.MinValue;
             _type = new NullAssignmentType();
-            _assignee = new NullCongregationMember();
+            _assignee = new NullLocalCongregationMember();
         }
         
-        public CongregationMember Assignee
+        public LocalCongregationMember Assignee
         {
             get => _assignee;
             set => Set(ref _assignee, value);
         }
 
-        public DateTime Due
+        public DateTime DueWeekStarting
         {
-            get => _due;
-            set => Set(ref _due, value);
+            get => _dueWeekStarting;
+            set => Set(ref _dueWeekStarting, value);
         }
 
         public AssignmentType Type

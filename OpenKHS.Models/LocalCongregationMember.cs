@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Linq;
-using System.Collections.Generic;
 using OpenKHS.Models.Attributes;
 
 namespace OpenKHS.Models
 {
-    public class LocalCongregationMember : CongregationMember, ILocalCongregationMember
+    public class LocalCongregationMember : Lookup, ILocalCongregationMember
     {
         private bool _ClmmChairman;
         private bool _ClmmSecondSchoolCounselor;

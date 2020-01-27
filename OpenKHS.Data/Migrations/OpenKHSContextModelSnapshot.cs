@@ -25,7 +25,7 @@ namespace OpenKHS.Data.Migrations
                     b.Property<int>("AssigneeId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("Due")
+                    b.Property<DateTime>("DueWeekStarting")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("TypeId")
@@ -52,55 +52,14 @@ namespace OpenKHS.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AssignmentType");
-                });
-
-            modelBuilder.Entity("OpenKHS.Models.CongregationMember", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CongregationMember");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("CongregationMember");
-                });
-
-            modelBuilder.Entity("OpenKHS.Models.UnavailablePeriod", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("End")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("LocalCongregationMemberId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("Start")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LocalCongregationMemberId");
-
-                    b.ToTable("UnavailablePeriods");
+                    b.ToTable("AssignmentTypes");
                 });
 
             modelBuilder.Entity("OpenKHS.Models.LocalCongregationMember", b =>
                 {
-                    b.HasBaseType("OpenKHS.Models.CongregationMember");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("Attendant")
                         .HasColumnType("INTEGER");
@@ -156,6 +115,10 @@ namespace OpenKHS.Data.Migrations
                     b.Property<bool>("MainWtConductor")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<bool>("Platform")
                         .HasColumnType("INTEGER");
 
@@ -183,12 +146,36 @@ namespace OpenKHS.Data.Migrations
                     b.Property<bool>("WtReader")
                         .HasColumnType("INTEGER");
 
-                    b.HasDiscriminator().HasValue("LocalCongregationMember");
+                    b.HasKey("Id");
+
+                    b.ToTable("LocalCongregationMembers");
+                });
+
+            modelBuilder.Entity("OpenKHS.Models.UnavailablePeriod", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("End")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("LocalCongregationMemberId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Start")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LocalCongregationMemberId");
+
+                    b.ToTable("UnavailablePeriods");
                 });
 
             modelBuilder.Entity("OpenKHS.Models.Assignment", b =>
                 {
-                    b.HasOne("OpenKHS.Models.CongregationMember", "Assignee")
+                    b.HasOne("OpenKHS.Models.LocalCongregationMember", "Assignee")
                         .WithMany()
                         .HasForeignKey("AssigneeId")
                         .OnDelete(DeleteBehavior.Cascade)

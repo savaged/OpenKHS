@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace OpenKHS.Data.Migrations
 {
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "AssignmentType",
+                name: "AssignmentTypes",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -17,48 +17,47 @@ namespace OpenKHS.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AssignmentType", x => x.Id);
+                    table.PrimaryKey("PK_AssignmentTypes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "CongregationMember",
+                name: "LocalCongregationMembers",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(nullable: false),
-                    Discriminator = table.Column<string>(nullable: false),
-                    ClmmChairman = table.Column<bool>(nullable: true),
-                    ClmmSecondSchoolCounselor = table.Column<bool>(nullable: true),
-                    ClmmTreasures = table.Column<bool>(nullable: true),
-                    ClmmGems = table.Column<bool>(nullable: true),
-                    ClmmBibleReading = table.Column<bool>(nullable: true),
-                    ClmmSchoolInitialCall = table.Column<bool>(nullable: true),
-                    ClmmSchoolReturnVisit = table.Column<bool>(nullable: true),
-                    ClmmSchoolBibleStudy = table.Column<bool>(nullable: true),
-                    ClmmSchoolTalk = table.Column<bool>(nullable: true),
-                    ClmmSchoolAssistant = table.Column<bool>(nullable: true),
-                    ClmmSecondSchoolOnly = table.Column<bool>(nullable: true),
-                    ClmmMainHallOnly = table.Column<bool>(nullable: true),
-                    ClmmLacParts = table.Column<bool>(nullable: true),
-                    ClmmCbsConductor = table.Column<bool>(nullable: true),
-                    ClmmCbsReader = table.Column<bool>(nullable: true),
-                    PublicSpeaker = table.Column<bool>(nullable: true),
-                    AwaySpeaker = table.Column<bool>(nullable: true),
-                    PmChairman = table.Column<bool>(nullable: true),
-                    Prayer = table.Column<bool>(nullable: true),
-                    WtReader = table.Column<bool>(nullable: true),
-                    Attendant = table.Column<bool>(nullable: true),
-                    Security = table.Column<bool>(nullable: true),
-                    SoundDesk = table.Column<bool>(nullable: true),
-                    Platform = table.Column<bool>(nullable: true),
-                    RovingMic = table.Column<bool>(nullable: true),
-                    WtConductor = table.Column<bool>(nullable: true),
-                    MainWtConductor = table.Column<bool>(nullable: true)
+                    ClmmChairman = table.Column<bool>(nullable: false),
+                    ClmmSecondSchoolCounselor = table.Column<bool>(nullable: false),
+                    ClmmTreasures = table.Column<bool>(nullable: false),
+                    ClmmGems = table.Column<bool>(nullable: false),
+                    ClmmBibleReading = table.Column<bool>(nullable: false),
+                    ClmmSchoolInitialCall = table.Column<bool>(nullable: false),
+                    ClmmSchoolReturnVisit = table.Column<bool>(nullable: false),
+                    ClmmSchoolBibleStudy = table.Column<bool>(nullable: false),
+                    ClmmSchoolTalk = table.Column<bool>(nullable: false),
+                    ClmmSchoolAssistant = table.Column<bool>(nullable: false),
+                    ClmmSecondSchoolOnly = table.Column<bool>(nullable: false),
+                    ClmmMainHallOnly = table.Column<bool>(nullable: false),
+                    ClmmLacParts = table.Column<bool>(nullable: false),
+                    ClmmCbsConductor = table.Column<bool>(nullable: false),
+                    ClmmCbsReader = table.Column<bool>(nullable: false),
+                    PublicSpeaker = table.Column<bool>(nullable: false),
+                    AwaySpeaker = table.Column<bool>(nullable: false),
+                    PmChairman = table.Column<bool>(nullable: false),
+                    Prayer = table.Column<bool>(nullable: false),
+                    WtReader = table.Column<bool>(nullable: false),
+                    Attendant = table.Column<bool>(nullable: false),
+                    Security = table.Column<bool>(nullable: false),
+                    SoundDesk = table.Column<bool>(nullable: false),
+                    Platform = table.Column<bool>(nullable: false),
+                    RovingMic = table.Column<bool>(nullable: false),
+                    WtConductor = table.Column<bool>(nullable: false),
+                    MainWtConductor = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CongregationMember", x => x.Id);
+                    table.PrimaryKey("PK_LocalCongregationMembers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -68,22 +67,22 @@ namespace OpenKHS.Data.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     AssigneeId = table.Column<int>(nullable: false),
-                    Due = table.Column<DateTime>(nullable: false),
+                    DueWeekStarting = table.Column<DateTime>(nullable: false),
                     TypeId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Assignments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Assignments_CongregationMember_AssigneeId",
+                        name: "FK_Assignments_LocalCongregationMembers_AssigneeId",
                         column: x => x.AssigneeId,
-                        principalTable: "CongregationMember",
+                        principalTable: "LocalCongregationMembers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Assignments_AssignmentType_TypeId",
+                        name: "FK_Assignments_AssignmentTypes_TypeId",
                         column: x => x.TypeId,
-                        principalTable: "AssignmentType",
+                        principalTable: "AssignmentTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -102,9 +101,9 @@ namespace OpenKHS.Data.Migrations
                 {
                     table.PrimaryKey("PK_UnavailablePeriods", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UnavailablePeriods_CongregationMember_LocalCongregationMemberId",
+                        name: "FK_UnavailablePeriods_LocalCongregationMembers_LocalCongregationMemberId",
                         column: x => x.LocalCongregationMemberId,
-                        principalTable: "CongregationMember",
+                        principalTable: "LocalCongregationMembers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -134,10 +133,10 @@ namespace OpenKHS.Data.Migrations
                 name: "UnavailablePeriods");
 
             migrationBuilder.DropTable(
-                name: "AssignmentType");
+                name: "AssignmentTypes");
 
             migrationBuilder.DropTable(
-                name: "CongregationMember");
+                name: "LocalCongregationMembers");
         }
     }
 }
