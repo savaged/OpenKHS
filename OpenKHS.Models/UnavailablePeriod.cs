@@ -7,16 +7,16 @@ namespace OpenKHS.Models
         private DateTime _start;
         private DateTime _end;
 
-        public UnavailablePeriod(CongregationMember congregationMember)
+        public UnavailablePeriod(LocalCongregationMember localCongregationMember)
         {
-            CongregationMember = congregationMember ??
-                throw new ArgumentNullException(nameof(congregationMember));
+            LocalCongregationMember = localCongregationMember ??
+                throw new ArgumentNullException(nameof(localCongregationMember));
 
             _start = DateTime.Now;
             _end = DateTime.Now;
         }
 
-        public CongregationMember CongregationMember { get; }
+        public LocalCongregationMember LocalCongregationMember { get; }
 
         public DateTime Start 
         { 
