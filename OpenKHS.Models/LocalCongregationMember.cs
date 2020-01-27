@@ -5,9 +5,8 @@ using OpenKHS.Models.Attributes;
 
 namespace OpenKHS.Models
 {
-    public class LocalCongregationMember : Friend, ICongregationMember
+    public class LocalCongregationMember : CongregationMember, ILocalCongregationMember
     {
-        private List<DateRange> _unavailablePeriods;
         private bool _ClmmChairman;
         private bool _ClmmSecondSchoolCounselor;
         private bool _Prayer;
@@ -35,27 +34,6 @@ namespace OpenKHS.Models
         private bool _RovingMic;
         private bool _WtConductor;
         private bool _MainWtConductor;
-
-        public LocalCongregationMember()
-        {
-            // TODO set tallies to LCD of current friends
-            if (UnavailablePeriods == null)
-            {
-                UnavailablePeriods = new List<DateRange>();
-            }
-        }
-
-        public override string Congregation
-        {
-            get => "Local";
-            set => throw new NotSupportedException();
-        }
-
-        public List<DateRange> UnavailablePeriods
-        {
-            get => _unavailablePeriods;
-            set => Set(ref _unavailablePeriods, value);
-        }
 
         #region Privileges
 
@@ -265,27 +243,4 @@ namespace OpenKHS.Models
 
     }
 
-    public class DateRange : ModelBase
-    {
-        public DateRange()
-        {
-            if (Start == null)
-            {
-                Start = DateTime.Now;
-            }
-            if (End == null)
-            {
-                End = DateTime.Now;
-            }
-        }
-
-        public DateRange(DateTime start, DateTime end)
-        {
-            Start = start;
-            End = end;
-        }
-
-        public DateTime Start { get; set; }
-        public DateTime End { get; set; }
-    }
 }
