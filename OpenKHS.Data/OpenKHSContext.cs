@@ -12,7 +12,7 @@ namespace OpenKHS.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // TODO inject the connection string
-            optionsBuilder.UseSqlite("Data Source=OpenKHS.db; Version=3;");
+            optionsBuilder.UseSqlite("Data Source=OpenKHS.db;");
         }
     }
 }
