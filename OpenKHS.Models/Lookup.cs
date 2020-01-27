@@ -4,6 +4,8 @@ namespace OpenKHS.Models
     {
         private string _name;
 
+        public static ILookup Empty => NullLookup.Default;
+
         public Lookup()
         {
             _name = string.Empty;
@@ -23,7 +25,7 @@ namespace OpenKHS.Models
             Name = string.Empty;
         }
 
-        public static NullLookup Empty => new NullLookup();
+        public static ILookup Default => new NullLookup();
 
         public string Name { get; }
 

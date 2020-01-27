@@ -35,6 +35,11 @@ namespace OpenKHS.Models
         private bool _WtConductor;
         private bool _MainWtConductor;
 
+        public LocalCongregationMember()
+        {
+            
+        }
+
         #region Privileges
 
         [Privilege]
@@ -241,6 +246,13 @@ namespace OpenKHS.Models
 
         #endregion
 
+    }
+
+    public class NullLocalCongregationMember : LocalCongregationMember
+    {
+        public new int Id = Lookup.Empty.Id;
+
+        public new string Name = Lookup.Empty.Name;
     }
 
 }

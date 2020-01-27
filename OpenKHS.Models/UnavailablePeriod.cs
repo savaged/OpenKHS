@@ -4,19 +4,22 @@ namespace OpenKHS.Models
 {
     public class UnavailablePeriod : ModelBase
     {
+        private LocalCongregationMember _localCongregationMember;
         private DateTime _start;
         private DateTime _end;
 
-        public UnavailablePeriod(LocalCongregationMember localCongregationMember)
+        public UnavailablePeriod()
         {
-            LocalCongregationMember = localCongregationMember ??
-                throw new ArgumentNullException(nameof(localCongregationMember));
-
+            _localCongregationMember = new NullLocalCongregationMember();
             _start = DateTime.Now;
             _end = DateTime.Now;
         }
 
-        public LocalCongregationMember LocalCongregationMember { get; }
+        public LocalCongregationMember LocalCongregationMember 
+        {
+            get => _localCongregationMember; 
+            set => Set(ref _localCongregationMember, value); 
+        }
 
         public DateTime Start 
         { 
