@@ -13,9 +13,9 @@ namespace OpenKHS.Test.Unit
         [TestInitialize]
         public void Init()
         {
-            _options = new DbContextOptions<OpenKHSContext>();
-            var optionsBuilder = new DbContextOptionsBuilder(_options);
-            optionsBuilder.UseInMemoryDatabase("OpenKHS");
+            var optionsBuilder = new DbContextOptionsBuilder<OpenKHSContext>();
+            optionsBuilder.UseInMemoryDatabase("Tests");
+            _options = optionsBuilder.Options;
         }
 
         [TestMethod]

@@ -1,4 +1,3 @@
-using System;
 using Microsoft.EntityFrameworkCore;
 using OpenKHS.Data;
 
@@ -6,16 +5,13 @@ namespace OpenKHS.CLI
 {
     public class ConfiguredDbContextOptionsBuilder
     {
-        public ConfiguredDbContextOptionsBuilder(
-            DbContextOptions<OpenKHSContext> dbContextOptions)
+        public ConfiguredDbContextOptionsBuilder()
         {
-            if (dbContextOptions == null)
-            {
-                throw new ArgumentNullException(nameof(dbContextOptions));
-            }
-            var optionsBuilder = new DbContextOptionsBuilder(
-                dbContextOptions);
-            optionsBuilder.UseSqlite("Data Source=OpenKHS.db;");
+            var optionsBuilder = new DbContextOptionsBuilder<OpenKHSContext>();
+            optionsBuilder.UseSqlite("Data Source=OpenKHS.db;");    
+            Options = optionsBuilder.Options;
         }
+
+        public DbContextOptions<OpenKHSContext> Options { get; }
     }
 }
