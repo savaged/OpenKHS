@@ -1,5 +1,5 @@
-using Microsoft.EntityFrameworkCore;
-using OpenKHS.Data;
+using OpenKHS.CLI.IoC;
+using Ninject;
 
 namespace OpenKHS.CLI
 {
@@ -7,11 +7,9 @@ namespace OpenKHS.CLI
     {
         public Startup()
         {
-            DbContextOptions = new DbContextOptions<OpenKHSContext>();
-            var optionsBuilder = new DbContextOptionsBuilder(DbContextOptions);
-            optionsBuilder.UseSqlite("Data Source=OpenKHS.db;");
+            Kernel = new StandardKernel(new CoreBindings());
         }
 
-        public DbContextOptions<OpenKHSContext> DbContextOptions { get; }
+        public IKernel Kernel { get; }
     }
 }
