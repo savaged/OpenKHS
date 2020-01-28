@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Ninject;
 using OpenKHS.Data;
+using OpenKHS.Models;
 
 namespace OpenKHS.CLI
 {
@@ -11,19 +12,15 @@ namespace OpenKHS.CLI
         static void Main(string[] args)
         {
             var startup = new Startup();
-            if (startup.Kernel.Get<ConfiguredDbContextOptionsBuilder>()
-                ?.Options is DbContextOptions<OpenKHSContext> dbOptions)
+            var factory = startup.Kernel.Get<IDbContextFactory>();
+            using (var context = factory.Create())
             {
-                using (var context = new OpenKHSContext(dbOptions))
+                var tmp = new LocalCongregationMember
                 {
-                    context.Database.EnsureCreated();
-                    // TODO do stuff
-                }
-            }
-            else
-            {
-                throw new InvalidOperationException(
-                    "The db options must be correctly setup!");
+                    Name = "test name"
+                };
+                context.Add(tmp);
+                context.SaveChanges();
             }
         }
     }

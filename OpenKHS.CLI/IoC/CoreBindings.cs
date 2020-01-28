@@ -12,7 +12,8 @@ namespace OpenKHS.CLI.IoC
             Bind<IDbContextOptions>()
                 .To<DbContextOptions<OpenKHSContext>>()
                 .InSingletonScope();
-            Bind<ConfiguredDbContextOptionsBuilder>().ToSelf();
+            //Bind<ConfiguredDbContextOptionsBuilder>().ToSelf();
+            Bind<IDbContextFactory>().To<DbContextFactory>();
         }
     }
 }
