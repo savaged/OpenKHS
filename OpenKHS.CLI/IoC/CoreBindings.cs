@@ -1,7 +1,4 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 using Ninject.Modules;
-using OpenKHS.Data;
 
 namespace OpenKHS.CLI.IoC
 {
@@ -9,11 +6,8 @@ namespace OpenKHS.CLI.IoC
     {
         public override void Load()
         {
-            Bind<IDbContextOptions>()
-                .To<DbContextOptions<OpenKHSContext>>()
+            Bind<IFeedbackService>().To<FeedbackService>()
                 .InSingletonScope();
-            //Bind<ConfiguredDbContextOptionsBuilder>().ToSelf();
-            Bind<IDbContextFactory>().To<DbContextFactory>();
         }
     }
 }

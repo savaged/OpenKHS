@@ -12,16 +12,7 @@ namespace OpenKHS.CLI
         static void Main(string[] args)
         {
             var startup = new Startup();
-            var factory = startup.Kernel.Get<IDbContextFactory>();
-            using (var context = factory.Create())
-            {
-                var tmp = new LocalCongregationMember
-                {
-                    Name = "test name"
-                };
-                context.Add(tmp);
-                context.SaveChanges();
-            }
+            startup.Main.Load();
         }
     }
 }
