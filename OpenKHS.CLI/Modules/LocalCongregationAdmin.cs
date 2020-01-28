@@ -23,6 +23,7 @@ namespace OpenKHS.CLI.Modules
 
         public void Load()
         {
+            // TODO Move this to ViewModels (for reuse on different platforms)
             IList<LocalCongregationMember> index = null;
             using (var context = _dbContextFactory.Create())
             {

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Drawing;
+using BetterConsoleTables;
 using Colorful;
 using OpenKHS.Models;
 
@@ -24,7 +25,8 @@ namespace OpenKHS.CLI
 
         public void Present<T>(IList<T> index) where T : IModel
         {
-            // TODO BetterConsoleTable here
+            // TODO get column headers from model
+            var table = new Table();
         }
 
         private Color GetColor(FeedbackContext context)
