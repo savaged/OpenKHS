@@ -15,12 +15,6 @@ namespace OpenKHS.Data
         public DbSet<Assignment> Assignments { get; set; }
         public DbSet<UnavailablePeriod> UnavailablePeriods { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (optionsBuilder.IsConfigured) return;
-            throw new InvalidOperationException("Db context needs setting!");   
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AssignmentType>().ToTable("AssignmentTypes");
