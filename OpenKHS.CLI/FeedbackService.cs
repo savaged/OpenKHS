@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using System.Drawing;
 using Colorful;
+using OpenKHS.Models;
 
 namespace OpenKHS.CLI
 {
@@ -18,6 +20,11 @@ namespace OpenKHS.CLI
         {
             var fg = GetColor(context);
             Console.WriteLine(feedback, fg);
+        }
+
+        public void Present<T>(IList<T> index) where T : IModel
+        {
+            // TODO BetterConsoleTable here
         }
 
         private Color GetColor(FeedbackContext context)
