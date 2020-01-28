@@ -11,11 +11,12 @@ namespace OpenKHS.CLI
         static void Main(string[] args)
         {
             var startup = new Startup();
-            if (startup.Kernel.Get<IDbContextOptions>() 
-                is DbContextOptions<OpenKHSContext> dbOptions)
+            if (startup.Kernel.Get<ConfiguredDbContextOptionsBuilder>()
+                ?.Options is DbContextOptions<OpenKHSContext> dbOptions)
             {
                 using (var context = new OpenKHSContext(dbOptions))
                 {
+                    context.Database.EnsureCreated();
                     // TODO do stuff
                 }
             }
