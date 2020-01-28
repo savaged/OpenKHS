@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using OpenKHS.Models.Attributes;
 
@@ -36,8 +37,10 @@ namespace OpenKHS.Models
 
         public LocalCongregationMember()
         {
-            
+            Assignments = new List<Assignment>();
         }
+
+        public IList<Assignment> Assignments { get; set; }
 
         #region Privileges
 

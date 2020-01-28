@@ -1,4 +1,5 @@
 ﻿using System;
+using OpenKHS.Data;
 
 namespace OpenKHS.CLI
 {
@@ -6,7 +7,12 @@ namespace OpenKHS.CLI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            // TODO use ninject
+            var startup = new Startup();
+            using (var context = new OpenKHSContext(startup.DbContextOptions))
+            {
+                // TODO do stuff
+            }
         }
     }
 }

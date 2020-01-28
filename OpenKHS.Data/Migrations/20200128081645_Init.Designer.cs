@@ -9,8 +9,8 @@ using OpenKHS.Data;
 namespace OpenKHS.Data.Migrations
 {
     [DbContext(typeof(OpenKHSContext))]
-    [Migration("20200127180247_init")]
-    partial class init
+    [Migration("20200128081645_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -178,7 +178,7 @@ namespace OpenKHS.Data.Migrations
             modelBuilder.Entity("OpenKHS.Models.Assignment", b =>
                 {
                     b.HasOne("OpenKHS.Models.LocalCongregationMember", "Assignee")
-                        .WithMany()
+                        .WithMany("Assignments")
                         .HasForeignKey("AssigneeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

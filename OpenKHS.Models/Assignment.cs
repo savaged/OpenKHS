@@ -33,4 +33,12 @@ namespace OpenKHS.Models
             set => Set(ref _type, value);
         }
     }
+
+    public class NullAssignment : Assignment
+    {
+        public NullAssignment() : base()
+        {
+            Id = -1;
+        }
+    }
 }

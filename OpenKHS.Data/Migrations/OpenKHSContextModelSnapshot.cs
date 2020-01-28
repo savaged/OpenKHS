@@ -176,7 +176,7 @@ namespace OpenKHS.Data.Migrations
             modelBuilder.Entity("OpenKHS.Models.Assignment", b =>
                 {
                     b.HasOne("OpenKHS.Models.LocalCongregationMember", "Assignee")
-                        .WithMany()
+                        .WithMany("Assignments")
                         .HasForeignKey("AssigneeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
