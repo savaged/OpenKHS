@@ -1,4 +1,3 @@
-using OpenKHS.CLI.IoC;
 using Ninject;
 using OpenKHS.ViewModels;
 using System;
@@ -17,7 +16,7 @@ namespace OpenKHS.CLI
         public Core(string[] args)
         {
             _kernel = new StandardKernel(
-                new CoreBindings(),
+                new CLIBindings(),
                 new DbContextBindings());
 
             _feedbackService = _kernel.Get<IFeedbackService>() ??

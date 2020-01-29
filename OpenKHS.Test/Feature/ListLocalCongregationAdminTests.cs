@@ -1,5 +1,7 @@
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Ninject;
+using OpenKHS.Data;
 using OpenKHS.ViewModels;
 
 namespace OpenKHS.Test.Feature
@@ -7,6 +9,14 @@ namespace OpenKHS.Test.Feature
     [TestClass]
     public class ListLocalCongregationAdminTests
     {
+        private readonly IKernel _kernel;
+
+        public ListLocalCongregationAdminTests()
+        {
+            _kernel = new StandardKernel(new DbContextBindings());
+            
+        }
+
         private LocalCongregationAdminViewModel _localCongregationAdminViewModel;
 
         [TestInitialize]

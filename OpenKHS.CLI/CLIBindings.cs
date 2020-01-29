@@ -1,8 +1,8 @@
 using Ninject.Modules;
 
-namespace OpenKHS.CLI.IoC
+namespace OpenKHS.CLI
 {
-    public class CoreBindings : NinjectModule
+    public class CLIBindings : NinjectModule
     {
         public override void Load()
         {
