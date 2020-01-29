@@ -5,7 +5,7 @@ using OpenKHS.Data.StaticData;
 namespace OpenKHS.Test.Unit
 {
     [TestClass]
-    public class OpenKHSContextTests 
+    public class OpenKHSContextDefaultStateTests 
     {
         [TestMethod]
         public void GetAssignmentTypesTest()

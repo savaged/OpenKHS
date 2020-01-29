@@ -1,9 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Ninject.Modules;
-using OpenKHS.Data;
 
-namespace OpenKHS.CLI.IoC
+namespace OpenKHS.Data
 {
     public class DbContextBindings : NinjectModule
     {

@@ -2,7 +2,7 @@ using CommandLine;
 
 namespace OpenKHS.CLI
 {
-    public class CommandLineOptions
+    class CommandLineOptions
     {
         [Option('a', "action", HelpText = "The action to perform")]
         public string Action { get; set; }

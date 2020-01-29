@@ -1,9 +1,9 @@
 using OpenKHS.CLI.IoC;
 using Ninject;
-using OpenKHS.CLI.Modules;
 using OpenKHS.ViewModels;
 using System;
 using CommandLine;
+using OpenKHS.Data;
 
 namespace OpenKHS.CLI
 {
