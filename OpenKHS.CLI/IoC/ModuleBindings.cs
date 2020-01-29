@@ -7,7 +7,7 @@ namespace OpenKHS.CLI.IoC
     {
         public override void Load()
         {
-            Bind<Main>().ToSelf();
+            Bind<MainModule>().ToSelf().InSingletonScope();
         }
     }
 }

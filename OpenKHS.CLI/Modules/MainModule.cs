@@ -1,18 +1,23 @@
 using System;
+using OpenKHS.Data;
 
 namespace OpenKHS.CLI.Modules
 {
-    public class Main : IModule
+    public class MainModule : BaseModule
     {
         private readonly LocalCongregationAdmin _localCongregationAdmin;
 
-        public Main(LocalCongregationAdmin localCongregationAdmin)
+        public MainModule(
+            IFeedbackService feedbackService,
+            IDbContextFactory dbContextFactory,
+            LocalCongregationAdmin localCongregationAdmin)
+            : base(feedbackService, dbContextFactory)
         {
             _localCongregationAdmin = localCongregationAdmin ??
                 throw new ArgumentNullException(nameof(localCongregationAdmin));
         }
 
-        public void Load()
+        public override void Load()
         {
             _localCongregationAdmin.Load();
             // TODO more modules based on events??

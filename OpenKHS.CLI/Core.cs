@@ -4,19 +4,18 @@ using OpenKHS.CLI.Modules;
 
 namespace OpenKHS.CLI
 {
-    class Startup
+    class Core
     {
         private readonly IKernel _kernel;
 
-        public Startup()
+        public Core()
         {
             _kernel = new StandardKernel(
                 new CoreBindings(),
                 new DbContextBindings(),
                 new ModuleBindings());
-            Main = _kernel.Get<Main>();
         }
 
-        public IModule Main { get; }
+        public IModule MainModule => _kernel.Get<MainModule>();
     }
 }

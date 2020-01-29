@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using OpenKHS.Data;
@@ -6,30 +5,24 @@ using OpenKHS.Models;
 
 namespace OpenKHS.CLI.Modules
 {
-    public class LocalCongregationAdmin : IModule
+    public class LocalCongregationAdmin : BaseModule
     {
-        private readonly IFeedbackService _feedbackService;
-        private readonly IDbContextFactory _dbContextFactory;
-
         public LocalCongregationAdmin(
             IFeedbackService feedbackService,
-            IDbContextFactory dbContextFactory)
+            IDbContextFactory dbContextFactory) 
+            : base(feedbackService, dbContextFactory)
         {
-            _feedbackService = feedbackService ??
-                throw new ArgumentNullException(nameof(feedbackService));
-            _dbContextFactory = dbContextFactory;
-            throw new ArgumentNullException(nameof(dbContextFactory));
         }
 
-        public void Load()
+        public override void Load()
         {
             // TODO Move this to ViewModels (for reuse on different platforms)
             IList<LocalCongregationMember> index = null;
-            using (var context = _dbContextFactory.Create())
+            using (var context = DbContextFactory.Create())
             {
                 index = context.LocalCongregationMembers.ToList();
             }
-            _feedbackService.Present("List");
+            FeedbackService.Present(index);
         }
 
     }
