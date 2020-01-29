@@ -1,10 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using BetterConsoleTables;
-using Colorful;
+using ConsoleTables;
 using OpenKHS.Models;
-using OpenKHS.Models.Utils;
 
 namespace OpenKHS.CLI
 {
@@ -14,7 +12,7 @@ namespace OpenKHS.CLI
 
         public FeedbackService()
         {
-            _initialFg = Console.ForegroundColor;
+            _initialFg = Colorful.Console.ForegroundColor;
         }
 
         public void Present(
@@ -22,14 +20,12 @@ namespace OpenKHS.CLI
             FeedbackContext context = FeedbackContext.Information)
         {
             var fg = GetColor(context);
-            Console.WriteLine(feedback, fg);
+            Colorful.Console.WriteLine(feedback, fg);
         }
 
         public void Present<T>(IList<T> index) where T : IModel
         {
-            var table = new Table(TableConfiguration.Markdown());
-            table.From(index);
-            Console.WriteLine(table.ToString());
+            ConsoleTable.From(index).Write(Format.MarkDown);
         }
 
         private Color GetColor(FeedbackContext context)
