@@ -8,7 +8,8 @@ namespace OpenKHS.Data
         {
             var optionsBuilder = 
                new DbContextOptionsBuilder<OpenKHSContext>();
-            optionsBuilder.UseSqlite("Data Source=OpenKHS.db;");    
+            optionsBuilder.UseSqlite(
+                StaticData.DbConnectionStrings.LIVE);    
             Options = optionsBuilder.Options;
         }
 
