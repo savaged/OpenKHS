@@ -6,6 +6,8 @@ namespace OpenKHS.CLI.IoC
     {
         public override void Load()
         {
+            Bind<CommandLineOptions>().ToSelf()
+                .InSingletonScope();
             Bind<IFeedbackService>().To<FeedbackService>()
                 .InSingletonScope();
         }

@@ -3,17 +3,18 @@ using Ninject;
 using OpenKHS.CLI.Modules;
 using OpenKHS.ViewModels;
 using System;
+using CommandLine;
 
 namespace OpenKHS.CLI
 {
     class Core
     {
         private readonly IKernel _kernel;
+        private readonly ParserResult<CommandLineOptions> _parserResult;
+        private readonly IFeedbackService _feedbackService;
+        private readonly MainViewModel _mainViewModel;
 
-        private IFeedbackService _feedbackService;
-        private MainViewModel _mainViewModel;
-
-        public Core()
+        public Core(string[] args)
         {
             _kernel = new StandardKernel(
                 new CoreBindings(),
@@ -25,10 +26,14 @@ namespace OpenKHS.CLI
             _mainViewModel = _kernel.Get<MainViewModel>() ??
                 throw new InvalidOperationException(
                     $"Missing dependency! {nameof(FeedbackService)}");
+            
+            _parserResult = CommandLine.Parser.Default
+                .ParseArguments<CommandLineOptions>(args);
         }
 
         public void Run()
         {
+            // TODO process options from parser result
             _mainViewModel.Load();
             _feedbackService.Present(
                 _mainViewModel.LocalCongregationAdminViewModel

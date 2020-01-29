@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            var core = new Core();
+            var core = new Core(args);
             core.Run();
         }
     }
