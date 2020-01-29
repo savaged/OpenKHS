@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
@@ -9,27 +10,25 @@ namespace OpenKHS.Test.Feature
     [TestClass]
     public class ListLocalCongregationAdminTests
     {
-        private readonly IKernel _kernel;
-
-        public ListLocalCongregationAdminTests()
-        {
-            _kernel = new StandardKernel(new DbContextBindings());
-            
-        }
-
-        private LocalCongregationAdminViewModel _localCongregationAdminViewModel;
+        private IKernel _kernel;
+        private MainViewModel _mainViewModel;
 
         [TestInitialize]
         public void Init()
         {
-            // IoC?
+            _kernel = new StandardKernel(new DbContextBindings());
+
+            _mainViewModel = _kernel.Get<MainViewModel>() ??
+                throw new InvalidOperationException(
+                    $"Missing dependency! {nameof(MainViewModel)}");
         }
 
         [TestMethod]
         public void ListLocalCongregationTest()
         {
-            _localCongregationAdminViewModel.Load();
-            Assert.AreEqual(10, _localCongregationAdminViewModel.IndexViewModel.Index.Count());
+            _mainViewModel.Load();
+            Assert.AreEqual(5, _mainViewModel.LocalCongregationAdminViewModel
+                .IndexViewModel.Index.Count());
         }
     }
 }
