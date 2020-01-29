@@ -24,7 +24,7 @@ namespace OpenKHS.CLI
                     $"Missing dependency! {nameof(FeedbackService)}");
             _mainViewModel = _kernel.Get<MainViewModel>() ??
                 throw new InvalidOperationException(
-                    $"Missing dependency! {nameof(FeedbackService)}");
+                    $"Missing dependency! {nameof(MainViewModel)}");
             
             _parserResult = CommandLine.Parser.Default
                 .ParseArguments<CommandLineOptions>(args);
