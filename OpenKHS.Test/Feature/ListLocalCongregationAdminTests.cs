@@ -3,7 +3,6 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
 using OpenKHS.Data;
-using OpenKHS.Data.StaticData;
 using OpenKHS.ViewModels;
 
 namespace OpenKHS.Test.Feature
@@ -17,8 +16,8 @@ namespace OpenKHS.Test.Feature
         [TestInitialize]
         public void Init()
         {
-            _kernel = new StandardKernel(new DbContextBindings(
-                DbConnectionStrings.TEST));
+            // TODO extend DbContextBindings to make use of extended options builder
+            _kernel = new StandardKernel(new DbContextBindings());
 
             _mainViewModel = _kernel.Get<MainViewModel>() ??
                 throw new InvalidOperationException(

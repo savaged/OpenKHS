@@ -5,18 +5,28 @@ namespace OpenKHS.Data
 {
     public class ConfiguredDbContextOptionsBuilder
     {
+        private readonly string _dbConn;
+        protected DbContextOptionsBuilder<OpenKHSContext> OptionsBuilder
+        { get; }
+
         public ConfiguredDbContextOptionsBuilder(string dbConn)
         {
             if (string.IsNullOrEmpty(dbConn))
             {
                 throw new ArgumentNullException(nameof(dbConn));
             }
-            var optionsBuilder = 
+            _dbConn = dbConn;
+            OptionsBuilder = 
                new DbContextOptionsBuilder<OpenKHSContext>();
-            optionsBuilder.UseSqlite(dbConn);    
-            Options = optionsBuilder.Options;
+            SetUseStatement();    
+            Options = OptionsBuilder.Options;
         }
 
         public DbContextOptions<OpenKHSContext> Options { get; }
+
+        protected virtual void SetUseStatement()
+        {
+            OptionsBuilder.UseSqlite(_dbConn);
+        }
     }
 }
