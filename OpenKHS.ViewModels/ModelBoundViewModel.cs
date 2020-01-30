@@ -1,10 +1,9 @@
 using System;
-using GalaSoft.MvvmLight;
 using OpenKHS.Data;
 
 namespace OpenKHS.ViewModels
 {
-    public abstract class ModelBoundViewModel : ViewModelBase
+    public abstract class ModelBoundViewModel : BaseViewModel
     {
         protected IDbContextFactory DbContextFactory { get; }
 
@@ -14,8 +13,5 @@ namespace OpenKHS.ViewModels
                 throw new ArgumentNullException(nameof(dbContextFactory));
         }
 
-        public bool IsBusy { get; set; }
-
-        public virtual bool CanExecute => !IsBusy;
     }
 }

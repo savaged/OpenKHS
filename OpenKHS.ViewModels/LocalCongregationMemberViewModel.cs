@@ -12,5 +12,15 @@ namespace OpenKHS.ViewModels
         {
         }
 
+        public override bool CanSave => CanExecute && IsItemSelected;
+
+        protected override void OnSave()
+        {
+            using (var context = DbContextFactory.Create())
+            {
+                context.Add(SelectedItem);
+                context.SaveChanges();
+            }
+        }
     }
 }

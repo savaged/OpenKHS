@@ -2,6 +2,8 @@ using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
+using OpenKHS.Data;
+using OpenKHS.Models;
 using OpenKHS.ViewModels;
 
 namespace OpenKHS.Test.Feature
@@ -18,11 +20,11 @@ namespace OpenKHS.Test.Feature
             _kernel = new StandardKernel(
                 new TestDbContextBindings("ListLocalCongregationAdmin"));
 
+            SetupTestData();
+
             _mainViewModel = _kernel.Get<MainViewModel>() ??
                 throw new InvalidOperationException(
                     $"Missing dependency! {nameof(MainViewModel)}");
-
-            // TODO add 5 local cong members
         }
 
         [TestMethod]
@@ -31,6 +33,24 @@ namespace OpenKHS.Test.Feature
             _mainViewModel.Load();
             Assert.AreEqual(5, _mainViewModel.LocalCongregationAdminViewModel
                 .IndexViewModel.Index.Count());
+        }
+
+        private void SetupTestData()
+        {
+            var dbContextFactory = _kernel.Get<IDbContextFactory>();
+            using (var context = dbContextFactory.Create())
+            {
+                for (var i = 1; i < 6; i++)
+                {
+                    var model = new LocalCongregationMember
+                    {
+                        Id = i,
+                        Name = "An Other"
+                    };
+                    context.Add(model);
+                }
+                context.SaveChanges();
+            }
         }
     }
 }

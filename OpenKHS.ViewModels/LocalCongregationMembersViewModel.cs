@@ -1,5 +1,3 @@
-using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
 using OpenKHS.Data;
 using OpenKHS.Models;
 
@@ -25,6 +23,5 @@ namespace OpenKHS.ViewModels
                 }
             }
         }
-
     }
 }
