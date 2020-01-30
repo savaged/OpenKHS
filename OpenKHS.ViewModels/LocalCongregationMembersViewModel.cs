@@ -15,13 +15,7 @@ namespace OpenKHS.ViewModels
         public override void Load()
         {
             Index.Clear();
-            using (var context = DbContextFactory.Create())
-            {
-                foreach (var model in context.LocalCongregationMembers)
-                {
-                    Index.Add(model);
-                }
-            }
+            // TODO use model service
         }
     }
 }

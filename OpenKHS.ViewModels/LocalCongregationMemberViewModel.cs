@@ -16,10 +16,7 @@ namespace OpenKHS.ViewModels
 
         protected override void OnSave()
         {
-            using (var context = DbContextFactory.Create())
-            {
-                context.SaveChanges();
-            }
+            
         }
     }
 }
