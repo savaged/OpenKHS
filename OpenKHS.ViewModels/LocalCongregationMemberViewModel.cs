@@ -18,7 +18,6 @@ namespace OpenKHS.ViewModels
         {
             using (var context = DbContextFactory.Create())
             {
-                context.Add(SelectedItem);
                 context.SaveChanges();
             }
         }
