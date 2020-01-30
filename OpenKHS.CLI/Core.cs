@@ -2,7 +2,7 @@ using Ninject;
 using OpenKHS.ViewModels;
 using System;
 using CommandLine;
-using OpenKHS.Data;
+using OpenKHS.Data.StaticData;
 
 namespace OpenKHS.CLI
 {
@@ -17,7 +17,7 @@ namespace OpenKHS.CLI
         {
             _kernel = new StandardKernel(
                 new CLIBindings(),
-                new DbContextBindings());
+                new DbContextBindings(DbConnectionStrings.LIVE));
 
             _feedbackService = _kernel.Get<IFeedbackService>() ??
                 throw new InvalidOperationException(

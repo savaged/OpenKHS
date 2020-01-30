@@ -8,7 +8,7 @@ namespace OpenKHS.Data
         private readonly DbContextOptions<OpenKHSContext> _options;
 
         public DbContextFactory(
-            ConfiguredDbContextOptionsBuilder optionsBuilder)
+            IConfiguredDbContextOptionsBuilder optionsBuilder)
         {
             _options = optionsBuilder?.Options;
         }

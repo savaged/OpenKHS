@@ -1,30 +1,18 @@
-using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Ninject.Modules;
 
 namespace OpenKHS.Data
 {
-    public class DbContextBindings : NinjectModule
+    public abstract class DbContextBindingsBase : NinjectModule
     {
-        private readonly string _dbConn;
-
-        public DbContextBindings()
-            : this(StaticData.DbConnectionStrings.LIVE)
-        {
-        }
-
-        public DbContextBindings(string dbConn) 
-        {
-            _dbConn = dbConn ??
-                throw new ArgumentNullException(nameof(dbConn));
-        }
-
+        /// <summary>
+        /// Sub-classes should have a Bind for their implementation 
+        /// of the ConfiguredDbContextOptionsBuilder class and then
+        /// call this base Load method.
+        /// </summary>
         public override void Load()
         {
-            Bind<ConfiguredDbContextOptionsBuilder>().ToSelf()
-                .InSingletonScope()
-                .WithConstructorArgument(_dbConn);
             Bind<IDbContextOptions>()
                 .To<DbContextOptions<OpenKHSContext>>()
                 .InSingletonScope();

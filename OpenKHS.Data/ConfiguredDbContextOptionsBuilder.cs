@@ -3,22 +3,21 @@ using Microsoft.EntityFrameworkCore;
 
 namespace OpenKHS.Data
 {
-    public class ConfiguredDbContextOptionsBuilder
+    public abstract class ConfiguredDbContextOptionsBuilder 
+        : IConfiguredDbContextOptionsBuilder
     {
-        private readonly string _dbConn;
-        protected DbContextOptionsBuilder<OpenKHSContext> OptionsBuilder
-        { get; }
+        protected string DbSource { get; }
+        protected DbContextOptionsBuilder<OpenKHSContext> OptionsBuilder { get; }
 
-        public ConfiguredDbContextOptionsBuilder(string dbConn)
+        public ConfiguredDbContextOptionsBuilder(string dbSource)
         {
-            if (string.IsNullOrEmpty(dbConn))
+            if (string.IsNullOrEmpty(dbSource))
             {
-                throw new ArgumentNullException(nameof(dbConn));
+                throw new ArgumentNullException(nameof(dbSource));
             }
-            _dbConn = dbConn;
-            OptionsBuilder = 
-               new DbContextOptionsBuilder<OpenKHSContext>();
-            SetUseStatement();    
+            DbSource = dbSource;
+            OptionsBuilder = new DbContextOptionsBuilder<OpenKHSContext>();
+            SetUseStatement();
             Options = OptionsBuilder.Options;
         }
 
@@ -26,7 +25,7 @@ namespace OpenKHS.Data
 
         protected virtual void SetUseStatement()
         {
-            OptionsBuilder.UseSqlite(_dbConn);
+            OptionsBuilder.UseSqlite(DbSource);
         }
     }
 }

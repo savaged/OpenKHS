@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
-using OpenKHS.Data;
 using OpenKHS.ViewModels;
 
 namespace OpenKHS.Test.Feature
@@ -16,8 +15,8 @@ namespace OpenKHS.Test.Feature
         [TestInitialize]
         public void Init()
         {
-            // TODO extend DbContextBindings to make use of extended options builder
-            _kernel = new StandardKernel(new DbContextBindings());
+            _kernel = new StandardKernel(
+                new TestDbContextBindings("ListLocalCongregationAdmin"));
 
             _mainViewModel = _kernel.Get<MainViewModel>() ??
                 throw new InvalidOperationException(
