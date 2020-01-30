@@ -14,5 +14,8 @@ namespace OpenKHS.ViewModels
                 throw new ArgumentNullException(nameof(dbContextFactory));
         }
 
+        public bool IsBusy { get; set; }
+
+        public virtual bool CanExecute => !IsBusy;
     }
 }
