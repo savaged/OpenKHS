@@ -1,6 +1,7 @@
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Ninject;
 using OpenKHS.Data;
 using OpenKHS.Models;
 
@@ -12,17 +13,13 @@ namespace OpenKHS.Test.Integration
         [TestMethod]
         public void LocalCongregationMemberCRUDTests()
         {
-            var optionsBuilder = new DbContextOptionsBuilder<OpenKHSContext>();
-            optionsBuilder.UseInMemoryDatabase("LocalCongregationMemberCRUDTests");
-            var options = optionsBuilder.Options;
-            using (var context = new OpenKHSContext(options))
-            {
-                context.Database.EnsureCreated();
-            }
+            var kernel = new StandardKernel(
+                new TestDbContextBindings("LocalCongregationMemberCRUDTests"));
+            var dbContextFactory = kernel.Get<IDbContextFactory>();            
 
             var modelId = 0;
             // Create
-            using (var context = new OpenKHSContext(options))
+            using (var context = dbContextFactory.Create())
             {
                 var model = new LocalCongregationMember
                 {
@@ -35,7 +32,7 @@ namespace OpenKHS.Test.Integration
                 Assert.AreEqual("Test Member", model.Name);
             }
             // Read
-            using (var context = new OpenKHSContext(options))
+            using (var context = dbContextFactory.Create())
             {
                 var model = context.LocalCongregationMembers
                     .Single(m => m.Id == modelId);
@@ -43,7 +40,7 @@ namespace OpenKHS.Test.Integration
                 Assert.AreNotEqual(0, modelId);
             }
             // Update
-            using (var context = new OpenKHSContext(options))
+            using (var context = dbContextFactory.Create())
             {
                 var model = context.LocalCongregationMembers
                     .Single(m => m.Id == modelId);
@@ -54,7 +51,7 @@ namespace OpenKHS.Test.Integration
                 Assert.AreEqual(modelId, model.Id);
             }
             // Delete
-            using (var context = new OpenKHSContext(options))
+            using (var context = dbContextFactory.Create())
             {
                 var model = context.LocalCongregationMembers
                     .Single(m => m.Id == modelId);
