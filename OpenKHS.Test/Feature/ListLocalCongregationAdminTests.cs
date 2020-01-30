@@ -21,6 +21,8 @@ namespace OpenKHS.Test.Feature
             _mainViewModel = _kernel.Get<MainViewModel>() ??
                 throw new InvalidOperationException(
                     $"Missing dependency! {nameof(MainViewModel)}");
+
+            // TODO add 5 local cong members
         }
 
         [TestMethod]
