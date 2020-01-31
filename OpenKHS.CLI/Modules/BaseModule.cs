@@ -14,6 +14,6 @@ namespace OpenKHS.CLI.Modules
                 throw new ArgumentNullException(nameof(feedbackService));
         }
 
-        public abstract void Load();
+        public abstract void Load(string entity);
     }
 }

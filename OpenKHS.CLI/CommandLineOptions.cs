@@ -1,13 +1,17 @@
+using System.Linq;
 using CommandLine;
 
 namespace OpenKHS.CLI
 {
     class CommandLineOptions
     {
-        [Option('a', "action", HelpText = "The action to perform")]
-        public string Action { get; set; }
-
-        [Option('s', "subject", HelpText = "The subject upon which an action is performed")]
-        public string Subject { get; set; }
+        /// <summary>
+        /// Work-around because I couldn't get Option to work with verbs
+        /// </summary>
+        /// <value></value>
+        [Value(0)]
+        public string Args { get; set; }
+        public string Verb => Args?.Split(' ')?.FirstOrDefault();        
+        public string Entity => Args?.Split(' ')?.LastOrDefault();
     }
 }

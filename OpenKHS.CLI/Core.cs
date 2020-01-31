@@ -1,42 +1,51 @@
 using Ninject;
-using OpenKHS.ViewModels;
-using System;
 using CommandLine;
 using OpenKHS.Data.StaticData;
+using OpenKHS.CLI.Modules;
+using OpenKHS.Models;
+using System;
 
 namespace OpenKHS.CLI
 {
     class Core
     {
         private readonly IKernel _kernel;
-        private readonly ParserResult<CommandLineOptions> _parserResult;
-        private readonly IFeedbackService _feedbackService;
-        private readonly MainViewModel _mainViewModel;
+        private readonly string[] _args;
+        private readonly IModule _listModule;
 
         public Core(string[] args)
         {
+            _args = args;
+
             _kernel = new StandardKernel(
                 new CLIBindings(),
                 new DbContextBindings(DbConnectionStrings.LIVE));
 
-            _feedbackService = _kernel.Get<IFeedbackService>() ??
-                throw new InvalidOperationException(
-                    $"Missing dependency! {nameof(FeedbackService)}");
-            _mainViewModel = _kernel.Get<MainViewModel>() ??
-                throw new InvalidOperationException(
-                    $"Missing dependency! {nameof(MainViewModel)}");
-            
-            _parserResult = CommandLine.Parser.Default
-                .ParseArguments<CommandLineOptions>(args);
+            _listModule = _kernel.Get<ListModule>() ??
+                throw new InvalidOperationException("Missing dependency!");
         }
 
-        public void Run()
+        public int Run()
         {
-            // TODO process options from parser result
-            _mainViewModel.Load();
-            _feedbackService.Present(
-                _mainViewModel.LocalCongregationAdminViewModel
-                .IndexViewModel.Index);
+            var exitCode = Parser.Default
+                .ParseArguments<CommandLineOptions>(_args)
+                .MapResult(
+                    (CommandLineOptions o) => 
+                    {
+                        var verb = o.Verb?.ToLower();
+                        var entity = o.Entity;
+                        switch (verb)
+                        {
+                            // TODO add verb cases
+                            default:
+                                _listModule.Load(entity);
+                                break;
+                        };
+                        return 0;
+                    },
+                    _ => 1);
+            return exitCode;
         }
+        
     }
 }

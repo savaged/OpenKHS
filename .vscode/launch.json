@@ -5,12 +5,23 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": ".NET Core Launch (console)",
+            "name": "1) .NET Core Launch (console)",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/OpenKHS.CLI/bin/Debug/netcoreapp3.1/OpenKHS.CLI.dll",
             "args": [],
+            "cwd": "${workspaceFolder}/OpenKHS.CLI",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "2) .NET Core Launch (console) with args",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/OpenKHS.CLI/bin/Debug/netcoreapp3.1/OpenKHS.CLI.dll",
+            "args": ["list AssignmentType"],
             "cwd": "${workspaceFolder}/OpenKHS.CLI",
             "console": "internalConsole",
             "stopAtEntry": false

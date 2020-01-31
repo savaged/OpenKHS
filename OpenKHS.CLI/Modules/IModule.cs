@@ -2,6 +2,6 @@ namespace OpenKHS.CLI.Modules
 {
     public interface IModule
     {
-        void Load();
+        void Load(string entity);
     }
 }
