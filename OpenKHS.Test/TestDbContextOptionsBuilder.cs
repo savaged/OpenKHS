@@ -1,3 +1,4 @@
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using OpenKHS.Data;
 
@@ -5,14 +6,10 @@ namespace OpenKHS.Test
 {
     public class TestDbContextOptionsBuilder : ConfiguredDbContextOptionsBuilder
     {
-        public TestDbContextOptionsBuilder(string dbSource)
-            : base(dbSource) 
+        public TestDbContextOptionsBuilder(SqliteConnection connection)
+            : base(connection)
         {
         }
 
-        protected override void SetUseStatement()
-        {
-            OptionsBuilder.UseInMemoryDatabase(DbSource);
-        }
     }
 }

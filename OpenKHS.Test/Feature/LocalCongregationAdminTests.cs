@@ -17,8 +17,7 @@ namespace OpenKHS.Test.Feature
         [TestInitialize]
         public void Init()
         {
-            _kernel = new StandardKernel(
-                new TestDbContextBindings("LocalCongregationAdmin"));
+            _kernel = new StandardKernel(new TestDbContextBindings());
 
             _mainViewModel = _kernel.Get<MainViewModel>() ??
                 throw new InvalidOperationException(

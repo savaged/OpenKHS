@@ -1,4 +1,5 @@
 using System;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
 namespace OpenKHS.Data
@@ -6,26 +7,40 @@ namespace OpenKHS.Data
     public abstract class ConfiguredDbContextOptionsBuilder 
         : IConfiguredDbContextOptionsBuilder
     {
-        protected string DbSource { get; }
-        protected DbContextOptionsBuilder<OpenKHSContext> OptionsBuilder { get; }
-
-        public ConfiguredDbContextOptionsBuilder(string dbSource)
+        public ConfiguredDbContextOptionsBuilder(string dbConnectionString)
         {
-            if (string.IsNullOrEmpty(dbSource))
+            if (string.IsNullOrEmpty(dbConnectionString))
             {
-                throw new ArgumentNullException(nameof(dbSource));
+                throw new ArgumentNullException(nameof(dbConnectionString));
             }
-            DbSource = dbSource;
-            OptionsBuilder = new DbContextOptionsBuilder<OpenKHSContext>();
-            SetUseStatement();
-            Options = OptionsBuilder.Options;
+            Connection = new SqliteConnection(dbConnectionString);
+            Init();
         }
 
-        public DbContextOptions<OpenKHSContext> Options { get; }
+        public ConfiguredDbContextOptionsBuilder(SqliteConnection connection)
+        {
+            Connection = connection ??
+                throw new ArgumentNullException(nameof(connection));
+            Init();
+        }
+
+        public SqliteConnection Connection { get; }
+
+        public DbContextOptions<OpenKHSContext> Options { get; private set; }
+        
+        protected DbContextOptionsBuilder<OpenKHSContext> OptionsBuilder 
+        { get; private set; }
 
         protected virtual void SetUseStatement()
         {
-            OptionsBuilder.UseSqlite(DbSource);
+            OptionsBuilder.UseSqlite(Connection);
+        }
+
+        private void Init()
+        {
+            OptionsBuilder = new DbContextOptionsBuilder<OpenKHSContext>();
+            SetUseStatement();
+            Options = OptionsBuilder.Options;
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using OpenKHS.Models;
@@ -36,7 +37,7 @@ namespace OpenKHS.Data
             using (var context = _dbContextFactory.Create())
             {
                 var dbSet = GetDbSet<T>(context);
-                model = dbSet.Single(m => m.Id == id) as T;
+                model = dbSet.Find(id) as T;
             }
             return model;
         }
@@ -47,8 +48,9 @@ namespace OpenKHS.Data
 
             using (var context = _dbContextFactory.Create())
             {
-                var dbSet = GetDbSet<T>(context);
-                dbSet.Add(model);
+                // var dbSet = GetDbSet<T>(context);
+                // dbSet.Add(model);
+                context.Entry(model).State = EntityState.Added;
                 context.SaveChanges();
             }
         }
@@ -59,12 +61,13 @@ namespace OpenKHS.Data
 
             using (var context = _dbContextFactory.Create())
             {
-                var dbSet = GetDbSet<T>(context);
-                var match = dbSet.Single(m => m.Id == model.Id);
-                if (match != null)
-                {
-                    match = model;
-                }
+                // var dbSet = GetDbSet<T>(context);
+                // var match = dbSet.Single(m => m.Id == model.Id);
+                // if (match != null)
+                // {
+                //     match = model;
+                // }
+                context.Entry(model).State = EntityState.Modified;
                 context.SaveChanges();
             }
         }
@@ -75,13 +78,16 @@ namespace OpenKHS.Data
 
             using (var context = _dbContextFactory.Create())
             {
-                var dbSet = GetDbSet<T>(context);
-                var match = dbSet.Single(m => m.Id == model.Id);
-                if (match != null)
-                {
-                    dbSet.Remove(match);
-                }
+                // var dbSet = GetDbSet<T>(context);
+                // var match = dbSet.Single(m => m.Id == model.Id);
+                // if (match != null)
+                // {
+                //     dbSet.Remove(match);
+                // }
+                context.Entry(model).State = EntityState.Deleted;
                 context.SaveChanges();
+                // const string sql = "DELETE FROM @p0 WHERE Id = @p1;";
+                // context.Database.ExecuteSqlRaw(sql, model.GetType().Name, model.Id);
             }
         }
 
