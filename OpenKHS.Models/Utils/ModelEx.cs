@@ -16,7 +16,7 @@ namespace OpenKHS.Models.Utils
 
         public static bool IsNew(this IModel? model)
         {
-            return model?.Id > 0;
+            return !(model?.Id > 0);
         }
     }
 }
