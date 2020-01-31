@@ -3,27 +3,27 @@ using Microsoft.EntityFrameworkCore;
 
 namespace OpenKHS.Data
 {
-    public class DbContextFactory : IDbContextFactory
+    public abstract class DbContextFactoryBase : IDbContextFactory
     {
-        private readonly DbContextOptions<OpenKHSContext> _options;
+        protected readonly DbContextOptions<OpenKHSContext> Options;
 
-        public DbContextFactory(
+        public DbContextFactoryBase(
             IConfiguredDbContextOptionsBuilder optionsBuilder)
         {
-            _options = optionsBuilder?.Options;
+            Options = optionsBuilder?.Options;
         }
 
-        public OpenKHSContext Create()
+        public virtual OpenKHSContext Create()
         {
-            using (var context = new OpenKHSContext(_options))
+            using (var context = new OpenKHSContext(Options))
             {
                 context.Database.EnsureCreated();
                 EnsureSeeded(context);
             }
-            return new OpenKHSContext(_options);
+            return new OpenKHSContext(Options);
         }
 
-        private void EnsureSeeded(OpenKHSContext context)
+        protected virtual void EnsureSeeded(OpenKHSContext context)
         {
             var assignmentTypes = context.AssignmentTypes.ToList();
             if (assignmentTypes.Count() == 0)

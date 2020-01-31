@@ -16,7 +16,7 @@ namespace OpenKHS.Data
             Bind<IDbContextOptions>()
                 .To<DbContextOptions<OpenKHSContext>>()
                 .InSingletonScope();
-            Bind<IDbContextFactory>().To<DbContextFactory>()
+            Bind<IModelService>().To<ModelService>()
                 .InSingletonScope();
         }
     }

@@ -16,6 +16,8 @@ namespace OpenKHS.Test
             Bind<IConfiguredDbContextOptionsBuilder>().To<TestDbContextOptionsBuilder>()
                 .InSingletonScope()
                 .WithConstructorArgument(dbSource);
+            Bind<IDbContextFactory>().To<TestDbContextFactory>()
+                .InSingletonScope();
             base.Load();
         }
     }

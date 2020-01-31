@@ -17,6 +17,7 @@ namespace OpenKHS.CLI
             Bind<IConfiguredDbContextOptionsBuilder>().To<DbContextOptionsBuilder>()
                 .InSingletonScope()
                 .WithConstructorArgument(dbSource);
+            Bind<IDbContextFactory>().To<DbContextFactory>();
             base.Load();
         }
     }
