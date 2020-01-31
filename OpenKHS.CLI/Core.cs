@@ -32,7 +32,7 @@ namespace OpenKHS.CLI
                 .MapResult(
                     (CommandLineOptions o) => 
                     {
-                        var verb = o.Verb?.ToLower();
+                        var verb = o.Verb;
                         var entity = o.Entity;
                         switch (verb)
                         {

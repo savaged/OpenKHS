@@ -43,13 +43,13 @@ namespace OpenKHS.CLI.Modules
 
         private void ListAssignments()
         {
-            // FeedbackService.Present(
-            //     _mainViewModel.AssignmentAdminViewModel
-            //     .IndexViewModel.Index);
+            
         }
 
         private void ListAssignmentTypes()
         {
+            FeedbackService.Present(
+                _mainViewModel.AssignmentTypesViewModel.Index);
         }
     }
 }

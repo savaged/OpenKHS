@@ -4,8 +4,8 @@ using OpenKHS.Models;
 
 namespace OpenKHS.ViewModels
 {
-    public abstract class IndexViewModel<T> : ModelBoundViewModel
-        where T : IModel
+    public class IndexViewModel<T> : ModelBoundViewModel
+        where T : class, IModel
     {
         public IndexViewModel(
             IModelService modelService) 
@@ -16,7 +16,15 @@ namespace OpenKHS.ViewModels
 
         public ObservableCollection<T> Index { get; }
 
-        public abstract void Load();
+        public virtual void Load()
+        {
+            Index.Clear();
+            var index = ModelService.GetIndex<T>();
+            foreach (var model in index)
+            {
+                Index.Add(model);
+            }
+        }
 
     }
 }

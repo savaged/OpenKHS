@@ -9,8 +9,8 @@ namespace OpenKHS.ViewModels
         public LocalCongregationAdminViewModel(
             IModelService modelService)
             : base(
-                new LocalCongregationMembersViewModel(modelService),
-                new LocalCongregationMemberViewModel(modelService))
+                new IndexViewModel<LocalCongregationMember>(modelService),
+                new SelectedItemViewModel<LocalCongregationMember>(modelService))
         {
         }
 

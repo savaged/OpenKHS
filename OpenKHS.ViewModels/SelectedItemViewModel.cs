@@ -2,10 +2,11 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using OpenKHS.Data;
 using OpenKHS.Models;
+using OpenKHS.Models.Utils;
 
 namespace OpenKHS.ViewModels
 {
-    public abstract class SelectedItemViewModel<T> : ModelBoundViewModel
+    public class SelectedItemViewModel<T> : ModelBoundViewModel
         where T : class, IModel
     {
         private T? _selectedItem;
@@ -27,14 +28,18 @@ namespace OpenKHS.ViewModels
 
         public ICommand SaveCmd { get; }
 
-        /// <summary>
-        /// The sub-class can override this
-        /// </summary>
-        public virtual bool CanSave => false;
+        public virtual bool CanSave => CanExecute && IsItemSelected;
 
         protected virtual void OnSave()
         {
-            // The sub-class can add the behaviour
+            if (SelectedItem.IsNew())
+            {
+                ModelService.Insert(SelectedItem);
+            }
+            else
+            {
+                ModelService.Update(SelectedItem);
+            }
         }
 
     }
