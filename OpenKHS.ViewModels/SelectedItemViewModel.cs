@@ -11,8 +11,8 @@ namespace OpenKHS.ViewModels
         private T? _selectedItem;
 
         public SelectedItemViewModel(
-            IDbContextFactory dbContextFactory) 
-            : base(dbContextFactory)
+            IModelService modelService) 
+            : base(modelService)
         {
             SaveCmd = new RelayCommand(OnSave, () => CanSave);
         }

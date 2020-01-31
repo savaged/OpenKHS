@@ -7,15 +7,19 @@ namespace OpenKHS.ViewModels
         : IndexViewModel<LocalCongregationMember>
     {
         public LocalCongregationMembersViewModel(
-            IDbContextFactory dbContextFactory) 
-            : base(dbContextFactory)
+            IModelService modelService) 
+            : base(modelService)
         {
         }
 
         public override void Load()
         {
             Index.Clear();
-            // TODO use model service
+            var index = ModelService.GetIndex<LocalCongregationMember>();
+            foreach (var model in index)
+            {
+                Index.Add(model);
+            }
         }
     }
 }

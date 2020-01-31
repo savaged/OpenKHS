@@ -13,5 +13,10 @@ namespace OpenKHS.Models.Utils
             var list = props.Select(p => p.Name).ToList();
             return list;
         }
+
+        public static bool IsNew(this IModel? model)
+        {
+            return model?.Id > 0;
+        }
     }
 }

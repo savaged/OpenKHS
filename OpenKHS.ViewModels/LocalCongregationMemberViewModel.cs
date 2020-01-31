@@ -1,5 +1,6 @@
 using OpenKHS.Data;
 using OpenKHS.Models;
+using OpenKHS.Models.Utils;
 
 namespace OpenKHS.ViewModels
 {
@@ -7,8 +8,8 @@ namespace OpenKHS.ViewModels
         : SelectedItemViewModel<LocalCongregationMember>
     {
         public LocalCongregationMemberViewModel(
-            IDbContextFactory dbContextFactory) 
-            : base(dbContextFactory)
+            IModelService modelService) 
+            : base(modelService)
         {
         }
 
@@ -16,7 +17,14 @@ namespace OpenKHS.ViewModels
 
         protected override void OnSave()
         {
-            
+            if (SelectedItem.IsNew())
+            {
+                ModelService.Insert(SelectedItem);
+            }
+            else
+            {
+                ModelService.Update(SelectedItem);
+            }
         }
     }
 }

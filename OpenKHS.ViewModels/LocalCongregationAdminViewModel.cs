@@ -7,10 +7,10 @@ namespace OpenKHS.ViewModels
         : MasterDetailViewModel<LocalCongregationMember>
     {
         public LocalCongregationAdminViewModel(
-            IDbContextFactory dbContextFactory)
+            IModelService modelService)
             : base(
-                new LocalCongregationMembersViewModel(dbContextFactory),
-                new LocalCongregationMemberViewModel(dbContextFactory))
+                new LocalCongregationMembersViewModel(modelService),
+                new LocalCongregationMemberViewModel(modelService))
         {
         }
 

@@ -5,12 +5,12 @@ namespace OpenKHS.ViewModels
 {
     public abstract class ModelBoundViewModel : BaseViewModel
     {
-        protected IDbContextFactory DbContextFactory { get; }
+        protected IModelService ModelService { get; }
 
-        public ModelBoundViewModel(IDbContextFactory dbContextFactory)
+        public ModelBoundViewModel(IModelService modelService)
         {
-            DbContextFactory = dbContextFactory ??
-                throw new ArgumentNullException(nameof(dbContextFactory));
+            ModelService = modelService ??
+                throw new ArgumentNullException(nameof(modelService));
         }
 
     }

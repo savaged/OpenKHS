@@ -8,8 +8,8 @@ namespace OpenKHS.ViewModels
         where T : IModel
     {
         public IndexViewModel(
-            IDbContextFactory dbContextFactory) 
-            : base(dbContextFactory)
+            IModelService modelService) 
+            : base(modelService)
         {
             Index = new ObservableCollection<T>();
         }

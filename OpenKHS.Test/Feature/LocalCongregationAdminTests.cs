@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Microsoft.Data.Sqlite;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
 using OpenKHS.Data;
@@ -12,92 +13,116 @@ namespace OpenKHS.Test.Feature
     public class LocalCongregationAdminTests
     {
         private IKernel _kernel;
+        private SqliteConnection _dbConnection;
         private MainViewModel _mainViewModel;
 
         [TestInitialize]
         public void Init()
         {
             _kernel = new StandardKernel(new TestDbContextBindings());
-
+            _dbConnection = _kernel.Get<SqliteConnection>();
             _mainViewModel = _kernel.Get<MainViewModel>() ??
                 throw new InvalidOperationException(
                     $"Missing dependency! {nameof(MainViewModel)}");
+
+            _dbConnection.Open();
         }
 
         [TestMethod]
         public void ListLocalCongregationTest()
         {
-            var dbContextFactory = _kernel.Get<IDbContextFactory>();
-            using (var context = dbContextFactory.Create())
+            try
             {
-                for (var i = 1; i < 6; i++)
+                var dbContextFactory = _kernel.Get<IDbContextFactory>();
+                using (var context = dbContextFactory.Create())
                 {
-                    var model = new LocalCongregationMember
+                    for (var i = 1; i < 6; i++)
                     {
-                        Id = i,
-                        Name = "An Other"
-                    };
-                    context.Add(model);
+                        var model = new LocalCongregationMember
+                        {
+                            Id = i,
+                            Name = "An Other"
+                        };
+                        context.Add(model);
+                    }
+                    context.SaveChanges();
                 }
-                context.SaveChanges();
-            }
 
-            _mainViewModel.Load();
-            Assert.AreEqual(5, _mainViewModel.LocalCongregationAdminViewModel
-                .IndexViewModel.Index.Count());
+                _mainViewModel.Load();
+                Assert.AreEqual(5, _mainViewModel.LocalCongregationAdminViewModel
+                    .IndexViewModel.Index.Count());
+            }
+            finally
+            {
+                _dbConnection.Close();
+            }
         }
 
         [TestMethod]
         public void AddAndSaveNewLocalCongregationMember()
         {
-            _mainViewModel.LocalCongregationAdminViewModel.AddCmd.Execute(null);
-            var model = _mainViewModel.LocalCongregationAdminViewModel.SelectedItemViewModel.SelectedItem;
-            Assert.IsNotNull(model);
-            model.Name = "An Ewmember";
-            Assert.AreEqual(0, model.Id);
-            _mainViewModel.LocalCongregationAdminViewModel.SelectedItemViewModel.SaveCmd.Execute(null);
-            Assert.AreNotEqual(0, model.Id);
-            var savedId = model.Id;
-            
-            var dbContextFactory = _kernel.Get<IDbContextFactory>();
-            using (var context = dbContextFactory.Create())
+            try
             {
-                var saved = context.LocalCongregationMembers.Single(m => m.Id == savedId);
-                Assert.IsNotNull(saved);
-                Assert.AreEqual(model.Name, saved.Name);
+                _mainViewModel.LocalCongregationAdminViewModel.AddCmd.Execute(null);
+                var model = _mainViewModel.LocalCongregationAdminViewModel.SelectedItemViewModel.SelectedItem;
+                Assert.IsNotNull(model);
+                model.Name = "An Ewmember";
+                Assert.AreEqual(0, model.Id);
+                _mainViewModel.LocalCongregationAdminViewModel.SelectedItemViewModel.SaveCmd.Execute(null);
+                Assert.AreNotEqual(0, model.Id);
+                var savedId = model.Id;
+            
+                var dbContextFactory = _kernel.Get<IDbContextFactory>();
+                using (var context = dbContextFactory.Create())
+                {
+                    var saved = context.LocalCongregationMembers.Single(m => m.Id == savedId);
+                    Assert.IsNotNull(saved);
+                    Assert.AreEqual(model.Name, saved.Name);
+                }
+            }
+            finally
+            {
+                _dbConnection.Close();
             }
         }
 
         [TestMethod]
         public void SelectAndUpdateLocalCongregationMember()
         {
-            var example = new LocalCongregationMember
+            try
             {
-                Name = "An Exsitingmember"
-            };
-            var dbContextFactory = _kernel.Get<IDbContextFactory>();
-            using (var context = dbContextFactory.Create())
-            {
-                context.LocalCongregationMembers.Add(example);
-                context.SaveChanges();
+                var example = new LocalCongregationMember
+                {
+                    Name = "An Exsitingmember"
+                };
+                var dbContextFactory = _kernel.Get<IDbContextFactory>();
+                using (var context = dbContextFactory.Create())
+                {
+                    context.LocalCongregationMembers.Add(example);
+                    context.SaveChanges();
+                }
+                _mainViewModel.Load();
+                var index = _mainViewModel.LocalCongregationAdminViewModel.IndexViewModel.Index;
+                Assert.IsNotNull(index);
+    
+                // Simulate user selecting from list
+                var model = index.FirstOrDefault(m => m.Name == example.Name);
+                Assert.IsNotNull(model);
+                _mainViewModel.LocalCongregationAdminViewModel.SelectedItemViewModel.SelectedItem = model;
+                Assert.IsNotNull(_mainViewModel.LocalCongregationAdminViewModel.SelectedItemViewModel.SelectedItem);
+    
+                _mainViewModel.LocalCongregationAdminViewModel.SelectedItemViewModel.SelectedItem.Attendant = true;
+                _mainViewModel.LocalCongregationAdminViewModel.SelectedItemViewModel.SaveCmd.Execute(null);
+                using (var context = dbContextFactory.Create())
+                {
+                    var saved = context.LocalCongregationMembers.Single(m => m.Id == model.Id);
+                    Assert.IsNotNull(saved);
+                    Assert.AreEqual(model.Attendant, saved.Attendant);
+                }
             }
-            _mainViewModel.Load();
-            var index = _mainViewModel.LocalCongregationAdminViewModel.IndexViewModel.Index;
-            Assert.IsNotNull(index);
-
-            // Simulate user selecting from list
-            var model = index.FirstOrDefault(m => m.Name == example.Name);
-            Assert.IsNotNull(model);
-            _mainViewModel.LocalCongregationAdminViewModel.SelectedItemViewModel.SelectedItem = model;
-            Assert.IsNotNull(_mainViewModel.LocalCongregationAdminViewModel.SelectedItemViewModel.SelectedItem);
-
-            _mainViewModel.LocalCongregationAdminViewModel.SelectedItemViewModel.SelectedItem.Attendant = true;
-            _mainViewModel.LocalCongregationAdminViewModel.SelectedItemViewModel.SaveCmd.Execute(null);
-            using (var context = dbContextFactory.Create())
+            finally
             {
-                var saved = context.LocalCongregationMembers.Single(m => m.Id == model.Id);
-                Assert.IsNotNull(saved);
-                Assert.AreEqual(model.Attendant, saved.Attendant);
+                _dbConnection.Close();
             }
         }
 
