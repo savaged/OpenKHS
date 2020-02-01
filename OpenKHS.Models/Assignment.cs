@@ -1,4 +1,5 @@
 using System;
+using OpenKHS.Models.Utils;
 
 namespace OpenKHS.Models
 {
@@ -10,7 +11,8 @@ namespace OpenKHS.Models
 
         public Assignment()
         {
-            _dueWeekStarting = DateTime.MinValue;
+            _dueWeekStarting = WeekStartingAdapter
+                .GetFirstDateOfWeekIso8601(DateTime.Now);
             _type = new NullAssignmentType();
             _assignee = new NullLocalCongregationMember();
         }

@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using OpenKHS.Models.Utils;
 
 namespace OpenKHS.Models
 {
@@ -9,16 +9,24 @@ namespace OpenKHS.Models
 
         public Schedule()
         {
-            Assignments = new List<Assignment>();
+            WeekStarting = WeekStartingAdapter
+                .GetFirstDateOfWeekIso8601(DateTime.Now);
+            OpeningPrayer = new Assignment();
+            ClosingPrayer = new Assignment();
+            Chairman = new Assignment();
         }
-
-        public IList<Assignment> Assignments { get; set; }
 
         public DateTime WeekStarting 
         {
             get => _weekStarting;
             set => Set(ref _weekStarting, value);
         }
+
+        public Assignment OpeningPrayer { get; set; }
+        
+        public Assignment ClosingPrayer { get; set; }
+        
+        public Assignment Chairman { get; set; }
 
     }
 }

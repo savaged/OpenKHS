@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace OpenKHS.Models.Utils
 {
-    public static class WeekNumberAdapter
+    public static class WeekStartingAdapter
     {
         public static DateTime GetFirstDateOfWeekIso8601(DateTime dateTime)
         {
