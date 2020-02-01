@@ -5,7 +5,7 @@ using OpenKHS.Models;
 
 namespace OpenKHS.ViewModels
 {
-    public abstract class MasterDetailViewModel<T> : BaseViewModel
+    public class MasterDetailViewModel<T> : BaseViewModel
         where T : class, IModel, new()
     {
         public MasterDetailViewModel(
@@ -23,7 +23,10 @@ namespace OpenKHS.ViewModels
         public IndexViewModel<T> IndexViewModel { get; }
         public SelectedItemViewModel<T> SelectedItemViewModel { get; }
 
-        public abstract void Load();
+        public virtual void Load()
+        {
+            IndexViewModel.Load();
+        }
 
         public ICommand AddCmd { get; set; }
 

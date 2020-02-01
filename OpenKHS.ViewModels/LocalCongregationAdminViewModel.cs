@@ -13,11 +13,6 @@ namespace OpenKHS.ViewModels
                 new SelectedItemViewModel<LocalCongregationMember>(modelService))
         {
         }
-
-        public override void Load()
-        {
-            IndexViewModel.Load();
-        }
         
     }
 }
