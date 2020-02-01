@@ -3,6 +3,8 @@ using CommandLine;
 using OpenKHS.Data.StaticData;
 using OpenKHS.CLI.Modules;
 using System;
+using OpenKHS.CLI.CommandLineOptions;
+using OpenKHS.Models;
 
 namespace OpenKHS.CLI
 {
@@ -27,23 +29,40 @@ namespace OpenKHS.CLI
         public int Run()
         {
             var exitCode = Parser.Default
-                .ParseArguments<CommandLineOptions>(_args)
+                .ParseArguments<ListOptions, AddOptions>(_args)
                 .MapResult(
-                    (CommandLineOptions o) => 
+                    (ListOptions opt) => 
                     {
-                        var verb = o.Verb;
-                        var entity = o.Entity;
-                        switch (verb)
-                        {
-                            // TODO add verb cases
-                            default:
-                                _listModule.Load(entity);
-                                break;
-                        };
+                        var entity = GetEntityFromOption(opt);
+                        _listModule.Load(entity);
+                        return 0;
+                    },
+                    (AddOptions opt) => 
+                    {
+                        var entity = GetEntityFromOption(opt);
+                        // TODO _addModule.Load(entity);
                         return 0;
                     },
                     _ => 1);
             return exitCode;
+        }
+
+        private string GetEntityFromOption(EntityOptions opt)
+        {
+            var entity = nameof(LocalCongregationMember);
+            if (opt.IsAssignment)
+            {
+                entity = nameof(Assignment);
+            }
+            else if (opt.IsAssignmentType)
+            {
+                entity = nameof(AssignmentType);
+            }
+            else if (opt.IsClmmSchedule)
+            {
+                entity = nameof(ClmmSchedule);
+            }
+            return entity;
         }
         
     }
