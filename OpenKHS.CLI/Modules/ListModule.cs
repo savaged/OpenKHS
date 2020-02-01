@@ -22,6 +22,9 @@ namespace OpenKHS.CLI.Modules
             _mainViewModel.Load();
             switch (entity)
             {
+                case nameof(ClmmSchedule):
+                    ListClmmSchedules();
+                    break;
                 case nameof(Assignment):
                     ListAssignments();
                     break;
@@ -32,6 +35,13 @@ namespace OpenKHS.CLI.Modules
                     ListLocalCongregationMembers();
                     break;
             }
+        }
+
+        private void ListClmmSchedules()
+        {
+            FeedbackService.Present(
+                _mainViewModel.ClmmScheduleViewModel
+                .IndexViewModel.Index);
         }
 
         private void ListLocalCongregationMembers()

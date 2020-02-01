@@ -18,7 +18,8 @@ namespace OpenKHS.Models
             LivingAsChristiansPart1 = new Assignment();
             LivingAsChristiansPart2 = new Assignment();
             LivingAsChristiansPart3 = new Assignment();
-            CongregationBibleStudy = new Assignment();
+            CongregationBibleStudyConductor = new Assignment();
+            CongregationBibleStudyReader = new Assignment();
         }
 
         public Assignment Treasures { get; set; }
@@ -44,7 +45,9 @@ namespace OpenKHS.Models
 
         public Assignment LivingAsChristiansPart3 { get; set; }
 
-        public Assignment CongregationBibleStudy { get; set; }
+        public Assignment CongregationBibleStudyConductor { get; set; }
+
+        public Assignment CongregationBibleStudyReader { get; set; }
 
     }
 }

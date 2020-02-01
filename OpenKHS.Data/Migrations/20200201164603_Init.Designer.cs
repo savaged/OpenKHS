@@ -9,7 +9,7 @@ using OpenKHS.Data;
 namespace OpenKHS.Data.Migrations
 {
     [DbContext(typeof(OpenKHSContext))]
-    [Migration("20200201154408_Init")]
+    [Migration("20200201164603_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -75,7 +75,10 @@ namespace OpenKHS.Data.Migrations
                     b.Property<int>("ClosingPrayerId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CongregationBibleStudyId")
+                    b.Property<int>("CongregationBibleStudyConductorId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CongregationBibleStudyReaderId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Demo1HouseholderId")
@@ -127,7 +130,9 @@ namespace OpenKHS.Data.Migrations
 
                     b.HasIndex("ClosingPrayerId");
 
-                    b.HasIndex("CongregationBibleStudyId");
+                    b.HasIndex("CongregationBibleStudyConductorId");
+
+                    b.HasIndex("CongregationBibleStudyReaderId");
 
                     b.HasIndex("Demo1HouseholderId");
 
@@ -315,9 +320,15 @@ namespace OpenKHS.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OpenKHS.Models.Assignment", "CongregationBibleStudy")
+                    b.HasOne("OpenKHS.Models.Assignment", "CongregationBibleStudyConductor")
                         .WithMany()
-                        .HasForeignKey("CongregationBibleStudyId")
+                        .HasForeignKey("CongregationBibleStudyConductorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OpenKHS.Models.Assignment", "CongregationBibleStudyReader")
+                        .WithMany()
+                        .HasForeignKey("CongregationBibleStudyReaderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -131,7 +131,8 @@ namespace OpenKHS.Data.Migrations
                     LivingAsChristiansPart1Id = table.Column<int>(nullable: false),
                     LivingAsChristiansPart2Id = table.Column<int>(nullable: false),
                     LivingAsChristiansPart3Id = table.Column<int>(nullable: false),
-                    CongregationBibleStudyId = table.Column<int>(nullable: false)
+                    CongregationBibleStudyConductorId = table.Column<int>(nullable: false),
+                    CongregationBibleStudyReaderId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -161,8 +162,14 @@ namespace OpenKHS.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignments_CongregationBibleStudyId",
-                        column: x => x.CongregationBibleStudyId,
+                        name: "FK_ClmmSchedules_Assignments_CongregationBibleStudyConductorId",
+                        column: x => x.CongregationBibleStudyConductorId,
+                        principalTable: "Assignments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ClmmSchedules_Assignments_CongregationBibleStudyReaderId",
+                        column: x => x.CongregationBibleStudyReaderId,
                         principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -271,9 +278,14 @@ namespace OpenKHS.Data.Migrations
                 column: "ClosingPrayerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClmmSchedules_CongregationBibleStudyId",
+                name: "IX_ClmmSchedules_CongregationBibleStudyConductorId",
                 table: "ClmmSchedules",
-                column: "CongregationBibleStudyId");
+                column: "CongregationBibleStudyConductorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClmmSchedules_CongregationBibleStudyReaderId",
+                table: "ClmmSchedules",
+                column: "CongregationBibleStudyReaderId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ClmmSchedules_Demo1HouseholderId",

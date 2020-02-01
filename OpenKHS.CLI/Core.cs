@@ -2,7 +2,6 @@ using Ninject;
 using CommandLine;
 using OpenKHS.Data.StaticData;
 using OpenKHS.CLI.Modules;
-using OpenKHS.Models;
 using System;
 
 namespace OpenKHS.CLI
