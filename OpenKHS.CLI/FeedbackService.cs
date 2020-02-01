@@ -12,7 +12,14 @@ namespace OpenKHS.CLI
 
         public FeedbackService()
         {
-            _initialFg = Colorful.Console.ForegroundColor;
+            try
+            {
+                _initialFg = Colorful.Console.ForegroundColor;
+            }
+            catch
+            {
+                _initialFg = Color.White;
+            }
         }
 
         public void Present(
