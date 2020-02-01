@@ -21,7 +21,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/OpenKHS.CLI/bin/Debug/netcoreapp3.1/OpenKHS.CLI.dll",
-            "args": ["list -t"],
+            "args": ["list"],
             "cwd": "${workspaceFolder}/OpenKHS.CLI",
             "console": "internalConsole",
             "stopAtEntry": false
