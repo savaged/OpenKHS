@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using OpenKHS.Models;
 using OpenKHS.ViewModels;
 
@@ -17,9 +18,9 @@ namespace OpenKHS.CLI.Modules
                 throw new ArgumentNullException(nameof(mainViewModel));
         }
 
-        public override void Load(string entity)
+        public override async Task LoadAsync(string entity)
         {
-            _mainViewModel.Load();
+            await _mainViewModel.LoadAsync();
             switch (entity)
             {
                 case nameof(ClmmSchedule):

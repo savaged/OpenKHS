@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using OpenKHS.Models;
 
@@ -27,11 +29,14 @@ namespace OpenKHS.ViewModels
 
         public IndexViewModel<AssignmentType> AssignmentTypesViewModel { get; }
 
-        public void Load()
+        public async Task LoadAsync()
         {
-            // TODO use task whenall
-            LocalCongregationAdminViewModel.Load();
-            AssignmentTypesViewModel.Load();
+            var tasks = new List<Task>
+            {
+                Task.Run(() => LocalCongregationAdminViewModel.Load()),
+                Task.Run(() => AssignmentTypesViewModel.Load())
+            };
+            await Task.WhenAll(tasks);
         }
 
     }

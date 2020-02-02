@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Data.Sqlite;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
@@ -29,7 +30,7 @@ namespace OpenKHS.Test.Feature
         }
 
         [TestMethod]
-        public void ListLocalCongregationTest()
+        public async Task ListLocalCongregationTest()
         {
             try
             {
@@ -47,8 +48,7 @@ namespace OpenKHS.Test.Feature
                     }
                     context.SaveChanges();
                 }
-
-                _mainViewModel.Load();
+                await _mainViewModel.LoadAsync();
                 Assert.AreEqual(5, _mainViewModel.LocalCongregationAdminViewModel
                     .IndexViewModel.Index.Count());
             }
@@ -87,7 +87,7 @@ namespace OpenKHS.Test.Feature
         }
 
         [TestMethod]
-        public void SelectAndUpdateLocalCongregationMember()
+        public async Task SelectAndUpdateLocalCongregationMember()
         {
             try
             {
@@ -101,7 +101,7 @@ namespace OpenKHS.Test.Feature
                     context.LocalCongregationMembers.Add(example);
                     context.SaveChanges();
                 }
-                _mainViewModel.Load();
+                await _mainViewModel.LoadAsync();
                 var index = _mainViewModel.LocalCongregationAdminViewModel.IndexViewModel.Index;
                 Assert.IsNotNull(index);
     

@@ -5,6 +5,7 @@ using OpenKHS.CLI.Modules;
 using System;
 using OpenKHS.CLI.CommandLineOptions;
 using OpenKHS.Models;
+using System.Threading.Tasks;
 
 namespace OpenKHS.CLI
 {
@@ -26,14 +27,16 @@ namespace OpenKHS.CLI
                 throw new InvalidOperationException("Missing dependency!");
         }
 
-        public int Run()
+        public async Task<int> RunAsync()
         {
+            IModule module = new NullModule();
+            var entity = string.Empty;
             var exitCode = Parser.Default
                 .ParseArguments<ListOptions, AddOptions>(_args)
                 .MapResult(
                     (ListOptions opt) => 
                     {
-                        var entity = string.Empty;
+                        entity = string.Empty;
                         if (opt.IsAssignmentType)
                         {
                             entity = nameof(AssignmentType);
@@ -42,16 +45,17 @@ namespace OpenKHS.CLI
                         {
                             GetEntityFromOption(opt);
                         }
-                        _listModule.Load(entity);
+                        module = _listModule;
                         return 0;
                     },
                     (AddOptions opt) => 
                     {
                         var entity = GetEntityFromOption(opt);
-                        // TODO _addModule.Load(entity);
+                        // TODO module = _addModule;
                         return 0;
                     },
                     _ => 1);
+            await module.LoadAsync(entity);
             return exitCode;
         }
 

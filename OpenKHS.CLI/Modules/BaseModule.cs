@@ -1,5 +1,5 @@
 using System;
-using OpenKHS.Data;
+using System.Threading.Tasks;
 
 namespace OpenKHS.CLI.Modules
 {
@@ -14,6 +14,14 @@ namespace OpenKHS.CLI.Modules
                 throw new ArgumentNullException(nameof(feedbackService));
         }
 
-        public abstract void Load(string entity);
+        public abstract Task LoadAsync(string entity);
+    }
+
+    public class NullModule : IModule
+    {
+        public async Task LoadAsync(string entity)
+        {
+            await Task.CompletedTask;
+        }
     }
 }

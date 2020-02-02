@@ -1,11 +1,13 @@
-﻿namespace OpenKHS.CLI
+﻿using System.Threading.Tasks;
+
+namespace OpenKHS.CLI
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             var core = new Core(args);
-            core.Run();
+            await core.RunAsync();
         }
     }
 }
