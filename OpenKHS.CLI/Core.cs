@@ -5,7 +5,6 @@ using OpenKHS.CLI.Modules;
 using System;
 using OpenKHS.CLI.CommandLineOptions;
 using OpenKHS.Models;
-using System.Threading.Tasks;
 using OpenKHS.ViewModels;
 
 namespace OpenKHS.CLI
@@ -15,6 +14,7 @@ namespace OpenKHS.CLI
         private readonly IKernel _kernel;
         private readonly string[] _args;
         private readonly IModule _listModule;
+        private readonly IModule _addModule;
 
         public Core(string[] args)
         {
@@ -26,6 +26,9 @@ namespace OpenKHS.CLI
                 new DbContextBindings(DbConnectionStrings.LIVE));
 
             _listModule = _kernel.Get<ListModule>() ??
+                throw new InvalidOperationException("Missing dependency!");
+
+            _addModule = _kernel.Get<AddModule>() ??
                 throw new InvalidOperationException("Missing dependency!");
         }
 
@@ -53,7 +56,7 @@ namespace OpenKHS.CLI
                     (AddOptions opt) => 
                     {
                         var entity = GetEntityFromOption(opt);
-                        // TODO module = _addModule;
+                        module = _addModule;
                         return 0;
                     },
                     _ => 1);
