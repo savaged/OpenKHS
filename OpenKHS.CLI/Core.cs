@@ -33,7 +33,15 @@ namespace OpenKHS.CLI
                 .MapResult(
                     (ListOptions opt) => 
                     {
-                        var entity = GetEntityFromOption(opt);
+                        var entity = string.Empty;
+                        if (opt.IsAssignmentType)
+                        {
+                            entity = nameof(AssignmentType);
+                        }
+                        else
+                        {
+                            GetEntityFromOption(opt);
+                        }
                         _listModule.Load(entity);
                         return 0;
                     },
@@ -53,10 +61,6 @@ namespace OpenKHS.CLI
             if (opt.IsAssignment)
             {
                 entity = nameof(Assignment);
-            }
-            else if (opt.IsAssignmentType)
-            {
-                entity = nameof(AssignmentType);
             }
             else if (opt.IsClmmSchedule)
             {

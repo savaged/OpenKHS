@@ -13,7 +13,5 @@ namespace OpenKHS.CLI.CommandLineOptions
         [Option('a', "assignment", SetName = "assignment", HelpText = "Assignment")]
         public bool IsAssignment { get; set; }
 
-        [Option('t', "type", SetName = "type", HelpText = "AssignmentType")]
-        public bool IsAssignmentType { get; set; }
     }
 }
