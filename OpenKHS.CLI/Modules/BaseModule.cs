@@ -14,14 +14,13 @@ namespace OpenKHS.CLI.Modules
                 throw new ArgumentNullException(nameof(feedbackService));
         }
 
-        public abstract Task LoadAsync(string entity);
+        public abstract void Load(string entity);
     }
 
     public class NullModule : IModule
     {
-        public async Task LoadAsync(string entity)
+        public void Load(string entity)
         {
-            await Task.CompletedTask;
         }
     }
 }

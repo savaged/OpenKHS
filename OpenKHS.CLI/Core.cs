@@ -29,7 +29,7 @@ namespace OpenKHS.CLI
                 throw new InvalidOperationException("Missing dependency!");
         }
 
-        public async Task<int> RunAsync()
+        public int Run()
         {
             IModule module = new NullModule();
             var entity = string.Empty;
@@ -57,7 +57,7 @@ namespace OpenKHS.CLI
                         return 0;
                     },
                     _ => 1);
-            await module.LoadAsync(entity);
+            module.Load(entity);
             return exitCode;
         }
 

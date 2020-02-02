@@ -32,7 +32,7 @@ namespace OpenKHS.Test.Feature
         }
 
         [TestMethod]
-        public async Task ListLocalCongregationTest()
+        public void ListLocalCongregationTest()
         {
             try
             {
@@ -50,7 +50,7 @@ namespace OpenKHS.Test.Feature
                     }
                     context.SaveChanges();
                 }
-                await _mainViewModel.LoadAsync();
+                _mainViewModel.Load();
                 Assert.AreEqual(5, _mainViewModel.LocalCongregationAdminViewModel
                     .IndexViewModel.Index.Count());
             }
@@ -89,7 +89,7 @@ namespace OpenKHS.Test.Feature
         }
 
         [TestMethod]
-        public async Task SelectAndUpdateLocalCongregationMember()
+        public void SelectAndUpdateLocalCongregationMember()
         {
             try
             {
@@ -103,7 +103,7 @@ namespace OpenKHS.Test.Feature
                     context.LocalCongregationMembers.Add(example);
                     context.SaveChanges();
                 }
-                await _mainViewModel.LoadAsync();
+                _mainViewModel.Load();
                 var index = _mainViewModel.LocalCongregationAdminViewModel.IndexViewModel.Index;
                 Assert.IsNotNull(index);
     
