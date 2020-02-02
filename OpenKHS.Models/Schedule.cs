@@ -19,7 +19,12 @@ namespace OpenKHS.Models
         public DateTime WeekStarting 
         {
             get => _weekStarting;
-            set => Set(ref _weekStarting, value);
+            set 
+            {
+                value = WeekStartingAdapter
+                    .GetFirstDateOfWeekIso8601(value);
+                Set(ref _weekStarting, value);
+            }
         }
 
         public Assignment OpeningPrayer { get; set; }

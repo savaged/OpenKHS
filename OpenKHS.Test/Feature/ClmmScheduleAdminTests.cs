@@ -42,8 +42,7 @@ namespace OpenKHS.Test.Feature
                     {
                         var model = new ClmmSchedule
                         {
-                            Id = i,
-                            // TODO add props
+                            WeekStarting = DateTime.Now.AddMonths(1)
                         };
                         context.Add(model);
                     }
@@ -67,7 +66,7 @@ namespace OpenKHS.Test.Feature
                 _mainViewModel.ClmmScheduleViewModel.AddCmd.Execute(null);
                 var model = _mainViewModel.ClmmScheduleViewModel.SelectedItemViewModel.SelectedItem;
                 Assert.IsNotNull(model);
-                // TODO set props
+                model.WeekStarting = DateTime.Now.AddMonths(1);
                 Assert.AreEqual(0, model.Id);
                 _mainViewModel.ClmmScheduleViewModel.SelectedItemViewModel.SaveCmd.Execute(null);
                 Assert.AreNotEqual(0, model.Id);
@@ -78,7 +77,7 @@ namespace OpenKHS.Test.Feature
                 {
                     var saved = context.ClmmSchedules.Single(m => m.Id == savedId);
                     Assert.IsNotNull(saved);
-                    // TODO assert on props Assert.AreEqual(model.Name, saved.Name);
+                    Assert.AreEqual(model.WeekStarting, saved.WeekStarting);
                 }
             }
             finally
@@ -94,7 +93,7 @@ namespace OpenKHS.Test.Feature
             {
                 var example = new ClmmSchedule
                 {
-                    // TODO set props
+                    WeekStarting = DateTime.Now.AddMonths(1)
                 };
                 var dbContextFactory = _kernel.Get<IDbContextFactory>();
                 using (var context = dbContextFactory.Create())
@@ -107,18 +106,19 @@ namespace OpenKHS.Test.Feature
                 Assert.IsNotNull(index);
     
                 // Simulate user selecting from list
-                // TODO similar to that -> var model = index.FirstOrDefault(m => m.Name == example.Name);
-                // Assert.IsNotNull(model);
-                // _mainViewModel.ClmmScheduleViewModel.SelectedItemViewModel.SelectedItem = model;
+                var model = index.FirstOrDefault(m => m.WeekStarting == example.WeekStarting);
+                Assert.IsNotNull(model);
+                _mainViewModel.ClmmScheduleViewModel.SelectedItemViewModel.SelectedItem = model;
                 Assert.IsNotNull(_mainViewModel.ClmmScheduleViewModel.SelectedItemViewModel.SelectedItem);
     
-                // TODO set props
+                _mainViewModel.ClmmScheduleViewModel.SelectedItemViewModel.SelectedItem.WeekStarting = 
+                    DateTime.Now.AddDays(14);
                 _mainViewModel.ClmmScheduleViewModel.SelectedItemViewModel.SaveCmd.Execute(null);
                 using (var context = dbContextFactory.Create())
                 {
-                    // TODO similar to this: var saved = context.ClmmSchedules.Single(m => m.Id == model.Id);
-                    // Assert.IsNotNull(saved);
-                    // TODO test props Assert.AreEqual(model.Attendant, saved.Attendant);
+                    var saved = context.ClmmSchedules.Single(m => m.Id == model.Id);
+                    Assert.IsNotNull(saved);
+                    Assert.AreEqual(model.WeekStarting, saved.WeekStarting);
                 }
             }
             finally

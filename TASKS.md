@@ -1,4 +1,5 @@
 # Task List
 
-* Write Feature tests for ClmmSchedule CRUD
+* Fix Feature tests for ClmmSchedule CRUD
+    * Write code to construct the schedule with assignments
 * In CLI code the AddModule
