@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
 using OpenKHS.Data;
 using OpenKHS.Models;
+using OpenKHS.ViewModels;
 
 namespace OpenKHS.Test.Unit
 {
@@ -18,7 +19,9 @@ namespace OpenKHS.Test.Unit
         [TestInitialize]
         public void Init()
         {
-            _kernel = new StandardKernel(new TestDbContextBindings());
+            _kernel = new StandardKernel(
+                new ViewModelCoreBindings(),
+                new TestDbContextBindings());
             _dbConnection = _kernel.Get<SqliteConnection>();
             _dbContextFactory = _kernel.Get<IDbContextFactory>();
             _modelService = _kernel.Get<IModelService>();

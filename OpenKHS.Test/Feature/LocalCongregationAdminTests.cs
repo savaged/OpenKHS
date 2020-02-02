@@ -20,7 +20,9 @@ namespace OpenKHS.Test.Feature
         [TestInitialize]
         public void Init()
         {
-            _kernel = new StandardKernel(new TestDbContextBindings());
+            _kernel = new StandardKernel(
+                new ViewModelCoreBindings(),
+                new TestDbContextBindings());
             _dbConnection = _kernel.Get<SqliteConnection>();
             _mainViewModel = _kernel.Get<MainViewModel>() ??
                 throw new InvalidOperationException(

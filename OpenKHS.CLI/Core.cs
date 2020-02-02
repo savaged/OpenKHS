@@ -6,6 +6,7 @@ using System;
 using OpenKHS.CLI.CommandLineOptions;
 using OpenKHS.Models;
 using System.Threading.Tasks;
+using OpenKHS.ViewModels;
 
 namespace OpenKHS.CLI
 {
@@ -21,6 +22,7 @@ namespace OpenKHS.CLI
 
             _kernel = new StandardKernel(
                 new CLIBindings(),
+                new ViewModelCoreBindings(),
                 new DbContextBindings(DbConnectionStrings.LIVE));
 
             _listModule = _kernel.Get<ListModule>() ??

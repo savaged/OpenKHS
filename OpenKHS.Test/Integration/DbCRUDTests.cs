@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
 using OpenKHS.Data;
 using OpenKHS.Models;
+using OpenKHS.ViewModels;
 
 namespace OpenKHS.Test.Integration
 {
@@ -13,7 +14,9 @@ namespace OpenKHS.Test.Integration
         [TestMethod]
         public void LocalCongregationMemberCRUDTests()
         {
-            var kernel = new StandardKernel(new TestDbContextBindings());
+            var kernel = new StandardKernel(
+                new ViewModelCoreBindings(),
+                new TestDbContextBindings());
             var connection = kernel.Get<SqliteConnection>();
             var dbContextFactory = kernel.Get<IDbContextFactory>();            
             connection.Open();

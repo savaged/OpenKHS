@@ -1,5 +1,6 @@
 using System;
 using OpenKHS.Data;
+using Savaged.BusyStateManager;
 
 namespace OpenKHS.ViewModels
 {
@@ -7,7 +8,10 @@ namespace OpenKHS.ViewModels
     {
         protected IModelService ModelService { get; }
 
-        public ModelBoundViewModel(IModelService modelService)
+        public ModelBoundViewModel(
+            IBusyStateRegistry busyStateManager,
+            IModelService modelService)
+            : base(busyStateManager)
         {
             ModelService = modelService ??
                 throw new ArgumentNullException(nameof(modelService));

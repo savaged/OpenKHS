@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Command;
 using OpenKHS.Data;
 using OpenKHS.Models;
 using OpenKHS.Models.Utils;
+using Savaged.BusyStateManager;
 
 namespace OpenKHS.ViewModels
 {
@@ -12,8 +13,9 @@ namespace OpenKHS.ViewModels
         private T? _selectedItem;
 
         public SelectedItemViewModel(
+            IBusyStateRegistry busyStateManager,
             IModelService modelService) 
-            : base(modelService)
+            : base(busyStateManager, modelService)
         {
             SaveCmd = new RelayCommand(OnSave, () => CanSave);
         }
@@ -32,6 +34,7 @@ namespace OpenKHS.ViewModels
 
         protected virtual void OnSave()
         {
+            MessengerInstance.Send(new BusyMessage(true, this));
             if (SelectedItem.IsNew())
             {
                 ModelService.Insert(SelectedItem);
@@ -40,6 +43,7 @@ namespace OpenKHS.ViewModels
             {
                 ModelService.Update(SelectedItem);
             }
+            MessengerInstance.Send(new BusyMessage(false, this));
         }
 
     }

@@ -1,4 +1,3 @@
-using System.Data;
 using Microsoft.Data.Sqlite;
 using OpenKHS.Data;
 

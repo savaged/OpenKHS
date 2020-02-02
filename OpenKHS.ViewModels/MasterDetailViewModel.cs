@@ -2,6 +2,7 @@ using System;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using OpenKHS.Models;
+using Savaged.BusyStateManager;
 
 namespace OpenKHS.ViewModels
 {
@@ -9,8 +10,10 @@ namespace OpenKHS.ViewModels
         where T : class, IModel, new()
     {
         public MasterDetailViewModel(
+            IBusyStateRegistry busyStateManager,
             IndexViewModel<T> indexViewModel,
             SelectedItemViewModel<T> selectedItemViewModel) 
+            : base(busyStateManager)
         {
             IndexViewModel = indexViewModel ??
                 throw new ArgumentNullException(nameof(indexViewModel));
