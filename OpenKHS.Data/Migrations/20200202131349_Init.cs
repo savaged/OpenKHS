@@ -67,7 +67,6 @@ namespace OpenKHS.Data.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     AssigneeId = table.Column<int>(nullable: false),
-                    DueWeekStarting = table.Column<DateTime>(nullable: false),
                     TypeId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>

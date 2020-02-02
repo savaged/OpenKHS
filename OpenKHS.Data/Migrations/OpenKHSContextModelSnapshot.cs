@@ -25,9 +25,6 @@ namespace OpenKHS.Data.Migrations
                     b.Property<int>("AssigneeId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("DueWeekStarting")
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("TypeId")
                         .HasColumnType("INTEGER");
 

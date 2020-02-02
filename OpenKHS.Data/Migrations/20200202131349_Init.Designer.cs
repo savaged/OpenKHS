@@ -9,7 +9,7 @@ using OpenKHS.Data;
 namespace OpenKHS.Data.Migrations
 {
     [DbContext(typeof(OpenKHSContext))]
-    [Migration("20200201164603_Init")]
+    [Migration("20200202131349_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,9 +26,6 @@ namespace OpenKHS.Data.Migrations
 
                     b.Property<int>("AssigneeId")
                         .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("DueWeekStarting")
-                        .HasColumnType("TEXT");
 
                     b.Property<int>("TypeId")
                         .HasColumnType("INTEGER");
