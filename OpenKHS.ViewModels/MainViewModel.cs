@@ -36,7 +36,18 @@ namespace OpenKHS.ViewModels
                 Task.Run(() => LocalCongregationAdminViewModel.Load()),
                 Task.Run(() => AssignmentTypesViewModel.Load())
             };
-            await Task.WhenAll(tasks);
+            var runAll = Task.WhenAll(tasks);
+            try
+            {
+                await runAll;
+            }
+            catch 
+            {
+                if (runAll.Exception != null)
+                {
+                    throw runAll.Exception.Flatten();
+                }
+            }
         }
 
     }
