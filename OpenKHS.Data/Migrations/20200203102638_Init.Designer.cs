@@ -9,7 +9,7 @@ using OpenKHS.Data;
 namespace OpenKHS.Data.Migrations
 {
     [DbContext(typeof(OpenKHSContext))]
-    [Migration("20200202131349_Init")]
+    [Migration("20200203102638_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
