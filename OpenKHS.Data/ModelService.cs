@@ -59,13 +59,13 @@ namespace OpenKHS.Data
 
             using (var context = _dbContextFactory.Create())
             {
-                //context.Entry(model).State = EntityState.Modified;
-                var dbSet = GetDbSet<T>(context);
-                var match = dbSet.Find(model.Id);
-                if (match != null)
-                {
-                    match = model;
-                }
+                // var dbSet = GetDbSet<T>(context);
+                // var match = dbSet.Find(model.Id);
+                // if (match != null)
+                // {
+                //     
+                // }
+                context.Entry(model).State = EntityState.Modified;
                 context.SaveChanges();
             }
         }

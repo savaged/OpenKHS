@@ -18,6 +18,7 @@ namespace OpenKHS.ViewModels
             : base(busyStateManager, modelService)
         {
             SaveCmd = new RelayCommand(OnSave, () => CanSave);
+            DeleteCmd = new RelayCommand(OnDelete, () => CanDelete);
         }
 
         public T? SelectedItem 
@@ -29,8 +30,10 @@ namespace OpenKHS.ViewModels
         public bool IsItemSelected => SelectedItem != null;
 
         public ICommand SaveCmd { get; }
+        public ICommand DeleteCmd { get; }
 
         public virtual bool CanSave => CanExecute && IsItemSelected;
+        public virtual bool CanDelete => CanExecute && IsItemSelected;
 
         protected virtual void OnSave()
         {
@@ -43,6 +46,13 @@ namespace OpenKHS.ViewModels
             {
                 ModelService.Update(SelectedItem);
             }
+            MessengerInstance.Send(new BusyMessage(false, this));
+        }
+
+        protected virtual void OnDelete()
+        {
+            MessengerInstance.Send(new BusyMessage(true, this));
+            ModelService.Delete(SelectedItem);
             MessengerInstance.Send(new BusyMessage(false, this));
         }
 

@@ -31,7 +31,7 @@ namespace OpenKHS.Test.Feature
         }
 
         [TestMethod]
-        public void ListLocalCongregationTest()
+        public void ListClmmSchedulesTest()
         {
             try
             {
@@ -48,7 +48,7 @@ namespace OpenKHS.Test.Feature
                     }
                     context.SaveChanges();
                 }
-                _mainViewModel.Load();
+                _mainViewModel.ClmmScheduleViewModel.Load();
                 Assert.AreEqual(5, _mainViewModel.ClmmScheduleViewModel
                     .IndexViewModel.Index.Count());
             }
@@ -101,7 +101,7 @@ namespace OpenKHS.Test.Feature
                     context.ClmmSchedules.Add(example);
                     context.SaveChanges();
                 }
-                _mainViewModel.Load();
+                _mainViewModel.ClmmScheduleViewModel.Load();
                 var index = _mainViewModel.ClmmScheduleViewModel.IndexViewModel.Index;
                 Assert.IsNotNull(index);
     
@@ -113,6 +113,45 @@ namespace OpenKHS.Test.Feature
     
                 _mainViewModel.ClmmScheduleViewModel.SelectedItemViewModel.SelectedItem.WeekStarting = 
                     DateTime.Now.AddDays(14);
+                _mainViewModel.ClmmScheduleViewModel.SelectedItemViewModel.SaveCmd.Execute(null);
+                using (var context = dbContextFactory.Create())
+                {
+                    var saved = context.ClmmSchedules.Single(m => m.Id == model.Id);
+                    Assert.IsNotNull(saved);
+                    Assert.AreEqual(model.WeekStarting, saved.WeekStarting);
+                }
+            }
+            finally
+            {
+                _dbConnection.Close();
+            }
+        }
+
+        [TestMethod]
+        public void SelectAndDeleteClmmSchedule()
+        {
+            try
+            {
+                var example = new ClmmSchedule
+                {
+                    WeekStarting = DateTime.Now.AddMonths(1)
+                };
+                var dbContextFactory = _kernel.Get<IDbContextFactory>();
+                using (var context = dbContextFactory.Create())
+                {
+                    context.ClmmSchedules.Add(example);
+                    context.SaveChanges();
+                }
+                _mainViewModel.ClmmScheduleViewModel.Load();
+                var index = _mainViewModel.ClmmScheduleViewModel.IndexViewModel.Index;
+                Assert.IsNotNull(index);
+    
+                // Simulate user selecting from list
+                var model = index.FirstOrDefault(m => m.WeekStarting == example.WeekStarting);
+                Assert.IsNotNull(model);
+                _mainViewModel.ClmmScheduleViewModel.SelectedItemViewModel.SelectedItem = model;
+                Assert.IsNotNull(_mainViewModel.ClmmScheduleViewModel.SelectedItemViewModel.SelectedItem);
+    
                 _mainViewModel.ClmmScheduleViewModel.SelectedItemViewModel.SaveCmd.Execute(null);
                 using (var context = dbContextFactory.Create())
                 {

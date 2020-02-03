@@ -128,5 +128,44 @@ namespace OpenKHS.Test.Feature
             }
         }
 
+        [TestMethod]
+        public void SelectAndDeleteLocalCongregationMember()
+        {
+            try
+            {
+                var example = new LocalCongregationMember
+                {
+                    Name = "An Exsitingmember"
+                };
+                var dbContextFactory = _kernel.Get<IDbContextFactory>();
+                using (var context = dbContextFactory.Create())
+                {
+                    context.LocalCongregationMembers.Add(example);
+                    context.SaveChanges();
+                }
+                _mainViewModel.Load();
+                var index = _mainViewModel.LocalCongregationAdminViewModel.IndexViewModel.Index;
+                Assert.IsNotNull(index);
+    
+                // Simulate user selecting from list
+                var model = index.FirstOrDefault(m => m.Name == example.Name);
+                Assert.IsNotNull(model);
+                _mainViewModel.LocalCongregationAdminViewModel.SelectedItemViewModel.SelectedItem = model;
+                Assert.IsNotNull(_mainViewModel.LocalCongregationAdminViewModel.SelectedItemViewModel.SelectedItem);
+    
+                _mainViewModel.LocalCongregationAdminViewModel.SelectedItemViewModel.SaveCmd.Execute(null);
+                using (var context = dbContextFactory.Create())
+                {
+                    var saved = context.LocalCongregationMembers.Single(m => m.Id == model.Id);
+                    Assert.IsNotNull(saved);
+                    Assert.AreEqual(model.Attendant, saved.Attendant);
+                }
+            }
+            finally
+            {
+                _dbConnection.Close();
+            }
+        }
+
     }
 }
