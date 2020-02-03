@@ -6,6 +6,7 @@ using System;
 using OpenKHS.CLI.CommandLineOptions;
 using OpenKHS.Models;
 using OpenKHS.ViewModels;
+using OpenKHS.Lookups;
 
 namespace OpenKHS.CLI
 {
@@ -22,6 +23,7 @@ namespace OpenKHS.CLI
 
             _kernel = new StandardKernel(
                 new CLIBindings(),
+                new LookupsCoreBindings(),
                 new ViewModelCoreBindings(),
                 new DbContextBindings(DbConnectionStrings.LIVE));
 

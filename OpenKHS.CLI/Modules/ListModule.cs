@@ -1,4 +1,5 @@
 using System;
+using OpenKHS.Lookups;
 using OpenKHS.Models;
 using OpenKHS.ViewModels;
 
@@ -7,14 +8,18 @@ namespace OpenKHS.CLI.Modules
     public class ListModule : BaseModule
     {
         private readonly MainViewModel _mainViewModel;
+        private readonly IAssignmentTypeService _assignmentTypeService;
 
         public ListModule(
             IFeedbackService feedbackService,
-            MainViewModel mainViewModel)
+            MainViewModel mainViewModel,
+            IAssignmentTypeService assignmentTypeService)
             : base(feedbackService)
         {
             _mainViewModel = mainViewModel ??
                 throw new ArgumentNullException(nameof(mainViewModel));
+            _assignmentTypeService = assignmentTypeService ??
+                throw new ArgumentNullException(nameof(assignmentTypeService));
         }
 
         public override void Load(string entity)
@@ -39,8 +44,9 @@ namespace OpenKHS.CLI.Modules
 
         private void ListClmmSchedules()
         {
+            _mainViewModel.ClmmScheduleAdminViewModel.Load();
             FeedbackService.Present(
-                _mainViewModel.ClmmScheduleViewModel
+                _mainViewModel.ClmmScheduleAdminViewModel
                 .IndexViewModel.Index);
         }
 
@@ -53,13 +59,15 @@ namespace OpenKHS.CLI.Modules
 
         private void ListAssignments()
         {
-            
+            _mainViewModel.AssignmentsViewModel.Load();
+            FeedbackService.Present(
+                _mainViewModel.AssignmentsViewModel.Index);
         }
 
         private void ListAssignmentTypes()
         {
-            FeedbackService.Present(
-                _mainViewModel.AssignmentTypesViewModel.Index);
+             FeedbackService.Present(
+                _assignmentTypeService.GetIndex());
         }
     }
 }

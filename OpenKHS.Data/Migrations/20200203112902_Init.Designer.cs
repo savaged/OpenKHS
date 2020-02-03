@@ -9,7 +9,7 @@ using OpenKHS.Data;
 namespace OpenKHS.Data.Migrations
 {
     [DbContext(typeof(OpenKHSContext))]
-    [Migration("20200203102638_Init")]
+    [Migration("20200203112902_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -61,6 +61,18 @@ namespace OpenKHS.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("ApplyYourselfToTheMinistryTalkId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Attendant1Id")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Attendant2Id")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Attendant3Id")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Attendant4Id")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("BibleReadingId")
@@ -120,6 +132,14 @@ namespace OpenKHS.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ApplyYourselfToTheMinistryTalkId");
+
+                    b.HasIndex("Attendant1Id");
+
+                    b.HasIndex("Attendant2Id");
+
+                    b.HasIndex("Attendant3Id");
+
+                    b.HasIndex("Attendant4Id");
 
                     b.HasIndex("BibleReadingId");
 
@@ -296,6 +316,30 @@ namespace OpenKHS.Data.Migrations
                     b.HasOne("OpenKHS.Models.Assignment", "ApplyYourselfToTheMinistryTalk")
                         .WithMany()
                         .HasForeignKey("ApplyYourselfToTheMinistryTalkId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OpenKHS.Models.Assignment", "Attendant1")
+                        .WithMany()
+                        .HasForeignKey("Attendant1Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OpenKHS.Models.Assignment", "Attendant2")
+                        .WithMany()
+                        .HasForeignKey("Attendant2Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OpenKHS.Models.Assignment", "Attendant3")
+                        .WithMany()
+                        .HasForeignKey("Attendant3Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OpenKHS.Models.Assignment", "Attendant4")
+                        .WithMany()
+                        .HasForeignKey("Attendant4Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

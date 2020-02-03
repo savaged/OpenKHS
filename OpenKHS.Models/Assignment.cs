@@ -7,9 +7,9 @@ namespace OpenKHS.Models
         private LocalCongregationMember _assignee;
         private AssignmentType _type;
 
-        public Assignment()
+        public Assignment(AssignmentType assignmentType)
         {
-            _type = new NullAssignmentType();
+            _type = assignmentType ?? new NullAssignmentType();
             _assignee = new NullLocalCongregationMember();
         }
         
@@ -28,7 +28,8 @@ namespace OpenKHS.Models
 
     public class NullAssignment : Assignment
     {
-        public NullAssignment() : base()
+        public NullAssignment() 
+            : base(new NullAssignmentType())
         {
             Id = -1;
         }

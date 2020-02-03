@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\OpenKHS.Data\OpenKHS.Data.csproj" />
     <ProjectReference Include="..\OpenKHS.Models\OpenKHS.Models.csproj" />
+    <ProjectReference Include="..\OpenKHS.Lookups\OpenKHS.Lookups.csproj" />
   </ItemGroup>
 
 </Project>

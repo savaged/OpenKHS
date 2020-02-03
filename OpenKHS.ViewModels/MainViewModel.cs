@@ -9,23 +9,24 @@ namespace OpenKHS.ViewModels
         public MainViewModel(
             MasterDetailViewModel<ClmmSchedule> clmmScheduleAdminViewModel,
             MasterDetailViewModel<LocalCongregationMember> localCongregationAdminViewModel,
-            IndexViewModel<AssignmentType> assignmentTypes)
+            IndexViewModel<Assignment> assignmentsViewModel)
         {
-            ClmmScheduleViewModel = clmmScheduleAdminViewModel ??
+            ClmmScheduleAdminViewModel = clmmScheduleAdminViewModel ??
                 throw new ArgumentNullException(nameof(clmmScheduleAdminViewModel));
             LocalCongregationAdminViewModel = localCongregationAdminViewModel ??
                 throw new ArgumentNullException(nameof(localCongregationAdminViewModel));
-            AssignmentTypesViewModel = assignmentTypes ??
-                throw new ArgumentNullException(nameof(assignmentTypes));
+            AssignmentsViewModel = assignmentsViewModel ??
+                throw new ArgumentNullException(nameof(assignmentsViewModel));
         }
 
         public MasterDetailViewModel<LocalCongregationMember> LocalCongregationAdminViewModel
         { get; }
 
-        public MasterDetailViewModel<ClmmSchedule> ClmmScheduleViewModel
+        public MasterDetailViewModel<ClmmSchedule> ClmmScheduleAdminViewModel
         { get; }
 
-        public IndexViewModel<AssignmentType> AssignmentTypesViewModel { get; }
+        public IndexViewModel<Assignment> AssignmentsViewModel 
+        { get; }
 
         public void Load()
         {

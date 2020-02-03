@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using OpenKHS.Models.Utils;
 
 namespace OpenKHS.Models
@@ -7,13 +8,30 @@ namespace OpenKHS.Models
     {
         private DateTime _weekStarting;
 
-        public Schedule()
+        public Schedule(IList<AssignmentType> assignmentTypes)
         {
             WeekStarting = WeekStartingAdapter
                 .GetFirstDateOfWeekIso8601(DateTime.Now);
-            OpeningPrayer = new Assignment();
-            ClosingPrayer = new Assignment();
-            Chairman = new Assignment();
+            Attendant1 = new Assignment(AssignmentType.GetMatchingAssignmentType(
+                nameof(LocalCongregationMember.Attendant), assignmentTypes));
+            Attendant2 = new Assignment(AssignmentType.GetMatchingAssignmentType(
+                nameof(LocalCongregationMember.Attendant), assignmentTypes));
+            Attendant3 = new Assignment(AssignmentType.GetMatchingAssignmentType(
+                nameof(LocalCongregationMember.Attendant), assignmentTypes));
+            Attendant4 = new Assignment(AssignmentType.GetMatchingAssignmentType(
+                nameof(LocalCongregationMember.Attendant), assignmentTypes));           
+            OpeningPrayer = new Assignment(AssignmentType.GetMatchingAssignmentType(
+                nameof(LocalCongregationMember.Prayer), assignmentTypes));
+            ClosingPrayer = new Assignment(AssignmentType.GetMatchingAssignmentType(
+                nameof(LocalCongregationMember.Prayer), assignmentTypes));
+            Platform = new Assignment(AssignmentType.GetMatchingAssignmentType(
+                nameof(LocalCongregationMember.Platform), assignmentTypes));
+            SoundDesk = new Assignment(AssignmentType.GetMatchingAssignmentType(
+                nameof(LocalCongregationMember.SoundDesk), assignmentTypes));
+            RovingMic1 = new Assignment(AssignmentType.GetMatchingAssignmentType(
+                nameof(LocalCongregationMember.RovingMic), assignmentTypes));
+            RovingMic2 = new Assignment(AssignmentType.GetMatchingAssignmentType(
+                nameof(LocalCongregationMember.RovingMic), assignmentTypes));
         }
 
         public DateTime WeekStarting 
@@ -27,11 +45,20 @@ namespace OpenKHS.Models
             }
         }
 
+        public Assignment Attendant1 { get; set; }
+        public Assignment Attendant2 { get; set; }
+        public Assignment Attendant3 { get; set; }
+        public Assignment Attendant4 { get; set; }
+        public Assignment Platform { get; set; }
+        public Assignment SoundDesk { get; set; }
+        public Assignment RovingMic1 { get; set; }
+        public Assignment RovingMic2 { get; set; }
+        
         public Assignment OpeningPrayer { get; set; }
         
         public Assignment ClosingPrayer { get; set; }
         
-        public Assignment Chairman { get; set; }
+        public abstract Assignment Chairman { get; set; }
 
     }
 }

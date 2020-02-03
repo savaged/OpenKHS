@@ -1,12 +1,12 @@
 namespace OpenKHS.Models
 {
-    public abstract class Lookup : ModelBase, ILookup
+    public abstract class LookupEntry : ModelBase, ILookupEntry
     {
         private string _name;
 
-        public static ILookup Empty => NullLookup.Default;
+        public static ILookupEntry Empty => NullLookup.Default;
 
-        public Lookup()
+        public LookupEntry()
         {
             _name = string.Empty;
         }
@@ -18,14 +18,14 @@ namespace OpenKHS.Models
         }
     }
 
-    public class NullLookup : ILookup
+    public class NullLookup : ILookupEntry
     {
         private NullLookup() 
         {
             Name = string.Empty;
         }
 
-        public static ILookup Default => new NullLookup();
+        public static ILookupEntry Default => new NullLookup();
 
         public string Name { get; }
 

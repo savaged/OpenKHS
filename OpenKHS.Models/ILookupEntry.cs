@@ -2,7 +2,7 @@ using System;
 
 namespace OpenKHS.Models
 {
-    public interface ILookup : IModel
+    public interface ILookupEntry : IModel
     {
         string Name { get; }
     }

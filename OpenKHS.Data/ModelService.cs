@@ -29,7 +29,7 @@ namespace OpenKHS.Data
             return index;
         }
 
-        public T GetModel<T>(int id) where T : class, IModel
+        public T Get<T>(int id) where T : class, IModel
         {
             T model;
             using (var context = _dbContextFactory.Create())

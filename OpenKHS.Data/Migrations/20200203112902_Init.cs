@@ -114,6 +114,10 @@ namespace OpenKHS.Data.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     WeekStarting = table.Column<DateTime>(nullable: false),
+                    Attendant1Id = table.Column<int>(nullable: false),
+                    Attendant2Id = table.Column<int>(nullable: false),
+                    Attendant3Id = table.Column<int>(nullable: false),
+                    Attendant4Id = table.Column<int>(nullable: false),
                     OpeningPrayerId = table.Column<int>(nullable: false),
                     ClosingPrayerId = table.Column<int>(nullable: false),
                     ChairmanId = table.Column<int>(nullable: false),
@@ -139,6 +143,30 @@ namespace OpenKHS.Data.Migrations
                     table.ForeignKey(
                         name: "FK_ClmmSchedules_Assignments_ApplyYourselfToTheMinistryTalkId",
                         column: x => x.ApplyYourselfToTheMinistryTalkId,
+                        principalTable: "Assignments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ClmmSchedules_Assignments_Attendant1Id",
+                        column: x => x.Attendant1Id,
+                        principalTable: "Assignments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ClmmSchedules_Assignments_Attendant2Id",
+                        column: x => x.Attendant2Id,
+                        principalTable: "Assignments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ClmmSchedules_Assignments_Attendant3Id",
+                        column: x => x.Attendant3Id,
+                        principalTable: "Assignments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ClmmSchedules_Assignments_Attendant4Id",
+                        column: x => x.Attendant4Id,
                         principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -260,6 +288,26 @@ namespace OpenKHS.Data.Migrations
                 name: "IX_ClmmSchedules_ApplyYourselfToTheMinistryTalkId",
                 table: "ClmmSchedules",
                 column: "ApplyYourselfToTheMinistryTalkId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClmmSchedules_Attendant1Id",
+                table: "ClmmSchedules",
+                column: "Attendant1Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClmmSchedules_Attendant2Id",
+                table: "ClmmSchedules",
+                column: "Attendant2Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClmmSchedules_Attendant3Id",
+                table: "ClmmSchedules",
+                column: "Attendant3Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClmmSchedules_Attendant4Id",
+                table: "ClmmSchedules",
+                column: "Attendant4Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ClmmSchedules_BibleReadingId",

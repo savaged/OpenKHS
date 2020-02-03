@@ -1,3 +1,4 @@
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using OpenKHS.Models;
 
@@ -10,6 +11,20 @@ namespace OpenKHS.Data
         public OpenKHSContext(
             DbContextOptions<OpenKHSContext> options)
             : base(options) { }
+
+        public virtual void EnsureSeeded()
+        {
+            var assignmentTypes = AssignmentTypes;
+            if (assignmentTypes.Count() == 0)
+            {
+                var defaults = StaticData.DbSeedData.GetAssignmentTypes();
+                foreach (var assignmentType in defaults)
+                {
+                    AssignmentTypes.Add(assignmentType);
+                }
+                SaveChanges();
+            }
+        }
 
         public DbSet<AssignmentType> AssignmentTypes { get; set; }
         public DbSet<LocalCongregationMember> LocalCongregationMembers 
@@ -25,6 +40,7 @@ namespace OpenKHS.Data
             {
                 optionsBuilder.UseSqlite(
                     StaticData.DbConnectionStrings.LIVE);
+                EnsureSeeded();
             }
         }
 

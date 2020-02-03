@@ -7,7 +7,7 @@ namespace OpenKHS.Data
     {
         void Delete<T>(T model) where T : class, IModel;
         IList<T> GetIndex<T>() where T : class, IModel;
-        T GetModel<T>(int id) where T : class, IModel;
+        T Get<T>(int id) where T : class, IModel;
         void Insert<T>(T model) where T : class, IModel;
         void Update<T>(T model) where T : class, IModel;
     }

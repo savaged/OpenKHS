@@ -7,14 +7,19 @@ using Savaged.BusyStateManager;
 namespace OpenKHS.ViewModels
 {
     public class MasterDetailViewModel<T> : BaseViewModel
-        where T : class, IModel, new()
+        where T : class, IModel
     {
+        private readonly IModelFactory _modelFactory;
+
         public MasterDetailViewModel(
             IBusyStateRegistry busyStateManager,
+            IModelFactory modelFactory,
             IndexViewModel<T> indexViewModel,
             SelectedItemViewModel<T> selectedItemViewModel) 
             : base(busyStateManager)
         {
+            _modelFactory = modelFactory ??
+                throw new ArgumentNullException(nameof(modelFactory));
             IndexViewModel = indexViewModel ??
                 throw new ArgumentNullException(nameof(indexViewModel));
             SelectedItemViewModel = selectedItemViewModel ??
@@ -37,7 +42,7 @@ namespace OpenKHS.ViewModels
 
         protected void OnAdd()
         {
-            var model = new T();
+            var model = _modelFactory.Create<T>();
             SelectedItemViewModel.SelectedItem = model;
         }
 

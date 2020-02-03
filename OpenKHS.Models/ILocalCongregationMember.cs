@@ -2,34 +2,33 @@ namespace OpenKHS.Models
 {
      public interface ILocalCongregationMember : ICongregationMember
     {
-        bool Attendant { get; set; }
         bool AwaySpeaker { get; set; }
-        bool ClmmBibleReading { get; set; }
-        bool ClmmCbsConductor { get; set; }
-        bool ClmmCbsReader { get; set; }
+        bool SchoolBibleReading { get; set; }
+        bool CbsConductor { get; set; }
+        bool CbsReader { get; set; }
         bool ClmmChairman { get; set; }
-        bool ClmmGems { get; set; }
-        bool ClmmLacParts { get; set; }
-        bool ClmmMainHallOnly { get; set; }
+        bool Gems { get; set; }
+        bool LacParts { get; set; }
+        bool SchoolMainHallOnly { get; set; }
         bool Prayer { get; set; }
-        bool ClmmSchoolAssistant { get; set; }
-        bool ClmmSchoolBibleStudy { get; set; }
-        bool ClmmSchoolInitialCall { get; set; }
-        bool ClmmSchoolReturnVisit { get; set; }
-        bool ClmmSchoolTalk { get; set; }
-        bool ClmmSecondSchoolCounselor { get; set; }
-        bool ClmmSecondSchoolOnly { get; set; }
-        bool ClmmTreasures { get; set; }
+        bool SchoolDemoHouseholder { get; set; }
+        bool SchoolDemo3 { get; set; }
+        bool SchoolDemo1 { get; set; }
+        bool SchoolDemo2 { get; set; }
+        bool SchoolTalk { get; set; }
+        bool SecondSchoolCounselor { get; set; }
+        bool SecondSchoolOnly { get; set; }
+        bool Treasures { get; set; }
         bool MainWtConductor { get; set; }
         bool Platform { get; set; }
         bool PmChairman { get; set; }
         bool PublicSpeaker { get; set; }
         bool RovingMic { get; set; }
-        bool Security { get; set; }
         bool SoundDesk { get; set; }
         bool WtConductor { get; set; }
         bool WtReader { get; set; }
 
         int CountPrivileges();
+        bool CanAcceptAssignmentType(AssignmentType assignmentType);
     }
 }

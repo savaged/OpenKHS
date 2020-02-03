@@ -5,32 +5,32 @@ using OpenKHS.Models.Attributes;
 
 namespace OpenKHS.Models
 {
-    public class LocalCongregationMember : Lookup, ILocalCongregationMember
+    public class LocalCongregationMember 
+        : LookupEntry, ILocalCongregationMember
     {
         private bool _ClmmChairman;
-        private bool _ClmmSecondSchoolCounselor;
+        private bool _SecondSchoolCounselor;
         private bool _Prayer;
-        private bool _ClmmTreasures;
-        private bool _ClmmGems;
-        private bool _ClmmBibleReading;
-        private bool _ClmmSchoolInitialCall;
-        private bool _ClmmSchoolReturnVisit;
-        private bool _ClmmSchoolBibleStudy;
-        private bool _ClmmSchoolTalk;
-        private bool _ClmmSchoolAssistant;
-        private bool _ClmmSecondSchoolOnly;
-        private bool _ClmmMainHallOnly;
-        private bool _ClmmLacParts;
-        private bool _ClmmCbsConductor;
-        private bool _ClmmCbsReader;
+        private bool _Treasures;
+        private bool _Gems;
+        private bool _SchoolBibleReading;
+        private bool _SchoolDemo1;
+        private bool _SchoolDemo2;
+        private bool _SchoolDemo3;
+        private bool _SchoolTalk;
+        private bool _SchoolDemoHouseholder;
+        private bool _SecondSchoolOnly;
+        private bool _SchoolMainHallOnly;
+        private bool _LacParts;
+        private bool _CbsConductor;
+        private bool _CbsReader;
         private bool _PublicSpeaker;
         private bool _AwaySpeaker;
         private bool _PmChairman;
         private bool _WtReader;
         private bool _Attendant;
-        private bool _Security;
-        private bool _SoundDesk;
         private bool _Platform;
+        private bool _SoundDesk;
         private bool _RovingMic;
         private bool _WtConductor;
         private bool _MainWtConductor;
@@ -52,101 +52,101 @@ namespace OpenKHS.Models
         }
 
         [Privilege]
-        public bool ClmmSecondSchoolCounselor
+        public bool SecondSchoolCounselor
         {
-            get => _ClmmSecondSchoolCounselor;
-            set => Set(ref _ClmmSecondSchoolCounselor, value);
+            get => _SecondSchoolCounselor;
+            set => Set(ref _SecondSchoolCounselor, value);
         }
 
         [Privilege]
-        public bool ClmmTreasures
+        public bool Treasures
         {
-            get => _ClmmTreasures;
-            set => Set(ref _ClmmTreasures, value);
+            get => _Treasures;
+            set => Set(ref _Treasures, value);
         }
 
         [Privilege]
-        public bool ClmmGems
+        public bool Gems
         {
-            get => _ClmmGems;
-            set => Set(ref _ClmmGems, value);
+            get => _Gems;
+            set => Set(ref _Gems, value);
         }
 
         [Privilege]
-        public bool ClmmBibleReading
+        public bool SchoolBibleReading
         {
-            get => _ClmmBibleReading;
-            set => Set(ref _ClmmBibleReading, value);
+            get => _SchoolBibleReading;
+            set => Set(ref _SchoolBibleReading, value);
         }
 
         [Privilege]
-        public bool ClmmSchoolInitialCall
+        public bool SchoolDemo1
         {
-            get => _ClmmSchoolInitialCall;
-            set => Set(ref _ClmmSchoolInitialCall, value);
+            get => _SchoolDemo1;
+            set => Set(ref _SchoolDemo1, value);
         }
 
         [Privilege]
-        public bool ClmmSchoolReturnVisit
+        public bool SchoolDemo2
         {
-            get => _ClmmSchoolReturnVisit;
-            set => Set(ref _ClmmSchoolReturnVisit, value);
+            get => _SchoolDemo2;
+            set => Set(ref _SchoolDemo2, value);
         }
 
         [Privilege]
-        public bool ClmmSchoolBibleStudy
+        public bool SchoolDemo3
         {
-            get => _ClmmSchoolBibleStudy;
-            set => Set(ref _ClmmSchoolBibleStudy, value);
+            get => _SchoolDemo3;
+            set => Set(ref _SchoolDemo3, value);
         }
 
         [Privilege]
-        public bool ClmmSchoolTalk
+        public bool SchoolTalk
         {
-            get => _ClmmSchoolTalk;
-            set => Set(ref _ClmmSchoolTalk, value);
+            get => _SchoolTalk;
+            set => Set(ref _SchoolTalk, value);
         }
 
         [Privilege]
-        public bool ClmmSchoolAssistant
+        public bool SchoolDemoHouseholder
         {
-            get => _ClmmSchoolAssistant;
-            set => Set(ref _ClmmSchoolAssistant, value);
+            get => _SchoolDemoHouseholder;
+            set => Set(ref _SchoolDemoHouseholder, value);
         }
 
         [Privilege]
-        public bool ClmmSecondSchoolOnly
+        public bool SecondSchoolOnly
         {
-            get => _ClmmSecondSchoolOnly;
-            set => Set(ref _ClmmSecondSchoolOnly, value);
+            get => _SecondSchoolOnly;
+            set => Set(ref _SecondSchoolOnly, value);
         }
 
         [Privilege]
-        public bool ClmmMainHallOnly
+        public bool SchoolMainHallOnly
         {
-            get => _ClmmMainHallOnly;
-            set => Set(ref _ClmmMainHallOnly, value);
+            get => _SchoolMainHallOnly;
+            set => Set(ref _SchoolMainHallOnly, value);
         }
 
         [Privilege]
-        public bool ClmmLacParts
+        public bool LacParts
         {
-            get => _ClmmLacParts;
-            set => Set(ref _ClmmLacParts, value);
+            get => _LacParts;
+            set => Set(ref _LacParts, value);
         }
 
         [Privilege]
-        public bool ClmmCbsConductor
+        public bool CbsConductor
         {
-            get => _ClmmCbsConductor;
-            set => Set(ref _ClmmCbsConductor, value);
+            get => _CbsConductor;
+            set => Set(ref _CbsConductor, value);
         }
 
         [Privilege]
-        public bool ClmmCbsReader
+        public bool CbsReader
         {
-            get => _ClmmCbsReader;
-            set => Set(ref _ClmmCbsReader, value);
+            get => _CbsReader;
+            set => Set(ref _CbsReader, value);
         }
 
         [Privilege]
@@ -192,17 +192,10 @@ namespace OpenKHS.Models
         }
 
         [Privilege]
-        public bool Security
-        {
-            get => _Security;
-            set => Set(ref _Security, value);
-        }
-
-        [Privilege]
         public bool SoundDesk
         {
             get => _SoundDesk;
-            set => Set(ref _SoundDesk, value);
+            set => Set(ref _Platform, value);
         }
 
         [Privilege]
@@ -237,7 +230,9 @@ namespace OpenKHS.Models
         public int CountPrivileges()
         {
             var count = 0;
-            var privileges = GetType().GetProperties().Where(p => Attribute.IsDefined(p, typeof(PrivilegeAttribute)));
+            var privileges = GetType().GetProperties()
+                .Where(p => Attribute.IsDefined(
+                    p, typeof(PrivilegeAttribute)));
             foreach (var privilege in privileges)
             {
                 var val = privilege.GetValue(this);
@@ -246,15 +241,51 @@ namespace OpenKHS.Models
             return count;
         }
 
+        public bool CanAcceptAssignmentType(AssignmentType assignmentType)
+        {
+            // TODO also include logic for 2nd school only property and main hall only prop
+            var value = assignmentType?.Name switch
+            {
+                nameof(Attendant) => Attendant,
+                nameof(AwaySpeaker) => AwaySpeaker,
+                nameof(SchoolBibleReading) => SchoolBibleReading,
+                nameof(CbsConductor) => CbsConductor,
+                nameof(CbsReader) => CbsReader,
+                nameof(ClmmChairman) => ClmmChairman,
+                nameof(Gems) => Gems,
+                nameof(LacParts) => LacParts,
+                nameof(SchoolMainHallOnly) => SchoolMainHallOnly,
+                nameof(SchoolDemoHouseholder) => SchoolDemoHouseholder,
+                nameof(SchoolDemo3) => SchoolDemo3,
+                nameof(SchoolDemo1) => SchoolDemo1,
+                nameof(SchoolDemo2) => SchoolDemo2,
+                nameof(SchoolTalk) => SchoolTalk,
+                nameof(SecondSchoolCounselor) => SecondSchoolCounselor,
+                nameof(SecondSchoolOnly) => SecondSchoolOnly,
+                nameof(Treasures) => Treasures,
+                nameof(MainWtConductor) => MainWtConductor,
+                nameof(Platform) => Platform,
+                nameof(PmChairman) => PmChairman,
+                nameof(Prayer) => Prayer,
+                nameof(PublicSpeaker) => PublicSpeaker,
+                nameof(RovingMic) => RovingMic,
+                nameof(SoundDesk) => SoundDesk,
+                nameof(WtConductor) => WtConductor,
+                nameof(WtReader) => WtReader,
+                _ => false
+            };
+            return value;
+        }
+
         #endregion
 
     }
 
     public class NullLocalCongregationMember : LocalCongregationMember
     {
-        public new int Id = Lookup.Empty.Id;
+        public new int Id = LookupEntry.Empty.Id;
 
-        public new string Name = Lookup.Empty.Name;
+        public new string Name = LookupEntry.Empty.Name;
     }
 
 }

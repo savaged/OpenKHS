@@ -1,6 +1,6 @@
 ﻿namespace OpenKHS.Models
 {
-    public class Congregation : Lookup
+    public class Congregation : LookupEntry
     {
         public Congregation()
         {
