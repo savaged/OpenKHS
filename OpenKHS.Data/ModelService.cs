@@ -46,9 +46,7 @@ namespace OpenKHS.Data
 
             using (var context = _dbContextFactory.Create())
             {
-                //context.Entry(model).State = EntityState.Added;
-                var dbSet = GetDbSet<T>(context);
-                dbSet.Add(model);
+                context.Entry(model).State = EntityState.Added;
                 context.SaveChanges();
             }
         }
@@ -59,12 +57,6 @@ namespace OpenKHS.Data
 
             using (var context = _dbContextFactory.Create())
             {
-                // var dbSet = GetDbSet<T>(context);
-                // var match = dbSet.Find(model.Id);
-                // if (match != null)
-                // {
-                //     
-                // }
                 context.Entry(model).State = EntityState.Modified;
                 context.SaveChanges();
             }
@@ -76,13 +68,7 @@ namespace OpenKHS.Data
 
             using (var context = _dbContextFactory.Create())
             {
-                //context.Entry(model).State = EntityState.Deleted;
-                var dbSet = GetDbSet<T>(context);
-                var match = dbSet.Find(model.Id);
-                if (match != null)
-                {
-                    dbSet.Remove(match);
-                }
+                context.Entry(model).State = EntityState.Deleted;
                 context.SaveChanges();
             }
         }
