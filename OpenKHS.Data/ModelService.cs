@@ -46,9 +46,9 @@ namespace OpenKHS.Data
 
             using (var context = _dbContextFactory.Create())
             {
-                // var dbSet = GetDbSet<T>(context);
-                // dbSet.Add(model);
-                context.Entry(model).State = EntityState.Added;
+                //context.Entry(model).State = EntityState.Added;
+                var dbSet = GetDbSet<T>(context);
+                dbSet.Add(model);
                 context.SaveChanges();
             }
         }
@@ -59,13 +59,13 @@ namespace OpenKHS.Data
 
             using (var context = _dbContextFactory.Create())
             {
-                // var dbSet = GetDbSet<T>(context);
-                // var match = dbSet.Single(m => m.Id == model.Id);
-                // if (match != null)
-                // {
-                //     match = model;
-                // }
-                context.Entry(model).State = EntityState.Modified;
+                //context.Entry(model).State = EntityState.Modified;
+                var dbSet = GetDbSet<T>(context);
+                var match = dbSet.Find(model.Id);
+                if (match != null)
+                {
+                    match = model;
+                }
                 context.SaveChanges();
             }
         }
@@ -76,16 +76,14 @@ namespace OpenKHS.Data
 
             using (var context = _dbContextFactory.Create())
             {
-                // var dbSet = GetDbSet<T>(context);
-                // var match = dbSet.Single(m => m.Id == model.Id);
-                // if (match != null)
-                // {
-                //     dbSet.Remove(match);
-                // }
-                context.Entry(model).State = EntityState.Deleted;
+                //context.Entry(model).State = EntityState.Deleted;
+                var dbSet = GetDbSet<T>(context);
+                var match = dbSet.Find(model.Id);
+                if (match != null)
+                {
+                    dbSet.Remove(match);
+                }
                 context.SaveChanges();
-                // const string sql = "DELETE FROM @p0 WHERE Id = @p1;";
-                // context.Database.ExecuteSqlRaw(sql, model.GetType().Name, model.Id);
             }
         }
 
@@ -93,6 +91,7 @@ namespace OpenKHS.Data
         {
             var @switch = new Dictionary<Type, object>
             {
+                { typeof(ClmmSchedule), context.ClmmSchedules },
                 { typeof(LocalCongregationMember), context.LocalCongregationMembers },
                 { typeof(Assignment), context.Assignments },
                 { typeof(UnavailablePeriod), context.UnavailablePeriods},
