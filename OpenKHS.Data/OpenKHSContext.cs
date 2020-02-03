@@ -40,7 +40,6 @@ namespace OpenKHS.Data
             {
                 optionsBuilder.UseSqlite(
                     StaticData.DbConnectionStrings.LIVE);
-                EnsureSeeded();
             }
         }
 

@@ -28,27 +28,26 @@ namespace OpenKHS.Data.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(nullable: false),
                     ClmmChairman = table.Column<bool>(nullable: false),
-                    ClmmSecondSchoolCounselor = table.Column<bool>(nullable: false),
-                    ClmmTreasures = table.Column<bool>(nullable: false),
-                    ClmmGems = table.Column<bool>(nullable: false),
-                    ClmmBibleReading = table.Column<bool>(nullable: false),
-                    ClmmSchoolInitialCall = table.Column<bool>(nullable: false),
-                    ClmmSchoolReturnVisit = table.Column<bool>(nullable: false),
-                    ClmmSchoolBibleStudy = table.Column<bool>(nullable: false),
-                    ClmmSchoolTalk = table.Column<bool>(nullable: false),
-                    ClmmSchoolAssistant = table.Column<bool>(nullable: false),
-                    ClmmSecondSchoolOnly = table.Column<bool>(nullable: false),
-                    ClmmMainHallOnly = table.Column<bool>(nullable: false),
-                    ClmmLacParts = table.Column<bool>(nullable: false),
-                    ClmmCbsConductor = table.Column<bool>(nullable: false),
-                    ClmmCbsReader = table.Column<bool>(nullable: false),
+                    SecondSchoolCounselor = table.Column<bool>(nullable: false),
+                    Treasures = table.Column<bool>(nullable: false),
+                    Gems = table.Column<bool>(nullable: false),
+                    SchoolBibleReading = table.Column<bool>(nullable: false),
+                    SchoolDemo1 = table.Column<bool>(nullable: false),
+                    SchoolDemo2 = table.Column<bool>(nullable: false),
+                    SchoolDemo3 = table.Column<bool>(nullable: false),
+                    SchoolTalk = table.Column<bool>(nullable: false),
+                    SchoolDemoHouseholder = table.Column<bool>(nullable: false),
+                    SecondSchoolOnly = table.Column<bool>(nullable: false),
+                    SchoolMainHallOnly = table.Column<bool>(nullable: false),
+                    LacParts = table.Column<bool>(nullable: false),
+                    CbsConductor = table.Column<bool>(nullable: false),
+                    CbsReader = table.Column<bool>(nullable: false),
                     PublicSpeaker = table.Column<bool>(nullable: false),
                     AwaySpeaker = table.Column<bool>(nullable: false),
                     PmChairman = table.Column<bool>(nullable: false),
                     Prayer = table.Column<bool>(nullable: false),
                     WtReader = table.Column<bool>(nullable: false),
                     Attendant = table.Column<bool>(nullable: false),
-                    Security = table.Column<bool>(nullable: false),
                     SoundDesk = table.Column<bool>(nullable: false),
                     Platform = table.Column<bool>(nullable: false),
                     RovingMic = table.Column<bool>(nullable: false),
@@ -118,34 +117,32 @@ namespace OpenKHS.Data.Migrations
                     Attendant2Id = table.Column<int>(nullable: false),
                     Attendant3Id = table.Column<int>(nullable: false),
                     Attendant4Id = table.Column<int>(nullable: false),
+                    PlatformId = table.Column<int>(nullable: false),
+                    SoundDeskId = table.Column<int>(nullable: false),
+                    RovingMic1Id = table.Column<int>(nullable: false),
+                    RovingMic2Id = table.Column<int>(nullable: false),
                     OpeningPrayerId = table.Column<int>(nullable: false),
                     ClosingPrayerId = table.Column<int>(nullable: false),
                     ChairmanId = table.Column<int>(nullable: false),
                     TreasuresId = table.Column<int>(nullable: false),
                     GemsId = table.Column<int>(nullable: false),
-                    BibleReadingId = table.Column<int>(nullable: false),
+                    SchoolBibleReadingId = table.Column<int>(nullable: false),
                     Demo1PublisherId = table.Column<int>(nullable: false),
                     Demo1HouseholderId = table.Column<int>(nullable: false),
                     Demo2PublisherId = table.Column<int>(nullable: false),
                     Demo2HouseholderId = table.Column<int>(nullable: false),
                     Demo3PublisherId = table.Column<int>(nullable: false),
                     Demo3HouseholderId = table.Column<int>(nullable: false),
-                    ApplyYourselfToTheMinistryTalkId = table.Column<int>(nullable: false),
-                    LivingAsChristiansPart1Id = table.Column<int>(nullable: false),
-                    LivingAsChristiansPart2Id = table.Column<int>(nullable: false),
-                    LivingAsChristiansPart3Id = table.Column<int>(nullable: false),
-                    CongregationBibleStudyConductorId = table.Column<int>(nullable: false),
-                    CongregationBibleStudyReaderId = table.Column<int>(nullable: false)
+                    SchoolTalkId = table.Column<int>(nullable: false),
+                    LacPart1Id = table.Column<int>(nullable: false),
+                    LacPart2Id = table.Column<int>(nullable: false),
+                    LacPart3Id = table.Column<int>(nullable: false),
+                    CbsConductorId = table.Column<int>(nullable: false),
+                    CbsReaderId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ClmmSchedules", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignments_ApplyYourselfToTheMinistryTalkId",
-                        column: x => x.ApplyYourselfToTheMinistryTalkId,
-                        principalTable: "Assignments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ClmmSchedules_Assignments_Attendant1Id",
                         column: x => x.Attendant1Id,
@@ -171,8 +168,14 @@ namespace OpenKHS.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignments_BibleReadingId",
-                        column: x => x.BibleReadingId,
+                        name: "FK_ClmmSchedules_Assignments_CbsConductorId",
+                        column: x => x.CbsConductorId,
+                        principalTable: "Assignments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ClmmSchedules_Assignments_CbsReaderId",
+                        column: x => x.CbsReaderId,
                         principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -185,18 +188,6 @@ namespace OpenKHS.Data.Migrations
                     table.ForeignKey(
                         name: "FK_ClmmSchedules_Assignments_ClosingPrayerId",
                         column: x => x.ClosingPrayerId,
-                        principalTable: "Assignments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignments_CongregationBibleStudyConductorId",
-                        column: x => x.CongregationBibleStudyConductorId,
-                        principalTable: "Assignments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignments_CongregationBibleStudyReaderId",
-                        column: x => x.CongregationBibleStudyReaderId,
                         principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -243,26 +234,62 @@ namespace OpenKHS.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignments_LivingAsChristiansPart1Id",
-                        column: x => x.LivingAsChristiansPart1Id,
+                        name: "FK_ClmmSchedules_Assignments_LacPart1Id",
+                        column: x => x.LacPart1Id,
                         principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignments_LivingAsChristiansPart2Id",
-                        column: x => x.LivingAsChristiansPart2Id,
+                        name: "FK_ClmmSchedules_Assignments_LacPart2Id",
+                        column: x => x.LacPart2Id,
                         principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignments_LivingAsChristiansPart3Id",
-                        column: x => x.LivingAsChristiansPart3Id,
+                        name: "FK_ClmmSchedules_Assignments_LacPart3Id",
+                        column: x => x.LacPart3Id,
                         principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ClmmSchedules_Assignments_OpeningPrayerId",
                         column: x => x.OpeningPrayerId,
+                        principalTable: "Assignments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ClmmSchedules_Assignments_PlatformId",
+                        column: x => x.PlatformId,
+                        principalTable: "Assignments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ClmmSchedules_Assignments_RovingMic1Id",
+                        column: x => x.RovingMic1Id,
+                        principalTable: "Assignments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ClmmSchedules_Assignments_RovingMic2Id",
+                        column: x => x.RovingMic2Id,
+                        principalTable: "Assignments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ClmmSchedules_Assignments_SchoolBibleReadingId",
+                        column: x => x.SchoolBibleReadingId,
+                        principalTable: "Assignments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ClmmSchedules_Assignments_SchoolTalkId",
+                        column: x => x.SchoolTalkId,
+                        principalTable: "Assignments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ClmmSchedules_Assignments_SoundDeskId",
+                        column: x => x.SoundDeskId,
                         principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -285,11 +312,6 @@ namespace OpenKHS.Data.Migrations
                 column: "TypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClmmSchedules_ApplyYourselfToTheMinistryTalkId",
-                table: "ClmmSchedules",
-                column: "ApplyYourselfToTheMinistryTalkId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ClmmSchedules_Attendant1Id",
                 table: "ClmmSchedules",
                 column: "Attendant1Id");
@@ -310,9 +332,14 @@ namespace OpenKHS.Data.Migrations
                 column: "Attendant4Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClmmSchedules_BibleReadingId",
+                name: "IX_ClmmSchedules_CbsConductorId",
                 table: "ClmmSchedules",
-                column: "BibleReadingId");
+                column: "CbsConductorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClmmSchedules_CbsReaderId",
+                table: "ClmmSchedules",
+                column: "CbsReaderId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ClmmSchedules_ChairmanId",
@@ -323,16 +350,6 @@ namespace OpenKHS.Data.Migrations
                 name: "IX_ClmmSchedules_ClosingPrayerId",
                 table: "ClmmSchedules",
                 column: "ClosingPrayerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ClmmSchedules_CongregationBibleStudyConductorId",
-                table: "ClmmSchedules",
-                column: "CongregationBibleStudyConductorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ClmmSchedules_CongregationBibleStudyReaderId",
-                table: "ClmmSchedules",
-                column: "CongregationBibleStudyReaderId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ClmmSchedules_Demo1HouseholderId",
@@ -370,24 +387,54 @@ namespace OpenKHS.Data.Migrations
                 column: "GemsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClmmSchedules_LivingAsChristiansPart1Id",
+                name: "IX_ClmmSchedules_LacPart1Id",
                 table: "ClmmSchedules",
-                column: "LivingAsChristiansPart1Id");
+                column: "LacPart1Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClmmSchedules_LivingAsChristiansPart2Id",
+                name: "IX_ClmmSchedules_LacPart2Id",
                 table: "ClmmSchedules",
-                column: "LivingAsChristiansPart2Id");
+                column: "LacPart2Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClmmSchedules_LivingAsChristiansPart3Id",
+                name: "IX_ClmmSchedules_LacPart3Id",
                 table: "ClmmSchedules",
-                column: "LivingAsChristiansPart3Id");
+                column: "LacPart3Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ClmmSchedules_OpeningPrayerId",
                 table: "ClmmSchedules",
                 column: "OpeningPrayerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClmmSchedules_PlatformId",
+                table: "ClmmSchedules",
+                column: "PlatformId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClmmSchedules_RovingMic1Id",
+                table: "ClmmSchedules",
+                column: "RovingMic1Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClmmSchedules_RovingMic2Id",
+                table: "ClmmSchedules",
+                column: "RovingMic2Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClmmSchedules_SchoolBibleReadingId",
+                table: "ClmmSchedules",
+                column: "SchoolBibleReadingId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClmmSchedules_SchoolTalkId",
+                table: "ClmmSchedules",
+                column: "SchoolTalkId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClmmSchedules_SoundDeskId",
+                table: "ClmmSchedules",
+                column: "SoundDeskId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ClmmSchedules_TreasuresId",

@@ -9,7 +9,7 @@ using OpenKHS.Data;
 namespace OpenKHS.Data.Migrations
 {
     [DbContext(typeof(OpenKHSContext))]
-    [Migration("20200203112902_Init")]
+    [Migration("20200203202555_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,9 +60,6 @@ namespace OpenKHS.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("ApplyYourselfToTheMinistryTalkId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("Attendant1Id")
                         .HasColumnType("INTEGER");
 
@@ -75,19 +72,16 @@ namespace OpenKHS.Data.Migrations
                     b.Property<int>("Attendant4Id")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("BibleReadingId")
+                    b.Property<int>("CbsConductorId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CbsReaderId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("ChairmanId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("ClosingPrayerId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("CongregationBibleStudyConductorId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("CongregationBibleStudyReaderId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Demo1HouseholderId")
@@ -111,16 +105,34 @@ namespace OpenKHS.Data.Migrations
                     b.Property<int>("GemsId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("LivingAsChristiansPart1Id")
+                    b.Property<int>("LacPart1Id")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("LivingAsChristiansPart2Id")
+                    b.Property<int>("LacPart2Id")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("LivingAsChristiansPart3Id")
+                    b.Property<int>("LacPart3Id")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("OpeningPrayerId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PlatformId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("RovingMic1Id")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("RovingMic2Id")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("SchoolBibleReadingId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("SchoolTalkId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("SoundDeskId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("TreasuresId")
@@ -131,8 +143,6 @@ namespace OpenKHS.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplyYourselfToTheMinistryTalkId");
-
                     b.HasIndex("Attendant1Id");
 
                     b.HasIndex("Attendant2Id");
@@ -141,15 +151,13 @@ namespace OpenKHS.Data.Migrations
 
                     b.HasIndex("Attendant4Id");
 
-                    b.HasIndex("BibleReadingId");
+                    b.HasIndex("CbsConductorId");
+
+                    b.HasIndex("CbsReaderId");
 
                     b.HasIndex("ChairmanId");
 
                     b.HasIndex("ClosingPrayerId");
-
-                    b.HasIndex("CongregationBibleStudyConductorId");
-
-                    b.HasIndex("CongregationBibleStudyReaderId");
 
                     b.HasIndex("Demo1HouseholderId");
 
@@ -165,13 +173,25 @@ namespace OpenKHS.Data.Migrations
 
                     b.HasIndex("GemsId");
 
-                    b.HasIndex("LivingAsChristiansPart1Id");
+                    b.HasIndex("LacPart1Id");
 
-                    b.HasIndex("LivingAsChristiansPart2Id");
+                    b.HasIndex("LacPart2Id");
 
-                    b.HasIndex("LivingAsChristiansPart3Id");
+                    b.HasIndex("LacPart3Id");
 
                     b.HasIndex("OpeningPrayerId");
+
+                    b.HasIndex("PlatformId");
+
+                    b.HasIndex("RovingMic1Id");
+
+                    b.HasIndex("RovingMic2Id");
+
+                    b.HasIndex("SchoolBibleReadingId");
+
+                    b.HasIndex("SchoolTalkId");
+
+                    b.HasIndex("SoundDeskId");
 
                     b.HasIndex("TreasuresId");
 
@@ -190,49 +210,19 @@ namespace OpenKHS.Data.Migrations
                     b.Property<bool>("AwaySpeaker")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("ClmmBibleReading")
+                    b.Property<bool>("CbsConductor")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("ClmmCbsConductor")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("ClmmCbsReader")
+                    b.Property<bool>("CbsReader")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("ClmmChairman")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("ClmmGems")
+                    b.Property<bool>("Gems")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("ClmmLacParts")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("ClmmMainHallOnly")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("ClmmSchoolAssistant")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("ClmmSchoolBibleStudy")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("ClmmSchoolInitialCall")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("ClmmSchoolReturnVisit")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("ClmmSchoolTalk")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("ClmmSecondSchoolCounselor")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("ClmmSecondSchoolOnly")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("ClmmTreasures")
+                    b.Property<bool>("LacParts")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("MainWtConductor")
@@ -257,10 +247,37 @@ namespace OpenKHS.Data.Migrations
                     b.Property<bool>("RovingMic")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("Security")
+                    b.Property<bool>("SchoolBibleReading")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("SchoolDemo1")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("SchoolDemo2")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("SchoolDemo3")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("SchoolDemoHouseholder")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("SchoolMainHallOnly")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("SchoolTalk")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("SecondSchoolCounselor")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("SecondSchoolOnly")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("SoundDesk")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Treasures")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("WtConductor")
@@ -313,12 +330,6 @@ namespace OpenKHS.Data.Migrations
 
             modelBuilder.Entity("OpenKHS.Models.ClmmSchedule", b =>
                 {
-                    b.HasOne("OpenKHS.Models.Assignment", "ApplyYourselfToTheMinistryTalk")
-                        .WithMany()
-                        .HasForeignKey("ApplyYourselfToTheMinistryTalkId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("OpenKHS.Models.Assignment", "Attendant1")
                         .WithMany()
                         .HasForeignKey("Attendant1Id")
@@ -343,9 +354,15 @@ namespace OpenKHS.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OpenKHS.Models.Assignment", "BibleReading")
+                    b.HasOne("OpenKHS.Models.Assignment", "CbsConductor")
                         .WithMany()
-                        .HasForeignKey("BibleReadingId")
+                        .HasForeignKey("CbsConductorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OpenKHS.Models.Assignment", "CbsReader")
+                        .WithMany()
+                        .HasForeignKey("CbsReaderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -358,18 +375,6 @@ namespace OpenKHS.Data.Migrations
                     b.HasOne("OpenKHS.Models.Assignment", "ClosingPrayer")
                         .WithMany()
                         .HasForeignKey("ClosingPrayerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("OpenKHS.Models.Assignment", "CongregationBibleStudyConductor")
-                        .WithMany()
-                        .HasForeignKey("CongregationBibleStudyConductorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("OpenKHS.Models.Assignment", "CongregationBibleStudyReader")
-                        .WithMany()
-                        .HasForeignKey("CongregationBibleStudyReaderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -415,27 +420,63 @@ namespace OpenKHS.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OpenKHS.Models.Assignment", "LivingAsChristiansPart1")
+                    b.HasOne("OpenKHS.Models.Assignment", "LacPart1")
                         .WithMany()
-                        .HasForeignKey("LivingAsChristiansPart1Id")
+                        .HasForeignKey("LacPart1Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OpenKHS.Models.Assignment", "LivingAsChristiansPart2")
+                    b.HasOne("OpenKHS.Models.Assignment", "LacPart2")
                         .WithMany()
-                        .HasForeignKey("LivingAsChristiansPart2Id")
+                        .HasForeignKey("LacPart2Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OpenKHS.Models.Assignment", "LivingAsChristiansPart3")
+                    b.HasOne("OpenKHS.Models.Assignment", "LacPart3")
                         .WithMany()
-                        .HasForeignKey("LivingAsChristiansPart3Id")
+                        .HasForeignKey("LacPart3Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("OpenKHS.Models.Assignment", "OpeningPrayer")
                         .WithMany()
                         .HasForeignKey("OpeningPrayerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OpenKHS.Models.Assignment", "Platform")
+                        .WithMany()
+                        .HasForeignKey("PlatformId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OpenKHS.Models.Assignment", "RovingMic1")
+                        .WithMany()
+                        .HasForeignKey("RovingMic1Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OpenKHS.Models.Assignment", "RovingMic2")
+                        .WithMany()
+                        .HasForeignKey("RovingMic2Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OpenKHS.Models.Assignment", "SchoolBibleReading")
+                        .WithMany()
+                        .HasForeignKey("SchoolBibleReadingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OpenKHS.Models.Assignment", "SchoolTalk")
+                        .WithMany()
+                        .HasForeignKey("SchoolTalkId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OpenKHS.Models.Assignment", "SoundDesk")
+                        .WithMany()
+                        .HasForeignKey("SoundDeskId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

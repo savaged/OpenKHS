@@ -1,7 +1,8 @@
 namespace OpenKHS.Models
 {
-     public interface ILocalCongregationMember : ICongregationMember
+    public interface ILocalCongregationMember : ICongregationMember
     {
+        bool Attendant { get; set; }
         bool AwaySpeaker { get; set; }
         bool SchoolBibleReading { get; set; }
         bool CbsConductor { get; set; }
