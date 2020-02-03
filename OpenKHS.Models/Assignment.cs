@@ -7,6 +7,11 @@ namespace OpenKHS.Models
         private LocalCongregationMember _assignee;
         private AssignmentType _type;
 
+        public Assignment() 
+            : this(new NullAssignmentType())
+        {
+        }
+
         public Assignment(AssignmentType assignmentType)
         {
             _type = assignmentType ?? new NullAssignmentType();

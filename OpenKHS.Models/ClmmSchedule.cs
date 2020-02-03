@@ -4,6 +4,27 @@ namespace OpenKHS.Models
 {
     public class ClmmSchedule : Schedule
     {
+        public ClmmSchedule() : base()
+        {
+            Chairman = 
+            Treasures = 
+            Gems = 
+            SchoolBibleReading =
+            Demo1Publisher = 
+            Demo1Householder =
+            Demo2Publisher = 
+            Demo2Householder = 
+            Demo3Publisher =
+            Demo3Householder = 
+            SchoolTalk =
+            LacPart1 = 
+            LacPart2 =
+            LacPart3 =
+            CbsConductor = 
+            CbsReader = 
+                new NullAssignment();
+        }
+
         public ClmmSchedule(IList<AssignmentType> assignmentTypes)
             : base(assignmentTypes)
         {
@@ -54,7 +75,7 @@ namespace OpenKHS.Models
                     assignmentTypes));
             LacPart2 = 
                  new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(LocalCongregationMember.LacParts), 
+                    nameof(LocalCongregationMember.LacParts),
                     assignmentTypes));
             LacPart3 = 
                  new Assignment(AssignmentType.GetMatchingAssignmentType(

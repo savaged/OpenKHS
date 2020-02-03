@@ -35,29 +35,14 @@ namespace OpenKHS.Test.Feature
         [TestMethod]
         public void ListClmmSchedulesTest()
         {
-            try
+            var modelService = _kernel.Get<IModelService>();
+            for (var i = 1; i < 6; i++)
             {
-                var dbContextFactory = _kernel.Get<IDbContextFactory>();
-                using (var context = dbContextFactory.Create())
-                {
-                    for (var i = 1; i < 6; i++)
-                    {
-                        var model = new ClmmSchedule
-                        {
-                            WeekStarting = DateTime.Now.AddMonths(1)
-                        };
-                        context.Add(model);
-                    }
-                    context.SaveChanges();
-                }
-                _mainViewModel.ClmmScheduleAdminViewModel.Load();
-                Assert.AreEqual(5, _mainViewModel.ClmmScheduleAdminViewModel
-                    .IndexViewModel.Index.Count());
+                var model = modelService.Create<ClmmSchedule>();
             }
-            finally
-            {
-                _dbConnection.Close();
-            }
+            _mainViewModel.ClmmScheduleAdminViewModel.Load();
+            Assert.AreEqual(5, _mainViewModel.ClmmScheduleAdminViewModel
+                .IndexViewModel.Index.Count());
         }
 
         [TestMethod]

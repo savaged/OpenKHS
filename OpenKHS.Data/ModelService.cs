@@ -8,11 +8,16 @@ namespace OpenKHS.Data
     public class ModelService : IModelService
     {
         private readonly IDbContextFactory _dbContextFactory;
+        private readonly IModelFactory _modelFactory;
 
-        public ModelService(IDbContextFactory dbContextFactory)
+        public ModelService(
+            IDbContextFactory dbContextFactory,
+            IModelFactory modelFactory)
         {
             _dbContextFactory = dbContextFactory ??
                 throw new ArgumentNullException(nameof(dbContextFactory));
+            _modelFactory = modelFactory ??
+                throw new ArgumentNullException(nameof(modelFactory));
         }
 
         public IList<T> GetIndex<T>() where T : class, IModel
@@ -38,6 +43,12 @@ namespace OpenKHS.Data
                 model = dbSet.Find(id) as T;
             }
             return model;
+        }
+
+        public T Create<T>() where T : class, IModel, new()
+        {
+            T value = _modelFactory.Create<T>();
+            return value;
         }
 
         public void Insert<T>(T model) where T : class, IModel

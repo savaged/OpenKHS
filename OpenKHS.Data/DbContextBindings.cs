@@ -13,6 +13,8 @@ namespace OpenKHS.Data
         /// </summary>
         public override void Load()
         {
+            Bind<IModelFactory>().To<ModelFactory>()
+                .InSingletonScope();
             Bind<IDbContextOptions>()
                 .To<DbContextOptions<OpenKHSContext>>()
                 .InSingletonScope();

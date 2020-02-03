@@ -27,8 +27,5 @@ namespace OpenKHS.Models
         bool SoundDesk { get; set; }
         bool WtConductor { get; set; }
         bool WtReader { get; set; }
-
-        int CountPrivileges();
-        bool CanAcceptAssignmentType(AssignmentType assignmentType);
     }
 }

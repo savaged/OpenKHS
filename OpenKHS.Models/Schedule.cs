@@ -8,6 +8,21 @@ namespace OpenKHS.Models
     {
         private DateTime _weekStarting;
 
+        public Schedule()
+        {
+            Attendant1 =
+            Attendant2 =
+            Attendant3 =
+            Attendant4 =
+            OpeningPrayer =
+            ClosingPrayer =
+            Platform =
+            SoundDesk = 
+            RovingMic1 =
+            RovingMic2 =
+                new NullAssignment();
+        }
+
         public Schedule(IList<AssignmentType> assignmentTypes)
         {
             WeekStarting = WeekStartingAdapter

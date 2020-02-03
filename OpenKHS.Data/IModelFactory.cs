@@ -1,6 +1,6 @@
 using OpenKHS.Models;
 
-namespace OpenKHS.ViewModels
+namespace OpenKHS.Data
 {
     public interface IModelFactory
     {

@@ -12,7 +12,7 @@ namespace OpenKHS.Test.Unit
         {
             var index = DbSeedData.GetAssignmentTypes();
             Assert.IsNotNull(index);
-            Assert.AreEqual(27, index.Count());
+            Assert.AreEqual(25, index.Count());
         }
     }
 }

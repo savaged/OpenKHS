@@ -195,7 +195,7 @@ namespace OpenKHS.Models
         public bool SoundDesk
         {
             get => _SoundDesk;
-            set => Set(ref _Platform, value);
+            set => Set(ref _SoundDesk, value);
         }
 
         [Privilege]

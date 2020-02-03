@@ -34,7 +34,7 @@ namespace OpenKHS.Test.Unit
         }
 
         [TestMethod]
-        public void Index()
+        public void IndexTest()
         {
             try
             {
@@ -48,7 +48,7 @@ namespace OpenKHS.Test.Unit
                         };
                         if (i % 3 == 0)
                         {
-                            example.Attendant1 = true;
+                            example.Attendant = true;
                         }
                         context.Add(example);
                     }

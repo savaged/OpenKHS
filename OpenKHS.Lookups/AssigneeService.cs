@@ -22,8 +22,9 @@ namespace OpenKHS.Lookups
         {
             var lookup = new List<T>();
             var all = _modelService.GetIndex<T>();
-            // TODO var filtered = all.Where(m => m.AssignmentType == assignmentType).ToList();
-            foreach (var model in all)
+            var filtered = all.Where(
+                m => m.CanAcceptAssignmentType(assignmentType)).ToList();
+            foreach (var model in filtered)
             {
                 lookup.Add(model);
             }

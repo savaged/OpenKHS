@@ -98,7 +98,7 @@ namespace OpenKHS.Test.Unit
                     context.Add(example);
                     context.SaveChanges();
                 }
-                example.Attendant1 = true;
+                example.Attendant = true;
                 _modelService.Update(example);
                 using (var context = _dbContextFactory.Create())
                 {
@@ -106,8 +106,8 @@ namespace OpenKHS.Test.Unit
                         .Single(m => m.Id == example.Id);
                     Assert.IsNotNull(updated);
                     Assert.AreEqual(example.Id, updated.Id);
-                    Assert.AreEqual(example.Attendant1, updated.Attendant1);
-                    Assert.IsTrue(updated.Attendant1);
+                    Assert.AreEqual(example.Attendant, updated.Attendant);
+                    Assert.IsTrue(updated.Attendant);
                 }
             }
             finally

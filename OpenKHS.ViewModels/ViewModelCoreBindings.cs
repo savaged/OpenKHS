@@ -7,8 +7,6 @@ namespace OpenKHS.ViewModels
     {
         public override void Load()
         {
-            Bind<IModelFactory>().To<ModelFactory>()
-                .InSingletonScope();
             Bind<IBusyStateRegistry>().To<BusyStateRegistry>()
                 .InSingletonScope();
         }
