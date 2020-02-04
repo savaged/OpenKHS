@@ -37,7 +37,7 @@ namespace OpenKHS.CLI.Modules
                     ListAssignmentTypes();
                     break;
                 default:
-                    ListLocalCongregationMembers();
+                    ListAssignees();
                     break;
             }
         }
@@ -50,10 +50,10 @@ namespace OpenKHS.CLI.Modules
                 .IndexViewModel.Index);
         }
 
-        private void ListLocalCongregationMembers()
+        private void ListAssignees()
         {
             FeedbackService.Present(
-                _mainViewModel.LocalCongregationAdminViewModel
+                _mainViewModel.AssigneeAdminViewModel
                 .IndexViewModel.Index);
         }
 

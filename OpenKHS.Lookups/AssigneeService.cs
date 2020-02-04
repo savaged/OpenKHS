@@ -18,7 +18,7 @@ namespace OpenKHS.Lookups
         }
 
         public IList<T> GetIndex<T>(AssignmentType assignmentType)
-            where T : class, ICongregationMember
+            where T : class, IAssignee
         {
             var lookup = new List<T>();
             var all = _modelService.GetIndex<T>();

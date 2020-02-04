@@ -9,7 +9,7 @@ using OpenKHS.Data;
 namespace OpenKHS.Data.Migrations
 {
     [DbContext(typeof(OpenKHSContext))]
-    [Migration("20200203202555_Init")]
+    [Migration("20200204082050_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -17,6 +17,99 @@ namespace OpenKHS.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.1");
+
+            modelBuilder.Entity("OpenKHS.Models.Assignee", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Attendant")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("AwaySpeaker")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("CbsConductor")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("CbsReader")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("ClmmChairman")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Gems")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("LacParts")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("MainWtConductor")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("Platform")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("PmChairman")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Prayer")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("PublicSpeaker")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("RovingMic")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("SchoolBibleReading")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("SchoolDemo1")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("SchoolDemo2")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("SchoolDemo3")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("SchoolDemoHouseholder")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("SchoolMainHallOnly")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("SchoolTalk")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("SecondSchoolCounselor")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("SecondSchoolOnly")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("SoundDesk")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Treasures")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("WtConductor")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("WtReader")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Assignees");
+                });
 
             modelBuilder.Entity("OpenKHS.Models.Assignment", b =>
                 {
@@ -27,14 +120,14 @@ namespace OpenKHS.Data.Migrations
                     b.Property<int>("AssigneeId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("TypeId")
+                    b.Property<int>("AssignmentTypeId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AssigneeId");
 
-                    b.HasIndex("TypeId");
+                    b.HasIndex("AssignmentTypeId");
 
                     b.ToTable("Assignments");
                 });
@@ -198,132 +291,39 @@ namespace OpenKHS.Data.Migrations
                     b.ToTable("ClmmSchedules");
                 });
 
-            modelBuilder.Entity("OpenKHS.Models.LocalCongregationMember", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("Attendant")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("AwaySpeaker")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("CbsConductor")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("CbsReader")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("ClmmChairman")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("Gems")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("LacParts")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("MainWtConductor")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("Platform")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("PmChairman")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("Prayer")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("PublicSpeaker")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("RovingMic")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("SchoolBibleReading")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("SchoolDemo1")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("SchoolDemo2")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("SchoolDemo3")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("SchoolDemoHouseholder")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("SchoolMainHallOnly")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("SchoolTalk")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("SecondSchoolCounselor")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("SecondSchoolOnly")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("SoundDesk")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("Treasures")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("WtConductor")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("WtReader")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("LocalCongregationMembers");
-                });
-
             modelBuilder.Entity("OpenKHS.Models.UnavailablePeriod", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("AssigneeId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<DateTime>("End")
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("LocalCongregationMemberId")
-                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Start")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LocalCongregationMemberId");
+                    b.HasIndex("AssigneeId");
 
                     b.ToTable("UnavailablePeriods");
                 });
 
             modelBuilder.Entity("OpenKHS.Models.Assignment", b =>
                 {
-                    b.HasOne("OpenKHS.Models.LocalCongregationMember", "Assignee")
+                    b.HasOne("OpenKHS.Models.Assignee", "Assignee")
                         .WithMany("Assignments")
                         .HasForeignKey("AssigneeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OpenKHS.Models.AssignmentType", "Type")
+                    b.HasOne("OpenKHS.Models.AssignmentType", "AssignmentType")
                         .WithMany()
-                        .HasForeignKey("TypeId")
+                        .HasForeignKey("AssignmentTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -489,9 +489,9 @@ namespace OpenKHS.Data.Migrations
 
             modelBuilder.Entity("OpenKHS.Models.UnavailablePeriod", b =>
                 {
-                    b.HasOne("OpenKHS.Models.LocalCongregationMember", "LocalCongregationMember")
+                    b.HasOne("OpenKHS.Models.Assignee", "Assignee")
                         .WithMany()
-                        .HasForeignKey("LocalCongregationMemberId")
+                        .HasForeignKey("AssigneeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -8,18 +8,18 @@ namespace OpenKHS.ViewModels
     {
         public MainViewModel(
             MasterDetailViewModel<ClmmSchedule> clmmScheduleAdminViewModel,
-            MasterDetailViewModel<LocalCongregationMember> localCongregationAdminViewModel,
+            MasterDetailViewModel<Assignee> assigneeAdminViewModel,
             IndexViewModel<Assignment> assignmentsViewModel)
         {
             ClmmScheduleAdminViewModel = clmmScheduleAdminViewModel ??
                 throw new ArgumentNullException(nameof(clmmScheduleAdminViewModel));
-            LocalCongregationAdminViewModel = localCongregationAdminViewModel ??
-                throw new ArgumentNullException(nameof(localCongregationAdminViewModel));
+            AssigneeAdminViewModel = assigneeAdminViewModel ??
+                throw new ArgumentNullException(nameof(assigneeAdminViewModel));
             AssignmentsViewModel = assignmentsViewModel ??
                 throw new ArgumentNullException(nameof(assignmentsViewModel));
         }
 
-        public MasterDetailViewModel<LocalCongregationMember> LocalCongregationAdminViewModel
+        public MasterDetailViewModel<Assignee> AssigneeAdminViewModel
         { get; }
 
         public MasterDetailViewModel<ClmmSchedule> ClmmScheduleAdminViewModel
@@ -30,7 +30,7 @@ namespace OpenKHS.ViewModels
 
         public void Load()
         {
-            LocalCongregationAdminViewModel.Load();
+            AssigneeAdminViewModel.Load();
         }
 
     }

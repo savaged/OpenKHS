@@ -28,25 +28,25 @@ namespace OpenKHS.Models
             WeekStarting = WeekStartingAdapter
                 .GetFirstDateOfWeekIso8601(DateTime.Now);
             Attendant1 = new Assignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(LocalCongregationMember.Attendant), assignmentTypes));
+                nameof(Assignee.Attendant), assignmentTypes));
             Attendant2 = new Assignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(LocalCongregationMember.Attendant), assignmentTypes));
+                nameof(Assignee.Attendant), assignmentTypes));
             Attendant3 = new Assignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(LocalCongregationMember.Attendant), assignmentTypes));
+                nameof(Assignee.Attendant), assignmentTypes));
             Attendant4 = new Assignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(LocalCongregationMember.Attendant), assignmentTypes));           
+                nameof(Assignee.Attendant), assignmentTypes));           
             OpeningPrayer = new Assignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(LocalCongregationMember.Prayer), assignmentTypes));
+                nameof(Assignee.Prayer), assignmentTypes));
             ClosingPrayer = new Assignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(LocalCongregationMember.Prayer), assignmentTypes));
+                nameof(Assignee.Prayer), assignmentTypes));
             Platform = new Assignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(LocalCongregationMember.Platform), assignmentTypes));
+                nameof(Assignee.Platform), assignmentTypes));
             SoundDesk = new Assignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(LocalCongregationMember.SoundDesk), assignmentTypes));
+                nameof(Assignee.SoundDesk), assignmentTypes));
             RovingMic1 = new Assignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(LocalCongregationMember.RovingMic), assignmentTypes));
+                nameof(Assignee.RovingMic), assignmentTypes));
             RovingMic2 = new Assignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(LocalCongregationMember.RovingMic), assignmentTypes));
+                nameof(Assignee.RovingMic), assignmentTypes));
         }
 
         public DateTime WeekStarting 

@@ -1,7 +1,12 @@
 namespace OpenKHS.Models
 {
-    public interface ILocalCongregationMember : ICongregationMember
+    public interface IAssignee : IModel
     {
+        string Name { get; set; }
+
+        int CountPrivileges();
+        bool CanAcceptAssignmentType(AssignmentType assignmentType);
+
         bool Attendant { get; set; }
         bool AwaySpeaker { get; set; }
         bool SchoolBibleReading { get; set; }

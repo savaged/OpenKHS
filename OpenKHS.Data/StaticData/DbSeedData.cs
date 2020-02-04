@@ -10,7 +10,7 @@ namespace OpenKHS.Data.StaticData
         public static AssignmentType[] GetAssignmentTypes()
         {
             var index = new List<AssignmentType>();
-            var props = typeof(LocalCongregationMember).GetProperties(
+            var props = typeof(Assignee).GetProperties(
                 BindingFlags.Public | BindingFlags.Instance);
             var boolProps = props
                 .Where(p => p.PropertyType.Name == typeof(bool).Name);

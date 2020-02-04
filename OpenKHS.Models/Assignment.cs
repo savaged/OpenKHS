@@ -4,8 +4,8 @@ namespace OpenKHS.Models
 {
     public class Assignment : ModelBase
     {
-        private LocalCongregationMember _assignee;
-        private AssignmentType _type;
+        private Assignee _assignee;
+        private AssignmentType _assignmentType;
 
         public Assignment() 
             : this(new NullAssignmentType())
@@ -14,20 +14,20 @@ namespace OpenKHS.Models
 
         public Assignment(AssignmentType assignmentType)
         {
-            _type = assignmentType ?? new NullAssignmentType();
-            _assignee = new NullLocalCongregationMember();
+            _assignmentType = assignmentType ?? new NullAssignmentType();
+            _assignee = new NullAssignee();
         }
         
-        public LocalCongregationMember Assignee
+        public Assignee Assignee
         {
             get => _assignee;
             set => Set(ref _assignee, value);
         }
 
-        public AssignmentType Type
+        public AssignmentType AssignmentType
         {
-            get => _type;
-            set => Set(ref _type, value);
+            get => _assignmentType;
+            set => Set(ref _assignmentType, value);
         }
     }
 

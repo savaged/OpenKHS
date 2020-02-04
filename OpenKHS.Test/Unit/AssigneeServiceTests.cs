@@ -42,7 +42,7 @@ namespace OpenKHS.Test.Unit
                 {
                     for (var i = 1; i < 17; i++)
                     {
-                        var example = new LocalCongregationMember
+                        var example = new Assignee
                         {
                             Name = "An Othermember"
                         };
@@ -56,7 +56,7 @@ namespace OpenKHS.Test.Unit
                 }
                 var assignmentType = _assignmentTypeService.GetIndex()
                     .SingleOrDefault(m => m.Id == 1);
-                var index = _assigneeService.GetIndex<LocalCongregationMember>(
+                var index = _assigneeService.GetIndex<Assignee>(
                     assignmentType);
                 Assert.IsNotNull(index);
                 Assert.AreEqual(4, index.Count());

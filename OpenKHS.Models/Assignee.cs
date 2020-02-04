@@ -5,8 +5,8 @@ using OpenKHS.Models.Attributes;
 
 namespace OpenKHS.Models
 {
-    public class LocalCongregationMember 
-        : LookupEntry, ILocalCongregationMember
+    public class Assignee 
+        : LookupEntry, IAssignee
     {
         private bool _ClmmChairman;
         private bool _SecondSchoolCounselor;
@@ -35,7 +35,7 @@ namespace OpenKHS.Models
         private bool _WtConductor;
         private bool _MainWtConductor;
 
-        public LocalCongregationMember()
+        public Assignee()
         {
             Assignments = new List<Assignment>();
         }
@@ -281,7 +281,7 @@ namespace OpenKHS.Models
 
     }
 
-    public class NullLocalCongregationMember : LocalCongregationMember
+    public class NullAssignee : Assignee
     {
         public new int Id = LookupEntry.Empty.Id;
 

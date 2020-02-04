@@ -32,7 +32,7 @@ namespace OpenKHS.Test.Unit
         [TestMethod]
         public void InsertModel()
         {
-            var model = new LocalCongregationMember
+            var model = new Assignee
             {
                 Name = "An Ewmember"
             };
@@ -43,7 +43,7 @@ namespace OpenKHS.Test.Unit
 
                 using (var context = _dbContextFactory.Create())
                 {
-                    var index = context.LocalCongregationMembers.ToList();
+                    var index = context.Assignees.ToList();
                     Assert.IsNotNull(index);
                     Assert.AreEqual(1, index.Count());
                     Assert.IsNotNull(index.FirstOrDefault());
@@ -66,7 +66,7 @@ namespace OpenKHS.Test.Unit
                 {
                     for (var i = 1; i < 6; i++)
                     {
-                        var example = new LocalCongregationMember
+                        var example = new Assignee
                         {
                             Name = "An Othermember"
                         };
@@ -74,7 +74,7 @@ namespace OpenKHS.Test.Unit
                     }
                     context.SaveChanges();
                 }
-                var index = _modelService.GetIndex<LocalCongregationMember>();
+                var index = _modelService.GetIndex<Assignee>();
                 Assert.IsNotNull(index);
                 Assert.AreEqual(5, index.Count());
             }
@@ -89,7 +89,7 @@ namespace OpenKHS.Test.Unit
         {
             try
             {
-                var example = new LocalCongregationMember
+                var example = new Assignee
                 {
                     Name = "An Ewmember"
                 };
@@ -102,7 +102,7 @@ namespace OpenKHS.Test.Unit
                 _modelService.Update(example);
                 using (var context = _dbContextFactory.Create())
                 {
-                    var updated = context.LocalCongregationMembers
+                    var updated = context.Assignees
                         .Single(m => m.Id == example.Id);
                     Assert.IsNotNull(updated);
                     Assert.AreEqual(example.Id, updated.Id);
@@ -122,7 +122,7 @@ namespace OpenKHS.Test.Unit
         {
             try
             {
-                var example = new LocalCongregationMember
+                var example = new Assignee
                 {
                     Name = "An Ewmember"
                 };
@@ -134,7 +134,7 @@ namespace OpenKHS.Test.Unit
                 _modelService.Delete(example);
                 using (var context = _dbContextFactory.Create())
                 {
-                    var deleted = context.LocalCongregationMembers
+                    var deleted = context.Assignees
                         .SingleOrDefault(m => m.Id == example.Id);
                     Assert.IsNull(deleted);
                 }

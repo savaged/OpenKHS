@@ -8,20 +8,7 @@ namespace OpenKHS.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "AssignmentTypes",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AssignmentTypes", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "LocalCongregationMembers",
+                name: "Assignees",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -56,7 +43,41 @@ namespace OpenKHS.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LocalCongregationMembers", x => x.Id);
+                    table.PrimaryKey("PK_Assignees", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AssignmentTypes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AssignmentTypes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UnavailablePeriods",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    AssigneeId = table.Column<int>(nullable: false),
+                    Start = table.Column<DateTime>(nullable: false),
+                    End = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UnavailablePeriods", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UnavailablePeriods_Assignees_AssigneeId",
+                        column: x => x.AssigneeId,
+                        principalTable: "Assignees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -66,42 +87,21 @@ namespace OpenKHS.Data.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     AssigneeId = table.Column<int>(nullable: false),
-                    TypeId = table.Column<int>(nullable: false)
+                    AssignmentTypeId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Assignments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Assignments_LocalCongregationMembers_AssigneeId",
+                        name: "FK_Assignments_Assignees_AssigneeId",
                         column: x => x.AssigneeId,
-                        principalTable: "LocalCongregationMembers",
+                        principalTable: "Assignees",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Assignments_AssignmentTypes_TypeId",
-                        column: x => x.TypeId,
+                        name: "FK_Assignments_AssignmentTypes_AssignmentTypeId",
+                        column: x => x.AssignmentTypeId,
                         principalTable: "AssignmentTypes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UnavailablePeriods",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    LocalCongregationMemberId = table.Column<int>(nullable: false),
-                    Start = table.Column<DateTime>(nullable: false),
-                    End = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UnavailablePeriods", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_UnavailablePeriods_LocalCongregationMembers_LocalCongregationMemberId",
-                        column: x => x.LocalCongregationMemberId,
-                        principalTable: "LocalCongregationMembers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -307,9 +307,9 @@ namespace OpenKHS.Data.Migrations
                 column: "AssigneeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Assignments_TypeId",
+                name: "IX_Assignments_AssignmentTypeId",
                 table: "Assignments",
-                column: "TypeId");
+                column: "AssignmentTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ClmmSchedules_Attendant1Id",
@@ -442,9 +442,9 @@ namespace OpenKHS.Data.Migrations
                 column: "TreasuresId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UnavailablePeriods_LocalCongregationMemberId",
+                name: "IX_UnavailablePeriods_AssigneeId",
                 table: "UnavailablePeriods",
-                column: "LocalCongregationMemberId");
+                column: "AssigneeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -459,7 +459,7 @@ namespace OpenKHS.Data.Migrations
                 name: "Assignments");
 
             migrationBuilder.DropTable(
-                name: "LocalCongregationMembers");
+                name: "Assignees");
 
             migrationBuilder.DropTable(
                 name: "AssignmentTypes");

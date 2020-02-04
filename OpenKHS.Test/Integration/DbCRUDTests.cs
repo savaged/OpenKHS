@@ -26,7 +26,7 @@ namespace OpenKHS.Test.Integration
                 // Create
                 using (var context = dbContextFactory.Create())
                 {
-                    var model = new LocalCongregationMember
+                    var model = new Assignee
                     {
                         Name = "Test Member"
                     };
@@ -39,7 +39,7 @@ namespace OpenKHS.Test.Integration
                 // Read
                 using (var context = dbContextFactory.Create())
                 {
-                    var model = context.LocalCongregationMembers
+                    var model = context.Assignees
                         .Single(m => m.Id == modelId);
                     Assert.AreEqual(modelId, model.Id);
                     Assert.AreNotEqual(0, modelId);
@@ -47,7 +47,7 @@ namespace OpenKHS.Test.Integration
                 // Update
                 using (var context = dbContextFactory.Create())
                 {
-                    var model = context.LocalCongregationMembers
+                    var model = context.Assignees
                         .Single(m => m.Id == modelId);
                     model.Name = "New Name";
                     context.SaveChanges();
@@ -58,12 +58,12 @@ namespace OpenKHS.Test.Integration
                 // Delete
                 using (var context = dbContextFactory.Create())
                 {
-                    var model = context.LocalCongregationMembers
+                    var model = context.Assignees
                         .Single(m => m.Id == modelId);
                     Assert.AreEqual(modelId, model.Id);
-                    context.LocalCongregationMembers.Remove(model);
+                    context.Assignees.Remove(model);
                     context.SaveChanges();
-                    var index = context.LocalCongregationMembers
+                    var index = context.Assignees
                         .Where(m => m.Id == modelId)
                         .ToList();
                     Assert.AreEqual(0, index.Count);

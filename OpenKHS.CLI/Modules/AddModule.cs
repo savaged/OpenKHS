@@ -23,27 +23,27 @@ namespace OpenKHS.CLI.Modules
             switch (entity)
             {
                 case nameof(ClmmSchedule):
-                    AddClmmSchedules();
+                    AddClmmSchedule();
                     break;
                 case nameof(Assignment):
-                    AddAssignments();
+                    AddAssignment();
                     break;
                 default:
-                    AddLocalCongregationMembers();
+                    AddAssignee();
                     break;
             }
         }
 
-        private void AddClmmSchedules()
+        private void AddClmmSchedule()
         {
             // TODO start here
         }
 
-        private void AddLocalCongregationMembers()
+        private void AddAssignee()
         {
         }
 
-        private void AddAssignments()
+        private void AddAssignment()
         {
             
         }

@@ -30,64 +30,64 @@ namespace OpenKHS.Models
         {
             Chairman = 
                 new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(LocalCongregationMember.ClmmChairman), assignmentTypes));
+                    nameof(Assignee.ClmmChairman), assignmentTypes));
             Treasures = 
                 new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(LocalCongregationMember.Treasures), assignmentTypes));
+                    nameof(Assignee.Treasures), assignmentTypes));
             Gems = 
                 new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(LocalCongregationMember.Gems), assignmentTypes));
+                    nameof(Assignee.Gems), assignmentTypes));
             SchoolBibleReading = 
                 new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(LocalCongregationMember.SchoolBibleReading), 
+                    nameof(Assignee.SchoolBibleReading), 
                     assignmentTypes));
             Demo1Publisher =
                 new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(LocalCongregationMember.SchoolBibleReading), 
+                    nameof(Assignee.SchoolBibleReading), 
                     assignmentTypes));
             Demo1Householder = 
                  new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(LocalCongregationMember.SchoolDemoHouseholder), 
+                    nameof(Assignee.SchoolDemoHouseholder), 
                     assignmentTypes));           
             Demo2Publisher = 
                  new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(LocalCongregationMember.SchoolDemo2), 
+                    nameof(Assignee.SchoolDemo2), 
                     assignmentTypes));
             Demo2Householder = 
                  new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(LocalCongregationMember.SchoolDemoHouseholder), 
+                    nameof(Assignee.SchoolDemoHouseholder), 
                     assignmentTypes));
             Demo3Publisher = 
                  new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(LocalCongregationMember.SchoolDemo3), 
+                    nameof(Assignee.SchoolDemo3), 
                     assignmentTypes));
             Demo3Householder = 
                  new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(LocalCongregationMember.SchoolDemoHouseholder), 
+                    nameof(Assignee.SchoolDemoHouseholder), 
                     assignmentTypes));
             SchoolTalk = 
                  new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(LocalCongregationMember.SchoolTalk), 
+                    nameof(Assignee.SchoolTalk), 
                     assignmentTypes));
             LacPart1 = 
                  new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(LocalCongregationMember.LacParts), 
+                    nameof(Assignee.LacParts), 
                     assignmentTypes));
             LacPart2 = 
                  new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(LocalCongregationMember.LacParts),
+                    nameof(Assignee.LacParts),
                     assignmentTypes));
             LacPart3 = 
                  new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(LocalCongregationMember.LacParts), 
+                    nameof(Assignee.LacParts), 
                     assignmentTypes));
             CbsConductor = 
                  new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(LocalCongregationMember.CbsConductor),
+                    nameof(Assignee.CbsConductor),
                     assignmentTypes));
             CbsReader = 
                  new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(LocalCongregationMember.CbsReader), 
+                    nameof(Assignee.CbsReader), 
                     assignmentTypes));
         }
 

@@ -89,7 +89,7 @@ namespace OpenKHS.Data
             var @switch = new Dictionary<Type, object>
             {
                 { typeof(ClmmSchedule), context.ClmmSchedules },
-                { typeof(LocalCongregationMember), context.LocalCongregationMembers },
+                { typeof(Assignee), context.Assignees },
                 { typeof(Assignment), context.Assignments },
                 { typeof(UnavailablePeriod), context.UnavailablePeriods},
                 { typeof(AssignmentType), context.AssignmentTypes }

@@ -68,7 +68,7 @@ namespace OpenKHS.CLI
 
         private string GetEntityFromOption(EntityOptions opt)
         {
-            var entity = nameof(LocalCongregationMember);
+            var entity = nameof(Assignee);
             if (opt.IsAssignment)
             {
                 entity = nameof(Assignment);
