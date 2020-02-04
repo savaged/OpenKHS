@@ -12,7 +12,7 @@ namespace OpenKHS.Test.Integration
     public class DbCRUDTests
     {
         [TestMethod]
-        public void LocalCongregationMemberCRUDTests()
+        public void AssigneeCRUDTests()
         {
             var kernel = new StandardKernel(
                 new ViewModelCoreBindings(),
