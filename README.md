@@ -14,7 +14,7 @@ Feel free to have a look at the code by cloning this repository using:
 
 ## TO DO List
 
-| Priority | T-shirt | % Done | Where | Description |
+| Priority | T-shirt | Percent Done | Where | Description |
 | --- | --- | --- | --- |
 | Must | L | Model | Assignment selection by list ordered by assignment tally |
 | Should | XL | WPF | UI application |
