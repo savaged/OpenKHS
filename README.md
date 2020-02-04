@@ -1,23 +1,26 @@
-# OpenKHS #
+# OpenKHS
+
 Free open source KHS (Kingdom Hall Scheduling) application. Totally free - no "donations"!
 
 Currently just a work in progress. Heavily leverages patterns for loose coupling to allow for testing and future extensibility.
 
-Feel free to have a look at the code by cloning this repo27 Jan 20sitory using:
+Feel free to have a look at the code by cloning this repository using:
 
 * `git clone https://github.com/savaged/OpenKHS.git OpenKHS`
 
-## NOTES ##
-* Sorry, I've not had time to do anything for ages but still aim to make this happen. Just dusted this off and found there's much to do
+## NOTES
 
-## TO DO List ##
-* Functional Requirement:Assignment selection by list ordered by assignment tally
-* Functional Requirement:Publish method increments all assignees tally
-* Functional Requirement: Adding new cong member resets everyones tally to lowest tally
-* Functional Requirement: Add 'second school' 
-* Functional Requirement: Add cleaning schedule
-* Persistence layer - ORM for data persistance using Entity Framework Core and SqlLite 
-* WPF version
-* UWP version using https://github.com/Microsoft/WindowsTemplateStudio
-* Android version
-* iOS version
+* Decided to start over from the domain design up.  
+
+## TO DO List
+
+| Priority | Where | Description |
+| --- | --- | --- |
+| Must | Model | Assignment selection by list ordered by assignment tally |
+| Could | Model | See if the privileges can be moved from hard-coded to db static data |
+| Should | CLI | Code the AddModule |
+| Should | WPF | Start UI application |
+| Could | All | Add cleaning schedule |
+| Could | Android | Android UI version |
+| Could | iOS | Apple UI version |
+| Could | WPF-Bridge | Windows Store UI version |
