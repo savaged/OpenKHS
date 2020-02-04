@@ -57,7 +57,8 @@ namespace OpenKHS.Data
 
             using (var context = _dbContextFactory.Create())
             {
-                context.Entry(model).State = EntityState.Added;
+                var dbSet = GetDbSet<T>(context);
+                dbSet.Add(model);
                 context.SaveChanges();
             }
         }
@@ -89,12 +90,17 @@ namespace OpenKHS.Data
             var @switch = new Dictionary<Type, object>
             {
                 { typeof(ClmmSchedule), context.ClmmSchedules },
+                { typeof(PmSchedule), context.PmSchedules },
                 { typeof(Assignee), context.Assignees },
                 { typeof(ClmmAssignment), context.ClmmAssignments },
                 { typeof(PmAssignment), context.PmAssignments },
                 { typeof(UnavailablePeriod), context.UnavailablePeriods},
                 { typeof(AssignmentType), context.AssignmentTypes }
             };
+            if (!@switch.ContainsKey(typeof(T)))
+            {
+                throw new InvalidOperationException("Missing a DbSet lookup!");
+            }
             var value = @switch[typeof(T)] as DbSet<T>;
             return value;
         }

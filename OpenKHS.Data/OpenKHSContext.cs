@@ -31,6 +31,7 @@ namespace OpenKHS.Data
         public DbSet<ClmmAssignment> ClmmAssignments { get; set; }
         public DbSet<PmAssignment> PmAssignments { get; set; }
         public DbSet<ClmmSchedule> ClmmSchedules { get; set; }
+        public DbSet<PmSchedule> PmSchedules { get; set; }
         public DbSet<UnavailablePeriod> UnavailablePeriods { get; set; }
 
         protected override void OnConfiguring(

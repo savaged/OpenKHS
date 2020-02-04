@@ -31,7 +31,7 @@ namespace OpenKHS.Data
         protected DbContextOptionsBuilder<OpenKHSContext> OptionsBuilder 
         { get; private set; }
 
-        protected virtual void SetUseStatement()
+        protected virtual void SetUseStatements()
         {
             OptionsBuilder.UseSqlite(Connection);
         }
@@ -39,7 +39,7 @@ namespace OpenKHS.Data
         private void Init()
         {
             OptionsBuilder = new DbContextOptionsBuilder<OpenKHSContext>();
-            SetUseStatement();
+            SetUseStatements();
             Options = OptionsBuilder.Options;
         }
     }
