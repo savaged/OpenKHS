@@ -12,7 +12,7 @@ namespace OpenKHS.Models
 
         public Assignment(int assignmentTypeId)
         {
-            AssignmentType = new NullAssignmentType();
+            AssignmentType = NullAssignmentType.Default;
             Assignee = new NullAssignee();
         }
 

@@ -9,7 +9,7 @@ namespace OpenKHS.Models
             string privilege,
             IList<AssignmentType> assignmentTypes)
         {
-            AssignmentType value = new NullAssignmentType();
+            var value = AssignmentType.Empty;
             if (!string.IsNullOrEmpty(privilege) && assignmentTypes != null &&
                 assignmentTypes.Any(t => t.Name == privilege))
             {
@@ -18,11 +18,24 @@ namespace OpenKHS.Models
             return value;
         }
 
-        public new static AssignmentType Empty => new NullAssignmentType();
+        public new static AssignmentType Empty => NullAssignmentType.Default;
     }
 
-    public class NullAssignmentType : AssignmentType
+    public sealed class NullAssignmentType : AssignmentType
     {
+        private static readonly AssignmentType _default =
+            new NullAssignmentType();
+
+        static NullAssignmentType()
+        {
+        }
+
+        private NullAssignmentType()
+        {
+        }
+
+        public static AssignmentType Default => _default;
+
         public new int Id => LookupEntry.Empty.Id;
 
         public new string Name => LookupEntry.Empty.Name;
