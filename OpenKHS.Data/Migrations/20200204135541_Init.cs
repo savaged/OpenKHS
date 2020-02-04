@@ -80,7 +80,7 @@ namespace OpenKHS.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Assignment",
+                name: "Assignments",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -91,15 +91,15 @@ namespace OpenKHS.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Assignment", x => x.Id);
+                    table.PrimaryKey("PK_Assignments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Assignment_Assignees_AssigneeId",
+                        name: "FK_Assignments_Assignees_AssigneeId",
                         column: x => x.AssigneeId,
                         principalTable: "Assignees",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Assignment_AssignmentTypes_AssignmentTypeId",
+                        name: "FK_Assignments_AssignmentTypes_AssignmentTypeId",
                         column: x => x.AssignmentTypeId,
                         principalTable: "AssignmentTypes",
                         principalColumn: "Id",
@@ -144,171 +144,276 @@ namespace OpenKHS.Data.Migrations
                 {
                     table.PrimaryKey("PK_ClmmSchedules", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignment_Attendant1Id",
+                        name: "FK_ClmmSchedules_Assignments_Attendant1Id",
                         column: x => x.Attendant1Id,
-                        principalTable: "Assignment",
+                        principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignment_Attendant2Id",
+                        name: "FK_ClmmSchedules_Assignments_Attendant2Id",
                         column: x => x.Attendant2Id,
-                        principalTable: "Assignment",
+                        principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignment_Attendant3Id",
+                        name: "FK_ClmmSchedules_Assignments_Attendant3Id",
                         column: x => x.Attendant3Id,
-                        principalTable: "Assignment",
+                        principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignment_Attendant4Id",
+                        name: "FK_ClmmSchedules_Assignments_Attendant4Id",
                         column: x => x.Attendant4Id,
-                        principalTable: "Assignment",
+                        principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignment_CbsConductorId",
+                        name: "FK_ClmmSchedules_Assignments_CbsConductorId",
                         column: x => x.CbsConductorId,
-                        principalTable: "Assignment",
+                        principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignment_CbsReaderId",
+                        name: "FK_ClmmSchedules_Assignments_CbsReaderId",
                         column: x => x.CbsReaderId,
-                        principalTable: "Assignment",
+                        principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignment_ChairmanId",
+                        name: "FK_ClmmSchedules_Assignments_ChairmanId",
                         column: x => x.ChairmanId,
-                        principalTable: "Assignment",
+                        principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignment_ClosingPrayerId",
+                        name: "FK_ClmmSchedules_Assignments_ClosingPrayerId",
                         column: x => x.ClosingPrayerId,
-                        principalTable: "Assignment",
+                        principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignment_Demo1HouseholderId",
+                        name: "FK_ClmmSchedules_Assignments_Demo1HouseholderId",
                         column: x => x.Demo1HouseholderId,
-                        principalTable: "Assignment",
+                        principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignment_Demo1PublisherId",
+                        name: "FK_ClmmSchedules_Assignments_Demo1PublisherId",
                         column: x => x.Demo1PublisherId,
-                        principalTable: "Assignment",
+                        principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignment_Demo2HouseholderId",
+                        name: "FK_ClmmSchedules_Assignments_Demo2HouseholderId",
                         column: x => x.Demo2HouseholderId,
-                        principalTable: "Assignment",
+                        principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignment_Demo2PublisherId",
+                        name: "FK_ClmmSchedules_Assignments_Demo2PublisherId",
                         column: x => x.Demo2PublisherId,
-                        principalTable: "Assignment",
+                        principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignment_Demo3HouseholderId",
+                        name: "FK_ClmmSchedules_Assignments_Demo3HouseholderId",
                         column: x => x.Demo3HouseholderId,
-                        principalTable: "Assignment",
+                        principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignment_Demo3PublisherId",
+                        name: "FK_ClmmSchedules_Assignments_Demo3PublisherId",
                         column: x => x.Demo3PublisherId,
-                        principalTable: "Assignment",
+                        principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignment_GemsId",
+                        name: "FK_ClmmSchedules_Assignments_GemsId",
                         column: x => x.GemsId,
-                        principalTable: "Assignment",
+                        principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignment_LacPart1Id",
+                        name: "FK_ClmmSchedules_Assignments_LacPart1Id",
                         column: x => x.LacPart1Id,
-                        principalTable: "Assignment",
+                        principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignment_LacPart2Id",
+                        name: "FK_ClmmSchedules_Assignments_LacPart2Id",
                         column: x => x.LacPart2Id,
-                        principalTable: "Assignment",
+                        principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignment_LacPart3Id",
+                        name: "FK_ClmmSchedules_Assignments_LacPart3Id",
                         column: x => x.LacPart3Id,
-                        principalTable: "Assignment",
+                        principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignment_OpeningPrayerId",
+                        name: "FK_ClmmSchedules_Assignments_OpeningPrayerId",
                         column: x => x.OpeningPrayerId,
-                        principalTable: "Assignment",
+                        principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignment_PlatformId",
+                        name: "FK_ClmmSchedules_Assignments_PlatformId",
                         column: x => x.PlatformId,
-                        principalTable: "Assignment",
+                        principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignment_RovingMic1Id",
+                        name: "FK_ClmmSchedules_Assignments_RovingMic1Id",
                         column: x => x.RovingMic1Id,
-                        principalTable: "Assignment",
+                        principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignment_RovingMic2Id",
+                        name: "FK_ClmmSchedules_Assignments_RovingMic2Id",
                         column: x => x.RovingMic2Id,
-                        principalTable: "Assignment",
+                        principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignment_SchoolBibleReadingId",
+                        name: "FK_ClmmSchedules_Assignments_SchoolBibleReadingId",
                         column: x => x.SchoolBibleReadingId,
-                        principalTable: "Assignment",
+                        principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignment_SchoolTalkId",
+                        name: "FK_ClmmSchedules_Assignments_SchoolTalkId",
                         column: x => x.SchoolTalkId,
-                        principalTable: "Assignment",
+                        principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignment_SoundDeskId",
+                        name: "FK_ClmmSchedules_Assignments_SoundDeskId",
                         column: x => x.SoundDeskId,
-                        principalTable: "Assignment",
+                        principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignment_TreasuresId",
+                        name: "FK_ClmmSchedules_Assignments_TreasuresId",
                         column: x => x.TreasuresId,
-                        principalTable: "Assignment",
+                        principalTable: "Assignments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PmSchedules",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    WeekStarting = table.Column<DateTime>(nullable: false),
+                    Attendant1Id = table.Column<int>(nullable: false),
+                    Attendant2Id = table.Column<int>(nullable: false),
+                    Attendant3Id = table.Column<int>(nullable: false),
+                    Attendant4Id = table.Column<int>(nullable: false),
+                    PlatformId = table.Column<int>(nullable: false),
+                    SoundDeskId = table.Column<int>(nullable: false),
+                    RovingMic1Id = table.Column<int>(nullable: false),
+                    RovingMic2Id = table.Column<int>(nullable: false),
+                    OpeningPrayerId = table.Column<int>(nullable: false),
+                    ClosingPrayerId = table.Column<int>(nullable: false),
+                    ChairmanId = table.Column<int>(nullable: false),
+                    WtConductorId = table.Column<int>(nullable: false),
+                    WtReaderId = table.Column<int>(nullable: false),
+                    Speaker = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PmSchedules", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PmSchedules_Assignments_Attendant1Id",
+                        column: x => x.Attendant1Id,
+                        principalTable: "Assignments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PmSchedules_Assignments_Attendant2Id",
+                        column: x => x.Attendant2Id,
+                        principalTable: "Assignments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PmSchedules_Assignments_Attendant3Id",
+                        column: x => x.Attendant3Id,
+                        principalTable: "Assignments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PmSchedules_Assignments_Attendant4Id",
+                        column: x => x.Attendant4Id,
+                        principalTable: "Assignments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PmSchedules_Assignments_ChairmanId",
+                        column: x => x.ChairmanId,
+                        principalTable: "Assignments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PmSchedules_Assignments_ClosingPrayerId",
+                        column: x => x.ClosingPrayerId,
+                        principalTable: "Assignments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PmSchedules_Assignments_OpeningPrayerId",
+                        column: x => x.OpeningPrayerId,
+                        principalTable: "Assignments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PmSchedules_Assignments_PlatformId",
+                        column: x => x.PlatformId,
+                        principalTable: "Assignments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PmSchedules_Assignments_RovingMic1Id",
+                        column: x => x.RovingMic1Id,
+                        principalTable: "Assignments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PmSchedules_Assignments_RovingMic2Id",
+                        column: x => x.RovingMic2Id,
+                        principalTable: "Assignments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PmSchedules_Assignments_SoundDeskId",
+                        column: x => x.SoundDeskId,
+                        principalTable: "Assignments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PmSchedules_Assignments_WtConductorId",
+                        column: x => x.WtConductorId,
+                        principalTable: "Assignments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PmSchedules_Assignments_WtReaderId",
+                        column: x => x.WtReaderId,
+                        principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Assignment_AssigneeId",
-                table: "Assignment",
+                name: "IX_Assignments_AssigneeId",
+                table: "Assignments",
                 column: "AssigneeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Assignment_AssignmentTypeId",
-                table: "Assignment",
+                name: "IX_Assignments_AssignmentTypeId",
+                table: "Assignments",
                 column: "AssignmentTypeId");
 
             migrationBuilder.CreateIndex(
@@ -442,6 +547,71 @@ namespace OpenKHS.Data.Migrations
                 column: "TreasuresId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_PmSchedules_Attendant1Id",
+                table: "PmSchedules",
+                column: "Attendant1Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PmSchedules_Attendant2Id",
+                table: "PmSchedules",
+                column: "Attendant2Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PmSchedules_Attendant3Id",
+                table: "PmSchedules",
+                column: "Attendant3Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PmSchedules_Attendant4Id",
+                table: "PmSchedules",
+                column: "Attendant4Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PmSchedules_ChairmanId",
+                table: "PmSchedules",
+                column: "ChairmanId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PmSchedules_ClosingPrayerId",
+                table: "PmSchedules",
+                column: "ClosingPrayerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PmSchedules_OpeningPrayerId",
+                table: "PmSchedules",
+                column: "OpeningPrayerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PmSchedules_PlatformId",
+                table: "PmSchedules",
+                column: "PlatformId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PmSchedules_RovingMic1Id",
+                table: "PmSchedules",
+                column: "RovingMic1Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PmSchedules_RovingMic2Id",
+                table: "PmSchedules",
+                column: "RovingMic2Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PmSchedules_SoundDeskId",
+                table: "PmSchedules",
+                column: "SoundDeskId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PmSchedules_WtConductorId",
+                table: "PmSchedules",
+                column: "WtConductorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PmSchedules_WtReaderId",
+                table: "PmSchedules",
+                column: "WtReaderId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UnavailablePeriods_AssigneeId",
                 table: "UnavailablePeriods",
                 column: "AssigneeId");
@@ -453,10 +623,13 @@ namespace OpenKHS.Data.Migrations
                 name: "ClmmSchedules");
 
             migrationBuilder.DropTable(
+                name: "PmSchedules");
+
+            migrationBuilder.DropTable(
                 name: "UnavailablePeriods");
 
             migrationBuilder.DropTable(
-                name: "Assignment");
+                name: "Assignments");
 
             migrationBuilder.DropTable(
                 name: "Assignees");

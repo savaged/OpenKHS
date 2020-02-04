@@ -44,5 +44,10 @@ namespace OpenKHS.Data
             }
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Assignment>()
+                .ToTable($"{nameof(Assignment)}s");
+        }
     }
 }

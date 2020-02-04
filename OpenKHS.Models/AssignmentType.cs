@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 namespace OpenKHS.Models
@@ -18,6 +19,7 @@ namespace OpenKHS.Models
             return value;
         }
 
+        [NotMapped]
         public new static AssignmentType Empty => NullAssignmentType.Default;
     }
 

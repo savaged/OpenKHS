@@ -128,7 +128,7 @@ namespace OpenKHS.Data.Migrations
 
                     b.HasIndex("AssignmentTypeId");
 
-                    b.ToTable("Assignment");
+                    b.ToTable("Assignments");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Assignment");
                 });
@@ -290,6 +290,89 @@ namespace OpenKHS.Data.Migrations
                     b.HasIndex("TreasuresId");
 
                     b.ToTable("ClmmSchedules");
+                });
+
+            modelBuilder.Entity("OpenKHS.Models.PmSchedule", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Attendant1Id")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Attendant2Id")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Attendant3Id")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Attendant4Id")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ChairmanId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ClosingPrayerId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("OpeningPrayerId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PlatformId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("RovingMic1Id")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("RovingMic2Id")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("SoundDeskId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Speaker")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("WeekStarting")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("WtConductorId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("WtReaderId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Attendant1Id");
+
+                    b.HasIndex("Attendant2Id");
+
+                    b.HasIndex("Attendant3Id");
+
+                    b.HasIndex("Attendant4Id");
+
+                    b.HasIndex("ChairmanId");
+
+                    b.HasIndex("ClosingPrayerId");
+
+                    b.HasIndex("OpeningPrayerId");
+
+                    b.HasIndex("PlatformId");
+
+                    b.HasIndex("RovingMic1Id");
+
+                    b.HasIndex("RovingMic2Id");
+
+                    b.HasIndex("SoundDeskId");
+
+                    b.HasIndex("WtConductorId");
+
+                    b.HasIndex("WtReaderId");
+
+                    b.ToTable("PmSchedules");
                 });
 
             modelBuilder.Entity("OpenKHS.Models.UnavailablePeriod", b =>
@@ -498,6 +581,87 @@ namespace OpenKHS.Data.Migrations
                     b.HasOne("OpenKHS.Models.Assignment", "Treasures")
                         .WithMany()
                         .HasForeignKey("TreasuresId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("OpenKHS.Models.PmSchedule", b =>
+                {
+                    b.HasOne("OpenKHS.Models.Assignment", "Attendant1")
+                        .WithMany()
+                        .HasForeignKey("Attendant1Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OpenKHS.Models.Assignment", "Attendant2")
+                        .WithMany()
+                        .HasForeignKey("Attendant2Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OpenKHS.Models.Assignment", "Attendant3")
+                        .WithMany()
+                        .HasForeignKey("Attendant3Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OpenKHS.Models.Assignment", "Attendant4")
+                        .WithMany()
+                        .HasForeignKey("Attendant4Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OpenKHS.Models.Assignment", "Chairman")
+                        .WithMany()
+                        .HasForeignKey("ChairmanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OpenKHS.Models.Assignment", "ClosingPrayer")
+                        .WithMany()
+                        .HasForeignKey("ClosingPrayerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OpenKHS.Models.Assignment", "OpeningPrayer")
+                        .WithMany()
+                        .HasForeignKey("OpeningPrayerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OpenKHS.Models.Assignment", "Platform")
+                        .WithMany()
+                        .HasForeignKey("PlatformId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OpenKHS.Models.Assignment", "RovingMic1")
+                        .WithMany()
+                        .HasForeignKey("RovingMic1Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OpenKHS.Models.Assignment", "RovingMic2")
+                        .WithMany()
+                        .HasForeignKey("RovingMic2Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OpenKHS.Models.Assignment", "SoundDesk")
+                        .WithMany()
+                        .HasForeignKey("SoundDeskId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OpenKHS.Models.Assignment", "WtConductor")
+                        .WithMany()
+                        .HasForeignKey("WtConductorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OpenKHS.Models.Assignment", "WtReader")
+                        .WithMany()
+                        .HasForeignKey("WtReaderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

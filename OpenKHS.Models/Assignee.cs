@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using OpenKHS.Models.Attributes;
 
@@ -270,6 +271,7 @@ namespace OpenKHS.Models
 
         #endregion
 
+        [NotMapped]
         public new static Assignee Empty => new NullAssignee();
 
     }
