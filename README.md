@@ -15,13 +15,13 @@ Feel free to have a look at the code by cloning this repository using:
 
 ## TO DO List
 
-| Priority | Size | % Done | Where | Description |
+| Priority | Size | ~% Done | Where | Description |
 | --- | --- | --- | --- | --- |
-| Must | L | Model | Assignment selection by list ordered by assignment tally |
-| Should | XL | WPF | UI application |
-| Should | M | CLI | Code the AddModule |
-| Could | L | All | Add cleaning schedule |
-| Could | XL | Android | Android UI version |
-| Could | XL | iOS | Apple UI version |
-| Could | L | WPF-Bridge | Windows Store UI version |
-| Could | XL | Model | See if the privileges can be moved from hard-coded to db static data |
+| Must | L | 10 | Model | Assignment selection by list ordered by assignment tally |
+| Should | XL | 5 | WPF | UI application |
+| Should | M | 5 | CLI | Code the AddModule |
+| Could | L | 0 | All | Add cleaning schedule |
+| Could | XL | 0 | Android | Android UI version |
+| Could | XL | 0 | iOS | Apple UI version |
+| Could | L | 0 | WPF-Bridge | Windows Store UI version |
+| Could | XL | 5 | Model | See if the privileges can be moved from hard-coded to db static data |
