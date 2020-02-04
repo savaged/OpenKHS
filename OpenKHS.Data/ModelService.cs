@@ -90,7 +90,8 @@ namespace OpenKHS.Data
             {
                 { typeof(ClmmSchedule), context.ClmmSchedules },
                 { typeof(Assignee), context.Assignees },
-                { typeof(Assignment), context.Assignments },
+                { typeof(ClmmAssignment), context.ClmmAssignments },
+                { typeof(PmAssignment), context.PmAssignments },
                 { typeof(UnavailablePeriod), context.UnavailablePeriods},
                 { typeof(AssignmentType), context.AssignmentTypes }
             };

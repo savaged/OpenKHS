@@ -28,7 +28,8 @@ namespace OpenKHS.Data
 
         public DbSet<AssignmentType> AssignmentTypes { get; set; }
         public DbSet<Assignee> Assignees { get; set; } 
-        public DbSet<Assignment> Assignments { get; set; }
+        public DbSet<ClmmAssignment> ClmmAssignments { get; set; }
+        public DbSet<PmAssignment> PmAssignments { get; set; }
         public DbSet<ClmmSchedule> ClmmSchedules { get; set; }
         public DbSet<UnavailablePeriod> UnavailablePeriods { get; set; }
 

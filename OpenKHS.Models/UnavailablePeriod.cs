@@ -4,22 +4,24 @@ namespace OpenKHS.Models
 {
     public class UnavailablePeriod : ModelBase
     {
-        private Assignee _assignee;
         private DateTime _start;
         private DateTime _end;
 
+        private int _assigneeId;
+
         public UnavailablePeriod()
         {
-            _assignee = new NullAssignee();
+            Assignee = new NullAssignee();
             _start = DateTime.Now;
             _end = DateTime.Now;
         }
 
-        public Assignee Assignee 
+        public int AssigneeId
         {
-            get => _assignee; 
-            set => Set(ref _assignee, value); 
+            get => _assigneeId;
+            set => Set(ref _assigneeId, value);
         }
+        public Assignee Assignee { get; set; }
 
         public DateTime Start 
         { 

@@ -18,16 +18,29 @@ namespace OpenKHS.Data
         public T Create<T>() where T : class, IModel, new()
         {
             var model = new T();
-            if (typeof(T) == typeof(ClmmSchedule)) 
-            {
-                IList<AssignmentType> assignmentTypes;
-                using (var context = _dbContextFactory.Create())
+            if (typeof(T) == typeof(ISchedule))
+            { 
+                var assignmentTypes = GetAssignmentTypes();
+                if (typeof(T) == typeof(ClmmSchedule)) 
                 {
-                    assignmentTypes = context.AssignmentTypes.ToList();
+                    model = new ClmmSchedule(assignmentTypes) as T;
                 }
-                model = new ClmmSchedule(assignmentTypes) as T;
-            };
+                else if (typeof(T) == typeof(PmSchedule))
+                {
+                    model = new PmSchedule(assignmentTypes) as T;
+                }
+            }
             return model;
+        }
+
+        private IList<AssignmentType> GetAssignmentTypes()
+        {
+            IList<AssignmentType> index;
+            using (var context = _dbContextFactory.Create())
+            {
+                index = context.AssignmentTypes.ToList();
+            }
+            return index;
         }
     }
 }

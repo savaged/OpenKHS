@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Data.Sqlite;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -35,14 +36,27 @@ namespace OpenKHS.Test.Feature
         [TestMethod]
         public void ListClmmSchedulesTest()
         {
-            var modelService = _kernel.Get<IModelService>();
-            for (var i = 1; i < 6; i++)
+            try
             {
-                var model = modelService.Create<ClmmSchedule>();
+                var modelService = _kernel.Get<IModelService>();
+                var dbContextFactory = _kernel.Get<IDbContextFactory>();
+                using (var context = dbContextFactory.Create())
+                {
+                    for (var i = 1; i < 6; i++)
+                    {
+                        var model = modelService.Create<ClmmSchedule>();
+                        context.Add(model);    
+                    }
+                    context.SaveChanges();
+                }
+                _mainViewModel.ClmmScheduleAdminViewModel.Load();
+                Assert.AreEqual(5, _mainViewModel.ClmmScheduleAdminViewModel
+                    .IndexViewModel.Index.Count());
             }
-            _mainViewModel.ClmmScheduleAdminViewModel.Load();
-            Assert.AreEqual(5, _mainViewModel.ClmmScheduleAdminViewModel
-                .IndexViewModel.Index.Count());
+            finally
+            {
+                _dbConnection.Close();
+            }
         }
 
         [TestMethod]

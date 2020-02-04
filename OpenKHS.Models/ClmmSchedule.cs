@@ -1,11 +1,25 @@
+using System;
 using System.Collections.Generic;
+using OpenKHS.Models.Utils;
 
 namespace OpenKHS.Models
 {
-    public class ClmmSchedule : Schedule
+    public class ClmmSchedule : ModelBase, ISchedule
     {
-        public ClmmSchedule() : base()
+        private DateTime _weekStarting;
+        
+        public ClmmSchedule() 
         {
+            Attendant1 =
+            Attendant2 =
+            Attendant3 =
+            Attendant4 =
+            OpeningPrayer =
+            ClosingPrayer =
+            Platform =
+            SoundDesk =
+            RovingMic1 =
+            RovingMic2 =
             Chairman = 
             Treasures = 
             Gems = 
@@ -26,72 +40,118 @@ namespace OpenKHS.Models
         }
 
         public ClmmSchedule(IList<AssignmentType> assignmentTypes)
-            : base(assignmentTypes)
         {
+            WeekStarting = WeekStartingAdapter
+                .GetFirstDateOfWeekIso8601(DateTime.Now);
+            Attendant1 = new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
+                nameof(Assignee.Attendant), assignmentTypes));
+            Attendant2 = new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
+                nameof(Assignee.Attendant), assignmentTypes));
+            Attendant3 = new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
+                nameof(Assignee.Attendant), assignmentTypes));
+            Attendant4 = new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
+                nameof(Assignee.Attendant), assignmentTypes));
+            OpeningPrayer = new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
+                nameof(Assignee.Prayer), assignmentTypes));
+            ClosingPrayer = new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
+                nameof(Assignee.Prayer), assignmentTypes));
+            Platform = new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
+                nameof(Assignee.Platform), assignmentTypes));
+            SoundDesk = new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
+                nameof(Assignee.SoundDesk), assignmentTypes));
+            RovingMic1 = new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
+                nameof(Assignee.RovingMic), assignmentTypes));
+            RovingMic2 = new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
+                nameof(Assignee.RovingMic), assignmentTypes));
+
             Chairman = 
-                new Assignment(AssignmentType.GetMatchingAssignmentType(
+                new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.ClmmChairman), assignmentTypes));
             Treasures = 
-                new Assignment(AssignmentType.GetMatchingAssignmentType(
+                new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.Treasures), assignmentTypes));
             Gems = 
-                new Assignment(AssignmentType.GetMatchingAssignmentType(
+                new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.Gems), assignmentTypes));
             SchoolBibleReading = 
-                new Assignment(AssignmentType.GetMatchingAssignmentType(
+                new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.SchoolBibleReading), 
                     assignmentTypes));
             Demo1Publisher =
-                new Assignment(AssignmentType.GetMatchingAssignmentType(
+                new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.SchoolBibleReading), 
                     assignmentTypes));
             Demo1Householder = 
-                 new Assignment(AssignmentType.GetMatchingAssignmentType(
+                 new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.SchoolDemoHouseholder), 
                     assignmentTypes));           
             Demo2Publisher = 
-                 new Assignment(AssignmentType.GetMatchingAssignmentType(
+                 new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.SchoolDemo2), 
                     assignmentTypes));
             Demo2Householder = 
-                 new Assignment(AssignmentType.GetMatchingAssignmentType(
+                 new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.SchoolDemoHouseholder), 
                     assignmentTypes));
             Demo3Publisher = 
-                 new Assignment(AssignmentType.GetMatchingAssignmentType(
+                 new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.SchoolDemo3), 
                     assignmentTypes));
             Demo3Householder = 
-                 new Assignment(AssignmentType.GetMatchingAssignmentType(
+                 new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.SchoolDemoHouseholder), 
                     assignmentTypes));
             SchoolTalk = 
-                 new Assignment(AssignmentType.GetMatchingAssignmentType(
+                 new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.SchoolTalk), 
                     assignmentTypes));
             LacPart1 = 
-                 new Assignment(AssignmentType.GetMatchingAssignmentType(
+                 new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.LacParts), 
                     assignmentTypes));
             LacPart2 = 
-                 new Assignment(AssignmentType.GetMatchingAssignmentType(
+                 new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.LacParts),
                     assignmentTypes));
             LacPart3 = 
-                 new Assignment(AssignmentType.GetMatchingAssignmentType(
+                 new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.LacParts), 
                     assignmentTypes));
             CbsConductor = 
-                 new Assignment(AssignmentType.GetMatchingAssignmentType(
+                 new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.CbsConductor),
                     assignmentTypes));
             CbsReader = 
-                 new Assignment(AssignmentType.GetMatchingAssignmentType(
+                 new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.CbsReader), 
                     assignmentTypes));
         }
 
-        public override Assignment Chairman { get; set; }
+        public DateTime WeekStarting
+        {
+            get => _weekStarting;
+            set
+            {
+                value = WeekStartingAdapter
+                    .GetFirstDateOfWeekIso8601(value);
+                Set(ref _weekStarting, value);
+            }
+        }
+
+        public Assignment Attendant1 { get; set; }
+        public Assignment Attendant2 { get; set; }
+        public Assignment Attendant3 { get; set; }
+        public Assignment Attendant4 { get; set; }
+        public Assignment Platform { get; set; }
+        public Assignment SoundDesk { get; set; }
+        public Assignment RovingMic1 { get; set; }
+        public Assignment RovingMic2 { get; set; }
+
+        public Assignment OpeningPrayer { get; set; }
+
+        public Assignment ClosingPrayer { get; set; }
+
+        public Assignment Chairman { get; set; }
 
         public Assignment Treasures { get; set; }
 

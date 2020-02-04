@@ -33,7 +33,6 @@ namespace OpenKHS.Models
         private bool _SoundDesk;
         private bool _RovingMic;
         private bool _WtConductor;
-        private bool _MainWtConductor;
 
         public Assignee()
         {
@@ -219,13 +218,6 @@ namespace OpenKHS.Models
             set => Set(ref _WtConductor, value);
         }
 
-        [Privilege]
-        public bool MainWtConductor
-        {
-            get => _MainWtConductor;
-            set => Set(ref _MainWtConductor, value);
-        }
-
 
         public int CountPrivileges()
         {
@@ -263,7 +255,6 @@ namespace OpenKHS.Models
                 nameof(SecondSchoolCounselor) => SecondSchoolCounselor,
                 nameof(SecondSchoolOnly) => SecondSchoolOnly,
                 nameof(Treasures) => Treasures,
-                nameof(MainWtConductor) => MainWtConductor,
                 nameof(Platform) => Platform,
                 nameof(PmChairman) => PmChairman,
                 nameof(Prayer) => Prayer,

@@ -25,7 +25,6 @@ namespace OpenKHS.Models
         bool SecondSchoolCounselor { get; set; }
         bool SecondSchoolOnly { get; set; }
         bool Treasures { get; set; }
-        bool MainWtConductor { get; set; }
         bool Platform { get; set; }
         bool PmChairman { get; set; }
         bool PublicSpeaker { get; set; }

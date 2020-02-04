@@ -2,7 +2,7 @@ using System;
 
 namespace OpenKHS.Models
 {
-    public class Assignment : ModelBase
+    public abstract class Assignment : ModelBase
     {
         private Assignee _assignee;
         private AssignmentType _assignmentType;
@@ -17,7 +17,7 @@ namespace OpenKHS.Models
             _assignmentType = assignmentType ?? new NullAssignmentType();
             _assignee = new NullAssignee();
         }
-        
+
         public Assignee Assignee
         {
             get => _assignee;
