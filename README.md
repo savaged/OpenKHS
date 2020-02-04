@@ -10,12 +10,13 @@ Feel free to have a look at the code by cloning this repository using:
 
 ## NOTES
 
-* Decided to start over from the domain design up.  
+* Decided to start over from the domain design up.
+* One should expect `error NETSDK1100` if one tries to build the WPF project or the solution on Linux or Apple OS.
 
 ## TO DO List
 
 | Priority | T-shirt | Percent Done | Where | Description |
-| --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | Must | L | Model | Assignment selection by list ordered by assignment tally |
 | Should | XL | WPF | UI application |
 | Should | M | CLI | Code the AddModule |
