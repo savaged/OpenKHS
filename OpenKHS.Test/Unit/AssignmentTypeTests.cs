@@ -28,7 +28,7 @@ namespace OpenKHS.Test.Unit
         {
             try
             {
-                Assert.AreEqual(AssignmentType.Empty, AssignmentType.Empty);
+                Assert.AreEqual(NullAssignmentType.Default, NullAssignmentType.Default);
 
                 var lookupService = _kernel.Get<IAssignmentTypeService>();
                 var assignmentTypes = lookupService.GetIndex();
@@ -36,7 +36,7 @@ namespace OpenKHS.Test.Unit
                 var assignmentType = AssignmentType.GetMatchingAssignmentType(
                     "bogus", assignmentTypes);
                 Assert.IsNotNull(assignmentType);
-                Assert.AreEqual(AssignmentType.Empty, assignmentType);
+                Assert.AreEqual(NullAssignmentType.Default, assignmentType);
 
                 assignmentType = AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.Attendant), assignmentTypes);

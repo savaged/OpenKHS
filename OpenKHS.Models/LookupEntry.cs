@@ -1,10 +1,10 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace OpenKHS.Models
 {
     public abstract class LookupEntry : ModelBase, ILookupEntry
     {
         private string _name;
-
-        public static ILookupEntry Empty => NullLookup.Default;
 
         public LookupEntry()
         {
@@ -18,14 +18,16 @@ namespace OpenKHS.Models
         }
     }
 
-    public class NullLookup : ILookupEntry
+    public class NullLookupEntry : ILookupEntry
     {
-        private NullLookup() 
+        private static readonly ILookupEntry _default = new NullLookupEntry();
+
+        private NullLookupEntry() 
         {
             Name = string.Empty;
         }
 
-        public static ILookupEntry Default => new NullLookup();
+        public static ILookupEntry Default => _default;
 
         public string Name { get; }
 

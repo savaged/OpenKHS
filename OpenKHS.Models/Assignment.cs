@@ -6,7 +6,7 @@ namespace OpenKHS.Models
         private int _assignmentTypeId;
 
         public Assignment() 
-            : this(AssignmentType.Empty.Id)
+            : this(NullAssignmentType.Default.Id)
         {
         }
 

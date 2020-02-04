@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 namespace OpenKHS.Models
@@ -10,7 +9,7 @@ namespace OpenKHS.Models
             string privilege,
             IList<AssignmentType> assignmentTypes)
         {
-            var value = AssignmentType.Empty;
+            var value = NullAssignmentType.Default;
             if (!string.IsNullOrEmpty(privilege) && assignmentTypes != null &&
                 assignmentTypes.Any(t => t.Name == privilege))
             {
@@ -19,8 +18,6 @@ namespace OpenKHS.Models
             return value;
         }
 
-        [NotMapped]
-        public new static AssignmentType Empty => NullAssignmentType.Default;
     }
 
     public sealed class NullAssignmentType : AssignmentType
@@ -38,8 +35,8 @@ namespace OpenKHS.Models
 
         public static AssignmentType Default => _default;
 
-        public new int Id => LookupEntry.Empty.Id;
+        public new int Id => NullLookupEntry.Default.Id;
 
-        public new string Name => LookupEntry.Empty.Name;
+        public new string Name => NullLookupEntry.Default.Name;
     }
 }

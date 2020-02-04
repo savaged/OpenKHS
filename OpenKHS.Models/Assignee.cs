@@ -271,16 +271,13 @@ namespace OpenKHS.Models
 
         #endregion
 
-        [NotMapped]
-        public new static Assignee Empty => new NullAssignee();
-
     }
 
     public class NullAssignee : Assignee
     {
-        public new int Id = LookupEntry.Empty.Id;
+        public new int Id = NullLookupEntry.Default.Id;
 
-        public new string Name = LookupEntry.Empty.Name;
+        public new string Name = NullLookupEntry.Default.Name;
     }
 
 }
