@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using OpenKHS.Models.Attributes;
 
 namespace OpenKHS.Models
 {
@@ -20,6 +17,8 @@ namespace OpenKHS.Models
             }
             return value;
         }
+
+        public new static AssignmentType Empty => new NullAssignmentType();
     }
 
     public class NullAssignmentType : AssignmentType

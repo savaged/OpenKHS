@@ -6,8 +6,8 @@ namespace OpenKHS.Models
         {
         }
 
-        public PmAssignment(AssignmentType assignmentType)
-            : base(assignmentType)
+        public PmAssignment(int assignmentTypeId)
+            : base(assignmentTypeId)
         {
         }
     }

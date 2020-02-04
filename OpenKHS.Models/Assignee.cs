@@ -270,6 +270,8 @@ namespace OpenKHS.Models
 
         #endregion
 
+        public new static Assignee Empty => new NullAssignee();
+
     }
 
     public class NullAssignee : Assignee

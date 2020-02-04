@@ -18,14 +18,14 @@ namespace OpenKHS.Data
         public T Create<T>() where T : class, IModel, new()
         {
             var model = new T();
-            if (typeof(T) == typeof(ISchedule))
+            if (model is ISchedule)
             { 
                 var assignmentTypes = GetAssignmentTypes();
-                if (typeof(T) == typeof(ClmmSchedule)) 
+                if (model is ClmmSchedule) 
                 {
                     model = new ClmmSchedule(assignmentTypes) as T;
                 }
-                else if (typeof(T) == typeof(PmSchedule))
+                else if (model is PmSchedule)
                 {
                     model = new PmSchedule(assignmentTypes) as T;
                 }

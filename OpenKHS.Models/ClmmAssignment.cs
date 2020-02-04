@@ -6,8 +6,8 @@ namespace OpenKHS.Models
         {
         }
 
-        public ClmmAssignment(AssignmentType assignmentType)
-            : base(assignmentType)
+        public ClmmAssignment(int assignmentTypeId)
+            : base(assignmentTypeId)
         {
         }
     }

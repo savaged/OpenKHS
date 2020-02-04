@@ -32,35 +32,35 @@ namespace OpenKHS.Models
             WeekStarting = WeekStartingAdapter
                 .GetFirstDateOfWeekIso8601(DateTime.Now);
             Attendant1 = new PmAssignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.Attendant), assignmentTypes));
+                nameof(Assignee.Attendant), assignmentTypes).Id);
             Attendant2 = new PmAssignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.Attendant), assignmentTypes));
+                nameof(Assignee.Attendant), assignmentTypes).Id);
             Attendant3 = new PmAssignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.Attendant), assignmentTypes));
+                nameof(Assignee.Attendant), assignmentTypes).Id);
             Attendant4 = new PmAssignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.Attendant), assignmentTypes));
+                nameof(Assignee.Attendant), assignmentTypes).Id);
             OpeningPrayer = new PmAssignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.Prayer), assignmentTypes));
+                nameof(Assignee.Prayer), assignmentTypes).Id);
             ClosingPrayer = new PmAssignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.Prayer), assignmentTypes));
+                nameof(Assignee.Prayer), assignmentTypes).Id);
             Platform = new PmAssignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.Platform), assignmentTypes));
+                nameof(Assignee.Platform), assignmentTypes).Id);
             SoundDesk = new PmAssignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.SoundDesk), assignmentTypes));
+                nameof(Assignee.SoundDesk), assignmentTypes).Id);
             RovingMic1 = new PmAssignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.RovingMic), assignmentTypes));
+                nameof(Assignee.RovingMic), assignmentTypes).Id);
             RovingMic2 = new PmAssignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.RovingMic), assignmentTypes));
+                nameof(Assignee.RovingMic), assignmentTypes).Id);
 
             Chairman = 
                 new PmAssignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.ClmmChairman), assignmentTypes));
+                    nameof(Assignee.ClmmChairman), assignmentTypes).Id);
             WtConductor = 
                 new PmAssignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.WtConductor), assignmentTypes));
+                    nameof(Assignee.WtConductor), assignmentTypes).Id);
             WtReader = 
                 new PmAssignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.WtReader), assignmentTypes));
+                    nameof(Assignee.WtReader), assignmentTypes).Id);
             Speaker = string.Empty;
         }
 

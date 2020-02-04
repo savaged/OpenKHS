@@ -1,42 +1,37 @@
-using System;
-
 namespace OpenKHS.Models
 {
     public abstract class Assignment : ModelBase
     {
-        private Assignee _assignee;
-        private AssignmentType _assignmentType;
+        private int _assigneeId;
+        private int _assignmentTypeId;
 
         public Assignment() 
-            : this(new NullAssignmentType())
+            : this(AssignmentType.Empty.Id)
         {
         }
 
-        public Assignment(AssignmentType assignmentType)
+        public Assignment(int assignmentTypeId)
         {
-            _assignmentType = assignmentType ?? new NullAssignmentType();
-            _assignee = new NullAssignee();
+            AssignmentType = new NullAssignmentType();
+            Assignee = new NullAssignee();
         }
 
-        public Assignee Assignee
+        public int AssigneeId
         {
-            get => _assignee;
-            set => Set(ref _assignee, value);
+            get => _assigneeId;
+            set => Set(ref _assigneeId, value);
         }
+        public Assignee Assignee { get; set; }
 
-        public AssignmentType AssignmentType
+        public int AssignmentTypeId
         {
-            get => _assignmentType;
-            set => Set(ref _assignmentType, value);
+            get => _assignmentTypeId;
+            set => Set(ref _assignmentTypeId, value);
         }
+        public AssignmentType AssignmentType { get; set; }
     }
 
     public class NullAssignment : Assignment
     {
-        public NullAssignment() 
-            : base(new NullAssignmentType())
-        {
-            Id = -1;
-        }
     }
 }

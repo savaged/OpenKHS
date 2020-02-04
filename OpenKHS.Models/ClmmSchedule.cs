@@ -44,87 +44,87 @@ namespace OpenKHS.Models
             WeekStarting = WeekStartingAdapter
                 .GetFirstDateOfWeekIso8601(DateTime.Now);
             Attendant1 = new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.Attendant), assignmentTypes));
+                nameof(Assignee.Attendant), assignmentTypes).Id);
             Attendant2 = new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.Attendant), assignmentTypes));
+                nameof(Assignee.Attendant), assignmentTypes).Id);
             Attendant3 = new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.Attendant), assignmentTypes));
+                nameof(Assignee.Attendant), assignmentTypes).Id);
             Attendant4 = new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.Attendant), assignmentTypes));
+                nameof(Assignee.Attendant), assignmentTypes).Id);
             OpeningPrayer = new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.Prayer), assignmentTypes));
+                nameof(Assignee.Prayer), assignmentTypes).Id);
             ClosingPrayer = new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.Prayer), assignmentTypes));
+                nameof(Assignee.Prayer), assignmentTypes).Id);
             Platform = new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.Platform), assignmentTypes));
+                nameof(Assignee.Platform), assignmentTypes).Id);
             SoundDesk = new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.SoundDesk), assignmentTypes));
+                nameof(Assignee.SoundDesk), assignmentTypes).Id);
             RovingMic1 = new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.RovingMic), assignmentTypes));
+                nameof(Assignee.RovingMic), assignmentTypes).Id);
             RovingMic2 = new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.RovingMic), assignmentTypes));
+                nameof(Assignee.RovingMic), assignmentTypes).Id);
 
             Chairman = 
                 new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.ClmmChairman), assignmentTypes));
+                    nameof(Assignee.ClmmChairman), assignmentTypes).Id);
             Treasures = 
                 new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.Treasures), assignmentTypes));
+                    nameof(Assignee.Treasures), assignmentTypes).Id);
             Gems = 
                 new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.Gems), assignmentTypes));
+                    nameof(Assignee.Gems), assignmentTypes).Id);
             SchoolBibleReading = 
                 new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.SchoolBibleReading), 
-                    assignmentTypes));
+                    assignmentTypes).Id);
             Demo1Publisher =
                 new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.SchoolBibleReading), 
-                    assignmentTypes));
+                    assignmentTypes).Id);
             Demo1Householder = 
                  new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.SchoolDemoHouseholder), 
-                    assignmentTypes));           
+                    assignmentTypes).Id);           
             Demo2Publisher = 
                  new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.SchoolDemo2), 
-                    assignmentTypes));
+                    assignmentTypes).Id);
             Demo2Householder = 
                  new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.SchoolDemoHouseholder), 
-                    assignmentTypes));
+                    assignmentTypes).Id);
             Demo3Publisher = 
                  new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.SchoolDemo3), 
-                    assignmentTypes));
+                    assignmentTypes).Id);
             Demo3Householder = 
                  new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.SchoolDemoHouseholder), 
-                    assignmentTypes));
+                    assignmentTypes).Id);
             SchoolTalk = 
                  new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.SchoolTalk), 
-                    assignmentTypes));
+                    assignmentTypes).Id);
             LacPart1 = 
                  new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.LacParts), 
-                    assignmentTypes));
+                    assignmentTypes).Id);
             LacPart2 = 
                  new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.LacParts),
-                    assignmentTypes));
+                    assignmentTypes).Id);
             LacPart3 = 
                  new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.LacParts), 
-                    assignmentTypes));
+                    assignmentTypes).Id);
             CbsConductor = 
                  new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.CbsConductor),
-                    assignmentTypes));
+                    assignmentTypes).Id);
             CbsReader = 
                  new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.CbsReader), 
-                    assignmentTypes));
+                    assignmentTypes).Id);
         }
 
         public DateTime WeekStarting
