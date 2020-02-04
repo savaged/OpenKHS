@@ -55,11 +55,11 @@ namespace OpenKHS.Test.Unit
                     context.SaveChanges();
                 }
                 var assignmentType = _assignmentTypeService.GetIndex()
-                    .SingleOrDefault(m => m.Id == 1);
+                    .SingleOrDefault(m => m.Name == nameof(Assignee.Attendant));
                 var index = _assigneeService.GetIndex<Assignee>(
                     assignmentType);
                 Assert.IsNotNull(index);
-                Assert.AreEqual(4, index.Count());
+                Assert.AreEqual(5, index.Count());
             }
             finally
             {
