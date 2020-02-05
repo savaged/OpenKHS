@@ -7,7 +7,8 @@
         xmlns:views="clr-namespace:OpenKHS.WPF.Views"
         mc:Ignorable="d"
         Title="Open KHS"
-        Height="768" Width="1024">
+        Height="768" Width="1024"
+        Background="{DynamicResource WindowBackgroundBrush}">
     <Grid>
         <views:MainTabbedView />
     </Grid>

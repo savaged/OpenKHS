@@ -4,12 +4,32 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:OpenKHS.WPF"
-             mc:Ignorable="d">
+             mc:Ignorable="d"
+             Background="{DynamicResource ControlBackgroundBrush}">
     <TabControl SelectedIndex="{Binding SelectedIndex}"
                 TabStripPlacement="Left">
-        <TabItem>
+        <TabItem Style="{DynamicResource LeftVerticalTabItem}">
             <TabItem.Header>
-                CLMM
+                <AccessText Style="{StaticResource LeftVirticalTabItemAccessText}"
+                            ToolTip="Christian Life and Ministry Meeting">
+                    C_LMM
+                </AccessText>
+            </TabItem.Header>
+        </TabItem>
+        <TabItem Style="{DynamicResource LeftVerticalTabItem}">
+            <TabItem.Header>
+                <AccessText Style="{StaticResource LeftVirticalTabItemAccessText}"
+                            ToolTip="Public Meeting">
+                    _PM
+                </AccessText>
+            </TabItem.Header>
+        </TabItem>
+        <TabItem Style="{DynamicResource LeftVerticalTabItem}">
+            <TabItem.Header>
+                <AccessText Style="{StaticResource LeftVirticalTabItemAccessText}"
+                            ToolTip="Congregation Admin">
+                    _Cong
+                </AccessText>
             </TabItem.Header>
         </TabItem>
     </TabControl>
