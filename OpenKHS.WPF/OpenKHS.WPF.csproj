@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Resource Include="Logo.ico"/>
+    <Resource Include="Logo.ico" />
   </ItemGroup>
 
   <ItemGroup>

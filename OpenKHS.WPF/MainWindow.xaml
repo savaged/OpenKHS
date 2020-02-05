@@ -9,6 +9,9 @@
         Title="Open KHS"
         Height="768" Width="1024"
         Background="{DynamicResource WindowBackgroundBrush}">
+
+    <!--xctk:BusyIndicator IsBusy="{Binding BusyStateManager.IsBusy}"-->
+
     <Grid>
         <views:MainTabbedView />
     </Grid>

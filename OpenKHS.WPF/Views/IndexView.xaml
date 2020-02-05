@@ -1,4 +1,4 @@
-<UserControl x:Class="OpenKHS.WPF.Views.MasterDetailView"
+<UserControl x:Class="OpenKHS.WPF.Views.IndexView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,11 +7,10 @@
              mc:Ignorable="d"
              Background="{DynamicResource ControlBackgroundBrush}">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="3*"/>
-        </Grid.ColumnDefinitions>
-        <local:IndexView Grid.Column="0"/>
-        <local:SelectedItemView Grid.Column="1"/>
+        <DataGrid ItemsSource="{Binding IndexViewModel.Index}"
+                  SelectedItem="{Binding SelectedItemViewModel.SelectedItem}"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False" CanUserDeleteRows="False">
+        </DataGrid>
     </Grid>
 </UserControl>
