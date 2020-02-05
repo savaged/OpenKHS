@@ -6,6 +6,8 @@ namespace OpenKHS.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+        private int _selectedIndex;
+
         public MainViewModel(
             MasterDetailViewModel<ClmmSchedule> clmmScheduleAdminViewModel,
             MasterDetailViewModel<Assignee> assigneeAdminViewModel,
@@ -17,6 +19,12 @@ namespace OpenKHS.ViewModels
                 throw new ArgumentNullException(nameof(assigneeAdminViewModel));
             AssignmentsViewModel = assignmentsViewModel ??
                 throw new ArgumentNullException(nameof(assignmentsViewModel));
+        }
+
+        public int SelectedIndex 
+        {
+            get => _selectedIndex;
+            set => Set(ref _selectedIndex, value);
         }
 
         public MasterDetailViewModel<Assignee> AssigneeAdminViewModel

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:local="clr-namespace:OpenKHS.WPF"
+             xmlns:local="clr-namespace:OpenKHS.WPF.Views"
              mc:Ignorable="d"
              Background="{DynamicResource ControlBackgroundBrush}">
     <TabControl SelectedIndex="{Binding SelectedIndex}"
@@ -15,6 +15,7 @@
                     C_LMM
                 </AccessText>
             </TabItem.Header>
+            <local:MasterDetailView DataContext="{Binding ClmmScheduleAdminViewModel}"/>
         </TabItem>
         <TabItem Style="{DynamicResource LeftVerticalTabItem}">
             <TabItem.Header>
@@ -23,6 +24,7 @@
                     _PM
                 </AccessText>
             </TabItem.Header>
+            <local:MasterDetailView DataContext="{Binding PmScheduleAdminViewModel}"/>
         </TabItem>
         <TabItem Style="{DynamicResource LeftVerticalTabItem}">
             <TabItem.Header>
@@ -31,6 +33,7 @@
                     _Cong
                 </AccessText>
             </TabItem.Header>
+            <local:MasterDetailView DataContext="{Binding AssigneeAdminViewModel}"/>
         </TabItem>
     </TabControl>
 </UserControl>
