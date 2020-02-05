@@ -1,6 +1,6 @@
 namespace OpenKHS.Models
 {
-    public abstract class Assignment : ModelBase
+    public abstract class Assignment : LookupEntry
     {
         private int _assigneeId;
         private int _assignmentTypeId;
