@@ -3,8 +3,15 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>OpenKHS.WPF</RootNamespace>
+    <AssemblyName>OpenKHS.WPF</AssemblyName>
+    <ApplicationIcon>Logo.ico</ApplicationIcon>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Resource Include="Logo.ico"/>
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\OpenKHS.Data\OpenKHS.Data.csproj" />
