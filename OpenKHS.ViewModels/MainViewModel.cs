@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using OpenKHS.Models;
@@ -13,18 +14,23 @@ namespace OpenKHS.ViewModels
         public MainViewModel(
             IBusyStateRegistry busyStateManager,
             MasterDetailViewModel<ClmmSchedule> clmmScheduleAdminViewModel,
+            MasterDetailViewModel<PmSchedule> pmScheduleAdminViewModel,
             MasterDetailViewModel<Assignee> assigneeAdminViewModel,
             IndexViewModel<Assignment> assignmentsViewModel)
             : base(busyStateManager)
         {
             ClmmScheduleAdminViewModel = clmmScheduleAdminViewModel ??
                 throw new ArgumentNullException(nameof(clmmScheduleAdminViewModel));
+            PmScheduleAdminViewModel = pmScheduleAdminViewModel ??
+                throw new ArgumentNullException(nameof(pmScheduleAdminViewModel));
             AssigneeAdminViewModel = assigneeAdminViewModel ??
                 throw new ArgumentNullException(nameof(assigneeAdminViewModel));
             AssignmentsViewModel = assignmentsViewModel ??
                 throw new ArgumentNullException(nameof(assignmentsViewModel));
 
             ReloadCmd = new RelayCommand(OnReload, () => CanExecute);
+
+            PropertyChanged += OnPropertyChanged;
         }
 
         public int SelectedIndex 
@@ -41,19 +47,40 @@ namespace OpenKHS.ViewModels
         public MasterDetailViewModel<ClmmSchedule> ClmmScheduleAdminViewModel
         { get; }
 
+        public MasterDetailViewModel<PmSchedule> PmScheduleAdminViewModel
+        { get; }
+
         public IndexViewModel<Assignment> AssignmentsViewModel 
         { get; }
 
         public void Load()
         {
-            AssigneeAdminViewModel.Load();
+            ClmmScheduleAdminViewModel.Load();
         }
 
         private void OnReload()
         {
-            MessengerInstance.Send(new BusyMessage(true, this));
-            Load();
-            MessengerInstance.Send(new BusyMessage(false, this));
+            SelectedIndex = 0;
+        }
+
+        private void OnPropertyChanged(
+            object sender, PropertyChangedEventArgs e)
+        {
+            switch (SelectedIndex)
+            {
+                case 0:
+                    ClmmScheduleAdminViewModel.Load();
+                    break;
+                case 1:
+                    PmScheduleAdminViewModel.Load();
+                    break;
+                case 2: 
+                    AssigneeAdminViewModel.Load();
+                    break;
+                case 3: 
+                    AssignmentsViewModel.Load();
+                    break;
+            }
         }
 
     }

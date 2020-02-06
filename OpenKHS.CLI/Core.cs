@@ -68,14 +68,18 @@ namespace OpenKHS.CLI
 
         private string GetEntityFromOption(EntityOptions opt)
         {
-            var entity = nameof(Assignee);
+            var entity = nameof(ClmmSchedule);
+            if (opt.IsPmSchedule)
+            {
+                entity = nameof(PmSchedule);
+            }
             if (opt.IsAssignment)
             {
                 entity = nameof(Assignment);
             }
-            else if (opt.IsClmmSchedule)
+            else if (opt.IsAssignee)
             {
-                entity = nameof(ClmmSchedule);
+                entity = nameof(Assignee);
             }
             return entity;
         }
