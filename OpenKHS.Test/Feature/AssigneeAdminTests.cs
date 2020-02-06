@@ -49,7 +49,7 @@ namespace OpenKHS.Test.Feature
                     }
                     context.SaveChanges();
                 }
-                _mainViewModel.Load();
+                _mainViewModel.AssigneeAdminViewModel.Load();
                 Assert.AreEqual(5, _mainViewModel.AssigneeAdminViewModel
                     .IndexViewModel.Index.Count());
             }
@@ -102,7 +102,7 @@ namespace OpenKHS.Test.Feature
                     context.Assignees.Add(example);
                     context.SaveChanges();
                 }
-                _mainViewModel.Load();
+                _mainViewModel.AssigneeAdminViewModel.Load();
                 var index = _mainViewModel.AssigneeAdminViewModel.IndexViewModel.Index;
                 Assert.IsNotNull(index);
     
@@ -142,7 +142,7 @@ namespace OpenKHS.Test.Feature
                     context.Assignees.Add(example);
                     context.SaveChanges();
                 }
-                _mainViewModel.Load();
+                _mainViewModel.AssigneeAdminViewModel.Load();
                 var index = _mainViewModel.AssigneeAdminViewModel.IndexViewModel.Index;
                 Assert.IsNotNull(index);
     
