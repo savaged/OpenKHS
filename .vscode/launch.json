@@ -27,6 +27,17 @@
             "stopAtEntry": false
         },
         {
+            "name": "3) .NET Core Launch (WPF)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/OpenKHS.WPF/bin/Debug/netcoreapp3.1/OpenKHS.WPF.exe",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "console": "internalConsole"
+        },
+        {
             "name": ".NET Core Attach",
             "type": "coreclr",
             "request": "attach",

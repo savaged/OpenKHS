@@ -10,7 +10,11 @@
         <DataGrid ItemsSource="{Binding IndexViewModel.Index}"
                   SelectedItem="{Binding SelectedItemViewModel.SelectedItem}"
                   AutoGenerateColumns="False"
+                  HeadersVisibility="None"
                   CanUserAddRows="False" CanUserDeleteRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Name}"/>
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </UserControl>

@@ -9,10 +9,14 @@
         Title="Open KHS"
         Height="768" Width="1024"
         Background="{DynamicResource WindowBackgroundBrush}">
-
-    <!--xctk:BusyIndicator IsBusy="{Binding BusyStateManager.IsBusy}"-->
-
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding ReloadCmd}" Key="F5"/>
+    </Window.InputBindings>
     <Grid>
-        <views:MainTabbedView />
+        <Canvas x:Name="MainCanvas" Height="Auto" Width="Auto">
+            <views:BusyIndicator DataContext="{Binding BusyStateManager}"
+                Canvas.Left="0" Canvas.Top="0" Panel.ZIndex="999"/>
+                <views:MainTabbedView />
+        </Canvas>
     </Grid>
 </Window>
