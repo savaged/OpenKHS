@@ -52,7 +52,8 @@ namespace OpenKHS.ViewModels
         private void OnReload()
         {
             MessengerInstance.Send(new BusyMessage(true, this));
-            
+            Load();
+            MessengerInstance.Send(new BusyMessage(false, this));
         }
 
     }
