@@ -38,11 +38,11 @@
         <TabItem Style="{DynamicResource LeftVerticalTabItem}">
             <TabItem.Header>
                 <AccessText Style="{StaticResource LeftVirticalTabItemAccessText}"
-                            ToolTip="Assignments">
-                    _Assgmnt
+                            ToolTip="Assignment Types">
+                    A_T
                 </AccessText>
             </TabItem.Header>
-            <local:MasterDetailView DataContext="{Binding AssignmentsViewModel}"/>
+            <local:AssignmentTypesView DataContext="{Binding AssignmentTypesViewModel}"/>
         </TabItem>
     </TabControl>
 </UserControl>

@@ -30,8 +30,8 @@ namespace OpenKHS.CLI.Modules
                 case nameof(ClmmSchedule):
                     ListClmmSchedules();
                     break;
-                case nameof(Assignment):
-                    ListAssignments();
+                case nameof(PmSchedule):
+                    ListPmSchedules();
                     break;
                 case nameof(AssignmentType):
                     ListAssignmentTypes();
@@ -50,18 +50,19 @@ namespace OpenKHS.CLI.Modules
                 .IndexViewModel.Index);
         }
 
+        private void ListPmSchedules()
+        {
+            _mainViewModel.PmScheduleAdminViewModel.Load();
+            FeedbackService.Present(
+                _mainViewModel.PmScheduleAdminViewModel
+                .IndexViewModel.Index);
+        }
+
         private void ListAssignees()
         {
             FeedbackService.Present(
                 _mainViewModel.AssigneeAdminViewModel
                 .IndexViewModel.Index);
-        }
-
-        private void ListAssignments()
-        {
-            _mainViewModel.AssignmentsViewModel.Load();
-            FeedbackService.Present(
-                _mainViewModel.AssignmentsViewModel.Index);
         }
 
         private void ListAssignmentTypes()
