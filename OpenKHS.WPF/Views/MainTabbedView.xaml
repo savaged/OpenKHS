@@ -24,7 +24,7 @@
                     _PM
                 </AccessText>
             </TabItem.Header>
-            <local:MasterDetailView DataContext="{Binding ClmmScheduleAdminViewModel}"/>
+            <local:MasterDetailView DataContext="{Binding PmScheduleAdminViewModel}"/>
         </TabItem>
         <TabItem Style="{DynamicResource LeftVerticalTabItem}">
             <TabItem.Header>
@@ -39,7 +39,7 @@
             <TabItem.Header>
                 <AccessText Style="{StaticResource LeftVirticalTabItemAccessText}"
                             ToolTip="Assignments">
-                    _Assgn
+                    _Assgmnt
                 </AccessText>
             </TabItem.Header>
             <local:MasterDetailView DataContext="{Binding AssignmentsViewModel}"/>

@@ -24,7 +24,7 @@
             "args": ["list", "-t"],
             "cwd": "${workspaceFolder}/OpenKHS.CLI",
             "console": "internalConsole",
-            "stopAtEntry": false
+            "stopAtEntry": true
         },
         {
             "name": "3) .NET Core Launch (WPF)",
@@ -33,7 +33,7 @@
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/OpenKHS.WPF/bin/Debug/netcoreapp3.1/OpenKHS.WPF.exe",
             "args": [],
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/OpenKHS.WPF",
             "stopAtEntry": false,
             "console": "internalConsole"
         },
