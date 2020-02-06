@@ -3,6 +3,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
     <RootNamespace>OpenKHS.WPF</RootNamespace>
     <AssemblyName>OpenKHS.WPF</AssemblyName>
     <ApplicationIcon>Logo.ico</ApplicationIcon>

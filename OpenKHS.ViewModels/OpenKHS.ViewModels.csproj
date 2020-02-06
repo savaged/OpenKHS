@@ -4,6 +4,7 @@
     <OutputType>library</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <nullable>enable</nullable>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

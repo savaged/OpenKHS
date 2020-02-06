@@ -57,7 +57,7 @@ namespace OpenKHS.CLI
                     },
                     (AddOptions opt) => 
                     {
-                        var entity = GetEntityFromOption(opt);
+                        entity = GetEntityFromOption(opt);
                         module = _addModule;
                         return 0;
                     },
