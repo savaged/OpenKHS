@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Threading;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using OpenKHS.Models;
@@ -55,7 +56,10 @@ namespace OpenKHS.ViewModels
 
         public void Load()
         {
+            MessengerInstance.Send(new BusyMessage(true, this));
             ClmmScheduleAdminViewModel.Load();
+            Thread.Sleep(5000);
+            MessengerInstance.Send(new BusyMessage(false, this));
         }
 
         private void OnReload()
@@ -66,6 +70,7 @@ namespace OpenKHS.ViewModels
         private void OnPropertyChanged(
             object sender, PropertyChangedEventArgs e)
         {
+            MessengerInstance.Send(new BusyMessage(true, this));
             switch (SelectedIndex)
             {
                 case 0:
@@ -81,6 +86,7 @@ namespace OpenKHS.ViewModels
                     AssignmentTypesViewModel.Load();
                     break;
             }
+            MessengerInstance.Send(new BusyMessage(false, this));
         }
 
     }

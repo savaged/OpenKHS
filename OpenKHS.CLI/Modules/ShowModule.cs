@@ -4,11 +4,11 @@ using OpenKHS.ViewModels;
 
 namespace OpenKHS.CLI.Modules
 {
-    public class AddModule : BaseModule
+    public class ShowModule : BaseModule
     {
         private readonly MainViewModel _mainViewModel;
 
-        public AddModule(
+        public ShowModule(
             IFeedbackService feedbackService,
             MainViewModel mainViewModel)
             : base(feedbackService)
@@ -23,31 +23,31 @@ namespace OpenKHS.CLI.Modules
             switch (entity)
             {   
                 case nameof(ClmmSchedule):
-                    AddClmmSchedule();
+                    ShowClmmSchedule();
                     break;
                 case nameof(PmSchedule):
-                    AddPmSchedule();
+                    ShowPmSchedule();
                     break;
                 default:
-                    AddAssignee();
+                    ShowAssignee();
                     break;
             }
         }
 
-        private void AddClmmSchedule()
+        private void ShowClmmSchedule()
         {
-            // TODO The add option should build an insert statement for the user to run in sqlite3
+            // TODO show single record
         }
 
-        private void AddPmSchedule()
+        private void ShowPmSchedule()
         {
-            // TODO The add option should build an insert statement for the user to run in sqlite3
+            // TODO show single record
         }
 
-        private void AddAssignee()
+        private void ShowAssignee()
         {
-            // TODO The add option should build an insert statement for the user to run in sqlite3
+            // TODO show priorities list
         }
-       
+   
     }
 }

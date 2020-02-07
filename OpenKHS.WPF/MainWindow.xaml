@@ -9,11 +9,40 @@
         Title="Open KHS"
         Height="768" Width="1024"
         Background="{DynamicResource WindowBackgroundBrush}">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <Style x:Key="BusyStateContentStyle" TargetType="ContentPresenter">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding BusyStateManager.IsBusy, UpdateSourceTrigger=PropertyChanged}" 
+                             Value="True">
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <views:BusyIndicator DataContext="{Binding BusyStateManager}"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding BusyStateManager.IsBusy, UpdateSourceTrigger=PropertyChanged}" Value="False">
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <StackPanel>
+                                <TextBlock Text="{Binding BusyStateManager.IsBusy, UpdateSourceTrigger=PropertyChanged}"/>
+                                <views:MainTabbedView/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Window.InputBindings>
         <KeyBinding Command="{Binding ReloadCmd}" Key="F5"/>
     </Window.InputBindings>
-    <Grid x:Name="MainGrid">
-            <views:BusyIndicator DataContext="{Binding BusyStateManager}" Panel.ZIndex="999"/>
-            <views:MainTabbedView />
+    <Grid>
+        <ContentPresenter Style="{StaticResource BusyStateContentStyle}" 
+                          Content="{Binding}"/>
     </Grid>
 </Window>

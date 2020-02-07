@@ -20,14 +20,12 @@ namespace OpenKHS.ViewModels
 
         public virtual void Load()
         {
-            MessengerInstance.Send(new BusyMessage(true, this));
             Index.Clear();
             var index = ModelService.GetIndex<T>();
             foreach (var model in index)
             {
                 Index.Add(model);
             }
-            MessengerInstance.Send(new BusyMessage(false, this));
         }
 
     }

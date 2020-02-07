@@ -8,13 +8,30 @@
              Background="{DynamicResource ControlBackgroundBrush}">
     <UserControl.Resources>
         <Style x:Key="SelectedItemContentStyle" TargetType="ContentPresenter">
-            <Setter Property="ContentTemplate" Value="{StaticResource DefaultContent}"/>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding SelectedItemName}" Value="{x:Null}">
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
                                 <Label Content="{Binding SelectedItemName}"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding SelectedItemName}" Value="ClmmSchedule">
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <local:ClmmScheduleView/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding SelectedItemName}" Value="PmSchedule">
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <local:PmScheduleView/>
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
@@ -32,6 +49,7 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-        <ContentPresenter Style="{StaticResource SelectedItemContentStyle}" Content="{Binding SelectedItemViewModel}"/>
+        <ContentPresenter Style="{StaticResource SelectedItemContentStyle}" 
+                          Content="{Binding SelectedItemViewModel}"/>
     </Grid>
 </UserControl>

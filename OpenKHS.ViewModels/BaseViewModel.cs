@@ -14,9 +14,7 @@ namespace OpenKHS.ViewModels
         }
 
         public IBusyStateRegistry BusyStateManager { get; }
-        
-        public bool IsBusy => BusyStateManager.IsBusy;
 
-        public virtual bool CanExecute => !IsBusy;
+        public virtual bool CanExecute => !BusyStateManager.IsBusy;
     }
 }
