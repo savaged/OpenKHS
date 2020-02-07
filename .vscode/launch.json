@@ -5,32 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "1) .NET Core Launch (console)",
+            "name": ".NET Core Launch (WPF)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
-            "program": "${workspaceFolder}/OpenKHS.CLI/bin/Debug/netcoreapp3.1/OpenKHS.CLI.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/OpenKHS.CLI",
-            "console": "internalConsole",
-            "stopAtEntry": false
-        },
-        {
-            "name": "2) .NET Core Launch (console) with args",
-            "type": "coreclr",
-            "request": "launch",
-            "preLaunchTask": "build",
-            "program": "${workspaceFolder}/OpenKHS.CLI/bin/Debug/netcoreapp3.1/OpenKHS.CLI.dll",
-            "args": ["list", "-t"],
-            "cwd": "${workspaceFolder}/OpenKHS.CLI",
-            "console": "internalConsole",
-            "stopAtEntry": true
-        },
-        {
-            "name": "3) .NET Core Launch (WPF)",
-            "type": "coreclr",
-            "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "build-wpf",
             "program": "${workspaceFolder}/OpenKHS.WPF/bin/Debug/netcoreapp3.1/OpenKHS.WPF.dll",
             "args": [],
             "cwd": "${workspaceFolder}/OpenKHS.WPF",

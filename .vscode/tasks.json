@@ -2,37 +2,37 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build",
+            "label": "build-wpf",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/OpenKHS.CLI/OpenKHS.CLI.csproj",
+                "${workspaceFolder}/OpenKHS.WPF/OpenKHS.WPF.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "publish",
+            "label": "publish-wpf",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/OpenKHS.CLI/OpenKHS.CLI.csproj",
+                "${workspaceFolder}/OpenKHS.WPF/OpenKHS.WPF.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "watch",
+            "label": "watch-wpf",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/OpenKHS.CLI/OpenKHS.CLI.csproj",
+                "${workspaceFolder}/OpenKHS.WPF/OpenKHS.WPF.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
