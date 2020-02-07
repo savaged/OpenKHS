@@ -24,10 +24,17 @@ namespace OpenKHS.ViewModels
         public T? SelectedItem 
         {
             get => _selectedItem;
-            set => Set(ref _selectedItem, value);
+            set
+            {
+                Set(ref _selectedItem, value);
+                RaisePropertyChanged(nameof(IsItemSelected));
+                RaisePropertyChanged(nameof(SelectedItemName));
+            } 
         }
 
         public bool IsItemSelected => SelectedItem != null;
+
+        public string? SelectedItemName => SelectedItem?.GetType()?.Name;
 
         public ICommand SaveCmd { get; }
         public ICommand DeleteCmd { get; }

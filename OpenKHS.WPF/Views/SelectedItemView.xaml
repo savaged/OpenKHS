@@ -6,7 +6,32 @@
              xmlns:local="clr-namespace:OpenKHS.WPF.Views"
              mc:Ignorable="d"
              Background="{DynamicResource ControlBackgroundBrush}">
+    <UserControl.Resources>
+        <Style x:Key="SelectedItemContentStyle" TargetType="ContentPresenter">
+            <Setter Property="ContentTemplate" Value="{StaticResource DefaultContent}"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding SelectedItemName}" Value="{x:Null}">
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Label Content="{Binding SelectedItemName}"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding SelectedItemName}" Value="Assignee">
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <local:AssigneeView/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <Grid>
-        <!-- TODO create form here for SelectedItemViewModel.SelectedItem -->
+        <ContentPresenter Style="{StaticResource SelectedItemContentStyle}" Content="{Binding SelectedItemViewModel}"/>
     </Grid>
 </UserControl>
