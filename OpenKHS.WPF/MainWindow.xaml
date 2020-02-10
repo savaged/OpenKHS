@@ -13,7 +13,7 @@
         <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
         <Style x:Key="BusyStateContentStyle" TargetType="ContentPresenter">
             <Style.Triggers>
-                <DataTrigger Binding="{Binding BusyStateManager.IsBusy, UpdateSourceTrigger=PropertyChanged}" 
+                <DataTrigger Binding="{Binding IsBusy}" 
                              Value="True">
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
@@ -23,14 +23,11 @@
                         </Setter.Value>
                     </Setter>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding BusyStateManager.IsBusy, UpdateSourceTrigger=PropertyChanged}" Value="False">
+                <DataTrigger Binding="{Binding IsBusy}" Value="False">
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <StackPanel>
-                                <TextBlock Text="{Binding BusyStateManager.IsBusy, UpdateSourceTrigger=PropertyChanged}"/>
                                 <views:MainTabbedView/>
-                                </StackPanel>
                             </DataTemplate>
                         </Setter.Value>
                     </Setter>
@@ -42,7 +39,13 @@
         <KeyBinding Command="{Binding ReloadCmd}" Key="F5"/>
     </Window.InputBindings>
     <Grid>
-        <ContentPresenter Style="{StaticResource BusyStateContentStyle}" 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="24"/>
+        </Grid.RowDefinitions>
+        <ContentPresenter Grid.Row="0"
+                          Style="{StaticResource BusyStateContentStyle}" 
                           Content="{Binding}"/>
+        <TextBlock Grid.Row="1" Text="{Binding IsBusy, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </Window>

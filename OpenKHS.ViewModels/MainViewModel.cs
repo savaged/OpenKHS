@@ -4,7 +4,7 @@ using Savaged.BusyStateManager;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using OpenKHS.Models;
-using GalaSoft.MvvmLight;
+using System.Threading;
 
 namespace OpenKHS.ViewModels
 {
@@ -85,10 +85,11 @@ namespace OpenKHS.ViewModels
                         AssigneeAdminViewModel.Load();
                         break;
                     case 3: 
+                        Thread.Sleep(15000);
                         AssignmentTypesViewModel.Load();
                         break;
-            }
-            MessengerInstance.Send(new BusyMessage(false, this));
+                }
+                MessengerInstance.Send(new BusyMessage(false, this));
             }
         }
 
@@ -97,7 +98,8 @@ namespace OpenKHS.ViewModels
         {
             if (e.PropertyName == nameof(IBusyStateRegistry.IsBusy))
             {
-                SetIsBusy(BusyStateManager.IsBusy, this);
+                var isBusy = BusyStateManager.IsBusy;
+                SetIsBusy(isBusy, this);
             }
         }
 
