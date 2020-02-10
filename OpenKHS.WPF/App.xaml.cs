@@ -27,8 +27,10 @@ namespace OpenKHS.WPF
                 new DbContextBindings(DbConnectionStrings.LIVE));
 
             Current.MainWindow = _kernel.Get<MainWindow>();
-            Current.MainWindow.DataContext = _kernel.Get<MainViewModel>();
+            var vm = _kernel.Get<MainViewModel>();
+            Current.MainWindow.DataContext = vm;
             Current.MainWindow.Show();
+            vm.Load();
         }
 
         private static void OnCurrentDomainUnhandledException(

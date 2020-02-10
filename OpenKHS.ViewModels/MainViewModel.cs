@@ -1,10 +1,10 @@
 using System;
 using System.ComponentModel;
-using System.Threading;
+using Savaged.BusyStateManager;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using OpenKHS.Models;
-using Savaged.BusyStateManager;
+using GalaSoft.MvvmLight;
 
 namespace OpenKHS.ViewModels
 {
@@ -31,6 +31,7 @@ namespace OpenKHS.ViewModels
 
             ReloadCmd = new RelayCommand(OnReload, () => CanExecute);
 
+            BusyStateManager.PropertyChanged += OnBusyStateManagerPropertyChanged;
             PropertyChanged += OnPropertyChanged;
         }
 
@@ -58,7 +59,6 @@ namespace OpenKHS.ViewModels
         {
             MessengerInstance.Send(new BusyMessage(true, this));
             ClmmScheduleAdminViewModel.Load();
-            Thread.Sleep(5000);
             MessengerInstance.Send(new BusyMessage(false, this));
         }
 
@@ -70,23 +70,35 @@ namespace OpenKHS.ViewModels
         private void OnPropertyChanged(
             object sender, PropertyChangedEventArgs e)
         {
-            MessengerInstance.Send(new BusyMessage(true, this));
-            switch (SelectedIndex)
+            if (e.PropertyName == nameof(SelectedIndex))
             {
-                case 0:
-                    ClmmScheduleAdminViewModel.Load();
-                    break;
-                case 1:
-                    PmScheduleAdminViewModel.Load();
-                    break;
-                case 2: 
-                    AssigneeAdminViewModel.Load();
-                    break;
-                case 3: 
-                    AssignmentTypesViewModel.Load();
-                    break;
+                MessengerInstance.Send(new BusyMessage(true, this));
+                switch (SelectedIndex)
+                {
+                    case 0:
+                        ClmmScheduleAdminViewModel.Load();
+                        break;
+                    case 1:
+                        PmScheduleAdminViewModel.Load();
+                        break;
+                    case 2: 
+                        AssigneeAdminViewModel.Load();
+                        break;
+                    case 3: 
+                        AssignmentTypesViewModel.Load();
+                        break;
             }
             MessengerInstance.Send(new BusyMessage(false, this));
+            }
+        }
+
+        private void OnBusyStateManagerPropertyChanged(
+            object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(IBusyStateRegistry.IsBusy))
+            {
+                SetIsBusy(BusyStateManager.IsBusy, this);
+            }
         }
 
     }

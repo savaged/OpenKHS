@@ -27,6 +27,8 @@ namespace OpenKHS.Test.Feature
                 throw new InvalidOperationException(
                     $"Missing dependency! {nameof(MainViewModel)}");
 
+            Assert.IsTrue(_mainViewModel.CanExecute);
+
             _dbConnection.Open();
         }
 
