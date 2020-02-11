@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using OpenKHS.Models;
 
@@ -20,24 +21,27 @@ namespace OpenKHS.Data
                 throw new ArgumentNullException(nameof(modelFactory));
         }
 
-        public IList<T> GetIndex<T>() where T : class, IModel
+        public async Task<IList<T>> GetIndexAsync<T>() where T : class, IModel
         {
             var index = new List<T>();
-            using (var context = _dbContextFactory.Create())
+            await Task.Run(async () => 
             {
-                var dbSet = GetDbSet<T>(context);
-                foreach (var model in dbSet)
+                using (var context = await _dbContextFactory.CreateAsync())
                 {
-                    index.Add(model as T);
+                    var dbSet = GetDbSet<T>(context);
+                    foreach (var model in dbSet)
+                    {
+                        index.Add(model as T);
+                    }
                 }
-            }
+            });
             return index;
         }
 
-        public T Get<T>(int id) where T : class, IModel
+        public async Task<T> GetAsync<T>(int id) where T : class, IModel
         {
             T model;
-            using (var context = _dbContextFactory.Create())
+            using (var context = await _dbContextFactory.CreateAsync())
             {
                 var dbSet = GetDbSet<T>(context);
                 model = dbSet.Find(id) as T;
@@ -45,47 +49,48 @@ namespace OpenKHS.Data
             return model;
         }
 
-        public T Create<T>() where T : class, IModel, new()
+        public async Task<T> CreateAsync<T>() where T : class, IModel, new()
         {
-            T value = _modelFactory.Create<T>();
+            T value = await _modelFactory.CreateAsync<T>();
             return value;
         }
 
-        public void Insert<T>(T model) where T : class, IModel
+        public async Task InsertAsync<T>(T model) where T : class, IModel
         {
             if (model == null) return;
 
-            using (var context = _dbContextFactory.Create())
+            using (var context = await _dbContextFactory.CreateAsync())
             {
                 var dbSet = GetDbSet<T>(context);
                 dbSet.Add(model);
-                context.SaveChanges();
+                await context.SaveChangesAsync();
             }
         }
 
-        public void Update<T>(T model) where T : class, IModel
+        public async Task UpdateAsync<T>(T model) where T : class, IModel
         {
             if (model == null) return;
 
-            using (var context = _dbContextFactory.Create())
+            using (var context = await _dbContextFactory.CreateAsync())
             {
                 context.Entry(model).State = EntityState.Modified;
-                context.SaveChanges();
+                await context.SaveChangesAsync();
             }
         }
 
-        public void Delete<T>(T model) where T : class, IModel
+        public async Task DeleteAsync<T>(T model) where T : class, IModel
         {
             if (model == null) return;
 
-            using (var context = _dbContextFactory.Create())
+            using (var context = await _dbContextFactory.CreateAsync())
             {
                 context.Entry(model).State = EntityState.Deleted;
-                context.SaveChanges();
+                await context.SaveChangesAsync();
             }
         }
 
-        private DbSet<T> GetDbSet<T>(OpenKHSContext context) where T : class, IModel
+        private DbSet<T> GetDbSet<T>(OpenKHSContext context) 
+            where T : class, IModel
         {
             var @switch = new Dictionary<Type, object>
             {

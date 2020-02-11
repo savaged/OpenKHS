@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using OpenKHS.Data;
 using OpenKHS.Models;
 
@@ -17,11 +18,11 @@ namespace OpenKHS.Lookups
                 throw new ArgumentNullException(nameof(modelService));
         }
 
-        public IList<T> GetIndex<T>(AssignmentType assignmentType)
+        public async Task<IList<T>> GetIndexAsync<T>(AssignmentType assignmentType)
             where T : class, IAssignee
         {
             var lookup = new List<T>();
-            var all = _modelService.GetIndex<T>();
+            var all = await _modelService.GetIndexAsync<T>();
             var filtered = all.Where(
                 m => m.CanAcceptAssignmentType(assignmentType)).ToList();
             foreach (var model in filtered)

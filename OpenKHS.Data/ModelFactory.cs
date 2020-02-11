@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using OpenKHS.Models;
 
 namespace OpenKHS.Data
@@ -15,12 +16,12 @@ namespace OpenKHS.Data
                 throw new ArgumentNullException(nameof(dbContextFactory));
         }
 
-        public T Create<T>() where T : class, IModel, new()
+        public async Task<T> CreateAsync<T>() where T : class, IModel, new()
         {
             var model = new T();
             if (model is ISchedule)
             { 
-                var assignmentTypes = GetAssignmentTypes();
+                var assignmentTypes = await GetAssignmentTypesAsync();
                 if (model is ClmmSchedule) 
                 {
                     model = new ClmmSchedule(assignmentTypes) as T;
@@ -33,10 +34,10 @@ namespace OpenKHS.Data
             return model;
         }
 
-        private IList<AssignmentType> GetAssignmentTypes()
+        private async Task<IList<AssignmentType>> GetAssignmentTypesAsync()
         {
-            IList<AssignmentType> index;
-            using (var context = _dbContextFactory.Create())
+            var index = new List<AssignmentType>();
+            using (var context = await _dbContextFactory.CreateAsync())
             {
                 index = context.AssignmentTypes.ToList();
             }

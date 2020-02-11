@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using OpenKHS.Data;
@@ -28,18 +29,18 @@ namespace OpenKHS.ViewModels
         public IndexViewModel<T> IndexViewModel { get; }
         public SelectedItemViewModel<T> SelectedItemViewModel { get; }
 
-        public virtual void Load()
+        public virtual async Task LoadAsync()
         {
-            IndexViewModel.Load();
+            await IndexViewModel.LoadAsync();
         }
 
         public ICommand AddCmd { get; set; }
 
         public bool CanAdd => CanExecute;
 
-        protected void OnAdd()
+        protected async void OnAdd()
         {
-            var model = ModelService.Create<T>();
+            var model = await ModelService.CreateAsync<T>();
             SelectedItemViewModel.SelectedItem = model;
         }
 

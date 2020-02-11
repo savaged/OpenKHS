@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Data.Sqlite;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
@@ -12,7 +13,7 @@ namespace OpenKHS.Test.Integration
     public class DbCRUDTests
     {
         [TestMethod]
-        public void AssigneeCRUDTests()
+        public async Task AssigneeCRUDTests()
         {
             var kernel = new StandardKernel(
                 new ViewModelCoreBindings(),
@@ -24,7 +25,7 @@ namespace OpenKHS.Test.Integration
             {
                 var modelId = 0;
                 // Create
-                using (var context = dbContextFactory.Create())
+                using (var context = await dbContextFactory.CreateAsync())
                 {
                     var model = new Assignee
                     {
@@ -37,7 +38,7 @@ namespace OpenKHS.Test.Integration
                     Assert.AreEqual("Test Member", model.Name);
                 }
                 // Read
-                using (var context = dbContextFactory.Create())
+                using (var context = await dbContextFactory.CreateAsync())
                 {
                     var model = context.Assignees
                         .Single(m => m.Id == modelId);
@@ -45,7 +46,7 @@ namespace OpenKHS.Test.Integration
                     Assert.AreNotEqual(0, modelId);
                 }
                 // Update
-                using (var context = dbContextFactory.Create())
+                using (var context = await dbContextFactory.CreateAsync())
                 {
                     var model = context.Assignees
                         .Single(m => m.Id == modelId);
@@ -56,7 +57,7 @@ namespace OpenKHS.Test.Integration
                     Assert.AreEqual(modelId, model.Id);
                 }
                 // Delete
-                using (var context = dbContextFactory.Create())
+                using (var context = await dbContextFactory.CreateAsync())
                 {
                     var model = context.Assignees
                         .Single(m => m.Id == modelId);

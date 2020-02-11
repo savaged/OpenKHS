@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using OpenKHS.Models;
 
 namespace OpenKHS.Lookups
 {
     public interface IAssignmentTypeService
     {
-        IList<AssignmentType> GetIndex();
+        Task<IList<AssignmentType>> GetIndexAsync();
     }
 }

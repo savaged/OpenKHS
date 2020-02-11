@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using OpenKHS.Data;
 using OpenKHS.Models;
 
@@ -16,10 +17,10 @@ namespace OpenKHS.Lookups
                 throw new ArgumentNullException(nameof(modelService));
         }
 
-        public IList<AssignmentType> GetIndex()
+        public async Task<IList<AssignmentType>> GetIndexAsync()
         {
             var lookup = new List<AssignmentType>();
-            foreach (var model in _modelService.GetIndex<AssignmentType>())
+            foreach (var model in await _modelService.GetIndexAsync<AssignmentType>())
             {
                 lookup.Add(model);
             }

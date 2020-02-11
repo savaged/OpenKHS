@@ -1,7 +1,9 @@
+using System.Threading.Tasks;
+
 namespace OpenKHS.Data
 {
     public interface IDbContextFactory
     {
-        OpenKHSContext Create();
+        Task<OpenKHSContext> CreateAsync();
     }
 }

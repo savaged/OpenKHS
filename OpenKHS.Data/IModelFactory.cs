@@ -1,9 +1,10 @@
+using System.Threading.Tasks;
 using OpenKHS.Models;
 
 namespace OpenKHS.Data
 {
     public interface IModelFactory
     {
-        T Create<T>() where T : class, IModel, new();
+        Task<T> CreateAsync<T>() where T : class, IModel, new();
     }
 }

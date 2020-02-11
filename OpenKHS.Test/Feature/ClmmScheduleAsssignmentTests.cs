@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Microsoft.Data.Sqlite;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
@@ -18,7 +19,7 @@ namespace OpenKHS.Test.Feature
         private ClmmSchedule _selectedSchedule;
 
         [TestInitialize]
-        public void Init()
+        public async Task Init()
         {
             _kernel = new StandardKernel(
                 new ViewModelCoreBindings(),
@@ -31,7 +32,7 @@ namespace OpenKHS.Test.Feature
             _dbConnection.Open();
 
             var dbContextFactory = _kernel.Get<IDbContextFactory>();
-            using (var context = dbContextFactory.Create())
+            using (var context = await dbContextFactory.CreateAsync())
             {
                 _selectedSchedule = new ClmmSchedule
                 {

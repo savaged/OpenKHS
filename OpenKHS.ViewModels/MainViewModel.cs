@@ -4,7 +4,7 @@ using Savaged.BusyStateManager;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using OpenKHS.Models;
-using System.Threading;
+using System.Threading.Tasks;
 
 namespace OpenKHS.ViewModels
 {
@@ -55,10 +55,10 @@ namespace OpenKHS.ViewModels
         public IndexViewModel<AssignmentType> AssignmentTypesViewModel 
         { get; }
 
-        public void Load()
+        public async Task LoadAsync()
         {
             MessengerInstance.Send(new BusyMessage(true, this));
-            ClmmScheduleAdminViewModel.Load();
+            await ClmmScheduleAdminViewModel.LoadAsync();
             MessengerInstance.Send(new BusyMessage(false, this));
         }
 
@@ -67,7 +67,7 @@ namespace OpenKHS.ViewModels
             SelectedIndex = 0;
         }
 
-        private void OnPropertyChanged(
+        private async void OnPropertyChanged(
             object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(SelectedIndex))
@@ -76,17 +76,16 @@ namespace OpenKHS.ViewModels
                 switch (SelectedIndex)
                 {
                     case 0:
-                        ClmmScheduleAdminViewModel.Load();
+                        await ClmmScheduleAdminViewModel.LoadAsync();
                         break;
                     case 1:
-                        PmScheduleAdminViewModel.Load();
+                        await PmScheduleAdminViewModel.LoadAsync();
                         break;
                     case 2: 
-                        AssigneeAdminViewModel.Load();
+                        await AssigneeAdminViewModel.LoadAsync();
                         break;
                     case 3: 
-                        Thread.Sleep(15000);
-                        AssignmentTypesViewModel.Load();
+                        await AssignmentTypesViewModel.LoadAsync();
                         break;
                 }
                 MessengerInstance.Send(new BusyMessage(false, this));

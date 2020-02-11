@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Microsoft.Data.Sqlite;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
@@ -24,14 +25,14 @@ namespace OpenKHS.Test.Unit
         }
 
         [TestMethod]
-        public void GetMatchingAssignmentTypeTest()
+        public async Task GetMatchingAssignmentTypeTest()
         {
             try
             {
                 Assert.AreEqual(NullAssignmentType.Default, NullAssignmentType.Default);
 
                 var lookupService = _kernel.Get<IAssignmentTypeService>();
-                var assignmentTypes = lookupService.GetIndex();
+                var assignmentTypes = await lookupService.GetIndexAsync();
 
                 var assignmentType = AssignmentType.GetMatchingAssignmentType(
                     "bogus", assignmentTypes);

@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Data.Sqlite;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
@@ -30,7 +31,7 @@ namespace OpenKHS.Test.Unit
         }
 
         [TestMethod]
-        public void InsertModel()
+        public async Task InsertModel()
         {
             var model = new Assignee
             {
@@ -38,10 +39,10 @@ namespace OpenKHS.Test.Unit
             };
             try
             {
-                _modelService.Insert(model);
+                await _modelService.InsertAsync(model);
                 Assert.AreNotEqual(0, model.Id);
 
-                using (var context = _dbContextFactory.Create())
+                using (var context = await _dbContextFactory.CreateAsync())
                 {
                     var index = context.Assignees.ToList();
                     Assert.IsNotNull(index);
@@ -58,11 +59,11 @@ namespace OpenKHS.Test.Unit
         }
 
         [TestMethod]
-        public void Index()
+        public async Task Index()
         {
             try
             {
-                using (var context = _dbContextFactory.Create())
+                using (var context = await _dbContextFactory.CreateAsync())
                 {
                     for (var i = 1; i < 6; i++)
                     {
@@ -72,9 +73,9 @@ namespace OpenKHS.Test.Unit
                         };
                         context.Add(example);
                     }
-                    context.SaveChanges();
+                    await context.SaveChangesAsync();
                 }
-                var index = _modelService.GetIndex<Assignee>();
+                var index = await _modelService.GetIndexAsync<Assignee>();
                 Assert.IsNotNull(index);
                 Assert.AreEqual(5, index.Count());
             }
@@ -85,7 +86,7 @@ namespace OpenKHS.Test.Unit
         }
 
         [TestMethod]
-        public void UpdateModel()
+        public async Task UpdateModel()
         {
             try
             {
@@ -93,14 +94,14 @@ namespace OpenKHS.Test.Unit
                 {
                     Name = "An Ewmember"
                 };
-                using (var context = _dbContextFactory.Create())
+                using (var context = await _dbContextFactory.CreateAsync())
                 {
                     context.Add(example);
-                    context.SaveChanges();
+                    await context.SaveChangesAsync();
                 }
                 example.Attendant = true;
-                _modelService.Update(example);
-                using (var context = _dbContextFactory.Create())
+                await _modelService.UpdateAsync(example);
+                using (var context = await _dbContextFactory.CreateAsync())
                 {
                     var updated = context.Assignees
                         .Single(m => m.Id == example.Id);
@@ -118,7 +119,7 @@ namespace OpenKHS.Test.Unit
 
 
         [TestMethod]
-        public void DeleteModel()
+        public async Task DeleteModel()
         {
             try
             {
@@ -126,13 +127,13 @@ namespace OpenKHS.Test.Unit
                 {
                     Name = "An Ewmember"
                 };
-                using (var context = _dbContextFactory.Create())
+                using (var context = await _dbContextFactory.CreateAsync())
                 {
                     context.Add(example);
-                    context.SaveChanges();
+                    await context.SaveChangesAsync();
                 }
-                _modelService.Delete(example);
-                using (var context = _dbContextFactory.Create())
+                await _modelService.DeleteAsync(example);
+                using (var context = await _dbContextFactory.CreateAsync())
                 {
                     var deleted = context.Assignees
                         .SingleOrDefault(m => m.Id == example.Id);

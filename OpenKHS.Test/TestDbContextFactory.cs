@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using OpenKHS.Data;
 
 namespace OpenKHS.Test
@@ -10,13 +11,13 @@ namespace OpenKHS.Test
         {
         }
 
-        public override OpenKHSContext Create()
+        public override async Task<OpenKHSContext> CreateAsync()
         {
             using (var context = new OpenKHSContext(Options))
             {
                 context.Database.EnsureDeleted();
             }
-            return base.Create();
+            return await base.CreateAsync();
         }
 
    }
