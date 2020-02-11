@@ -52,7 +52,10 @@
                 <Button Width="24" Height="24" Content="?" Command="{Binding HelpCmd}"/>
             </StatusBarItem>
             <StatusBarItem HorizontalAlignment="Right">
-                <TextBlock Visibility="{Binding IsBusy, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                <TextBlock Padding="0,0,10,0" 
+                           Visibility="{Binding IsBusy, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVisibilityConverter}}">
+                    Busy
+                </TextBlock>
             </StatusBarItem>
         </StatusBar>
     </Grid>
