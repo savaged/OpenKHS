@@ -10,7 +10,7 @@ namespace OpenKHS.WPF
     {
         private IKernel _kernel;
 
-        private void OnStartup(object sender, StartupEventArgs e)
+        private async void OnStartup(object sender, StartupEventArgs e)
         {
             AppDomain.CurrentDomain.UnhandledException +=
                 new UnhandledExceptionEventHandler(
@@ -24,7 +24,7 @@ namespace OpenKHS.WPF
             var vm = _kernel.Get<MainViewModel>();
             Current.MainWindow.DataContext = vm;
             Current.MainWindow.Show();
-            vm.Load();
+            await vm.LoadAsync();
         }
 
         private static void OnCurrentDomainUnhandledException(

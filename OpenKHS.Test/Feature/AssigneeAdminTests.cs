@@ -52,7 +52,7 @@ namespace OpenKHS.Test.Feature
                     }
                     await context.SaveChangesAsync();
                 }
-                _mainViewModel.AssigneeAdminViewModel.Load();
+                await _mainViewModel.AssigneeAdminViewModel.LoadAsync();
                 Assert.AreEqual(5, _mainViewModel.AssigneeAdminViewModel
                     .IndexViewModel.Index.Count());
             }
@@ -106,7 +106,7 @@ namespace OpenKHS.Test.Feature
                     context.Assignees.Add(example);
                     await context.SaveChangesAsync();
                 }
-                _mainViewModel.AssigneeAdminViewModel.Load();
+                await _mainViewModel.AssigneeAdminViewModel.LoadAsync();
                 var index = _mainViewModel.AssigneeAdminViewModel.IndexViewModel.Index;
                 Assert.IsNotNull(index);
     
@@ -132,7 +132,7 @@ namespace OpenKHS.Test.Feature
         }
 
         [TestMethod]
-        public void SelectAndDeleteAssigneeMember()
+        public async Task SelectAndDeleteAssigneeMember()
         {
             try
             {
@@ -146,7 +146,7 @@ namespace OpenKHS.Test.Feature
                     context.Assignees.Add(example);
                     context.SaveChanges();
                 }
-                _mainViewModel.AssigneeAdminViewModel.Load();
+                await _mainViewModel.AssigneeAdminViewModel.LoadAsync();
                 var index = _mainViewModel.AssigneeAdminViewModel.IndexViewModel.Index;
                 Assert.IsNotNull(index);
     

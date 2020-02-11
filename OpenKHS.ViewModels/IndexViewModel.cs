@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using OpenKHS.Data;
@@ -19,10 +20,11 @@ namespace OpenKHS.ViewModels
 
         public ObservableCollection<T> Index { get; }
 
-        public virtual void Load()
+        public virtual async Task LoadAsync()
         {
             Index.Clear();
-            var index = ModelService.GetIndex<T>();
+            IList<T> index = new List<T>();
+            await Task.Run(() => index = ModelService.GetIndex<T>());
             foreach (var model in index)
             {
                 Index.Add(model);

@@ -50,7 +50,7 @@ namespace OpenKHS.Test.Feature
                     }
                     await context.SaveChangesAsync();
                 }
-                _mainViewModel.ClmmScheduleAdminViewModel.Load();
+                await _mainViewModel.ClmmScheduleAdminViewModel.LoadAsync();
                 Assert.AreEqual(5, _mainViewModel.ClmmScheduleAdminViewModel
                     .IndexViewModel.Index.Count());
             }
@@ -91,7 +91,7 @@ namespace OpenKHS.Test.Feature
         }
 
         [TestMethod]
-        public void SelectAndUpdateClmmSchedule()
+        public async Task SelectAndUpdateClmmSchedule()
         {
             try
             {
@@ -105,7 +105,7 @@ namespace OpenKHS.Test.Feature
                     context.ClmmSchedules.Add(example);
                     context.SaveChanges();
                 }
-                _mainViewModel.ClmmScheduleAdminViewModel.Load();
+                await _mainViewModel.ClmmScheduleAdminViewModel.LoadAsync();
                 var index = _mainViewModel.ClmmScheduleAdminViewModel.IndexViewModel.Index;
                 Assert.IsNotNull(index);
     
@@ -149,7 +149,7 @@ namespace OpenKHS.Test.Feature
                     context.ClmmSchedules.Add(example);
                     await context.SaveChangesAsync();
                 }
-                _mainViewModel.ClmmScheduleAdminViewModel.Load();
+                await _mainViewModel.ClmmScheduleAdminViewModel.LoadAsync();
                 var index = _mainViewModel.ClmmScheduleAdminViewModel.IndexViewModel.Index;
                 Assert.IsNotNull(index);
     
