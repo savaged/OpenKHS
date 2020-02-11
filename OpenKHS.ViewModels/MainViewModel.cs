@@ -5,6 +5,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using OpenKHS.Models;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace OpenKHS.ViewModels
 {
@@ -30,6 +31,7 @@ namespace OpenKHS.ViewModels
                 throw new ArgumentNullException(nameof(assignmentTypesViewModel));
 
             ReloadCmd = new RelayCommand(OnReload, () => CanExecute);
+            HelpCmd = new RelayCommand(OnHelp, () => CanExecute);
 
             BusyStateManager.PropertyChanged += OnBusyStateManagerPropertyChanged;
             PropertyChanged += OnPropertyChanged;
@@ -42,6 +44,7 @@ namespace OpenKHS.ViewModels
         }
 
         public ICommand ReloadCmd { get; }
+        public ICommand HelpCmd { get; }
 
         public MasterDetailViewModel<Assignee> AssigneeAdminViewModel
         { get; }
@@ -67,6 +70,26 @@ namespace OpenKHS.ViewModels
             SelectedIndex = 0;
         }
 
+        private void OnHelp()
+        {
+            var ps = new ProcessStartInfo("https://github.com/savaged/OpenKHS/wiki")
+            {
+                UseShellExecute = true,
+                Verb = "open"
+            };
+            Process.Start(ps);
+        }
+
+        private void OnBusyStateManagerPropertyChanged(
+            object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(IBusyStateRegistry.IsBusy))
+            {
+                var isBusy = BusyStateManager.IsBusy;
+                SetIsBusy(isBusy, this);
+            }
+        }
+
         private async void OnPropertyChanged(
             object sender, PropertyChangedEventArgs e)
         {
@@ -89,16 +112,6 @@ namespace OpenKHS.ViewModels
                         break;
                 }
                 MessengerInstance.Send(new BusyMessage(false, this));
-            }
-        }
-
-        private void OnBusyStateManagerPropertyChanged(
-            object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(IBusyStateRegistry.IsBusy))
-            {
-                var isBusy = BusyStateManager.IsBusy;
-                SetIsBusy(isBusy, this);
             }
         }
 
