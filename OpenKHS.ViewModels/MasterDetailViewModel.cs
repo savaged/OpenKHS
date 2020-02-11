@@ -29,18 +29,18 @@ namespace OpenKHS.ViewModels
         public IndexViewModel<T> IndexViewModel { get; }
         public SelectedItemViewModel<T> SelectedItemViewModel { get; }
 
-        public virtual async Task LoadAsync()
+        public virtual void Load()
         {
-            await IndexViewModel.LoadAsync();
+            IndexViewModel.Load();
         }
 
         public ICommand AddCmd { get; set; }
 
         public bool CanAdd => CanExecute;
 
-        protected async void OnAdd()
+        protected void OnAdd()
         {
-            var model = await ModelService.CreateAsync<T>();
+            var model = ModelService.Create<T>();
             SelectedItemViewModel.SelectedItem = model;
         }
 

@@ -35,11 +35,11 @@ namespace OpenKHS.Test.Unit
         }
 
         [TestMethod]
-        public async Task IndexTest()
+        public void IndexTest()
         {
             try
             {
-                using (var context = await _dbContextFactory.CreateAsync())
+                using (var context = _dbContextFactory.Create())
                 {
                     for (var i = 1; i < 17; i++)
                     {
@@ -55,11 +55,10 @@ namespace OpenKHS.Test.Unit
                     }
                     context.SaveChanges();
                 }
-                var assignmentTypes = await _assignmentTypeService.GetIndexAsync();
+                var assignmentTypes = _assignmentTypeService.GetIndex();
                 var assignmentType = assignmentTypes
                     .SingleOrDefault(m => m.Name == nameof(Assignee.Attendant));
-                var index = await _assigneeService.GetIndexAsync<Assignee>(
-                    assignmentType);
+                var index = _assigneeService.GetIndex<Assignee>(assignmentType);
                 Assert.IsNotNull(index);
                 Assert.AreEqual(5, index.Count());
             }

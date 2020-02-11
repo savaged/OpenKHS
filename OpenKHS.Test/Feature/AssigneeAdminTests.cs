@@ -39,7 +39,7 @@ namespace OpenKHS.Test.Feature
             try
             {
                 var dbContextFactory = _kernel.Get<IDbContextFactory>();
-                using (var context = await dbContextFactory.CreateAsync())
+                using (var context = dbContextFactory.Create())
                 {
                     for (var i = 1; i < 6; i++)
                     {
@@ -52,7 +52,7 @@ namespace OpenKHS.Test.Feature
                     }
                     await context.SaveChangesAsync();
                 }
-                await _mainViewModel.AssigneeAdminViewModel.LoadAsync();
+                _mainViewModel.AssigneeAdminViewModel.Load();
                 Assert.AreEqual(5, _mainViewModel.AssigneeAdminViewModel
                     .IndexViewModel.Index.Count());
             }
@@ -63,7 +63,7 @@ namespace OpenKHS.Test.Feature
         }
 
         [TestMethod]
-        public async Task AddAndSaveNewAssigneeMember()
+        public void AddAndSaveNewAssigneeMember()
         {
             try
             {
@@ -78,7 +78,7 @@ namespace OpenKHS.Test.Feature
                 var savedId = model.Id;
             
                 var dbContextFactory = _kernel.Get<IDbContextFactory>();
-                using (var context = await dbContextFactory.CreateAsync())
+                using (var context = dbContextFactory.Create())
                 {
                     var saved = context.Assignees.Single(m => m.Id == savedId);
                     Assert.IsNotNull(saved);
@@ -101,12 +101,12 @@ namespace OpenKHS.Test.Feature
                     Name = "An Exsitingmember"
                 };
                 var dbContextFactory = _kernel.Get<IDbContextFactory>();
-                using (var context = await dbContextFactory.CreateAsync())
+                using (var context = dbContextFactory.Create())
                 {
                     context.Assignees.Add(example);
                     await context.SaveChangesAsync();
                 }
-                await _mainViewModel.AssigneeAdminViewModel.LoadAsync();
+                _mainViewModel.AssigneeAdminViewModel.Load();
                 var index = _mainViewModel.AssigneeAdminViewModel.IndexViewModel.Index;
                 Assert.IsNotNull(index);
     
@@ -118,7 +118,7 @@ namespace OpenKHS.Test.Feature
     
                 _mainViewModel.AssigneeAdminViewModel.SelectedItemViewModel.SelectedItem.Attendant = true;
                 _mainViewModel.AssigneeAdminViewModel.SelectedItemViewModel.SaveCmd.Execute(null);
-                using (var context = await dbContextFactory.CreateAsync())
+                using (var context = dbContextFactory.Create())
                 {
                     var saved = context.Assignees.Single(m => m.Id == model.Id);
                     Assert.IsNotNull(saved);
@@ -132,7 +132,7 @@ namespace OpenKHS.Test.Feature
         }
 
         [TestMethod]
-        public async Task SelectAndDeleteAssigneeMember()
+        public void SelectAndDeleteAssigneeMember()
         {
             try
             {
@@ -141,12 +141,12 @@ namespace OpenKHS.Test.Feature
                     Name = "An Exsitingmember"
                 };
                 var dbContextFactory = _kernel.Get<IDbContextFactory>();
-                using (var context = await dbContextFactory.CreateAsync())
+                using (var context = dbContextFactory.Create())
                 {
                     context.Assignees.Add(example);
                     context.SaveChanges();
                 }
-                await _mainViewModel.AssigneeAdminViewModel.LoadAsync();
+                _mainViewModel.AssigneeAdminViewModel.Load();
                 var index = _mainViewModel.AssigneeAdminViewModel.IndexViewModel.Index;
                 Assert.IsNotNull(index);
     
@@ -157,7 +157,7 @@ namespace OpenKHS.Test.Feature
                 Assert.IsNotNull(_mainViewModel.AssigneeAdminViewModel.SelectedItemViewModel.SelectedItem);
     
                 _mainViewModel.AssigneeAdminViewModel.SelectedItemViewModel.SaveCmd.Execute(null);
-                using (var context = await dbContextFactory.CreateAsync())
+                using (var context = dbContextFactory.Create())
                 {
                     var saved = context.Assignees.Single(m => m.Id == model.Id);
                     Assert.IsNotNull(saved);

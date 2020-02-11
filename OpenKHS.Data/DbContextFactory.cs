@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,18 +13,15 @@ namespace OpenKHS.Data
             Options = optionsBuilder?.Options;
         }
 
-        public virtual async Task<OpenKHSContext> CreateAsync()
+        public virtual OpenKHSContext Create()
         {
             OpenKHSContext value = null;
-            await Task.Run(() =>
+            using (var context = new OpenKHSContext(Options))
             {
-                using (var context = new OpenKHSContext(Options))
-                {
-                    context.Database.EnsureCreated();
-                    context.EnsureSeeded();
-                }
-                value = new OpenKHSContext(Options);
-            });
+                context.Database.EnsureCreated();
+                context.EnsureSeeded();
+            }
+            value = new OpenKHSContext(Options);
             return value;
         }
 

@@ -16,12 +16,12 @@ namespace OpenKHS.Data
                 throw new ArgumentNullException(nameof(dbContextFactory));
         }
 
-        public async Task<T> CreateAsync<T>() where T : class, IModel, new()
+        public T Create<T>() where T : class, IModel, new()
         {
             var model = new T();
             if (model is ISchedule)
             { 
-                var assignmentTypes = await GetAssignmentTypesAsync();
+                var assignmentTypes = GetAssignmentTypes();
                 if (model is ClmmSchedule) 
                 {
                     model = new ClmmSchedule(assignmentTypes) as T;
@@ -34,10 +34,10 @@ namespace OpenKHS.Data
             return model;
         }
 
-        private async Task<IList<AssignmentType>> GetAssignmentTypesAsync()
+        private IList<AssignmentType> GetAssignmentTypes()
         {
             var index = new List<AssignmentType>();
-            using (var context = await _dbContextFactory.CreateAsync())
+            using (var context = _dbContextFactory.Create())
             {
                 index = context.AssignmentTypes.ToList();
             }

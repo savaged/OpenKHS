@@ -19,10 +19,10 @@ namespace OpenKHS.ViewModels
 
         public ObservableCollection<T> Index { get; }
 
-        public virtual async Task LoadAsync()
+        public virtual void Load()
         {
             Index.Clear();
-            var index = await ModelService.GetIndexAsync<T>();
+            var index = ModelService.GetIndex<T>();
             foreach (var model in index)
             {
                 Index.Add(model);

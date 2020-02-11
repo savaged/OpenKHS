@@ -41,16 +41,16 @@ namespace OpenKHS.Test.Feature
             {
                 var modelService = _kernel.Get<IModelService>();
                 var dbContextFactory = _kernel.Get<IDbContextFactory>();
-                using (var context = await dbContextFactory.CreateAsync())
+                using (var context = dbContextFactory.Create())
                 {
                     for (var i = 1; i < 6; i++)
                     {
-                        var model = await modelService.CreateAsync<ClmmSchedule>();
+                        var model = modelService.Create<ClmmSchedule>();
                         context.Add(model);    
                     }
                     await context.SaveChangesAsync();
                 }
-                await _mainViewModel.ClmmScheduleAdminViewModel.LoadAsync();
+                _mainViewModel.ClmmScheduleAdminViewModel.Load();
                 Assert.AreEqual(5, _mainViewModel.ClmmScheduleAdminViewModel
                     .IndexViewModel.Index.Count());
             }
@@ -61,7 +61,7 @@ namespace OpenKHS.Test.Feature
         }
 
         [TestMethod]
-        public async Task AddAndSaveNewClmmSchedule()
+        public void AddAndSaveNewClmmSchedule()
         {
             try
             {
@@ -77,7 +77,7 @@ namespace OpenKHS.Test.Feature
                 var savedId = model.Id;
             
                 var dbContextFactory = _kernel.Get<IDbContextFactory>();
-                using (var context = await dbContextFactory.CreateAsync())
+                using (var context = dbContextFactory.Create())
                 {
                     var saved = context.ClmmSchedules.Single(m => m.Id == savedId);
                     Assert.IsNotNull(saved);
@@ -91,7 +91,7 @@ namespace OpenKHS.Test.Feature
         }
 
         [TestMethod]
-        public async Task SelectAndUpdateClmmSchedule()
+        public void SelectAndUpdateClmmSchedule()
         {
             try
             {
@@ -100,12 +100,12 @@ namespace OpenKHS.Test.Feature
                     WeekStarting = DateTime.Now.AddMonths(1)
                 };
                 var dbContextFactory = _kernel.Get<IDbContextFactory>();
-                using (var context = await dbContextFactory.CreateAsync())
+                using (var context = dbContextFactory.Create())
                 {
                     context.ClmmSchedules.Add(example);
                     context.SaveChanges();
                 }
-                await _mainViewModel.ClmmScheduleAdminViewModel.LoadAsync();
+                _mainViewModel.ClmmScheduleAdminViewModel.Load();
                 var index = _mainViewModel.ClmmScheduleAdminViewModel.IndexViewModel.Index;
                 Assert.IsNotNull(index);
     
@@ -121,7 +121,7 @@ namespace OpenKHS.Test.Feature
                     .SelectedItemViewModel.SelectedItem.WeekStarting = DateTime.Now.AddDays(14);
                 _mainViewModel.ClmmScheduleAdminViewModel
                     .SelectedItemViewModel.SaveCmd.Execute(null);
-                using (var context = await dbContextFactory.CreateAsync())
+                using (var context = dbContextFactory.Create())
                 {
                     var saved = context.ClmmSchedules.Single(m => m.Id == model.Id);
                     Assert.IsNotNull(saved);
@@ -144,12 +144,12 @@ namespace OpenKHS.Test.Feature
                     WeekStarting = DateTime.Now.AddMonths(1)
                 };
                 var dbContextFactory = _kernel.Get<IDbContextFactory>();
-                using (var context = await dbContextFactory.CreateAsync())
+                using (var context = dbContextFactory.Create())
                 {
                     context.ClmmSchedules.Add(example);
                     await context.SaveChangesAsync();
                 }
-                await _mainViewModel.ClmmScheduleAdminViewModel.LoadAsync();
+                _mainViewModel.ClmmScheduleAdminViewModel.Load();
                 var index = _mainViewModel.ClmmScheduleAdminViewModel.IndexViewModel.Index;
                 Assert.IsNotNull(index);
     
@@ -160,7 +160,7 @@ namespace OpenKHS.Test.Feature
                 Assert.IsNotNull(_mainViewModel.ClmmScheduleAdminViewModel.SelectedItemViewModel.SelectedItem);
     
                 _mainViewModel.ClmmScheduleAdminViewModel.SelectedItemViewModel.SaveCmd.Execute(null);
-                using (var context = await dbContextFactory.CreateAsync())
+                using (var context = dbContextFactory.Create())
                 {
                     var saved = context.ClmmSchedules.Single(m => m.Id == model.Id);
                     Assert.IsNotNull(saved);

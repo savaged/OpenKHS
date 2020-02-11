@@ -19,7 +19,7 @@ namespace OpenKHS.Test.Feature
         private ClmmSchedule _selectedSchedule;
 
         [TestInitialize]
-        public async Task Init()
+        public void Init()
         {
             _kernel = new StandardKernel(
                 new ViewModelCoreBindings(),
@@ -32,7 +32,7 @@ namespace OpenKHS.Test.Feature
             _dbConnection.Open();
 
             var dbContextFactory = _kernel.Get<IDbContextFactory>();
-            using (var context = await dbContextFactory.CreateAsync())
+            using (var context = dbContextFactory.Create())
             {
                 _selectedSchedule = new ClmmSchedule
                 {

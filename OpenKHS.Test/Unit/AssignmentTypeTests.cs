@@ -25,14 +25,14 @@ namespace OpenKHS.Test.Unit
         }
 
         [TestMethod]
-        public async Task GetMatchingAssignmentTypeTest()
+        public void GetMatchingAssignmentTypeTest()
         {
             try
             {
                 Assert.AreEqual(NullAssignmentType.Default, NullAssignmentType.Default);
 
                 var lookupService = _kernel.Get<IAssignmentTypeService>();
-                var assignmentTypes = await lookupService.GetIndexAsync();
+                var assignmentTypes = lookupService.GetIndex();
 
                 var assignmentType = AssignmentType.GetMatchingAssignmentType(
                     "bogus", assignmentTypes);

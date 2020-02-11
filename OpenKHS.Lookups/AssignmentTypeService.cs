@@ -17,10 +17,10 @@ namespace OpenKHS.Lookups
                 throw new ArgumentNullException(nameof(modelService));
         }
 
-        public async Task<IList<AssignmentType>> GetIndexAsync()
+        public IList<AssignmentType> GetIndex()
         {
             var lookup = new List<AssignmentType>();
-            foreach (var model in await _modelService.GetIndexAsync<AssignmentType>())
+            foreach (var model in _modelService.GetIndex<AssignmentType>())
             {
                 lookup.Add(model);
             }

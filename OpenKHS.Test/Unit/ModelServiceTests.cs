@@ -42,7 +42,7 @@ namespace OpenKHS.Test.Unit
                 await _modelService.InsertAsync(model);
                 Assert.AreNotEqual(0, model.Id);
 
-                using (var context = await _dbContextFactory.CreateAsync())
+                using (var context = _dbContextFactory.Create())
                 {
                     var index = context.Assignees.ToList();
                     Assert.IsNotNull(index);
@@ -63,7 +63,7 @@ namespace OpenKHS.Test.Unit
         {
             try
             {
-                using (var context = await _dbContextFactory.CreateAsync())
+                using (var context = _dbContextFactory.Create())
                 {
                     for (var i = 1; i < 6; i++)
                     {
@@ -75,7 +75,7 @@ namespace OpenKHS.Test.Unit
                     }
                     await context.SaveChangesAsync();
                 }
-                var index = await _modelService.GetIndexAsync<Assignee>();
+                var index = _modelService.GetIndex<Assignee>();
                 Assert.IsNotNull(index);
                 Assert.AreEqual(5, index.Count());
             }
@@ -94,14 +94,14 @@ namespace OpenKHS.Test.Unit
                 {
                     Name = "An Ewmember"
                 };
-                using (var context = await _dbContextFactory.CreateAsync())
+                using (var context = _dbContextFactory.Create())
                 {
                     context.Add(example);
                     await context.SaveChangesAsync();
                 }
                 example.Attendant = true;
                 await _modelService.UpdateAsync(example);
-                using (var context = await _dbContextFactory.CreateAsync())
+                using (var context = _dbContextFactory.Create())
                 {
                     var updated = context.Assignees
                         .Single(m => m.Id == example.Id);
@@ -127,13 +127,13 @@ namespace OpenKHS.Test.Unit
                 {
                     Name = "An Ewmember"
                 };
-                using (var context = await _dbContextFactory.CreateAsync())
+                using (var context = _dbContextFactory.Create())
                 {
                     context.Add(example);
                     await context.SaveChangesAsync();
                 }
                 await _modelService.DeleteAsync(example);
-                using (var context = await _dbContextFactory.CreateAsync())
+                using (var context = _dbContextFactory.Create())
                 {
                     var deleted = context.Assignees
                         .SingleOrDefault(m => m.Id == example.Id);

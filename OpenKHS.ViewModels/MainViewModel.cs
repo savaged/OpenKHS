@@ -55,10 +55,10 @@ namespace OpenKHS.ViewModels
         public IndexViewModel<AssignmentType> AssignmentTypesViewModel 
         { get; }
 
-        public async Task LoadAsync()
+        public void Load()
         {
             MessengerInstance.Send(new BusyMessage(true, this));
-            await ClmmScheduleAdminViewModel.LoadAsync();
+            ClmmScheduleAdminViewModel.Load();
             MessengerInstance.Send(new BusyMessage(false, this));
         }
 
@@ -67,7 +67,7 @@ namespace OpenKHS.ViewModels
             SelectedIndex = 0;
         }
 
-        private async void OnPropertyChanged(
+        private void OnPropertyChanged(
             object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(SelectedIndex))
@@ -76,16 +76,16 @@ namespace OpenKHS.ViewModels
                 switch (SelectedIndex)
                 {
                     case 0:
-                        await ClmmScheduleAdminViewModel.LoadAsync();
+                        ClmmScheduleAdminViewModel.Load();
                         break;
                     case 1:
-                        await PmScheduleAdminViewModel.LoadAsync();
+                        PmScheduleAdminViewModel.Load();
                         break;
                     case 2: 
-                        await AssigneeAdminViewModel.LoadAsync();
+                        AssigneeAdminViewModel.Load();
                         break;
                     case 3: 
-                        await AssignmentTypesViewModel.LoadAsync();
+                        AssignmentTypesViewModel.Load();
                         break;
                 }
                 MessengerInstance.Send(new BusyMessage(false, this));

@@ -13,7 +13,7 @@ namespace OpenKHS.Test.Integration
     public class DbCRUDTests
     {
         [TestMethod]
-        public async Task AssigneeCRUDTests()
+        public void AssigneeCRUDTests()
         {
             var kernel = new StandardKernel(
                 new ViewModelCoreBindings(),
@@ -25,7 +25,7 @@ namespace OpenKHS.Test.Integration
             {
                 var modelId = 0;
                 // Create
-                using (var context = await dbContextFactory.CreateAsync())
+                using (var context = dbContextFactory.Create())
                 {
                     var model = new Assignee
                     {
@@ -38,7 +38,7 @@ namespace OpenKHS.Test.Integration
                     Assert.AreEqual("Test Member", model.Name);
                 }
                 // Read
-                using (var context = await dbContextFactory.CreateAsync())
+                using (var context = dbContextFactory.Create())
                 {
                     var model = context.Assignees
                         .Single(m => m.Id == modelId);
@@ -46,7 +46,7 @@ namespace OpenKHS.Test.Integration
                     Assert.AreNotEqual(0, modelId);
                 }
                 // Update
-                using (var context = await dbContextFactory.CreateAsync())
+                using (var context = dbContextFactory.Create())
                 {
                     var model = context.Assignees
                         .Single(m => m.Id == modelId);
@@ -57,7 +57,7 @@ namespace OpenKHS.Test.Integration
                     Assert.AreEqual(modelId, model.Id);
                 }
                 // Delete
-                using (var context = await dbContextFactory.CreateAsync())
+                using (var context = dbContextFactory.Create())
                 {
                     var model = context.Assignees
                         .Single(m => m.Id == modelId);

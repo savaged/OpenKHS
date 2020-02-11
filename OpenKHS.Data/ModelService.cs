@@ -21,27 +21,24 @@ namespace OpenKHS.Data
                 throw new ArgumentNullException(nameof(modelFactory));
         }
 
-        public async Task<IList<T>> GetIndexAsync<T>() where T : class, IModel
+        public IList<T> GetIndex<T>() where T : class, IModel
         {
             var index = new List<T>();
-            await Task.Run(async () => 
+            using (var context = _dbContextFactory.Create())
             {
-                using (var context = await _dbContextFactory.CreateAsync())
+                var dbSet = GetDbSet<T>(context);
+                foreach (var model in dbSet)
                 {
-                    var dbSet = GetDbSet<T>(context);
-                    foreach (var model in dbSet)
-                    {
-                        index.Add(model as T);
-                    }
+                    index.Add(model as T);
                 }
-            });
+            }
             return index;
         }
 
-        public async Task<T> GetAsync<T>(int id) where T : class, IModel
+        public T Get<T>(int id) where T : class, IModel
         {
             T model;
-            using (var context = await _dbContextFactory.CreateAsync())
+            using (var context = _dbContextFactory.Create())
             {
                 var dbSet = GetDbSet<T>(context);
                 model = dbSet.Find(id) as T;
@@ -49,9 +46,9 @@ namespace OpenKHS.Data
             return model;
         }
 
-        public async Task<T> CreateAsync<T>() where T : class, IModel, new()
+        public T Create<T>() where T : class, IModel, new()
         {
-            T value = await _modelFactory.CreateAsync<T>();
+            T value = _modelFactory.Create<T>();
             return value;
         }
 
@@ -59,7 +56,7 @@ namespace OpenKHS.Data
         {
             if (model == null) return;
 
-            using (var context = await _dbContextFactory.CreateAsync())
+            using (var context = _dbContextFactory.Create())
             {
                 var dbSet = GetDbSet<T>(context);
                 dbSet.Add(model);
@@ -71,7 +68,7 @@ namespace OpenKHS.Data
         {
             if (model == null) return;
 
-            using (var context = await _dbContextFactory.CreateAsync())
+            using (var context = _dbContextFactory.Create())
             {
                 context.Entry(model).State = EntityState.Modified;
                 await context.SaveChangesAsync();
@@ -82,7 +79,7 @@ namespace OpenKHS.Data
         {
             if (model == null) return;
 
-            using (var context = await _dbContextFactory.CreateAsync())
+            using (var context = _dbContextFactory.Create())
             {
                 context.Entry(model).State = EntityState.Deleted;
                 await context.SaveChangesAsync();
