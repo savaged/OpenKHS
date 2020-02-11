@@ -7,6 +7,7 @@
         xmlns:views="clr-namespace:OpenKHS.WPF.Views"
         mc:Ignorable="d"
         Title="Open KHS"
+        Icon="Logo.ico"
         Height="768" Width="1024"
         Background="{DynamicResource WindowBackgroundBrush}">
     <Window.Resources>
@@ -41,11 +42,18 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="24"/>
+            <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <ContentPresenter Grid.Row="0"
                           Style="{StaticResource BusyStateContentStyle}" 
                           Content="{Binding}"/>
-        <TextBlock Grid.Row="1" Text="{Binding IsBusy, UpdateSourceTrigger=PropertyChanged}"/>
+        <StatusBar Grid.Row="1">
+            <StatusBarItem>
+                <Button Width="24" Height="24" Content="?" Command="{Binding HelpCmd}"/>
+            </StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Right">
+                <TextBlock Visibility="{Binding IsBusy, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVisibilityConverter}}"/>
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
 </Window>
