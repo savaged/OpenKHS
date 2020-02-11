@@ -15,7 +15,14 @@
                     C_LMM
                 </AccessText>
             </TabItem.Header>
-            <local:MasterDetailView DataContext="{Binding ClmmScheduleAdminViewModel}"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <local:IndexView Grid.Column="0" DataContext="{Binding ClmmScheduleAdminViewModel}"/>
+                <local:AssigneeView Grid.Column="1" DataContext="{Binding ClmmScheduleAdminViewModel}"/>
+            </Grid>
         </TabItem>
         <TabItem Style="{DynamicResource LeftVerticalTabItem}">
             <TabItem.Header>
@@ -24,7 +31,14 @@
                     _PM
                 </AccessText>
             </TabItem.Header>
-            <local:MasterDetailView DataContext="{Binding PmScheduleAdminViewModel}"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <local:IndexView Grid.Column="0" DataContext="{Binding PmScheduleAdminViewModel}"/>
+                <local:AssigneeView Grid.Column="1" DataContext="{Binding PmScheduleAdminViewModel}"/>
+            </Grid>           
         </TabItem>
         <TabItem Style="{DynamicResource LeftVerticalTabItem}">
             <TabItem.Header>
@@ -33,7 +47,14 @@
                     _Cong
                 </AccessText>
             </TabItem.Header>
-            <local:MasterDetailView DataContext="{Binding AssigneeAdminViewModel}"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <local:IndexView Grid.Column="0" DataContext="{Binding AssigneeAdminViewModel}"/>
+                <local:AssigneeView Grid.Column="1" DataContext="{Binding AssigneeAdminViewModel}"/>
+            </Grid>
         </TabItem>
         <TabItem Style="{DynamicResource LeftVerticalTabItem}">
             <TabItem.Header>
