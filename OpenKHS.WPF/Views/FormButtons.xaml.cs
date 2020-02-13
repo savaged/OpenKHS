@@ -1,8 +1,10 @@
+using System.Windows.Controls;
+
 namespace OpenKHS.WPF.Views
 {
-    public partial class MainTabbedView
+    public partial class FormButtons
     {
-        public MainTabbedView()
+        public FormButtons()
         {
             InitializeComponent();
         }

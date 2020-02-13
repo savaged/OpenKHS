@@ -6,6 +6,9 @@
              xmlns:local="clr-namespace:OpenKHS.WPF.Views"
              mc:Ignorable="d"
              Background="{DynamicResource ControlBackgroundBrush}">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </UserControl.Resources>
     <TabControl SelectedIndex="{Binding SelectedIndex}"
                 TabStripPlacement="Left">
         <TabItem Style="{DynamicResource LeftVerticalTabItem}">
@@ -20,8 +23,18 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
-                <local:IndexView Grid.Column="0" DataContext="{Binding ClmmScheduleAdminViewModel}"/>
-                <local:ClmmScheduleView Grid.Column="1" DataContext="{Binding ClmmScheduleAdminViewModel}"/>
+                <local:IndexView Grid.Column="0" 
+                                 DataContext="{Binding ClmmScheduleAdminViewModel}"/>
+                <Grid Grid.Column="1"
+                      Visibility="{Binding ClmmScheduleAdminViewModel.SelectedItemViewModel.IsItemSelected, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <local:ClmmScheduleView Grid.Row="0" 
+                                            DataContext="{Binding ClmmScheduleAdminViewModel}"/>
+                    <local:FormButtons Grid.Row="1"/>
+                </Grid>
             </Grid>
         </TabItem>
         <TabItem Style="{DynamicResource LeftVerticalTabItem}">
@@ -36,8 +49,18 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
-                <local:IndexView Grid.Column="0" DataContext="{Binding PmScheduleAdminViewModel}"/>
-                <local:PmScheduleView Grid.Column="1" DataContext="{Binding PmScheduleAdminViewModel}"/>
+                <local:IndexView Grid.Column="0" 
+                                 DataContext="{Binding PmScheduleAdminViewModel}"/>
+                <Grid Grid.Column="1"
+                      Visibility="{Binding PmScheduleAdminViewModel.SelectedItemViewModel.IsItemSelected, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <local:PmScheduleView Grid.Row="0" 
+                                          DataContext="{Binding PmScheduleAdminViewModel}"/>
+                    <local:FormButtons Grid.Row="1"/>
+                </Grid>
             </Grid>           
         </TabItem>
         <TabItem Style="{DynamicResource LeftVerticalTabItem}">
@@ -52,8 +75,18 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
-                <local:IndexView Grid.Column="0" DataContext="{Binding AssigneeAdminViewModel}"/>
-                <local:AssigneeView Grid.Column="1" DataContext="{Binding AssigneeAdminViewModel}"/>
+                <local:IndexView Grid.Column="0" 
+                                 DataContext="{Binding AssigneeAdminViewModel}"/>
+                <Grid Grid.Column="1"
+                      Visibility="{Binding AssigneeAdminViewModel.SelectedItemViewModel.IsItemSelected, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <local:AssigneeView Grid.Row="0" 
+                                        DataContext="{Binding AssigneeAdminViewModel}"/>
+                    <local:FormButtons Grid.Row="1"/>
+                </Grid>
             </Grid>
         </TabItem>
         <TabItem Style="{DynamicResource LeftVerticalTabItem}">

@@ -1,5 +1,4 @@
 using System;
-using System.Runtime.CompilerServices;
 using GalaSoft.MvvmLight;
 using Savaged.BusyStateManager;
 
@@ -22,6 +21,8 @@ namespace OpenKHS.ViewModels
         public bool IsNotBusy => !IsBusy;
 
         public virtual bool CanExecute => IsNotBusy;
+
+        public string ClassName => GetType().Name;
 
         protected void SetIsBusy(bool value, object sender)
         {

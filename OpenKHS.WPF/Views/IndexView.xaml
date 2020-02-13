@@ -12,6 +12,11 @@
                   AutoGenerateColumns="False"
                   HeadersVisibility="None"
                   CanUserAddRows="False" CanUserDeleteRows="False">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Add" Command="{Binding AddCmd}"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Name}"/>
             </DataGrid.Columns>
