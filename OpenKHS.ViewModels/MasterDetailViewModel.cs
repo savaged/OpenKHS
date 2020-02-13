@@ -40,8 +40,16 @@ namespace OpenKHS.ViewModels
 
         protected void OnAdd()
         {
-            var model = ModelService.Create<T>();
-            SelectedItemViewModel.SelectedItem = model;
+            MessengerInstance.Send(new BusyMessage(true, this));
+            try
+            {
+                var model = ModelService.Create<T>();
+                SelectedItemViewModel.SelectedItem = model;
+            }
+            finally
+            {
+                MessengerInstance.Send(new BusyMessage(false, this));
+            }
         }
 
     }

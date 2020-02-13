@@ -14,9 +14,9 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="24" />
         </Grid.RowDefinitions>
-        <Button Grid.Column="0" Content="_Delete" Width="80" Command="{Binding DeleteCmd}" 
+        <Button Grid.Row="0" Grid.Column="0" Content="_Delete" Width="80" Command="{Binding DeleteCmd}" 
                 Visibility="{Binding CanDelete, Converter={StaticResource BoolToVisibilityConverter}}"/>
-        <Button Grid.Column="1" Content="_Save" Width="80" Command="{Binding SaveCmd}" />
-        <Button Grid.Column="2" Content="_Cancel" Width="80" Command="{Binding CancelCmd}" />
+        <Button Grid.Row="0" Grid.Column="1" Content="_Save" Width="80" Command="{Binding SaveCmd}" />
+        <Button Grid.Row="0" Grid.Column="2" Content="_Cancel" Width="80" Command="{Binding CancelCmd}" />
     </Grid>
 </UserControl>

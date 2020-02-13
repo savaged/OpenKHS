@@ -47,27 +47,41 @@ namespace OpenKHS.ViewModels
         public virtual bool CanSave => CanExecute && IsItemSelected;
         public virtual bool CanCancel => CanExecute && IsItemSelected;
         public virtual bool CanDelete => CanExecute && IsItemSelected
-            && SelectedItem?.IsNew == false;
+            && !IsSelectedItemNew;
+
+        public bool IsSelectedItemNew => SelectedItem?.IsNew != true;
 
         protected virtual async void OnSave()
         {
             MessengerInstance.Send(new BusyMessage(true, this));
-            if (SelectedItem.IsNew())
+            try
             {
-                await ModelService.InsertAsync(SelectedItem);
+                if (SelectedItem.IsNew())
+                {
+                    await ModelService.InsertAsync(SelectedItem);
+                }
+                else
+                {
+                    await ModelService.UpdateAsync(SelectedItem);
+                }
             }
-            else
+            finally
             {
-                await ModelService.UpdateAsync(SelectedItem);
+                MessengerInstance.Send(new BusyMessage(false, this));
             }
-            MessengerInstance.Send(new BusyMessage(false, this));
         }
 
         protected virtual async void OnDelete()
         {
             MessengerInstance.Send(new BusyMessage(true, this));
-            await ModelService.DeleteAsync(SelectedItem);
-            MessengerInstance.Send(new BusyMessage(false, this));
+            try
+            {
+                await ModelService.DeleteAsync(SelectedItem);
+            }
+            finally
+            {
+                MessengerInstance.Send(new BusyMessage(false, this));
+            }
         }
 
         protected virtual void OnCancel()
