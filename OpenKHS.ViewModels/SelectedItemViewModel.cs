@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using OpenKHS.Data;
@@ -18,7 +19,10 @@ namespace OpenKHS.ViewModels
             : base(busyStateManager, modelService)
         {
             SaveCmd = new RelayCommand(OnSave, () => CanSave);
+            CancelCmd = new RelayCommand(OnCancel, () => CanCancel);
             DeleteCmd = new RelayCommand(OnDelete, () => CanDelete);
+
+            PropertyChanged += OnPropertyChanged;
         }
 
         public T? SelectedItem 
@@ -38,9 +42,12 @@ namespace OpenKHS.ViewModels
 
         public ICommand SaveCmd { get; }
         public ICommand DeleteCmd { get; }
+        public ICommand CancelCmd { get; }
 
         public virtual bool CanSave => CanExecute && IsItemSelected;
-        public virtual bool CanDelete => CanExecute && IsItemSelected;
+        public virtual bool CanCancel => CanExecute && IsItemSelected;
+        public virtual bool CanDelete => CanExecute && IsItemSelected
+            && SelectedItem?.IsNew == false;
 
         protected virtual async void OnSave()
         {
@@ -61,6 +68,22 @@ namespace OpenKHS.ViewModels
             MessengerInstance.Send(new BusyMessage(true, this));
             await ModelService.DeleteAsync(SelectedItem);
             MessengerInstance.Send(new BusyMessage(false, this));
+        }
+
+        protected virtual void OnCancel()
+        {
+            SelectedItem = null;
+        }
+
+        private void OnPropertyChanged(
+            object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(CanExecute))
+            {
+                RaisePropertyChanged(nameof(CanSave));
+                RaisePropertyChanged(nameof(CanCancel));
+                RaisePropertyChanged(nameof(CanDelete));
+            }
         }
 
     }

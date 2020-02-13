@@ -33,7 +33,7 @@
                     </Grid.RowDefinitions>
                     <local:ClmmScheduleView Grid.Row="0" 
                                             DataContext="{Binding ClmmScheduleAdminViewModel}"/>
-                    <local:FormButtons Grid.Row="1"/>
+                    <local:FormButtons Grid.Row="1" DataContext="{Binding ClmmScheduleAdminViewModel.SelectedItemViewModel}"/>
                 </Grid>
             </Grid>
         </TabItem>
@@ -59,7 +59,7 @@
                     </Grid.RowDefinitions>
                     <local:PmScheduleView Grid.Row="0" 
                                           DataContext="{Binding PmScheduleAdminViewModel}"/>
-                    <local:FormButtons Grid.Row="1"/>
+                    <local:FormButtons Grid.Row="1" DataContext="{Binding PmScheduleAdminViewModel.SelectedItemViewModel}"/>
                 </Grid>
             </Grid>           
         </TabItem>
@@ -85,7 +85,7 @@
                     </Grid.RowDefinitions>
                     <local:AssigneeView Grid.Row="0" 
                                         DataContext="{Binding AssigneeAdminViewModel}"/>
-                    <local:FormButtons Grid.Row="1"/>
+                    <local:FormButtons Grid.Row="1" DataContext="{Binding AssigneeAdminViewModel.SelectedItemViewModel}"/>
                 </Grid>
             </Grid>
         </TabItem>
