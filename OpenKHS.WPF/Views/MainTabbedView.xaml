@@ -21,7 +21,7 @@
                     <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
                 <local:IndexView Grid.Column="0" DataContext="{Binding ClmmScheduleAdminViewModel}"/>
-                <local:AssigneeView Grid.Column="1" DataContext="{Binding ClmmScheduleAdminViewModel}"/>
+                <local:ClmmScheduleView Grid.Column="1" DataContext="{Binding ClmmScheduleAdminViewModel}"/>
             </Grid>
         </TabItem>
         <TabItem Style="{DynamicResource LeftVerticalTabItem}">
@@ -37,7 +37,7 @@
                     <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
                 <local:IndexView Grid.Column="0" DataContext="{Binding PmScheduleAdminViewModel}"/>
-                <local:AssigneeView Grid.Column="1" DataContext="{Binding PmScheduleAdminViewModel}"/>
+                <local:PmScheduleView Grid.Column="1" DataContext="{Binding PmScheduleAdminViewModel}"/>
             </Grid>           
         </TabItem>
         <TabItem Style="{DynamicResource LeftVerticalTabItem}">
