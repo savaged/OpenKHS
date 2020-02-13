@@ -6,7 +6,10 @@
              xmlns:local="clr-namespace:OpenKHS.WPF.Views"
              mc:Ignorable="d"
              Background="{DynamicResource ControlBackgroundBrush}">
-    <Grid>
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </UserControl.Resources>
+    <Grid Visibility="{Binding SelectedItemViewModel.IsItemSelected, Converter={StaticResource BoolToVisibilityConverter}}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="1*"/>
