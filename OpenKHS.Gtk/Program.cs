@@ -1,10 +1,15 @@
 using System;
 using Gtk;
+using Ninject;
+using OpenKHS.Data.StaticData;
+using OpenKHS.ViewModels;
 
 namespace OpenKHS.Gtk
 {
     class Program
     {
+        private static IKernel _kernel;
+
         [STAThread]
         public static void Main(string[] args)
         {
@@ -13,7 +18,11 @@ namespace OpenKHS.Gtk
             var app = new Application("org.OpenKHS.Gtk.OpenKHS.Gtk", GLib.ApplicationFlags.None);
             app.Register(GLib.Cancellable.Current);
 
-            var win = new MainWindow();
+            _kernel = new StandardKernel(
+                new ViewModelCoreBindings(),
+                new DbContextBindings(DbConnectionStrings.LIVE));
+
+            var win = _kernel.Get<MainWindow>();
             app.AddWindow(win);
 
             win.Show();
