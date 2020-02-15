@@ -6,7 +6,6 @@ using Microsoft.Data.Sqlite;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
 using OpenKHS.Data;
-using OpenKHS.Lookups;
 using OpenKHS.Models;
 using OpenKHS.ViewModels;
 
@@ -23,7 +22,6 @@ namespace OpenKHS.Test.Feature
         public void Init()
         {
             _kernel = new StandardKernel(
-                new LookupsCoreBindings(),
                 new ViewModelCoreBindings(),
                 new TestDbContextBindings());
             _dbConnection = _kernel.Get<SqliteConnection>();

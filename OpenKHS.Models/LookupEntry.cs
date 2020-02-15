@@ -36,5 +36,7 @@ namespace OpenKHS.Models
              get => -1;
              set => _ = value;
         }
+
+        public bool IsNew => false;
     }
 }

@@ -18,7 +18,7 @@ Feel free to have a look at the code by cloning this repository using:
 | Priority | Size | ~% Done | Where | Description |
 | --- | --- | --- | --- | --- |
 | Must | L | 10 | Model | Assignment selection by list ordered by assignment tally |
-| Should | S | 0 | All | Switch to NetStandard for each library |
+| Should | S | 90 | All | Switch to NetStandard for each library |
 | Should | XL | 15 | WPF | Desktop UI application (MS Windows, Mac OS and Linux) |
 | Could | XL | 0 | Gtk# | Desktop UI application (MS Windows, Mac OS and Linux) that builds on Linux |
 | Could | M | 5 | CLI | Code the AddModule |

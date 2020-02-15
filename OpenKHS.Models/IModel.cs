@@ -4,6 +4,7 @@ namespace OpenKHS.Models
     {
         int Id { get; set; }
 
-        bool IsNew => Id > 1;
+        // TODO upgrade framework to allow bool IsNew => Id > 1;
+        bool IsNew { get; }
     }
 }
