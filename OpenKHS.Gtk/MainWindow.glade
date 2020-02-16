@@ -12,7 +12,76 @@
       <placeholder/>
     </child>
     <child>
-      <placeholder/>
+      <object class="GtkFixed" id="fixedMain">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <child>
+          <object class="GtkStack" id="stackMain">
+            <property name="width_request">1004</property>
+            <property name="height_request">748</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkFixed" id="fixedClmm">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+              </object>
+              <packing>
+                <property name="name">pageClmm</property>
+                <property name="title" translatable="yes">CLMM</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkFixed" id="fixedPm">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+              </object>
+              <packing>
+                <property name="name">pagePm</property>
+                <property name="title" translatable="yes">PM</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkFixed" id="fixedCong">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+              </object>
+              <packing>
+                <property name="name">pageCong</property>
+                <property name="title" translatable="yes">Cong</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkFixed" id="fixedAt">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+              </object>
+              <packing>
+                <property name="name">pageAt</property>
+                <property name="title" translatable="yes">AT</property>
+                <property name="position">3</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="x">10</property>
+            <property name="y">38</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkStackSwitcher" id="stackSwitcherMain">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="stack">stackMain</property>
+          </object>
+          <packing>
+            <property name="x">10</property>
+            <property name="y">5</property>
+          </packing>
+        </child>
+      </object>
     </child>
   </object>
 </interface>
