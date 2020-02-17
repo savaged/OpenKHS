@@ -2,7 +2,7 @@ using System;
 
 namespace OpenKHS.Models
 {
-    public interface ISchedule
+    public interface ISchedule : ILookupEntry
     {
         DateTime WeekStarting { get; set; }
         Assignment Attendant1 { get; set; }
