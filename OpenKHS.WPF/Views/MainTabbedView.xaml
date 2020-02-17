@@ -20,8 +20,8 @@
             </TabItem.Header>
             <Grid>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="280"/>
                     <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
                 <local:IndexView Grid.Column="0" 
                                  DataContext="{Binding ClmmScheduleAdminViewModel}"/>
@@ -33,7 +33,8 @@
                     </Grid.RowDefinitions>
                     <local:ClmmScheduleView Grid.Row="0" 
                                             DataContext="{Binding ClmmScheduleAdminViewModel}"/>
-                    <local:FormButtons Grid.Row="1" DataContext="{Binding ClmmScheduleAdminViewModel.SelectedItemViewModel}"/>
+                    <local:FormButtons Grid.Row="1" HorizontalAlignment="Right"
+                                       DataContext="{Binding ClmmScheduleAdminViewModel.SelectedItemViewModel}"/>
                 </Grid>
             </Grid>
         </TabItem>
@@ -46,8 +47,8 @@
             </TabItem.Header>
             <Grid>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="280"/>
                     <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
                 <local:IndexView Grid.Column="0" 
                                  DataContext="{Binding PmScheduleAdminViewModel}"/>
@@ -59,7 +60,8 @@
                     </Grid.RowDefinitions>
                     <local:PmScheduleView Grid.Row="0" 
                                           DataContext="{Binding PmScheduleAdminViewModel}"/>
-                    <local:FormButtons Grid.Row="1" DataContext="{Binding PmScheduleAdminViewModel.SelectedItemViewModel}"/>
+                    <local:FormButtons Grid.Row="1" HorizontalAlignment="Right"
+                                       DataContext="{Binding PmScheduleAdminViewModel.SelectedItemViewModel}"/>
                 </Grid>
             </Grid>           
         </TabItem>
@@ -72,8 +74,8 @@
             </TabItem.Header>
             <Grid>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="280"/>
                     <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
                 <local:IndexView Grid.Column="0" 
                                  DataContext="{Binding AssigneeAdminViewModel}"/>
@@ -85,7 +87,8 @@
                     </Grid.RowDefinitions>
                     <local:AssigneeView Grid.Row="0" 
                                         DataContext="{Binding AssigneeAdminViewModel}"/>
-                    <local:FormButtons Grid.Row="1" DataContext="{Binding AssigneeAdminViewModel.SelectedItemViewModel}"/>
+                    <local:FormButtons Grid.Row="1" HorizontalAlignment="Right"
+                                       DataContext="{Binding AssigneeAdminViewModel.SelectedItemViewModel}"/>
                 </Grid>
             </Grid>
         </TabItem>

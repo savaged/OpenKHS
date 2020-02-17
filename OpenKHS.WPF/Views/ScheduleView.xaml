@@ -1,0 +1,50 @@
+<UserControl x:Class="OpenKHS.WPF.Views.ScheduleView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:OpenKHS.WPF.Views"
+             mc:Ignorable="d"
+             Background="{DynamicResource ControlBackgroundBrush}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="280"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Grid.Column="0" Grid.Row="0">Week Starting</Label>
+        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SelectedItemViewModel.SelectedItem.WeekStarting}"/>
+        <Label Grid.Column="0" Grid.Row="1">Attendant 1</Label>
+        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding SelectedItemViewModel.SelectedItem.Attendant1}"/>
+        <Label Grid.Column="0" Grid.Row="2">Attendant 2</Label>
+        <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding SelectedItemViewModel.SelectedItem.Attendant2}"/>
+        <Label Grid.Column="0" Grid.Row="3">Attendant 3</Label>
+        <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding SelectedItemViewModel.SelectedItem.Attendant3}"/>
+        <Label Grid.Column="0" Grid.Row="4">Attendant 4</Label>
+        <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding SelectedItemViewModel.SelectedItem.Attendant4}"/>
+        <Label Grid.Column="0" Grid.Row="5">Platform</Label>
+        <TextBox Grid.Column="1" Grid.Row="5" Text="{Binding SelectedItemViewModel.SelectedItem.Platform}"/>
+        <Label Grid.Column="0" Grid.Row="6">Sound Desk</Label>
+        <TextBox Grid.Column="1" Grid.Row="6" Text="{Binding SelectedItemViewModel.SelectedItem.SoundDesk}"/>
+        <Label Grid.Column="0" Grid.Row="7">Roving Mic 1</Label>
+        <TextBox Grid.Column="1" Grid.Row="7" Text="{Binding SelectedItemViewModel.SelectedItem.RovingMic1}"/>
+        <Label Grid.Column="0" Grid.Row="8">Roving Mic 2</Label>
+        <TextBox Grid.Column="1" Grid.Row="8" Text="{Binding SelectedItemViewModel.SelectedItem.RovingMic2}"/>       
+        <Label Grid.Column="0" Grid.Row="9">Opening Prayer</Label>
+        <TextBox Grid.Column="1" Grid.Row="9" Text="{Binding SelectedItemViewModel.SelectedItem.OpeningPrayer}"/>
+        <Label Grid.Column="0" Grid.Row="10">Closing Prayer</Label>
+        <TextBox Grid.Column="1" Grid.Row="10" Text="{Binding SelectedItemViewModel.SelectedItem.ClosingPrayer}"/>
+    </Grid>
+</UserControl>

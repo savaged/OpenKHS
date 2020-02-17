@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="Open KHS"
         Icon="Logo.ico"
-        Height="768" Width="1024"
+        Height="720" Width="1280"
         Background="{DynamicResource WindowBackgroundBrush}">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>

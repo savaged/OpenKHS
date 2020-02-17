@@ -6,27 +6,31 @@
              xmlns:local="clr-namespace:OpenKHS.WPF.Views"
              mc:Ignorable="d"
              Background="{DynamicResource ControlBackgroundBrush}">
-   <Grid>
+    <Grid Margin="5">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Label Grid.Column="0" Grid.Row="0">Name</Label>
-        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SelectedItemViewModel.SelectedItem.Name}"/>
+        <local:ScheduleView Grid.Column="0"/>
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="280"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="0">Chairman</Label>
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SelectedItemViewModel.SelectedItem.Chairman}"/>
+            <Label Grid.Column="0" Grid.Row="1">Speaker</Label>
+            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding SelectedItemViewModel.SelectedItem.Speaker}"/>
+            <Label Grid.Column="0" Grid.Row="2">WT Conductor</Label>
+            <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding SelectedItemViewModel.SelectedItem.WtConductor}"/>
+            <Label Grid.Column="0" Grid.Row="3">WT Reader</Label>
+            <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding SelectedItemViewModel.SelectedItem.WtReader}"/>
+       </Grid>
     </Grid>
 </UserControl>

@@ -19,7 +19,7 @@ namespace OpenKHS.Models
         private bool _SchoolDemo2;
         private bool _SchoolDemo3;
         private bool _SchoolTalk;
-        private bool _SchoolDemoHouseholder;
+        private bool _SchoolDemoAsst;
         private bool _SecondSchoolOnly;
         private bool _SchoolMainHallOnly;
         private bool _LacParts;
@@ -108,10 +108,10 @@ namespace OpenKHS.Models
         }
 
         [Privilege]
-        public bool SchoolDemoHouseholder
+        public bool SchoolDemoAsst
         {
-            get => _SchoolDemoHouseholder;
-            set => Set(ref _SchoolDemoHouseholder, value);
+            get => _SchoolDemoAsst;
+            set => Set(ref _SchoolDemoAsst, value);
         }
 
         [Privilege]
@@ -248,7 +248,7 @@ namespace OpenKHS.Models
                 nameof(Gems) => Gems,
                 nameof(LacParts) => LacParts,
                 nameof(SchoolMainHallOnly) => SchoolMainHallOnly,
-                nameof(SchoolDemoHouseholder) => SchoolDemoHouseholder,
+                nameof(SchoolDemoAsst) => SchoolDemoAsst,
                 nameof(SchoolDemo3) => SchoolDemo3,
                 nameof(SchoolDemo1) => SchoolDemo1,
                 nameof(SchoolDemo2) => SchoolDemo2,

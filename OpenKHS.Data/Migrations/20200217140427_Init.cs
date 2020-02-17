@@ -23,7 +23,7 @@ namespace OpenKHS.Data.Migrations
                     SchoolDemo2 = table.Column<bool>(nullable: false),
                     SchoolDemo3 = table.Column<bool>(nullable: false),
                     SchoolTalk = table.Column<bool>(nullable: false),
-                    SchoolDemoHouseholder = table.Column<bool>(nullable: false),
+                    SchoolDemoAsst = table.Column<bool>(nullable: false),
                     SecondSchoolOnly = table.Column<bool>(nullable: false),
                     SchoolMainHallOnly = table.Column<bool>(nullable: false),
                     LacParts = table.Column<bool>(nullable: false),
@@ -128,12 +128,12 @@ namespace OpenKHS.Data.Migrations
                     TreasuresId = table.Column<int>(nullable: false),
                     GemsId = table.Column<int>(nullable: false),
                     SchoolBibleReadingId = table.Column<int>(nullable: false),
-                    Demo1PublisherId = table.Column<int>(nullable: false),
-                    Demo1HouseholderId = table.Column<int>(nullable: false),
-                    Demo2PublisherId = table.Column<int>(nullable: false),
-                    Demo2HouseholderId = table.Column<int>(nullable: false),
-                    Demo3PublisherId = table.Column<int>(nullable: false),
-                    Demo3HouseholderId = table.Column<int>(nullable: false),
+                    Demo1PubId = table.Column<int>(nullable: false),
+                    Demo1AsstId = table.Column<int>(nullable: false),
+                    Demo2PubId = table.Column<int>(nullable: false),
+                    Demo2AsstId = table.Column<int>(nullable: false),
+                    Demo3PubId = table.Column<int>(nullable: false),
+                    Demo3AsstId = table.Column<int>(nullable: false),
                     SchoolTalkId = table.Column<int>(nullable: false),
                     LacPart1Id = table.Column<int>(nullable: false),
                     LacPart2Id = table.Column<int>(nullable: false),
@@ -193,38 +193,38 @@ namespace OpenKHS.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignments_Demo1HouseholderId",
-                        column: x => x.Demo1HouseholderId,
+                        name: "FK_ClmmSchedules_Assignments_Demo1AsstId",
+                        column: x => x.Demo1AsstId,
                         principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignments_Demo1PublisherId",
-                        column: x => x.Demo1PublisherId,
+                        name: "FK_ClmmSchedules_Assignments_Demo1PubId",
+                        column: x => x.Demo1PubId,
                         principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignments_Demo2HouseholderId",
-                        column: x => x.Demo2HouseholderId,
+                        name: "FK_ClmmSchedules_Assignments_Demo2AsstId",
+                        column: x => x.Demo2AsstId,
                         principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignments_Demo2PublisherId",
-                        column: x => x.Demo2PublisherId,
+                        name: "FK_ClmmSchedules_Assignments_Demo2PubId",
+                        column: x => x.Demo2PubId,
                         principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignments_Demo3HouseholderId",
-                        column: x => x.Demo3HouseholderId,
+                        name: "FK_ClmmSchedules_Assignments_Demo3AsstId",
+                        column: x => x.Demo3AsstId,
                         principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClmmSchedules_Assignments_Demo3PublisherId",
-                        column: x => x.Demo3PublisherId,
+                        name: "FK_ClmmSchedules_Assignments_Demo3PubId",
+                        column: x => x.Demo3PubId,
                         principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -458,34 +458,34 @@ namespace OpenKHS.Data.Migrations
                 column: "ClosingPrayerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClmmSchedules_Demo1HouseholderId",
+                name: "IX_ClmmSchedules_Demo1AsstId",
                 table: "ClmmSchedules",
-                column: "Demo1HouseholderId");
+                column: "Demo1AsstId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClmmSchedules_Demo1PublisherId",
+                name: "IX_ClmmSchedules_Demo1PubId",
                 table: "ClmmSchedules",
-                column: "Demo1PublisherId");
+                column: "Demo1PubId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClmmSchedules_Demo2HouseholderId",
+                name: "IX_ClmmSchedules_Demo2AsstId",
                 table: "ClmmSchedules",
-                column: "Demo2HouseholderId");
+                column: "Demo2AsstId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClmmSchedules_Demo2PublisherId",
+                name: "IX_ClmmSchedules_Demo2PubId",
                 table: "ClmmSchedules",
-                column: "Demo2PublisherId");
+                column: "Demo2PubId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClmmSchedules_Demo3HouseholderId",
+                name: "IX_ClmmSchedules_Demo3AsstId",
                 table: "ClmmSchedules",
-                column: "Demo3HouseholderId");
+                column: "Demo3AsstId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClmmSchedules_Demo3PublisherId",
+                name: "IX_ClmmSchedules_Demo3PubId",
                 table: "ClmmSchedules",
-                column: "Demo3PublisherId");
+                column: "Demo3PubId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ClmmSchedules_GemsId",

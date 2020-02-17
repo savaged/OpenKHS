@@ -9,7 +9,7 @@ using OpenKHS.Data;
 namespace OpenKHS.Data.Migrations
 {
     [DbContext(typeof(OpenKHSContext))]
-    [Migration("20200210132012_Init")]
+    [Migration("20200217140427_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -76,7 +76,7 @@ namespace OpenKHS.Data.Migrations
                     b.Property<bool>("SchoolDemo3")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("SchoolDemoHouseholder")
+                    b.Property<bool>("SchoolDemoAsst")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("SchoolMainHallOnly")
@@ -184,22 +184,22 @@ namespace OpenKHS.Data.Migrations
                     b.Property<int>("ClosingPrayerId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Demo1HouseholderId")
+                    b.Property<int>("Demo1AsstId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Demo1PublisherId")
+                    b.Property<int>("Demo1PubId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Demo2HouseholderId")
+                    b.Property<int>("Demo2AsstId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Demo2PublisherId")
+                    b.Property<int>("Demo2PubId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Demo3HouseholderId")
+                    b.Property<int>("Demo3AsstId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Demo3PublisherId")
+                    b.Property<int>("Demo3PubId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("GemsId")
@@ -259,17 +259,17 @@ namespace OpenKHS.Data.Migrations
 
                     b.HasIndex("ClosingPrayerId");
 
-                    b.HasIndex("Demo1HouseholderId");
+                    b.HasIndex("Demo1AsstId");
 
-                    b.HasIndex("Demo1PublisherId");
+                    b.HasIndex("Demo1PubId");
 
-                    b.HasIndex("Demo2HouseholderId");
+                    b.HasIndex("Demo2AsstId");
 
-                    b.HasIndex("Demo2PublisherId");
+                    b.HasIndex("Demo2PubId");
 
-                    b.HasIndex("Demo3HouseholderId");
+                    b.HasIndex("Demo3AsstId");
 
-                    b.HasIndex("Demo3PublisherId");
+                    b.HasIndex("Demo3PubId");
 
                     b.HasIndex("GemsId");
 
@@ -482,39 +482,39 @@ namespace OpenKHS.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OpenKHS.Models.Assignment", "Demo1Householder")
+                    b.HasOne("OpenKHS.Models.Assignment", "Demo1Asst")
                         .WithMany()
-                        .HasForeignKey("Demo1HouseholderId")
+                        .HasForeignKey("Demo1AsstId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OpenKHS.Models.Assignment", "Demo1Publisher")
+                    b.HasOne("OpenKHS.Models.Assignment", "Demo1Pub")
                         .WithMany()
-                        .HasForeignKey("Demo1PublisherId")
+                        .HasForeignKey("Demo1PubId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OpenKHS.Models.Assignment", "Demo2Householder")
+                    b.HasOne("OpenKHS.Models.Assignment", "Demo2Asst")
                         .WithMany()
-                        .HasForeignKey("Demo2HouseholderId")
+                        .HasForeignKey("Demo2AsstId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OpenKHS.Models.Assignment", "Demo2Publisher")
+                    b.HasOne("OpenKHS.Models.Assignment", "Demo2Pub")
                         .WithMany()
-                        .HasForeignKey("Demo2PublisherId")
+                        .HasForeignKey("Demo2PubId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OpenKHS.Models.Assignment", "Demo3Householder")
+                    b.HasOne("OpenKHS.Models.Assignment", "Demo3Asst")
                         .WithMany()
-                        .HasForeignKey("Demo3HouseholderId")
+                        .HasForeignKey("Demo3AsstId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OpenKHS.Models.Assignment", "Demo3Publisher")
+                    b.HasOne("OpenKHS.Models.Assignment", "Demo3Pub")
                         .WithMany()
-                        .HasForeignKey("Demo3PublisherId")
+                        .HasForeignKey("Demo3PubId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

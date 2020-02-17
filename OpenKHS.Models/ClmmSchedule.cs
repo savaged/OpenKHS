@@ -10,12 +10,12 @@ namespace OpenKHS.Models
             Treasures = 
             Gems = 
             SchoolBibleReading =
-            Demo1Publisher = 
-            Demo1Householder =
-            Demo2Publisher = 
-            Demo2Householder = 
-            Demo3Publisher =
-            Demo3Householder = 
+            Demo1Pub = 
+            Demo1Asst =
+            Demo2Pub = 
+            Demo2Asst = 
+            Demo3Pub =
+            Demo3Asst = 
             SchoolTalk =
             LacPart1 = 
             LacPart2 =
@@ -41,29 +41,29 @@ namespace OpenKHS.Models
                 new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.SchoolBibleReading), 
                     assignmentTypes).Id);
-            Demo1Publisher =
+            Demo1Pub =
                 new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.SchoolBibleReading), 
                     assignmentTypes).Id);
-            Demo1Householder = 
+            Demo1Asst = 
                  new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.SchoolDemoHouseholder), 
+                    nameof(Assignee.SchoolDemoAsst), 
                     assignmentTypes).Id);           
-            Demo2Publisher = 
+            Demo2Pub = 
                  new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.SchoolDemo2), 
                     assignmentTypes).Id);
-            Demo2Householder = 
+            Demo2Asst = 
                  new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.SchoolDemoHouseholder), 
+                    nameof(Assignee.SchoolDemoAsst), 
                     assignmentTypes).Id);
-            Demo3Publisher = 
+            Demo3Pub = 
                  new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.SchoolDemo3), 
                     assignmentTypes).Id);
-            Demo3Householder = 
+            Demo3Asst = 
                  new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.SchoolDemoHouseholder), 
+                    nameof(Assignee.SchoolDemoAsst), 
                     assignmentTypes).Id);
             SchoolTalk = 
                  new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
@@ -97,14 +97,14 @@ namespace OpenKHS.Models
         
         public Assignment SchoolBibleReading { get; set; }
         
-        public Assignment Demo1Publisher { get; set; }
-        public Assignment Demo1Householder { get; set; }
+        public Assignment Demo1Pub { get; set; }
+        public Assignment Demo1Asst { get; set; }
 
-        public Assignment Demo2Publisher { get; set; }
-        public Assignment Demo2Householder { get; set; }
+        public Assignment Demo2Pub { get; set; }
+        public Assignment Demo2Asst { get; set; }
 
-        public Assignment Demo3Publisher { get; set; }
-        public Assignment Demo3Householder { get; set; }
+        public Assignment Demo3Pub { get; set; }
+        public Assignment Demo3Asst { get; set; }
 
         public Assignment SchoolTalk { get; set; }
 

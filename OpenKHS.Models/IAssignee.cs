@@ -17,7 +17,7 @@ namespace OpenKHS.Models
         bool LacParts { get; set; }
         bool SchoolMainHallOnly { get; set; }
         bool Prayer { get; set; }
-        bool SchoolDemoHouseholder { get; set; }
+        bool SchoolDemoAsst { get; set; }
         bool SchoolDemo3 { get; set; }
         bool SchoolDemo1 { get; set; }
         bool SchoolDemo2 { get; set; }
