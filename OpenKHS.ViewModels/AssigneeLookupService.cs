@@ -19,14 +19,16 @@ namespace OpenKHS.ViewModels
             _assignmentTypes = new List<AssignmentType>();
         }
 
-        public IList<T> Attendants<T>()
-            where T : class, IAssignee
+        public IList<Assignee> Attendants  
         {
-            InitialiseAssignmentTypes();
-            var assignmentType = _assignmentTypes.FirstOrDefault(
-                t => t.Name == nameof(Assignee.Attendant));
-            var index = GetIndex<T>(assignmentType);
-            return index;
+            get 
+            {
+                InitialiseAssignmentTypes();
+                var assignmentType = _assignmentTypes.FirstOrDefault(
+                    t => t.Name == nameof(Assignee.Attendant));
+                var index = GetIndex<Assignee>(assignmentType);
+                return index;
+            }
         }
 
         private IList<T> GetIndex<T>(AssignmentType assignmentType)

@@ -16,7 +16,8 @@ namespace OpenKHS.ViewModels
             IBusyStateRegistry busyStateManager,
             IModelService modelService,
             IndexViewModel<T> indexViewModel,
-            SelectedItemViewModel<T> selectedItemViewModel) 
+            SelectedItemViewModel<T> selectedItemViewModel,
+            IAssigneeLookupService assigneeLookupService) 
             : base(busyStateManager, modelService)
         {
             IndexViewModel = indexViewModel ??
@@ -24,6 +25,9 @@ namespace OpenKHS.ViewModels
             SelectedItemViewModel = selectedItemViewModel ??
                 throw new ArgumentNullException(nameof(selectedItemViewModel));
             
+            AssigneeLookupService = assigneeLookupService ??
+                throw new ArgumentNullException(nameof(assigneeLookupService));
+
             AddCmd = new RelayCommand(OnAdd, () => CanAdd);
 
             MessengerInstance.Register<ModelSavedMessage<T>>(this, OnModelSaved);
@@ -31,7 +35,10 @@ namespace OpenKHS.ViewModels
         }
 
         public IndexViewModel<T> IndexViewModel { get; }
+
         public SelectedItemViewModel<T> SelectedItemViewModel { get; }
+
+        public IAssigneeLookupService AssigneeLookupService { get; }
 
         public virtual async Task LoadAsync()
         {

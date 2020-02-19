@@ -5,6 +5,6 @@ namespace OpenKHS.ViewModels
 {
     public interface IAssigneeLookupService
     {
-        IList<T> Attendants<T>() where T : class, IAssignee;
+        IList<Assignee> Attendants { get; }
     }
 }
