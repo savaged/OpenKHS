@@ -25,7 +25,11 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Label Grid.Column="0" Grid.Row="0">Week Starting</Label>
-        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SelectedItemViewModel.SelectedItem.WeekStarting}"/>
+        <Grid Grid.Column="1" Grid.Row="0"
+              Height="25" Width="120" 
+              VerticalAlignment="Top" HorizontalAlignment="Left">
+            <DatePicker SelectedDate="{Binding SelectedItemViewModel.SelectedItem.WeekStarting}"/>
+        </Grid>
         <Label Grid.Column="0" Grid.Row="1">Attendant 1</Label>
         <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding SelectedItemViewModel.SelectedItem.Attendant1}"/>
         <Label Grid.Column="0" Grid.Row="2">Attendant 2</Label>
