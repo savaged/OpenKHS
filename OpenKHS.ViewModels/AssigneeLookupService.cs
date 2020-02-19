@@ -6,6 +6,7 @@ using OpenKHS.Models;
 
 namespace OpenKHS.ViewModels
 {
+    // TODO Change this to be an Assignment service that will fetch assignees internally then create an in memory Assignment
     public class AssigneeLookupService : IAssigneeLookupService
     {
         private readonly IModelService _modelService;
