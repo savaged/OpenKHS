@@ -6,10 +6,6 @@
              xmlns:local="clr-namespace:OpenKHS.WPF.Views"
              mc:Ignorable="d"
              Background="{DynamicResource ControlBackgroundBrush}">
-    <UserControl.InputBindings>
-        <KeyBinding Command="{Binding AddCmd}" Key="F4"/>
-        <KeyBinding Command="{Binding AddCmd}" Gesture="Ctrl+n"/>
-    </UserControl.InputBindings>
     <Grid>
         <DataGrid ItemsSource="{Binding IndexViewModel.Index}"
                   SelectedItem="{Binding SelectedItemViewModel.SelectedItem}"
@@ -18,7 +14,7 @@
                   CanUserAddRows="False" CanUserDeleteRows="False">
             <DataGrid.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Add (F4)" Command="{Binding AddCmd}"/>
+                    <MenuItem Header="Add" Command="{Binding AddCmd}"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
             <DataGrid.Columns>

@@ -6,16 +6,14 @@
              xmlns:local="clr-namespace:OpenKHS.WPF.Views"
              mc:Ignorable="d"
              Background="{DynamicResource ControlBackgroundBrush}">
-   <Grid>
+   <Grid Margin="10">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="50"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -26,7 +24,110 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Label Grid.Column="0" Grid.Row="0">Name</Label>
-        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SelectedItemViewModel.SelectedItem.Name}"/>
+        <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right">Name</Label>
+        <TextBox Grid.Column="1" Grid.Row="0" 
+                 Text="{Binding SelectedItemViewModel.SelectedItem.Name}"/>
+        <CheckBox Grid.Column="0" Grid.Row="1" 
+                  IsChecked="{Binding SelectedItemViewModel.SelectedItem.SchoolDemo1}">
+            School Demo 1
+        </CheckBox>
+        <CheckBox Grid.Column="0" Grid.Row="2" 
+                  IsChecked="{Binding SelectedItemViewModel.SelectedItem.SchoolDemo2}">
+            School Demo 2
+        </CheckBox>
+        <CheckBox Grid.Column="0" Grid.Row="3" 
+                  IsChecked="{Binding SelectedItemViewModel.SelectedItem.SchoolDemo3}">
+            School Demo 3
+        </CheckBox>
+        <CheckBox Grid.Column="0" Grid.Row="4" 
+                  IsChecked="{Binding SelectedItemViewModel.SelectedItem.SchoolDemoAsst}">
+            School Demo Assistant 
+        </CheckBox>
+        <CheckBox Grid.Column="0" Grid.Row="5" 
+                  IsChecked="{Binding SelectedItemViewModel.SelectedItem.SchoolBibleReading}">
+            School Bible Reading
+        </CheckBox>
+        <CheckBox Grid.Column="0" Grid.Row="6" 
+                  IsChecked="{Binding SelectedItemViewModel.SelectedItem.SchoolTalk}">
+            School Talk
+        </CheckBox>
+        <CheckBox Grid.Column="0" Grid.Row="7" 
+                  IsChecked="{Binding SelectedItemViewModel.SelectedItem.SecondSchoolOnly}">
+            2nd School Only
+        </CheckBox>
+        <CheckBox Grid.Column="0" Grid.Row="8" 
+                  IsChecked="{Binding SelectedItemViewModel.SelectedItem.SchoolMainHallOnly}">
+            Main School Only
+        </CheckBox>
+
+        <CheckBox Grid.Column="1" Grid.Row="1" 
+                  IsChecked="{Binding SelectedItemViewModel.SelectedItem.Prayer}">
+            Prayer
+        </CheckBox>
+        <CheckBox Grid.Column="1" Grid.Row="2" 
+                  IsChecked="{Binding SelectedItemViewModel.SelectedItem.Treasures}">
+            Treasures
+        </CheckBox>
+        <CheckBox Grid.Column="1" Grid.Row="3" 
+                  IsChecked="{Binding SelectedItemViewModel.SelectedItem.Gems}">
+            Gems
+        </CheckBox>
+        <CheckBox Grid.Column="1" Grid.Row="4" 
+                  IsChecked="{Binding SelectedItemViewModel.SelectedItem.LacParts}">
+            LAC Parts
+        </CheckBox>
+        <CheckBox Grid.Column="1" Grid.Row="5" 
+                  IsChecked="{Binding SelectedItemViewModel.SelectedItem.ClmmChairman}">
+            CLMM Chairman
+        </CheckBox>
+        <CheckBox Grid.Column="1" Grid.Row="6" 
+                  IsChecked="{Binding SelectedItemViewModel.SelectedItem.CbsConductor}">
+            Book Study Conductor
+        </CheckBox>
+        <CheckBox Grid.Column="1" Grid.Row="7" 
+                  IsChecked="{Binding SelectedItemViewModel.SelectedItem.CbsReader}">
+            Book Study Reader
+        </CheckBox>
+        <CheckBox Grid.Column="1" Grid.Row="8" 
+                  IsChecked="{Binding SelectedItemViewModel.SelectedItem.SecondSchoolCounselor}">
+            2nd School Counselor
+        </CheckBox>
+
+        <CheckBox Grid.Column="2" Grid.Row="1" 
+                  IsChecked="{Binding SelectedItemViewModel.SelectedItem.PmChairman}">
+            PM Chariman
+        </CheckBox>
+        <CheckBox Grid.Column="2" Grid.Row="2" 
+                  IsChecked="{Binding SelectedItemViewModel.SelectedItem.Speaker}">
+            Speaker
+        </CheckBox>
+        <CheckBox Grid.Column="2" Grid.Row="3" 
+                  IsChecked="{Binding SelectedItemViewModel.SelectedItem.AwaySpeaker}">
+            Away Speaker
+        </CheckBox>
+        <CheckBox Grid.Column="2" Grid.Row="4" 
+                  IsChecked="{Binding SelectedItemViewModel.SelectedItem.WtConductor}">
+            WT Conductor
+        </CheckBox>
+        <CheckBox Grid.Column="2" Grid.Row="5" 
+                  IsChecked="{Binding SelectedItemViewModel.SelectedItem.WtReader}">
+            WT Reader
+        </CheckBox>
+        <CheckBox Grid.Column="2" Grid.Row="6" 
+                  IsChecked="{Binding SelectedItemViewModel.SelectedItem.Platform}">
+            Platform
+        </CheckBox>
+        <CheckBox Grid.Column="2" Grid.Row="7" 
+                  IsChecked="{Binding SelectedItemViewModel.SelectedItem.SoundDesk}">
+            Sound Desk
+        </CheckBox>
+        <CheckBox Grid.Column="2" Grid.Row="8" 
+                  IsChecked="{Binding SelectedItemViewModel.SelectedItem.RovingMic}">
+            Roving Mic
+        </CheckBox>
+        <CheckBox Grid.Column="2" Grid.Row="9" 
+                  IsChecked="{Binding SelectedItemViewModel.SelectedItem.Attendant}">
+            Attendant
+        </CheckBox>
     </Grid>
 </UserControl>

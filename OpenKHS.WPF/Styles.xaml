@@ -98,6 +98,7 @@
     <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource BaseControlStyle}">
         <Setter Property="Height" Value="24"/>
         <Setter Property="CaretBrush" Value="Red"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
     </Style>
 
     <Style TargetType="Label" BasedOn="{StaticResource BaseControlStyle}"/>
