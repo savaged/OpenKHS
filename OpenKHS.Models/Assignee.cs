@@ -33,7 +33,6 @@ namespace OpenKHS.Models
         private bool _Platform;
         private bool _SoundDesk;
         private bool _RovingMic;
-        private bool _WtConductor;
 
         public Assignee()
         {
@@ -212,13 +211,6 @@ namespace OpenKHS.Models
             set => Set(ref _RovingMic, value);
         }
 
-        [Privilege]
-        public bool WtConductor
-        {
-            get => _WtConductor;
-            set => Set(ref _WtConductor, value);
-        }
-
 
         public int CountPrivileges()
         {
@@ -262,7 +254,6 @@ namespace OpenKHS.Models
                 nameof(PublicSpeaker) => PublicSpeaker,
                 nameof(RovingMic) => RovingMic,
                 nameof(SoundDesk) => SoundDesk,
-                nameof(WtConductor) => WtConductor,
                 nameof(WtReader) => WtReader,
                 _ => false
             };

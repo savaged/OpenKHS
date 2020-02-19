@@ -30,7 +30,6 @@ namespace OpenKHS.Models
         bool PublicSpeaker { get; set; }
         bool RovingMic { get; set; }
         bool SoundDesk { get; set; }
-        bool WtConductor { get; set; }
         bool WtReader { get; set; }
     }
 }

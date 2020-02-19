@@ -95,9 +95,6 @@ namespace OpenKHS.Data.Migrations
                     b.Property<bool>("Treasures")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("WtConductor")
-                        .HasColumnType("INTEGER");
-
                     b.Property<bool>("WtReader")
                         .HasColumnType("INTEGER");
 
@@ -342,9 +339,6 @@ namespace OpenKHS.Data.Migrations
                     b.Property<DateTime>("WeekStarting")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("WtConductorId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("WtReaderId")
                         .HasColumnType("INTEGER");
 
@@ -371,8 +365,6 @@ namespace OpenKHS.Data.Migrations
                     b.HasIndex("RovingMic2Id");
 
                     b.HasIndex("SoundDeskId");
-
-                    b.HasIndex("WtConductorId");
 
                     b.HasIndex("WtReaderId");
 
@@ -654,12 +646,6 @@ namespace OpenKHS.Data.Migrations
                     b.HasOne("OpenKHS.Models.Assignment", "SoundDesk")
                         .WithMany()
                         .HasForeignKey("SoundDeskId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("OpenKHS.Models.Assignment", "WtConductor")
-                        .WithMany()
-                        .HasForeignKey("WtConductorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

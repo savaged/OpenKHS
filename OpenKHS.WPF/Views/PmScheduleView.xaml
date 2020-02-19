@@ -27,8 +27,6 @@
             <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SelectedItemViewModel.SelectedItem.Chairman}"/>
             <Label Grid.Column="0" Grid.Row="1">Speaker</Label>
             <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding SelectedItemViewModel.SelectedItem.Speaker}"/>
-            <Label Grid.Column="0" Grid.Row="2">WT Conductor</Label>
-            <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding SelectedItemViewModel.SelectedItem.WtConductor}"/>
             <Label Grid.Column="0" Grid.Row="3">WT Reader</Label>
             <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding SelectedItemViewModel.SelectedItem.WtReader}"/>
        </Grid>

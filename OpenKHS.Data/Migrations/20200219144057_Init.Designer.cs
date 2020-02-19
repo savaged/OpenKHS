@@ -9,7 +9,7 @@ using OpenKHS.Data;
 namespace OpenKHS.Data.Migrations
 {
     [DbContext(typeof(OpenKHSContext))]
-    [Migration("20200217140427_Init")]
+    [Migration("20200219144057_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -95,9 +95,6 @@ namespace OpenKHS.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("Treasures")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("WtConductor")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("WtReader")
@@ -344,9 +341,6 @@ namespace OpenKHS.Data.Migrations
                     b.Property<DateTime>("WeekStarting")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("WtConductorId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("WtReaderId")
                         .HasColumnType("INTEGER");
 
@@ -373,8 +367,6 @@ namespace OpenKHS.Data.Migrations
                     b.HasIndex("RovingMic2Id");
 
                     b.HasIndex("SoundDeskId");
-
-                    b.HasIndex("WtConductorId");
 
                     b.HasIndex("WtReaderId");
 
@@ -656,12 +648,6 @@ namespace OpenKHS.Data.Migrations
                     b.HasOne("OpenKHS.Models.Assignment", "SoundDesk")
                         .WithMany()
                         .HasForeignKey("SoundDeskId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("OpenKHS.Models.Assignment", "WtConductor")
-                        .WithMany()
-                        .HasForeignKey("WtConductorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

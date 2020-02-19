@@ -9,6 +9,8 @@ namespace OpenKHS.ViewModels
         {
             Bind<IBusyStateRegistry>().To<BusyStateRegistry>()
                 .InSingletonScope();
+            Bind<IAssigneeLookupService>().To<AssigneeLookupService>()
+                .InSingletonScope();
         }
     }
 }

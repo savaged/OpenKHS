@@ -37,8 +37,7 @@ namespace OpenKHS.Data.Migrations
                     Attendant = table.Column<bool>(nullable: false),
                     SoundDesk = table.Column<bool>(nullable: false),
                     Platform = table.Column<bool>(nullable: false),
-                    RovingMic = table.Column<bool>(nullable: false),
-                    WtConductor = table.Column<bool>(nullable: false)
+                    RovingMic = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -320,7 +319,6 @@ namespace OpenKHS.Data.Migrations
                     OpeningPrayerId = table.Column<int>(nullable: false),
                     ClosingPrayerId = table.Column<int>(nullable: false),
                     ChairmanId = table.Column<int>(nullable: false),
-                    WtConductorId = table.Column<int>(nullable: false),
                     WtReaderId = table.Column<int>(nullable: false),
                     Speaker = table.Column<string>(nullable: false)
                 },
@@ -390,12 +388,6 @@ namespace OpenKHS.Data.Migrations
                     table.ForeignKey(
                         name: "FK_PmSchedules_Assignments_SoundDeskId",
                         column: x => x.SoundDeskId,
-                        principalTable: "Assignments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_PmSchedules_Assignments_WtConductorId",
-                        column: x => x.WtConductorId,
                         principalTable: "Assignments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -601,11 +593,6 @@ namespace OpenKHS.Data.Migrations
                 name: "IX_PmSchedules_SoundDeskId",
                 table: "PmSchedules",
                 column: "SoundDeskId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PmSchedules_WtConductorId",
-                table: "PmSchedules",
-                column: "WtConductorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PmSchedules_WtReaderId",

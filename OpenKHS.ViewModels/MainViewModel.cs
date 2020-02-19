@@ -18,7 +18,8 @@ namespace OpenKHS.ViewModels
             MasterDetailViewModel<ClmmSchedule> clmmScheduleAdminViewModel,
             MasterDetailViewModel<PmSchedule> pmScheduleAdminViewModel,
             MasterDetailViewModel<Assignee> assigneeAdminViewModel,
-            IndexViewModel<AssignmentType> assignmentTypesViewModel)
+            IndexViewModel<AssignmentType> assignmentTypesViewModel,
+            IAssigneeLookupService assigneeLookupService)
             : base(busyStateManager)
         {
             ClmmScheduleAdminViewModel = clmmScheduleAdminViewModel ??
@@ -29,6 +30,8 @@ namespace OpenKHS.ViewModels
                 throw new ArgumentNullException(nameof(assigneeAdminViewModel));
             AssignmentTypesViewModel = assignmentTypesViewModel ??
                 throw new ArgumentNullException(nameof(assignmentTypesViewModel));
+            AssigneeLookupService = assigneeLookupService ??
+                throw new ArgumentNullException(nameof(assigneeLookupService));
 
             ReloadCmd = new RelayCommand(OnReload, () => CanExecute);
             HelpCmd = new RelayCommand(OnHelp, () => CanExecute);
@@ -57,6 +60,8 @@ namespace OpenKHS.ViewModels
 
         public IndexViewModel<AssignmentType> AssignmentTypesViewModel 
         { get; }
+
+        public IAssigneeLookupService AssigneeLookupService { get; }
 
         public async Task LoadAsync()
         {

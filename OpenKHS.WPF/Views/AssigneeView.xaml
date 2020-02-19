@@ -106,10 +106,6 @@
             Away Speaker
         </CheckBox>
         <CheckBox Grid.Column="2" Grid.Row="4" 
-                  IsChecked="{Binding SelectedItemViewModel.SelectedItem.WtConductor}">
-            WT Conductor
-        </CheckBox>
-        <CheckBox Grid.Column="2" Grid.Row="5" 
                   IsChecked="{Binding SelectedItemViewModel.SelectedItem.WtReader}">
             WT Reader
         </CheckBox>

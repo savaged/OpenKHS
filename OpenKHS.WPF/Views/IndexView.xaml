@@ -11,6 +11,7 @@
                   SelectedItem="{Binding SelectedItemViewModel.SelectedItem}"
                   AutoGenerateColumns="False"
                   HeadersVisibility="None"
+                  IsReadOnly="True"
                   CanUserAddRows="False" CanUserDeleteRows="False">
             <DataGrid.ContextMenu>
                 <ContextMenu>

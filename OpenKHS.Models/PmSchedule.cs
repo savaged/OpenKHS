@@ -9,9 +9,7 @@ namespace OpenKHS.Models
         public PmSchedule() 
             : base()
         {
-            WtConductor = 
-            WtReader =
-               new NullAssignment();
+            WtReader = new NullAssignment();
             Speaker = string.Empty;
         }
 
@@ -21,16 +19,11 @@ namespace OpenKHS.Models
             Chairman = 
                 new PmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.ClmmChairman), assignmentTypes).Id);
-            WtConductor = 
-                new PmAssignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.WtConductor), assignmentTypes).Id);
             WtReader = 
                 new PmAssignment(AssignmentType.GetMatchingAssignmentType(
                     nameof(Assignee.WtReader), assignmentTypes).Id);
             Speaker = string.Empty;
         }
-
-        public Assignment WtConductor { get; set; }
 
         public Assignment WtReader { get; set; }
 

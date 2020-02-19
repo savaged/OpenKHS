@@ -10,6 +10,11 @@
         <DataGrid ItemsSource="{Binding Index}"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False" CanUserDeleteRows="False">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Copy to clipboard" Command="{Binding CopyToClipboardCmd}"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
