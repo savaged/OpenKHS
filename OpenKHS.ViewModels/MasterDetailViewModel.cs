@@ -4,6 +4,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using OpenKHS.Data;
 using OpenKHS.Models;
+using OpenKHS.ViewModels.Messages;
 using Savaged.BusyStateManager;
 
 namespace OpenKHS.ViewModels
@@ -24,6 +25,8 @@ namespace OpenKHS.ViewModels
                 throw new ArgumentNullException(nameof(selectedItemViewModel));
             
             AddCmd = new RelayCommand(OnAdd, () => CanAdd);
+
+            MessengerInstance.Register<ModelSavedMessage<T>>(this, OnModelSaved);
         }
 
         public IndexViewModel<T> IndexViewModel { get; }
@@ -50,6 +53,11 @@ namespace OpenKHS.ViewModels
             {
                 MessengerInstance.Send(new BusyMessage(false, this));
             }
+        }
+
+        private async void OnModelSaved(ModelSavedMessage<T> m)
+        {
+            await IndexViewModel.LoadAsync();
         }
 
     }

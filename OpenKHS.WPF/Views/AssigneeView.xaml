@@ -51,11 +51,11 @@
                   IsChecked="{Binding SelectedItemViewModel.SelectedItem.SchoolTalk}">
             School Talk
         </CheckBox>
-        <CheckBox Grid.Column="0" Grid.Row="7" 
+        <CheckBox Grid.Column="0" Grid.Row="8" 
                   IsChecked="{Binding SelectedItemViewModel.SelectedItem.SecondSchoolOnly}">
             2nd School Only
         </CheckBox>
-        <CheckBox Grid.Column="0" Grid.Row="8" 
+        <CheckBox Grid.Column="0" Grid.Row="9" 
                   IsChecked="{Binding SelectedItemViewModel.SelectedItem.SchoolMainHallOnly}">
             Main School Only
         </CheckBox>

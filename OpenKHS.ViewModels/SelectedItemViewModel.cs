@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Command;
 using OpenKHS.Data;
 using OpenKHS.Models;
 using OpenKHS.Models.Utils;
+using OpenKHS.ViewModels.Messages;
 using Savaged.BusyStateManager;
 
 namespace OpenKHS.ViewModels
@@ -56,7 +57,8 @@ namespace OpenKHS.ViewModels
             MessengerInstance.Send(new BusyMessage(true, this));
             try
             {
-                if (SelectedItem.IsNew())
+                var isAddition = SelectedItem.IsNew();
+                if (isAddition)
                 {
                     await ModelService.InsertAsync(SelectedItem);
                 }
@@ -64,6 +66,8 @@ namespace OpenKHS.ViewModels
                 {
                     await ModelService.UpdateAsync(SelectedItem);
                 }
+                var updatedId = SelectedItem?.Id == null ? 0 : SelectedItem.Id;
+                MessengerInstance.Send(new ModelSavedMessage<T>(this, updatedId, isAddition));
             }
             finally
             {
