@@ -80,7 +80,9 @@ namespace OpenKHS.ViewModels
             MessengerInstance.Send(new BusyMessage(true, this));
             try
             {
+                var deletedId = SelectedItem?.Id == null ? 0 : SelectedItem.Id;
                 await ModelService.DeleteAsync(SelectedItem);
+                MessengerInstance.Send(new ModelDeletedMessage<T>(this, deletedId));
             }
             finally
             {

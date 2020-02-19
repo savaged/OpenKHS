@@ -27,6 +27,7 @@ namespace OpenKHS.ViewModels
             AddCmd = new RelayCommand(OnAdd, () => CanAdd);
 
             MessengerInstance.Register<ModelSavedMessage<T>>(this, OnModelSaved);
+            MessengerInstance.Register<ModelDeletedMessage<T>>(this, OnModelDeleted);
         }
 
         public IndexViewModel<T> IndexViewModel { get; }
@@ -56,6 +57,11 @@ namespace OpenKHS.ViewModels
         }
 
         private async void OnModelSaved(ModelSavedMessage<T> m)
+        {
+            await IndexViewModel.LoadAsync();
+        }
+
+        private async void OnModelDeleted(ModelDeletedMessage<T> m)
         {
             await IndexViewModel.LoadAsync();
         }
