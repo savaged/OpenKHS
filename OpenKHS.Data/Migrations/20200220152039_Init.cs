@@ -86,8 +86,7 @@ namespace OpenKHS.Data.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(nullable: false),
                     AssigneeId = table.Column<int>(nullable: false),
-                    AssignmentTypeId = table.Column<int>(nullable: false),
-                    Discriminator = table.Column<string>(nullable: false)
+                    AssignmentTypeId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using OpenKHS.Models.Utils;
 
 namespace OpenKHS.Models
 {
@@ -17,11 +15,11 @@ namespace OpenKHS.Models
             : base(assignmentTypes)
         {
             Chairman = 
-                new PmAssignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.ClmmChairman), assignmentTypes).Id);
+                new Assignment(AssignmentType.GetMatchingAssignmentType(
+                    nameof(Assignee.ClmmChairman), assignmentTypes));
             WtReader = 
-                new PmAssignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.WtReader), assignmentTypes).Id);
+                new Assignment(AssignmentType.GetMatchingAssignmentType(
+                    nameof(Assignee.WtReader), assignmentTypes));
             Speaker = string.Empty;
         }
 

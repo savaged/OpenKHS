@@ -115,10 +115,6 @@ namespace OpenKHS.Data.Migrations
                     b.Property<int>("AssignmentTypeId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -130,8 +126,6 @@ namespace OpenKHS.Data.Migrations
                     b.HasIndex("AssignmentTypeId");
 
                     b.ToTable("Assignments");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Assignment");
                 });
 
             modelBuilder.Entity("OpenKHS.Models.AssignmentType", b =>
@@ -391,20 +385,6 @@ namespace OpenKHS.Data.Migrations
                     b.HasIndex("AssigneeId");
 
                     b.ToTable("UnavailablePeriods");
-                });
-
-            modelBuilder.Entity("OpenKHS.Models.ClmmAssignment", b =>
-                {
-                    b.HasBaseType("OpenKHS.Models.Assignment");
-
-                    b.HasDiscriminator().HasValue("ClmmAssignment");
-                });
-
-            modelBuilder.Entity("OpenKHS.Models.PmAssignment", b =>
-                {
-                    b.HasBaseType("OpenKHS.Models.Assignment");
-
-                    b.HasDiscriminator().HasValue("PmAssignment");
                 });
 
             modelBuilder.Entity("OpenKHS.Models.Assignment", b =>

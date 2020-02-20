@@ -1,10 +1,19 @@
 using System.Collections.Generic;
 using System.Linq;
+using GalaSoft.MvvmLight;
 
 namespace OpenKHS.Models
 {
-    public class AssignmentType : LookupEntry
+    public class AssignmentType : ObservableObject, ILookupEntry
     {
+        private int _id;
+        private string _name;
+
+        public AssignmentType()
+        {
+            _name = string.Empty;
+        }
+
         public static AssignmentType GetMatchingAssignmentType(
             string privilege,
             IList<AssignmentType> assignmentTypes)
@@ -18,6 +27,17 @@ namespace OpenKHS.Models
             return value;
         }
 
+        public int Id 
+        {
+            get => _id;
+            set => Set(ref _id, value);
+        }
+
+        public string Name
+        {
+            get => _name;
+            set => Set(ref _name, value);
+        }
     }
 
     public sealed class NullAssignmentType : AssignmentType
@@ -35,8 +55,8 @@ namespace OpenKHS.Models
 
         public static AssignmentType Default => _default;
 
-        public new int Id => NullLookupEntry.Default.Id;
+        public new int Id => -1;
 
-        public new string Name => NullLookupEntry.Default.Name;
+        public new string Name => string.Empty;
     }
 }

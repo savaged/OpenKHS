@@ -32,52 +32,52 @@
         </Grid>
         <Label Grid.Column="0" Grid.Row="1">Attendant 1</Label>
         <ComboBox Grid.Column="1" Grid.Row="1" 
-                  ItemsSource="{Binding AssigneeLookupService.Attendants}"
+                  ItemsSource="{Binding PotentialAssignmentsFactory.Attendants}"
                   SelectedValuePath="Id" DisplayMemberPath="Name"
                   SelectedValue="{Binding SelectedItemViewModel.SelectedItem.Attendant1}"/>
         <Label Grid.Column="0" Grid.Row="2">Attendant 2</Label>
         <ComboBox Grid.Column="1" Grid.Row="2"
-                  ItemsSource="{Binding AssigneeLookupService.Attendants}"
+                  ItemsSource="{Binding PotentialAssignmentsFactory.Attendants}"
                   SelectedValuePath="Id" DisplayMemberPath="Name"
                   SelectedValue="{Binding SelectedItemViewModel.SelectedItem.Attendant2}"/>
         <Label Grid.Column="0" Grid.Row="3">Attendant 3</Label>
         <ComboBox Grid.Column="1" Grid.Row="3" 
-                  ItemsSource="{Binding AssigneeLookupService.Attendants}"
+                  ItemsSource="{Binding PotentialAssignmentsFactory.Attendants}"
                   SelectedValuePath="Id" DisplayMemberPath="Name"
                   SelectedValue="{Binding SelectedItemViewModel.SelectedItem.Attendant3}"/>
         <Label Grid.Column="0" Grid.Row="4">Attendant 4</Label>
         <ComboBox Grid.Column="1" Grid.Row="4" 
-                  ItemsSource="{Binding AssigneeLookupService.Attendants}"
+                  ItemsSource="{Binding PotentialAssignmentsFactory.Attendants}"
                   SelectedValuePath="Id" DisplayMemberPath="Name"
                   SelectedValue="{Binding SelectedItemViewModel.SelectedItem.Attendant4}"/>
         <Label Grid.Column="0" Grid.Row="5">Platform</Label>
         <ComboBox Grid.Column="1" Grid.Row="5" 
-                  ItemsSource="{Binding AssigneeLookupService.PlatformControllers}"
+                  ItemsSource="{Binding PotentialAssignmentsFactory.PlatformControllers}"
                   SelectedValuePath="Id" DisplayMemberPath="Name"
                   SelectedValue="{Binding SelectedItemViewModel.SelectedItem.Platform}"/>
         <Label Grid.Column="0" Grid.Row="6">Sound Desk</Label>
         <ComboBox Grid.Column="1" Grid.Row="6" 
-                  ItemsSource="{Binding AssigneeLookupService.SoundDeskControllers}"
+                  ItemsSource="{Binding PotentialAssignmentsFactory.SoundDeskControllers}"
                   SelectedValuePath="Id" DisplayMemberPath="Name"
                   SelectedValue="{Binding SelectedItemViewModel.SelectedItem.SoundDesk}"/>
         <Label Grid.Column="0" Grid.Row="7">Roving Mic 1</Label>
         <ComboBox Grid.Column="1" Grid.Row="7" 
-                  ItemsSource="{Binding AssigneeLookupService.RovingMicHandlers}"
+                  ItemsSource="{Binding PotentialAssignmentsFactory.RovingMicHandlers}"
                   SelectedValuePath="Id" DisplayMemberPath="Name"
                   SelectedValue="{Binding SelectedItemViewModel.SelectedItem.RovingMic1}"/>
         <Label Grid.Column="0" Grid.Row="8">Roving Mic 2</Label>
         <ComboBox Grid.Column="1" Grid.Row="8" 
-                  ItemsSource="{Binding AssigneeLookupService.RovingMicHandlers}"
+                  ItemsSource="{Binding PotentialAssignmentsFactory.RovingMicHandlers}"
                   SelectedValuePath="Id" DisplayMemberPath="Name"
                   SelectedValue="{Binding SelectedItemViewModel.SelectedItem.RovingMic2}"/>       
         <Label Grid.Column="0" Grid.Row="9">Opening Prayer</Label>
         <ComboBox Grid.Column="1" Grid.Row="9" 
-                  ItemsSource="{Binding AssigneeLookupService.PrayerGivers}"
+                  ItemsSource="{Binding PotentialAssignmentsFactory.PrayerGivers}"
                   SelectedValuePath="Id" DisplayMemberPath="Name"
                   SelectedValue="{Binding SelectedItemViewModel.SelectedItem.OpeningPrayer}"/>
         <Label Grid.Column="0" Grid.Row="10">Closing Prayer</Label>
         <ComboBox Grid.Column="1" Grid.Row="10" 
-                  ItemsSource="{Binding AssigneeLookupService.PrayerGivers}"
+                  ItemsSource="{Binding PotentialAssignmentsFactory.PrayerGivers}"
                   SelectedValuePath="Id" DisplayMemberPath="Name"
                   SelectedValue="{Binding SelectedItemViewModel.SelectedItem.ClosingPrayer}"/>
     </Grid>

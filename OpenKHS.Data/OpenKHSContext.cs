@@ -15,7 +15,7 @@ namespace OpenKHS.Data
         public virtual void EnsureSeeded()
         {
             var assignmentTypes = AssignmentTypes;
-            if (assignmentTypes.Count() == 0)
+            if (assignmentTypes?.Count() == 0)
             {
                 var defaults = StaticData.DbSeedData.GetAssignmentTypes();
                 foreach (var assignmentType in defaults)
@@ -28,8 +28,7 @@ namespace OpenKHS.Data
 
         public DbSet<AssignmentType> AssignmentTypes { get; set; }
         public DbSet<Assignee> Assignees { get; set; } 
-        public DbSet<ClmmAssignment> ClmmAssignments { get; set; }
-        public DbSet<PmAssignment> PmAssignments { get; set; }
+        public DbSet<Assignment> Assignments { get; set; }
         public DbSet<ClmmSchedule> ClmmSchedules { get; set; }
         public DbSet<PmSchedule> PmSchedules { get; set; }
         public DbSet<UnavailablePeriod> UnavailablePeriods { get; set; }
@@ -44,10 +43,5 @@ namespace OpenKHS.Data
             }
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Assignment>()
-                .ToTable($"{nameof(Assignment)}s");
-        }
     }
 }

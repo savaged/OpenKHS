@@ -16,17 +16,13 @@ namespace OpenKHS.ViewModels
             IBusyStateRegistry busyStateManager,
             IModelService modelService,
             IndexViewModel<T> indexViewModel,
-            SelectedItemViewModel<T> selectedItemViewModel,
-            IAssigneeLookupService assigneeLookupService) 
+            SelectedItemViewModel<T> selectedItemViewModel)
             : base(busyStateManager, modelService)
         {
             IndexViewModel = indexViewModel ??
                 throw new ArgumentNullException(nameof(indexViewModel));
             SelectedItemViewModel = selectedItemViewModel ??
                 throw new ArgumentNullException(nameof(selectedItemViewModel));
-            
-            AssigneeLookupService = assigneeLookupService ??
-                throw new ArgumentNullException(nameof(assigneeLookupService));
 
             AddCmd = new RelayCommand(OnAdd, () => CanAdd);
 
@@ -37,8 +33,6 @@ namespace OpenKHS.ViewModels
         public IndexViewModel<T> IndexViewModel { get; }
 
         public SelectedItemViewModel<T> SelectedItemViewModel { get; }
-
-        public IAssigneeLookupService AssigneeLookupService { get; }
 
         public virtual async Task LoadAsync()
         {

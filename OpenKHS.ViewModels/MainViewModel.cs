@@ -15,11 +15,11 @@ namespace OpenKHS.ViewModels
 
         public MainViewModel(
             IBusyStateRegistry busyStateManager,
-            MasterDetailViewModel<ClmmSchedule> clmmScheduleAdminViewModel,
-            MasterDetailViewModel<PmSchedule> pmScheduleAdminViewModel,
+            ScheduleAdminViewModel<ClmmSchedule> clmmScheduleAdminViewModel,
+            ScheduleAdminViewModel<PmSchedule> pmScheduleAdminViewModel,
             MasterDetailViewModel<Assignee> assigneeAdminViewModel,
             IndexViewModel<AssignmentType> assignmentTypesViewModel,
-            IAssigneeLookupService assigneeLookupService)
+            IPotentialAssignmentsFactory assigneeLookupService)
             : base(busyStateManager)
         {
             ClmmScheduleAdminViewModel = clmmScheduleAdminViewModel ??
@@ -50,10 +50,10 @@ namespace OpenKHS.ViewModels
         public MasterDetailViewModel<Assignee> AssigneeAdminViewModel
         { get; }
 
-        public MasterDetailViewModel<ClmmSchedule> ClmmScheduleAdminViewModel
+        public ScheduleAdminViewModel<ClmmSchedule> ClmmScheduleAdminViewModel
         { get; }
 
-        public MasterDetailViewModel<PmSchedule> PmScheduleAdminViewModel
+        public ScheduleAdminViewModel<PmSchedule> PmScheduleAdminViewModel
         { get; }
 
         public IndexViewModel<AssignmentType> AssignmentTypesViewModel 

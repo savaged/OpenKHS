@@ -29,66 +29,53 @@ namespace OpenKHS.Models
             : base(assignmentTypes)
         {
             Chairman = 
-                new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.ClmmChairman), assignmentTypes).Id);
+                new Assignment(AssignmentType.GetMatchingAssignmentType(
+                    nameof(Assignee.ClmmChairman), assignmentTypes));
             Treasures = 
-                new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.Treasures), assignmentTypes).Id);
+                new Assignment(AssignmentType.GetMatchingAssignmentType(
+                    nameof(Assignee.Treasures), assignmentTypes));
             Gems = 
-                new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.Gems), assignmentTypes).Id);
+                new Assignment(AssignmentType.GetMatchingAssignmentType(
+                    nameof(Assignee.Gems), assignmentTypes));
             SchoolBibleReading = 
-                new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.SchoolBibleReading), 
-                    assignmentTypes).Id);
+                new Assignment(AssignmentType.GetMatchingAssignmentType(
+                    nameof(Assignee.SchoolBibleReading), assignmentTypes));
             Demo1Pub =
-                new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.SchoolBibleReading), 
-                    assignmentTypes).Id);
+                new Assignment(AssignmentType.GetMatchingAssignmentType(
+                    nameof(Assignee.SchoolBibleReading), assignmentTypes));
             Demo1Asst = 
-                 new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.SchoolDemoAsst), 
-                    assignmentTypes).Id);           
+                 new Assignment(AssignmentType.GetMatchingAssignmentType(
+                    nameof(Assignee.SchoolDemoAsst), assignmentTypes));           
             Demo2Pub = 
-                 new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.SchoolDemo2), 
-                    assignmentTypes).Id);
+                 new Assignment(AssignmentType.GetMatchingAssignmentType(
+                    nameof(Assignee.SchoolDemo2), assignmentTypes));
             Demo2Asst = 
-                 new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.SchoolDemoAsst), 
-                    assignmentTypes).Id);
+                 new Assignment(AssignmentType.GetMatchingAssignmentType(
+                    nameof(Assignee.SchoolDemoAsst), assignmentTypes));
             Demo3Pub = 
-                 new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.SchoolDemo3), 
-                    assignmentTypes).Id);
+                 new Assignment(AssignmentType.GetMatchingAssignmentType(
+                    nameof(Assignee.SchoolDemo3), assignmentTypes));
             Demo3Asst = 
-                 new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.SchoolDemoAsst), 
-                    assignmentTypes).Id);
+                 new Assignment(AssignmentType.GetMatchingAssignmentType(
+                    nameof(Assignee.SchoolDemoAsst), assignmentTypes));
             SchoolTalk = 
-                 new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.SchoolTalk), 
-                    assignmentTypes).Id);
+                 new Assignment(AssignmentType.GetMatchingAssignmentType(
+                    nameof(Assignee.SchoolTalk), assignmentTypes));
             LacPart1 = 
-                 new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.LacParts), 
-                    assignmentTypes).Id);
+                 new Assignment(AssignmentType.GetMatchingAssignmentType(
+                    nameof(Assignee.LacParts), assignmentTypes));
             LacPart2 = 
-                 new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.LacParts),
-                    assignmentTypes).Id);
+                 new Assignment(AssignmentType.GetMatchingAssignmentType(
+                    nameof(Assignee.LacParts), assignmentTypes));
             LacPart3 = 
-                 new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.LacParts), 
-                    assignmentTypes).Id);
+                 new Assignment(AssignmentType.GetMatchingAssignmentType(
+                    nameof(Assignee.LacParts), assignmentTypes));
             CbsConductor = 
-                 new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.CbsConductor),
-                    assignmentTypes).Id);
+                 new Assignment(AssignmentType.GetMatchingAssignmentType(
+                    nameof(Assignee.CbsConductor), assignmentTypes));
             CbsReader = 
-                 new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.CbsReader), 
-                    assignmentTypes).Id);
+                 new Assignment(AssignmentType.GetMatchingAssignmentType(
+                    nameof(Assignee.CbsReader), assignmentTypes));
         }
 
         public Assignment Treasures { get; set; }

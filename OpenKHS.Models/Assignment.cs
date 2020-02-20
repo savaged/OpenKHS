@@ -1,33 +1,68 @@
+using GalaSoft.MvvmLight;
+
 namespace OpenKHS.Models
 {
-    public abstract class Assignment : LookupEntry
+    public class Assignment : ObservableObject, ILookupEntry
     {
-        private int _assigneeId;
-        private int _assignmentTypeId;
+        private int _id;
+        private string _name;
 
         public Assignment() 
-            : this(NullAssignmentType.Default.Id)
         {
+            _name = string.Empty;
+            AssignmentType = NullAssignmentType.Default;
+            Assignee = new NullAssignee();
         }
 
-        public Assignment(int assignmentTypeId)
+        public Assignment(AssignmentType assignmentType)
+            : this()
         {
-            AssignmentType = NullAssignmentType.Default;
-            AssignmentTypeId = assignmentTypeId;
-            Assignee = new NullAssignee();
+            AssignmentType = assignmentType;
+        }
+
+        public Assignment(AssignmentType assignmentType, Assignee assignee)
+            : this(assignmentType)
+        {
+            Assignee = assignee;
+        }
+
+        public int Id 
+        {
+            get => _id;
+            set => Set(ref _id, value);
+        }
+
+        public string Name
+        {
+            get => _name;
+            set => Set(ref _name, value);
         }
 
         public int AssigneeId
         {
-            get => _assigneeId;
-            set => Set(ref _assigneeId, value);
+            get => Assignee?.Id ?? 0;
+            set 
+            {
+                if (Assignee != null)
+                {
+                    Assignee.Id = value;
+                    RaisePropertyChanged();
+                }
+            }
         }
         public Assignee Assignee { get; set; }
 
         public int AssignmentTypeId
         {
-            get => _assignmentTypeId;
-            set => Set(ref _assignmentTypeId, value);
+            get => AssignmentType?.Id ?? 0;
+            set 
+            {
+                if (AssignmentType != null)
+                {
+                    AssignmentType.Id = value;
+                    RaisePropertyChanged();
+                }
+            }
         }
         public AssignmentType AssignmentType { get; set; }
     }

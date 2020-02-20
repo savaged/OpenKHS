@@ -3,8 +3,8 @@ using OpenKHS.Models;
 
 namespace OpenKHS.ViewModels
 {
-    public interface IAssigneeLookupService
+    public interface IPotentialAssignmentsFactory
     {
-        IList<Assignee> Attendants { get; }
+        IList<Assignment> Attendants { get; }
     }
 }

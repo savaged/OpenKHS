@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using GalaSoft.MvvmLight;
 using OpenKHS.Models.Attributes;
 
 namespace OpenKHS.Models
 {
-    public class Assignee 
-        : LookupEntry, IAssignee
+    public class Assignee : ObservableObject, ILookupEntry
     {
+        private int _id;
+        private string _name;
         private bool _ClmmChairman;
         private bool _SecondSchoolCounselor;
         private bool _Prayer;
@@ -37,9 +38,22 @@ namespace OpenKHS.Models
         public Assignee()
         {
             Assignments = new List<Assignment>();
+            _name = string.Empty;
         }
 
         public IList<Assignment> Assignments { get; set; }
+
+        public int Id 
+        {
+            get => _id;
+            set => Set(ref _id, value);
+        }
+
+        public string Name
+        {
+            get => _name;
+            set => Set(ref _name, value);
+        }
 
         #region Privileges
 
@@ -266,9 +280,9 @@ namespace OpenKHS.Models
 
     public class NullAssignee : Assignee
     {
-        public new int Id = NullLookupEntry.Default.Id;
+        public new int Id => -1;
 
-        public new string Name = NullLookupEntry.Default.Name;
+        public new string Name => string.Empty;
     }
 
 }

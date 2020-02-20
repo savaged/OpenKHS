@@ -1,16 +1,19 @@
 using System;
 using System.Collections.Generic;
+using GalaSoft.MvvmLight;
 using OpenKHS.Models.Utils;
 
 namespace OpenKHS.Models
 {
-    public abstract class ScheduleBase : ModelBase, ISchedule
+    public abstract class ScheduleBase : ObservableObject, ISchedule
     {
+        private int _id;
         private DateTime _weekStarting;
+        private Assignment _attendant1;
 
         public ScheduleBase()
         {
-            Attendant1 =
+            _attendant1 =
             Attendant2 =
             Attendant3 =
             Attendant4 =
@@ -28,28 +31,34 @@ namespace OpenKHS.Models
         {
             WeekStarting = WeekStartingAdapter
                 .GetFirstDateOfWeekIso8601(DateTime.Now);
-            Attendant1 = new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.Attendant), assignmentTypes).Id);
-            Attendant2 = new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.Attendant), assignmentTypes).Id);
-            Attendant3 = new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.Attendant), assignmentTypes).Id);
-            Attendant4 = new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.Attendant), assignmentTypes).Id);
-            OpeningPrayer = new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.Prayer), assignmentTypes).Id);
-            ClosingPrayer = new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.Prayer), assignmentTypes).Id);
-            Platform = new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.Platform), assignmentTypes).Id);
-            SoundDesk = new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.SoundDesk), assignmentTypes).Id);
-            RovingMic1 = new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.RovingMic), assignmentTypes).Id);
-            RovingMic2 = new ClmmAssignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.RovingMic), assignmentTypes).Id);
+            _attendant1 = new Assignment(AssignmentType.GetMatchingAssignmentType(
+                nameof(Assignee.Attendant), assignmentTypes));
+            Attendant2 = new Assignment(AssignmentType.GetMatchingAssignmentType(
+                nameof(Assignee.Attendant), assignmentTypes));
+            Attendant3 = new Assignment(AssignmentType.GetMatchingAssignmentType(
+                nameof(Assignee.Attendant), assignmentTypes));
+            Attendant4 = new Assignment(AssignmentType.GetMatchingAssignmentType(
+                nameof(Assignee.Attendant), assignmentTypes));
+            OpeningPrayer = new Assignment(AssignmentType.GetMatchingAssignmentType(
+                nameof(Assignee.Prayer), assignmentTypes));
+            ClosingPrayer = new Assignment(AssignmentType.GetMatchingAssignmentType(
+                nameof(Assignee.Prayer), assignmentTypes));
+            Platform = new Assignment(AssignmentType.GetMatchingAssignmentType(
+                nameof(Assignee.Platform), assignmentTypes));
+            SoundDesk = new Assignment(AssignmentType.GetMatchingAssignmentType(
+                nameof(Assignee.SoundDesk), assignmentTypes));
+            RovingMic1 = new Assignment(AssignmentType.GetMatchingAssignmentType(
+                nameof(Assignee.RovingMic), assignmentTypes));
+            RovingMic2 = new Assignment(AssignmentType.GetMatchingAssignmentType(
+                nameof(Assignee.RovingMic), assignmentTypes));
 
             Chairman = new NullAssignment();
+        }
+
+        public int Id 
+        {
+            get => _id;
+            set => Set(ref _id, value);
         }
 
         public string Name => WeekStarting.ToString("yyyy-MM-dd");
@@ -66,7 +75,16 @@ namespace OpenKHS.Models
             }
         }
 
-        public Assignment Attendant1 { get; set; }
+        public Assignment Attendant1 
+        {
+            get => _attendant1;
+            set
+            {
+                _attendant1.Assignee?.Assignments?.Add(value);
+                Set(ref _attendant1, value);
+            }
+        }
+
         public Assignment Attendant2 { get; set; }
         public Assignment Attendant3 { get; set; }
         public Assignment Attendant4 { get; set; }

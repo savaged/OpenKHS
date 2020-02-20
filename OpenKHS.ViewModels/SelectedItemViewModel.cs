@@ -50,7 +50,7 @@ namespace OpenKHS.ViewModels
         public virtual bool CanDelete => CanExecute && IsItemSelected
             && !IsSelectedItemNew;
 
-        public bool IsSelectedItemNew => SelectedItem?.IsNew != true;
+        public bool IsSelectedItemNew => SelectedItem.IsNew() != true;
 
         protected virtual async void OnSave()
         {
@@ -66,7 +66,7 @@ namespace OpenKHS.ViewModels
                 {
                     await ModelService.UpdateAsync(SelectedItem);
                 }
-                var updatedId = SelectedItem?.Id == null ? 0 : SelectedItem.Id;
+                var updatedId = SelectedItem?.Id ?? 0;
                 MessengerInstance.Send(new ModelSavedMessage<T>(this, updatedId, isAddition));
             }
             finally
@@ -80,7 +80,7 @@ namespace OpenKHS.ViewModels
             MessengerInstance.Send(new BusyMessage(true, this));
             try
             {
-                var deletedId = SelectedItem?.Id == null ? 0 : SelectedItem.Id;
+                var deletedId = SelectedItem?.Id ?? 0;
                 await ModelService.DeleteAsync(SelectedItem);
                 MessengerInstance.Send(new ModelDeletedMessage<T>(this, deletedId));
             }
