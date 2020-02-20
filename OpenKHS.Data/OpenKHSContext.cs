@@ -14,8 +14,7 @@ namespace OpenKHS.Data
 
         public virtual void EnsureSeeded()
         {
-            var assignmentTypes = AssignmentTypes;
-            if (assignmentTypes?.Count() == 0)
+            if (AssignmentTypes?.Count() == 0)
             {
                 var defaults = StaticData.DbSeedData.GetAssignmentTypes();
                 foreach (var assignmentType in defaults)

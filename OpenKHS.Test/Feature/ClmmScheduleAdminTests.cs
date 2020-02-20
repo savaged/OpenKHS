@@ -52,6 +52,10 @@ namespace OpenKHS.Test.Feature
                 Assert.AreEqual(5, _mainViewModel.ClmmScheduleAdminViewModel
                     .IndexViewModel.Index.Count());
             }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
             finally
             {
                 _dbConnection.Close();
