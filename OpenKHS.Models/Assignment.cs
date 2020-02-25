@@ -7,23 +7,24 @@ namespace OpenKHS.Models
         private int _id;
         private string _name;
 
+        private int _assignmentTypeId;
+
         public Assignment() 
         {
             _name = string.Empty;
-            AssignmentType = NullAssignmentType.Default;
             Assignee = new NullAssignee();
         }
 
         public Assignment(AssignmentType assignmentType)
             : this()
         {
-            AssignmentType = assignmentType;
+            AssignmentTypeId = assignmentType?.Id ?? 0;
         }
 
         public Assignment(AssignmentType assignmentType, Assignee assignee)
             : this(assignmentType)
         {
-            Assignee = assignee;
+            Assignee = assignee ?? new NullAssignee();
         }
 
         public int Id 
@@ -54,17 +55,9 @@ namespace OpenKHS.Models
 
         public int AssignmentTypeId
         {
-            get => AssignmentType?.Id ?? 0;
-            set 
-            {
-                if (AssignmentType != null)
-                {
-                    AssignmentType.Id = value;
-                    RaisePropertyChanged();
-                }
-            }
+            get => _assignmentTypeId;
+            set => Set(ref _assignmentTypeId, value);
         }
-        public AssignmentType AssignmentType { get; set; }
     }
 
     public class NullAssignment : Assignment
