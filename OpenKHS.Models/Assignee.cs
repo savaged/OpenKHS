@@ -280,6 +280,18 @@ namespace OpenKHS.Models
 
     public class NullAssignee : Assignee
     {
+        private static NullAssignee _default = new NullAssignee();
+
+        static NullAssignee()
+        {
+        }
+
+        private NullAssignee()
+        {
+        }
+
+        public static Assignee Default => _default;
+
         public new int Id => -1;
 
         public new string Name => string.Empty;

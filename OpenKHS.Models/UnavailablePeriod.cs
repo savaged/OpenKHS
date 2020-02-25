@@ -13,7 +13,7 @@ namespace OpenKHS.Models
 
         public UnavailablePeriod()
         {
-            Assignee = new NullAssignee();
+            AssigneeId = NullAssignee.Default.Id;
             _start = DateTime.Now;
             _end = DateTime.Now;
         }
@@ -29,7 +29,6 @@ namespace OpenKHS.Models
             get => _assigneeId;
             set => Set(ref _assigneeId, value);
         }
-        public Assignee Assignee { get; set; }
 
         public DateTime Start 
         { 

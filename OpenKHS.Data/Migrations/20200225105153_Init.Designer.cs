@@ -9,7 +9,7 @@ using OpenKHS.Data;
 namespace OpenKHS.Data.Migrations
 {
     [DbContext(typeof(OpenKHSContext))]
-    [Migration("20200220152039_Init")]
+    [Migration("20200225105153_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -124,8 +124,6 @@ namespace OpenKHS.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AssigneeId");
-
-                    b.HasIndex("AssignmentTypeId");
 
                     b.ToTable("Assignments");
                 });
@@ -384,8 +382,6 @@ namespace OpenKHS.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AssigneeId");
-
                     b.ToTable("UnavailablePeriods");
                 });
 
@@ -394,12 +390,6 @@ namespace OpenKHS.Data.Migrations
                     b.HasOne("OpenKHS.Models.Assignee", "Assignee")
                         .WithMany("Assignments")
                         .HasForeignKey("AssigneeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("OpenKHS.Models.AssignmentType", "AssignmentType")
-                        .WithMany()
-                        .HasForeignKey("AssignmentTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -634,15 +624,6 @@ namespace OpenKHS.Data.Migrations
                     b.HasOne("OpenKHS.Models.Assignment", "WtReader")
                         .WithMany()
                         .HasForeignKey("WtReaderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("OpenKHS.Models.UnavailablePeriod", b =>
-                {
-                    b.HasOne("OpenKHS.Models.Assignee", "Assignee")
-                        .WithMany()
-                        .HasForeignKey("AssigneeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

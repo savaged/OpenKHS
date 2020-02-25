@@ -123,8 +123,6 @@ namespace OpenKHS.Data.Migrations
 
                     b.HasIndex("AssigneeId");
 
-                    b.HasIndex("AssignmentTypeId");
-
                     b.ToTable("Assignments");
                 });
 
@@ -382,8 +380,6 @@ namespace OpenKHS.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AssigneeId");
-
                     b.ToTable("UnavailablePeriods");
                 });
 
@@ -392,12 +388,6 @@ namespace OpenKHS.Data.Migrations
                     b.HasOne("OpenKHS.Models.Assignee", "Assignee")
                         .WithMany("Assignments")
                         .HasForeignKey("AssigneeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("OpenKHS.Models.AssignmentType", "AssignmentType")
-                        .WithMany()
-                        .HasForeignKey("AssignmentTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -632,15 +622,6 @@ namespace OpenKHS.Data.Migrations
                     b.HasOne("OpenKHS.Models.Assignment", "WtReader")
                         .WithMany()
                         .HasForeignKey("WtReaderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("OpenKHS.Models.UnavailablePeriod", b =>
-                {
-                    b.HasOne("OpenKHS.Models.Assignee", "Assignee")
-                        .WithMany()
-                        .HasForeignKey("AssigneeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

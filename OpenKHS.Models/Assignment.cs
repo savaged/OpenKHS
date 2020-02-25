@@ -12,19 +12,19 @@ namespace OpenKHS.Models
         public Assignment() 
         {
             _name = string.Empty;
-            Assignee = new NullAssignee();
+            Assignee = NullAssignee.Default;
         }
 
         public Assignment(AssignmentType assignmentType)
             : this()
         {
-            AssignmentTypeId = assignmentType?.Id ?? 0;
+            AssignmentTypeId = assignmentType?.Id ?? NullAssignmentType.Default.Id;
         }
 
         public Assignment(AssignmentType assignmentType, Assignee assignee)
             : this(assignmentType)
         {
-            Assignee = assignee ?? new NullAssignee();
+            Assignee = assignee ?? NullAssignee.Default;
         }
 
         public int Id 
@@ -41,10 +41,10 @@ namespace OpenKHS.Models
 
         public int AssigneeId
         {
-            get => Assignee?.Id ?? 0;
+            get => Assignee?.Id ?? NullAssignee.Default.Id;
             set 
             {
-                if (Assignee != null)
+                if (Assignee != null && Assignee != NullAssignee.Default)
                 {
                     Assignee.Id = value;
                     RaisePropertyChanged();

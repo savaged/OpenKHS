@@ -70,12 +70,6 @@ namespace OpenKHS.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UnavailablePeriods", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_UnavailablePeriods_Assignees_AssigneeId",
-                        column: x => x.AssigneeId,
-                        principalTable: "Assignees",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -95,12 +89,6 @@ namespace OpenKHS.Data.Migrations
                         name: "FK_Assignments_Assignees_AssigneeId",
                         column: x => x.AssigneeId,
                         principalTable: "Assignees",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Assignments_AssignmentTypes_AssignmentTypeId",
-                        column: x => x.AssignmentTypeId,
-                        principalTable: "AssignmentTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -404,11 +392,6 @@ namespace OpenKHS.Data.Migrations
                 column: "AssigneeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Assignments_AssignmentTypeId",
-                table: "Assignments",
-                column: "AssignmentTypeId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ClmmSchedules_Attendant1Id",
                 table: "ClmmSchedules",
                 column: "Attendant1Id");
@@ -597,15 +580,13 @@ namespace OpenKHS.Data.Migrations
                 name: "IX_PmSchedules_WtReaderId",
                 table: "PmSchedules",
                 column: "WtReaderId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UnavailablePeriods_AssigneeId",
-                table: "UnavailablePeriods",
-                column: "AssigneeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "AssignmentTypes");
+
             migrationBuilder.DropTable(
                 name: "ClmmSchedules");
 
@@ -620,9 +601,6 @@ namespace OpenKHS.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Assignees");
-
-            migrationBuilder.DropTable(
-                name: "AssignmentTypes");
         }
     }
 }
