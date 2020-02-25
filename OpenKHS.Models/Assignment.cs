@@ -1,3 +1,4 @@
+using System;
 using GalaSoft.MvvmLight;
 
 namespace OpenKHS.Models
@@ -5,26 +6,25 @@ namespace OpenKHS.Models
     public class Assignment : ObservableObject, ILookupEntry
     {
         private int _id;
-        private string _name;
-
         private int _assignmentTypeId;
+        private int _assigneeId;
 
         public Assignment() 
         {
-            _name = string.Empty;
             Assignee = NullAssignee.Default;
         }
 
         public Assignment(AssignmentType assignmentType)
             : this()
         {
-            AssignmentTypeId = assignmentType?.Id ?? NullAssignmentType.Default.Id;
+            AssignmentTypeId = assignmentType?.Id ?? 
+                throw new ArgumentNullException(nameof(assignmentType));
         }
 
         public Assignment(AssignmentType assignmentType, Assignee assignee)
             : this(assignmentType)
         {
-            Assignee = assignee ?? NullAssignee.Default;
+            Assignee = assignee;
         }
 
         public int Id 
@@ -35,21 +35,13 @@ namespace OpenKHS.Models
 
         public string Name
         {
-            get => _name;
-            set => Set(ref _name, value);
+            get => Assignee?.Name ?? NullAssignee.Default.Name;
         }
 
         public int AssigneeId
         {
-            get => Assignee?.Id ?? NullAssignee.Default.Id;
-            set 
-            {
-                if (Assignee != null && Assignee != NullAssignee.Default)
-                {
-                    Assignee.Id = value;
-                    RaisePropertyChanged();
-                }
-            }
+            get => _assigneeId;
+            set => Set(ref _assigneeId, value);
         }
         public Assignee Assignee { get; set; }
 
