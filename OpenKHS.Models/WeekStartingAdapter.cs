@@ -11,7 +11,7 @@ namespace OpenKHS.Models.Utils
             return GetFirstDateOfWeekIso8601(week);
         }
 
-        private static DateTime GetFirstDateOfWeekIso8601(int weekOfYear)
+        public static DateTime GetFirstDateOfWeekIso8601(int weekOfYear)
         {
             var year = DateTime.Now.Year;
             var jan1 = new DateTime(year, 1, 1);

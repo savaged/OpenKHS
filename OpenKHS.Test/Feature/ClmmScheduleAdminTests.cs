@@ -7,6 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
 using OpenKHS.Data;
 using OpenKHS.Models;
+using OpenKHS.Models.Utils;
 using OpenKHS.ViewModels;
 
 namespace OpenKHS.Test.Feature
@@ -44,6 +45,8 @@ namespace OpenKHS.Test.Feature
                     for (var i = 1; i < 6; i++)
                     {
                         var model = modelService.Create<ClmmSchedule>();
+                        model.WeekStarting = WeekStartingAdapter
+                            .GetFirstDateOfWeekIso8601(i);
                         context.Add(model);    
                     }
                     await context.SaveChangesAsync();
@@ -51,10 +54,6 @@ namespace OpenKHS.Test.Feature
                 await _mainViewModel.ClmmScheduleAdminViewModel.LoadAsync();
                 Assert.AreEqual(5, _mainViewModel.ClmmScheduleAdminViewModel
                     .IndexViewModel.Index.Count());
-            }
-            catch (Exception ex)
-            {
-                Assert.Fail(ex.Message);
             }
             finally
             {
