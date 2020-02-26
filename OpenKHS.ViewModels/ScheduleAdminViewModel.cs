@@ -22,6 +22,8 @@ namespace OpenKHS.ViewModels
         {
             PotentialAssignmentsFactory = potentialAssignmentsFactory ??
                 throw new ArgumentNullException(nameof(potentialAssignmentsFactory));
+
+            // TODO Register for a pre-saving event then remove all but selected assignments from the db context
         }
 
         public IPotentialAssignmentsFactory PotentialAssignmentsFactory { get; }

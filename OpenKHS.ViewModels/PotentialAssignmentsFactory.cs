@@ -29,6 +29,7 @@ namespace OpenKHS.ViewModels
                 var potentialAssignments = new List<Assignment>();
                 foreach (var assignee in ordered)
                 {
+                    // TODO the model factory should create the assignment adding it to the db context
                     potentialAssignments.Add(new Assignment(assignmentType, assignee));
                 }
                 return potentialAssignments;
