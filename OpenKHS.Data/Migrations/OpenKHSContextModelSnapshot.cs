@@ -115,9 +115,8 @@ namespace OpenKHS.Data.Migrations
                     b.Property<int>("AssignmentTypeId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("ScheduleId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 

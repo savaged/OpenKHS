@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using GalaSoft.MvvmLight;
 using OpenKHS.Models.Attributes;
@@ -49,6 +50,7 @@ namespace OpenKHS.Models
             set => Set(ref _id, value);
         }
 
+        [Required]
         public string Name
         {
             get => _name;

@@ -52,11 +52,14 @@ namespace OpenKHS.ViewModels
 
         public bool IsSelectedItemNew => SelectedItem.IsNew() != true;
 
+        protected virtual void PreSaveProcessing() { }
+
         protected virtual async void OnSave()
         {
             MessengerInstance.Send(new BusyMessage(true, this));
             try
             {
+                PreSaveProcessing();
                 var isAddition = SelectedItem.IsNew();
                 if (isAddition)
                 {

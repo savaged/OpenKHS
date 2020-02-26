@@ -9,7 +9,7 @@ namespace OpenKHS.ViewModels
         {
             Bind<IBusyStateRegistry>().To<BusyStateRegistry>()
                 .InSingletonScope();
-            Bind<IPotentialAssignmentsFactory>().To<PotentialAssignmentsFactory>()
+            Bind<IPotentialAssigneeFactory>().To<PotentialAssigneeFactory>()
                 .InSingletonScope();
         }
     }

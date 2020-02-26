@@ -24,7 +24,7 @@ namespace OpenKHS.Models
             RovingMic1 =
             RovingMic2 =
             Chairman = 
-               new NullAssignment();
+               NullAssignment.Default;
         }
 
         public ScheduleBase(IList<AssignmentType> assignmentTypes)
@@ -32,27 +32,27 @@ namespace OpenKHS.Models
             WeekStarting = WeekStartingAdapter
                 .GetFirstDateOfWeekIso8601(DateTime.Now);
             _attendant1 = new Assignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.Attendant), assignmentTypes));
+                nameof(Assignee.Attendant), assignmentTypes), this);
             Attendant2 = new Assignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.Attendant), assignmentTypes));
+                nameof(Assignee.Attendant), assignmentTypes), this);
             Attendant3 = new Assignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.Attendant), assignmentTypes));
+                nameof(Assignee.Attendant), assignmentTypes), this);
             Attendant4 = new Assignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.Attendant), assignmentTypes));
+                nameof(Assignee.Attendant), assignmentTypes), this);
             OpeningPrayer = new Assignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.Prayer), assignmentTypes));
+                nameof(Assignee.Prayer), assignmentTypes), this);
             ClosingPrayer = new Assignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.Prayer), assignmentTypes));
+                nameof(Assignee.Prayer), assignmentTypes), this);
             Platform = new Assignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.Platform), assignmentTypes));
+                nameof(Assignee.Platform), assignmentTypes), this);
             SoundDesk = new Assignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.SoundDesk), assignmentTypes));
+                nameof(Assignee.SoundDesk), assignmentTypes), this);
             RovingMic1 = new Assignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.RovingMic), assignmentTypes));
+                nameof(Assignee.RovingMic), assignmentTypes), this);
             RovingMic2 = new Assignment(AssignmentType.GetMatchingAssignmentType(
-                nameof(Assignee.RovingMic), assignmentTypes));
+                nameof(Assignee.RovingMic), assignmentTypes), this);
 
-            Chairman = new NullAssignment();
+            Chairman = NullAssignment.Default;
         }
 
         public int Id 

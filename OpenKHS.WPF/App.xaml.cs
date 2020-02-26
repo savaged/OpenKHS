@@ -40,7 +40,9 @@ namespace OpenKHS.WPF
             {
                 msg += $"{Environment.NewLine}Inner Exception: {ex.InnerException?.Message}";
             }
-            MessageBox.Show(msg, $"Fatal Error in {sender}", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show(
+                msg, $"Fatal Error in {sender}", MessageBoxButton.OK, MessageBoxImage.Error);
+            App.Current.Shutdown(-1);
         }
     }
 }

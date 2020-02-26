@@ -22,7 +22,7 @@ namespace OpenKHS.Models
             LacPart3 =
             CbsConductor = 
             CbsReader = 
-                new NullAssignment();
+                NullAssignment.Default;
         }
 
         public ClmmSchedule(IList<AssignmentType> assignmentTypes)
@@ -30,52 +30,52 @@ namespace OpenKHS.Models
         {
             Chairman = 
                 new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.ClmmChairman), assignmentTypes));
+                    nameof(Assignee.ClmmChairman), assignmentTypes), this);
             Treasures = 
                 new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.Treasures), assignmentTypes));
+                    nameof(Assignee.Treasures), assignmentTypes), this);
             Gems = 
                 new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.Gems), assignmentTypes));
+                    nameof(Assignee.Gems), assignmentTypes), this);
             SchoolBibleReading = 
                 new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.SchoolBibleReading), assignmentTypes));
+                    nameof(Assignee.SchoolBibleReading), assignmentTypes), this);
             Demo1Pub =
                 new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.SchoolBibleReading), assignmentTypes));
+                    nameof(Assignee.SchoolBibleReading), assignmentTypes), this);
             Demo1Asst = 
                  new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.SchoolDemoAsst), assignmentTypes));           
+                    nameof(Assignee.SchoolDemoAsst), assignmentTypes), this);           
             Demo2Pub = 
                  new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.SchoolDemo2), assignmentTypes));
+                    nameof(Assignee.SchoolDemo2), assignmentTypes), this);
             Demo2Asst = 
                  new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.SchoolDemoAsst), assignmentTypes));
+                    nameof(Assignee.SchoolDemoAsst), assignmentTypes), this);
             Demo3Pub = 
                  new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.SchoolDemo3), assignmentTypes));
+                    nameof(Assignee.SchoolDemo3), assignmentTypes), this);
             Demo3Asst = 
                  new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.SchoolDemoAsst), assignmentTypes));
+                    nameof(Assignee.SchoolDemoAsst), assignmentTypes), this);
             SchoolTalk = 
                  new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.SchoolTalk), assignmentTypes));
+                    nameof(Assignee.SchoolTalk), assignmentTypes), this);
             LacPart1 = 
                  new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.LacParts), assignmentTypes));
+                    nameof(Assignee.LacParts), assignmentTypes), this);
             LacPart2 = 
                  new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.LacParts), assignmentTypes));
+                    nameof(Assignee.LacParts), assignmentTypes), this);
             LacPart3 = 
                  new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.LacParts), assignmentTypes));
+                    nameof(Assignee.LacParts), assignmentTypes), this);
             CbsConductor = 
                  new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.CbsConductor), assignmentTypes));
+                    nameof(Assignee.CbsConductor), assignmentTypes), this);
             CbsReader = 
                  new Assignment(AssignmentType.GetMatchingAssignmentType(
-                    nameof(Assignee.CbsReader), assignmentTypes));
+                    nameof(Assignee.CbsReader), assignmentTypes), this);
         }
 
         public Assignment Treasures { get; set; }

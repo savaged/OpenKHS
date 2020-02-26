@@ -18,8 +18,7 @@ namespace OpenKHS.ViewModels
             ScheduleAdminViewModel<ClmmSchedule> clmmScheduleAdminViewModel,
             ScheduleAdminViewModel<PmSchedule> pmScheduleAdminViewModel,
             MasterDetailViewModel<Assignee> assigneeAdminViewModel,
-            IndexViewModel<AssignmentType> assignmentTypesViewModel,
-            IPotentialAssignmentsFactory assigneeLookupService)
+            IndexViewModel<AssignmentType> assignmentTypesViewModel)
             : base(busyStateManager)
         {
             ClmmScheduleAdminViewModel = clmmScheduleAdminViewModel ??

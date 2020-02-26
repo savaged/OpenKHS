@@ -36,53 +36,53 @@
         </Grid>
         <Label Grid.Column="0" Grid.Row="1">Attendant 1</Label>
         <ComboBox Grid.Column="1" Grid.Row="1" 
-                  ItemsSource="{Binding PotentialAssignmentsFactory.Attendants}"
+                  ItemsSource="{Binding PotentialAssigneeFactory.Attendants}"
                   SelectedValuePath="Id" DisplayMemberPath="Name"
-                  SelectedValue="{Binding SelectedItemViewModel.SelectedItem.Attendant1}"/>
+                  SelectedValue="{Binding SelectedItemViewModel.SelectedItem.Attendant1.Assignee}"/>
         <Label Grid.Column="0" Grid.Row="2">Attendant 2</Label>
         <ComboBox Grid.Column="1" Grid.Row="2"
-                  ItemsSource="{Binding PotentialAssignmentsFactory.Attendants}"
+                  ItemsSource="{Binding PotentialAssigneeFactory.Attendants}"
                   SelectedValuePath="Id" DisplayMemberPath="Name"
-                  SelectedValue="{Binding SelectedItemViewModel.SelectedItem.Attendant2}"/>
+                  SelectedValue="{Binding SelectedItemViewModel.SelectedItem.Attendant2.Assignee}"/>
         <Label Grid.Column="0" Grid.Row="3">Attendant 3</Label>
         <ComboBox Grid.Column="1" Grid.Row="3" 
-                  ItemsSource="{Binding PotentialAssignmentsFactory.Attendants}"
+                  ItemsSource="{Binding PotentialAssigneeFactory.Attendants}"
                   SelectedValuePath="Id" DisplayMemberPath="Name"
-                  SelectedValue="{Binding SelectedItemViewModel.SelectedItem.Attendant3}"/>
+                  SelectedValue="{Binding SelectedItemViewModel.SelectedItem.Attendant3.Assignee}"/>
         <Label Grid.Column="0" Grid.Row="4">Attendant 4</Label>
         <ComboBox Grid.Column="1" Grid.Row="4" 
-                  ItemsSource="{Binding PotentialAssignmentsFactory.Attendants}"
+                  ItemsSource="{Binding PotentialAssigneeFactory.Attendants}"
                   SelectedValuePath="Id" DisplayMemberPath="Name"
-                  SelectedValue="{Binding SelectedItemViewModel.SelectedItem.Attendant4}"/>
+                  SelectedValue="{Binding SelectedItemViewModel.SelectedItem.Attendant4.Assignee}"/>
         <Label Grid.Column="0" Grid.Row="5">Platform</Label>
         <ComboBox Grid.Column="1" Grid.Row="5" 
-                  ItemsSource="{Binding PotentialAssignmentsFactory.PlatformControllers}"
+                  ItemsSource="{Binding PotentialAssigneeFactory.PlatformControllers}"
                   SelectedValuePath="Id" DisplayMemberPath="Name"
-                  SelectedValue="{Binding SelectedItemViewModel.SelectedItem.Platform}"/>
+                  SelectedValue="{Binding SelectedItemViewModel.SelectedItem.Platform.Assignee}"/>
         <Label Grid.Column="0" Grid.Row="6">Sound Desk</Label>
         <ComboBox Grid.Column="1" Grid.Row="6" 
-                  ItemsSource="{Binding PotentialAssignmentsFactory.SoundDeskControllers}"
+                  ItemsSource="{Binding PotentialAssigneeFactory.SoundDeskControllers}"
                   SelectedValuePath="Id" DisplayMemberPath="Name"
-                  SelectedValue="{Binding SelectedItemViewModel.SelectedItem.SoundDesk}"/>
+                  SelectedValue="{Binding SelectedItemViewModel.SelectedItem.SoundDesk.Assignee}"/>
         <Label Grid.Column="0" Grid.Row="7">Roving Mic 1</Label>
         <ComboBox Grid.Column="1" Grid.Row="7" 
-                  ItemsSource="{Binding PotentialAssignmentsFactory.RovingMicHandlers}"
+                  ItemsSource="{Binding PotentialAssigneeFactory.RovingMicHandlers}"
                   SelectedValuePath="Id" DisplayMemberPath="Name"
-                  SelectedValue="{Binding SelectedItemViewModel.SelectedItem.RovingMic1}"/>
+                  SelectedValue="{Binding SelectedItemViewModel.SelectedItem.RovingMic1.Assignee}"/>
         <Label Grid.Column="0" Grid.Row="8">Roving Mic 2</Label>
         <ComboBox Grid.Column="1" Grid.Row="8" 
-                  ItemsSource="{Binding PotentialAssignmentsFactory.RovingMicHandlers}"
+                  ItemsSource="{Binding PotentialAssigneeFactory.RovingMicHandlers}"
                   SelectedValuePath="Id" DisplayMemberPath="Name"
-                  SelectedValue="{Binding SelectedItemViewModel.SelectedItem.RovingMic2}"/>       
+                  SelectedValue="{Binding SelectedItemViewModel.SelectedItem.RovingMic2.Assignee}"/>       
         <Label Grid.Column="0" Grid.Row="9">Opening Prayer</Label>
         <ComboBox Grid.Column="1" Grid.Row="9" 
-                  ItemsSource="{Binding PotentialAssignmentsFactory.PrayerGivers}"
+                  ItemsSource="{Binding PotentialAssigneeFactory.PrayerGivers}"
                   SelectedValuePath="Id" DisplayMemberPath="Name"
-                  SelectedValue="{Binding SelectedItemViewModel.SelectedItem.OpeningPrayer}"/>
+                  SelectedValue="{Binding SelectedItemViewModel.SelectedItem.OpeningPrayer.Assignee}"/>
         <Label Grid.Column="0" Grid.Row="10">Closing Prayer</Label>
         <ComboBox Grid.Column="1" Grid.Row="10" 
-                  ItemsSource="{Binding PotentialAssignmentsFactory.PrayerGivers}"
+                  ItemsSource="{Binding PotentialAssigneeFactory.PrayerGivers}"
                   SelectedValuePath="Id" DisplayMemberPath="Name"
-                  SelectedValue="{Binding SelectedItemViewModel.SelectedItem.ClosingPrayer}"/>
+                  SelectedValue="{Binding SelectedItemViewModel.SelectedItem.ClosingPrayer.Assignee}"/>
     </Grid>
 </UserControl>

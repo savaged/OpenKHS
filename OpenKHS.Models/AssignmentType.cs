@@ -42,16 +42,11 @@ namespace OpenKHS.Models
 
     public sealed class NullAssignmentType : AssignmentType
     {
-        private static readonly AssignmentType _default =
-            new NullAssignmentType();
+        private static readonly AssignmentType _default = new NullAssignmentType();
 
-        static NullAssignmentType()
-        {
-        }
+        static NullAssignmentType() { }
 
-        private NullAssignmentType()
-        {
-        }
+        private NullAssignmentType() { }
 
         public static AssignmentType Default => _default;
 

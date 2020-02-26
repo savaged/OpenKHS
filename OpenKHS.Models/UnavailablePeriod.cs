@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 using GalaSoft.MvvmLight;
 
 namespace OpenKHS.Models
@@ -24,6 +25,7 @@ namespace OpenKHS.Models
             set => Set(ref _id, value);
         }
 
+        [Required]
         public int AssigneeId
         {
             get => _assigneeId;

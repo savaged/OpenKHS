@@ -1,44 +1,49 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using OpenKHS.Data;
 using OpenKHS.Models;
 
 namespace OpenKHS.ViewModels
 {
-    public class PotentialAssignmentsFactory : IPotentialAssignmentsFactory
+    public class PotentialAssigneeFactory : IPotentialAssigneeFactory
     {
         private readonly IModelService _modelService;
+        private readonly IModelFactory  _modelFactory;
         private IList<AssignmentType> _assignmentTypes;
 
-        public PotentialAssignmentsFactory(
-            IModelService modelService)
+        public PotentialAssigneeFactory(
+            IModelService modelService,
+            IModelFactory modelFactory)
         {
             _modelService = modelService ??
                 throw new ArgumentNullException(nameof(modelService));
+            _modelFactory = modelFactory ??
+                throw new ArgumentNullException(nameof(modelFactory));
             _assignmentTypes = new List<AssignmentType>();
+
+            Attendants = new List<Assignee>();
         }
 
-        public IList<Assignment> Attendants
+        public void Init()
         {
-            get
-            {
-                var assignmentType = GetAssignmentType(nameof(Assignee.Attendant));
-                var assignees = GetPotentialAssignees(assignmentType);
-                var ordered = GetOrdered(assignees);
-                var potentialAssignments = new List<Assignment>();
-                foreach (var assignee in ordered)
-                {
-                    // TODO the model factory should create the assignment adding it to the db context
-                    potentialAssignments.Add(new Assignment(assignmentType, assignee));
-                }
-                return potentialAssignments;
-            }
+            InitialiseAssignmentTypes();
+            Attendants = GetAttendants();
+        }
+
+        public IList<Assignee> Attendants { get; private set; }
+
+        private IList<Assignee> GetAttendants()
+        {
+            var assignmentType = GetAssignmentType(nameof(Assignee.Attendant));
+            var assignees = GetPotentialAssignees(assignmentType);
+            var ordered = GetOrdered(assignees);
+            return ordered;
         }
 
         private IList<Assignee> GetPotentialAssignees(AssignmentType assignmentType) 
         {
-            InitialiseAssignmentTypes();
             var index = GetIndex<Assignee>(assignmentType);
             return index;
         }
