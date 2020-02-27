@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using GalaSoft.MvvmLight;
 using OpenKHS.Models.Utils;
 
@@ -10,13 +11,16 @@ namespace OpenKHS.Models
         private int _id;
         private DateTime _weekStarting;
         private Assignment _attendant1;
+        private Assignment _attendant2;
+        private Assignment _attendant3;
+        private Assignment _attendant4;
 
         public ScheduleBase()
         {
             _attendant1 =
-            Attendant2 =
-            Attendant3 =
-            Attendant4 =
+            _attendant2 =
+            _attendant3 =
+            _attendant4 =
             OpeningPrayer =
             ClosingPrayer =
             Platform =
@@ -33,11 +37,11 @@ namespace OpenKHS.Models
                 .GetFirstDateOfWeekIso8601(DateTime.Now);
             _attendant1 = new Assignment(AssignmentType.GetMatchingAssignmentType(
                 nameof(Assignee.Attendant), assignmentTypes), this);
-            Attendant2 = new Assignment(AssignmentType.GetMatchingAssignmentType(
+            _attendant2 = new Assignment(AssignmentType.GetMatchingAssignmentType(
                 nameof(Assignee.Attendant), assignmentTypes), this);
-            Attendant3 = new Assignment(AssignmentType.GetMatchingAssignmentType(
+            _attendant3 = new Assignment(AssignmentType.GetMatchingAssignmentType(
                 nameof(Assignee.Attendant), assignmentTypes), this);
-            Attendant4 = new Assignment(AssignmentType.GetMatchingAssignmentType(
+            _attendant4 = new Assignment(AssignmentType.GetMatchingAssignmentType(
                 nameof(Assignee.Attendant), assignmentTypes), this);
             OpeningPrayer = new Assignment(AssignmentType.GetMatchingAssignmentType(
                 nameof(Assignee.Prayer), assignmentTypes), this);
@@ -80,14 +84,41 @@ namespace OpenKHS.Models
             get => _attendant1;
             set
             {
-                _attendant1.Assignee?.Assignments?.Add(value);
                 Set(ref _attendant1, value);
+                _attendant1.Assignee.Assignments.Add(value);
             }
         }
 
-        public Assignment Attendant2 { get; set; }
-        public Assignment Attendant3 { get; set; }
-        public Assignment Attendant4 { get; set; }
+        public Assignment Attendant2 
+        {
+            get => _attendant2;
+            set
+            {
+                Set(ref _attendant2, value);
+                _attendant2.Assignee.Assignments.Add(value);
+            }
+        }
+
+        public Assignment Attendant3 
+        {
+            get => _attendant3;
+            set
+            {
+                Set(ref _attendant3, value);
+                _attendant3.Assignee.Assignments.Add(value);
+            }
+        }
+
+        public Assignment Attendant4 
+        {
+            get => _attendant4;
+            set
+            {
+                Set(ref _attendant4, value);
+                _attendant4.Assignee.Assignments.Add(value);
+            }
+        }
+
         public Assignment Platform { get; set; }
         public Assignment SoundDesk { get; set; }
         public Assignment RovingMic1 { get; set; }

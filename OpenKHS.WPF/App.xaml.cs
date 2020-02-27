@@ -16,7 +16,7 @@ namespace OpenKHS.WPF
                 new UnhandledExceptionEventHandler(
                     OnCurrentDomainUnhandledException);
 
-            _kernel = new StandardKernel(
+           _kernel = new StandardKernel(
                 new ViewModelCoreBindings(),
                 new DbContextBindings(DbConnectionStrings.LIVE));
 

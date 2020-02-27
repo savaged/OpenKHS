@@ -13,7 +13,7 @@ namespace OpenKHS.ViewModels
             IBusyStateRegistry busyStateManager,
             IModelService modelService,
             IndexViewModel<T> indexViewModel,
-            SelectedItemViewModel<T> selectedItemViewModel,
+            SelectedScheduleViewModel<T> selectedItemViewModel,
             IPotentialAssigneeFactory potentialAssigneeFactory) 
             : base(
                 busyStateManager,
