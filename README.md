@@ -23,8 +23,8 @@ Feel free to have a look at the code by cloning this repository using:
 | Should | XL | 0 | WPF | Setup distribution of WPF application for MS Windows using Choclatey |
 | Should | XL | 0 | WPF | Setup distribution of WPF application for Ubuntu based Linux distros using AptGet |
 | Could | XL | 0 | Gtk# | Desktop UI application (MS Windows, Mac OS and Linux) that builds on Linux |
-| Could | M | 5 | CLI | Code the AddModule |
 | Could | L | 0 | All | Add cleaning schedule |
+| Could | M | 5 | TUI | Terminal User Interface version [Gui.cs](using https://github.com/migueldeicaza/gui.cs) |
 | Could | XL | 0 | Android | Android UI version |
 | Could | XL | 0 | iOS | Apple UI version |
 | Could | L | 0 | WPF-Bridge | Windows Store UI version |
