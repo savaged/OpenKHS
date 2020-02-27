@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using GalaSoft.MvvmLight;
 using OpenKHS.Models.Utils;
 
@@ -80,8 +81,8 @@ namespace OpenKHS.Models
             get => _attendant1;
             set
             {
-                _attendant1.Assignee?.Assignments?.Add(value);
                 Set(ref _attendant1, value);
+                _attendant1.Assignee.Assignments.Add(value);
             }
         }
 
